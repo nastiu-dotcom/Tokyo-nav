@@ -1,8 +1,9 @@
 // Service worker: keeps the app shell available offline.
 // API calls and map tiles always go to the network.
-const CACHE = "tke-shell-v2";
+const CACHE = "tke-shell-v3";
 const SHELL = [
   "/", "/index.html", "/styles.css", "/app.js", "/manifest.webmanifest",
+  "/js/util.js", "/js/legs.js", "/js/picker.js", "/js/share.js",
   "/icons/icon.svg", "/icons/icon-192.png", "/icons/icon-512.png",
   "/vendor/leaflet/leaflet.css", "/vendor/leaflet/leaflet.js",
   "/vendor/leaflet/images/marker-icon.png", "/vendor/leaflet/images/marker-icon-2x.png",

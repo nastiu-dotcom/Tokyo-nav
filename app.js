@@ -1,8 +1,17 @@
-// Tokyo Kids Explorer – plain JavaScript frontend.
-// No API keys here: every Google / Claude call goes through /api/* on Vercel.
+// Tokyo Kids Explorer – two modes:
+//  * Trip plan: days you build in advance (start/hotel + places in order).
+//  * Adventure: today's route, grown stop by stop as you go.
+// Both show how to get from each place to the next. No API keys here: every
+// Google / Claude call goes through /api/* on Vercel.
+import {
+  distanceKm, esc, fmtDate, fmtDist, getJSON, hoursForDate, isOpenNow, navUrl, PRICE, r, store, tokyoNow, uid,
+} from "./js/util.js";
+import {
+  AI_COST_NOTE, cachedAiGuide, freeGuide, legSummary, loadAiGuide, loadLeg, renderGuideText, renderRoute,
+} from "./js/legs.js";
+import { openPicker } from "./js/picker.js";
+import { readTripFromHash, shareTrip } from "./js/share.js";
 
-const DAY_MS = 24 * 60 * 60 * 1000;
-const TOKYO_STATION = { lat: 35.6812, lng: 139.7671, label: "Tokyo Station" };
 const CATEGORIES = [
   ["all", "⭐ Top picks"],
   ["museums", "🔬 Museums"],
@@ -12,251 +21,348 @@ const CATEGORIES = [
   ["anime", "🎮 Anime & toys"],
   ["views", "🗼 Views"],
 ];
-const PRICE = {
-  PRICE_LEVEL_FREE: "Free",
-  PRICE_LEVEL_INEXPENSIVE: "¥ (cheap)",
-  PRICE_LEVEL_MODERATE: "¥¥ (moderate)",
-  PRICE_LEVEL_EXPENSIVE: "¥¥¥ (pricey)",
-  PRICE_LEVEL_VERY_EXPENSIVE: "¥¥¥¥ (very pricey)",
-};
 
 const $ = (sel) => document.querySelector(sel);
 const els = {
-  startLabel: $("#start-label"), changeStart: $("#change-start"), picker: $("#picker"),
-  search: $("#search"), suggestions: $("#suggestions"), useLocation: $("#use-location"),
-  saveStart: $("#save-start"), categories: $("#categories"), openNow: $("#open-now"),
-  status: $("#status"), list: $("#list"),
+  modes: document.querySelectorAll("[data-mode]"), daysBar: $("#days-bar"),
+  planTitle: $("#plan-title"), dateWrap: $("#date-wrap"), date: $("#day-date"),
+  timeline: $("#timeline"), addPlace: $("#add-place"), planActions: $("#plan-actions"),
+  browseTitle: $("#browse-title"), browseNear: $("#browse-near"), categories: $("#categories"),
+  openNow: $("#open-now"), status: $("#status"), list: $("#list"),
 };
 
 const state = {
-  start: null,          // saved starting point {lat, lng, label}
-  draft: null,          // point being picked on the map
-  category: "all",
-  openOnly: false,
-  places: [],
+  mode: "trip",
+  trip: { days: [] },
+  day: 0,                       // selected day index
+  adventure: { start: null, stops: [] },
+  browse: { category: "all", openOnly: false, places: [], center: null },
 };
 
-/* ---------- storage (localStorage can be unavailable: always guard) ---------- */
-const store = {
-  get(key) {
-    try { return JSON.parse(localStorage.getItem(key)); } catch { return null; }
-  },
-  set(key, value) {
-    try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* full or blocked */ }
-  },
-  getFresh(key) {
-    const v = store.get(key);
-    return v && Date.now() - v.t < DAY_MS ? v.data : null;
-  },
-  setFresh(key, data) { store.set(key, { t: Date.now(), data }); },
-  prune() {
-    try {
-      for (let i = localStorage.length - 1; i >= 0; i--) {
-        const k = localStorage.key(i);
-        if (!k.startsWith("cache:")) continue;
-        const v = store.get(k);
-        if (!v || Date.now() - v.t > DAY_MS) localStorage.removeItem(k);
-      }
-    } catch { /* ignore */ }
-  },
-};
-
-/* ---------- helpers ---------- */
-const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const r = (n, d) => Math.round(n * 10 ** d) / 10 ** d;
-
-function distanceKm(a, b) {
-  const R = 6371, toRad = (x) => (x * Math.PI) / 180;
-  const dLat = toRad(b.lat - a.lat), dLng = toRad(b.lng - a.lng);
-  const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(h));
-}
-const fmtDist = (km) => (km < 1 ? `${Math.round(km * 1000 / 10) * 10} m` : `${km.toFixed(km < 10 ? 1 : 0)} km`);
-
-async function getJSON(url) {
-  const res = await fetch(url);
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
-  return data;
+/* ---------- persistence ---------- */
+const newDay = (start = null, date = "") => ({ id: uid(), date, start, stops: [] });
+function save() {
+  store.set("trip", state.trip);
+  store.set("adventure", state.adventure);
+  store.set("mode", state.mode);
+  store.set("day", state.day);
 }
 
-/** Current day (0 = Sunday) and minutes since midnight, in Tokyo time. */
-function tokyoNow() {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Tokyo", weekday: "short", hour: "numeric", minute: "numeric", hourCycle: "h23",
-  }).formatToParts(new Date());
-  const get = (t) => parts.find((p) => p.type === t)?.value;
-  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(get("weekday"));
-  return { day, minutes: Number(get("hour")) * 60 + Number(get("minute")) };
+/** The route being shown: the selected trip day, or today's adventure. */
+const active = () => (state.mode === "trip" ? state.trip.days[state.day] : state.adventure);
+const points = (route) => (route.start ? [route.start, ...route.stops] : []);
+const anchor = () => { const p = points(active()); return p[p.length - 1] || null; };
+const isToday = () => state.mode === "adventure" || active().date === tokyoNow().date;
+
+/* ---------- mode + days ---------- */
+function setMode(mode) {
+  state.mode = mode;
+  els.modes.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
+  save();
+  render();
 }
 
-/** true / false from the weekly opening periods, or null when unknown. */
-function isOpenNow(periods) {
-  if (!Array.isArray(periods) || periods.length === 0) return null;
-  const { day, minutes } = tokyoNow();
-  const WEEK = 7 * 1440;
-  const now = day * 1440 + minutes;
-  for (const p of periods) {
-    if (!p.open) continue;
-    if (!p.close) return true; // open 24/7
-    const open = p.open.day * 1440 + (p.open.hour || 0) * 60 + (p.open.minute || 0);
-    let close = p.close.day * 1440 + (p.close.hour || 0) * 60 + (p.close.minute || 0);
-    if (close <= open) close += WEEK;
-    if ((now >= open && now < close) || (now + WEEK >= open && now + WEEK < close)) return true;
+function renderDays() {
+  els.daysBar.hidden = state.mode !== "trip";
+  if (state.mode !== "trip") return;
+  const today = tokyoNow().date;
+  els.daysBar.innerHTML = state.trip.days.map((d, i) => {
+    const label = `Day ${i + 1}${d.date ? ` · ${fmtDate(d.date)}` : ""}${d.date === today ? " · Today" : ""}`;
+    return `<button class="chip" type="button" data-day="${i}" aria-pressed="${i === state.day}">${esc(label)}</button>`;
+  }).join("") + `<button class="chip add" type="button" data-day="new">＋ Add day</button>`;
+}
+
+function addDay() {
+  const last = state.trip.days[state.trip.days.length - 1];
+  let date = "";
+  if (last?.date) {
+    const d = new Date(`${last.date}T12:00:00Z`);
+    d.setUTCDate(d.getUTCDate() + 1);
+    date = d.toISOString().slice(0, 10);
   }
-  return false;
+  state.trip.days.push(newDay(last?.start ? { ...last.start } : null, date)); // same hotel as the day before
+  state.day = state.trip.days.length - 1;
+  save();
+  render();
 }
 
-/* ---------- starting point ---------- */
-function showStart() {
-  els.startLabel.textContent = state.start ? state.start.label : "Not set yet – pick one below";
-}
+/* ---------- plan (timeline) ---------- */
+function renderPlan() {
+  const route = active();
+  const trip = state.mode === "trip";
+  els.planTitle.textContent = trip
+    ? `Day ${state.day + 1}${route.date ? ` · ${fmtDate(route.date)}` : ""}`
+    : "Today's adventure";
+  els.dateWrap.hidden = !trip;
+  if (trip) els.date.value = route.date || "";
 
-let map, marker;
-function openPicker() {
-  els.picker.hidden = false;
-  els.changeStart.hidden = true;
-  state.draft = { ...(state.start || TOKYO_STATION) };
-  if (!map) {
-    map = L.map("map", { zoomControl: true }).setView([state.draft.lat, state.draft.lng], 14);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-    marker = L.marker([state.draft.lat, state.draft.lng], { draggable: true, autoPan: true }).addTo(map);
-    marker.on("dragend", () => {
-      const p = marker.getLatLng();
-      setDraft(p.lat, p.lng, null);
+  const pts = points(route);
+  let html = "";
+  if (!route.start) {
+    html += `<li class="point start empty">
+      <span class="dot">${trip ? "🏨" : "📍"}</span>
+      <div class="body">
+        <p class="pname">${trip ? "Where does this day start? (hotel, station…)" : "Where are you starting?"}</p>
+        <div class="row">
+          ${trip ? "" : `<button class="btn btn-primary" type="button" data-act="here">📍 Use my location</button>`}
+          <button class="btn btn-secondary" type="button" data-act="start">${trip ? "Choose start" : "Pick on map / search"}</button>
+        </div>
+      </div></li>`;
+  } else {
+    html += pointHtml(route.start, -1, trip);
+    route.stops.forEach((stop, i) => {
+      html += legHtml(i);
+      html += pointHtml(stop, i, trip);
     });
-    map.on("click", (e) => setDraft(e.latlng.lat, e.latlng.lng, null));
+    if (!route.stops.length) {
+      html += `<li class="empty-note">Add your first place from the list below 👇 or with “Add any place”.</li>`;
+    }
   }
-  setDraft(state.draft.lat, state.draft.lng, state.draft.label, true);
-  setTimeout(() => map.invalidateSize(), 50);
+  els.timeline.innerHTML = html;
+  els.addPlace.hidden = !route.start;
+
+  els.planActions.innerHTML = trip
+    ? `<button class="btn btn-secondary" type="button" data-act="share">🔗 Share trip</button>
+       <button class="btn btn-secondary" type="button" data-act="delete-day">🗑️ Delete day</button>`
+    : `<button class="btn btn-secondary" type="button" data-act="to-trip" ${route.stops.length ? "" : "disabled"}>🗓️ Save to trip plan</button>
+       <button class="btn btn-secondary" type="button" data-act="new-adventure">🔁 New adventure</button>`;
+
+  loadLegs(pts);
 }
 
-function setDraft(lat, lng, label, recenter = false) {
-  state.draft = { lat, lng, label: label || `Pinned spot (${lat.toFixed(4)}, ${lng.toFixed(4)})` };
-  marker.setLatLng([lat, lng]);
-  if (recenter) map.setView([lat, lng], Math.max(map.getZoom(), 15));
-  els.saveStart.textContent = `Save: ${state.draft.label}`;
+function pointHtml(p, i, trip) {
+  const isStart = i === -1;
+  const route = active();
+  let meta = [];
+  if (p.type) meta.push(esc(p.type));
+  if (p.rating) meta.push(`★ ${p.rating.toFixed(1)}`);
+  if (!isStart && p.hours) {
+    const line = hoursForDate(p.hours, trip ? route.date : null);
+    if (line) meta.push(`🕘 ${esc(line)}`);
+  }
+  let badge = "";
+  if (!isStart && isToday()) {
+    const open = isOpenNow(p.periods);
+    badge = open === true ? `<span class="badge open">Open now</span>` : open === false ? `<span class="badge closed">Closed now</span>` : "";
+  }
+  const site = /^https?:\/\//.test(p.website || "") ? `<a class="mini" href="${esc(p.website)}" target="_blank" rel="noopener" aria-label="Official site">🌐</a>` : "";
+  const controls = isStart
+    ? `<button class="mini" type="button" data-act="start" aria-label="Change start">✏️</button>`
+    : `${site}
+       <button class="mini" type="button" data-act="up" data-i="${i}" aria-label="Move earlier" ${i === 0 ? "disabled" : ""}>↑</button>
+       <button class="mini" type="button" data-act="down" data-i="${i}" aria-label="Move later" ${i === route.stops.length - 1 ? "disabled" : ""}>↓</button>
+       <button class="mini" type="button" data-act="remove" data-i="${i}" aria-label="Remove">✕</button>`;
+  return `<li class="point${isStart ? " start" : ""}">
+    <span class="dot">${isStart ? (trip ? "🏨" : "📍") : i + 1}</span>
+    <div class="body">
+      <p class="pname">${esc(p.name)} ${badge}</p>
+      ${meta.length ? `<p class="small">${meta.join(" · ")}</p>` : p.address ? `<p class="small">${esc(p.address)}</p>` : ""}
+    </div>
+    <div class="controls">${controls}</div>
+  </li>`;
 }
 
-function saveStart() {
-  if (!state.draft) return;
-  state.start = state.draft;
-  store.set("start", state.start);
-  els.picker.hidden = true;
-  els.changeStart.hidden = false;
-  showStart();
-  loadActivities();
+function legHtml(i) {
+  return `<li class="leg" data-leg="${i}">
+    <p class="leg-summary">Finding the way…</p>
+    <div class="row tight">
+      <a class="btn btn-secondary nav" href="#" target="_blank" rel="noopener">🧭 Navigate</a>
+      <button class="btn btn-secondary" type="button" data-act="leg-details" data-i="${i}" aria-expanded="false">Details</button>
+    </div>
+    <div class="leg-body" hidden></div>
+  </li>`;
 }
 
-function useMyLocation() {
+const legData = new Map(); // leg index → route response (for the current render)
+let legRun = 0;
+
+async function loadLegs(pts) {
+  const run = ++legRun;
+  legData.clear();
+  for (let i = 1; i < pts.length; i++) {
+    const from = pts[i - 1], to = pts[i];
+    const li = els.timeline.querySelector(`[data-leg="${i - 1}"]`);
+    if (!li) continue;
+    li.querySelector(".nav").href = navUrl(from, to);
+    try {
+      const data = await loadLeg(from, to);
+      if (run !== legRun) return;
+      legData.set(i - 1, data);
+      li.querySelector(".leg-summary").innerHTML = legSummary(data.route);
+    } catch (err) {
+      if (run !== legRun) return;
+      li.querySelector(".leg-summary").textContent = `Couldn't get the route (${err.message}). Tap Navigate.`;
+    }
+  }
+}
+
+function toggleLegDetails(btn) {
+  const i = Number(btn.dataset.i);
+  const li = btn.closest(".leg");
+  const body = li.querySelector(".leg-body");
+  const open = body.hidden;
+  body.hidden = !open;
+  btn.setAttribute("aria-expanded", String(open));
+  btn.textContent = open ? "Hide details" : "Details";
+  if (open) fillLegBody(i, body);
+}
+
+function fillLegBody(i, body) {
+  const data = legData.get(i);
+  if (!data) { body.innerHTML = `<p class="small">Still loading…</p>`; return; }
+  const pts = points(active());
+  const from = pts[i], to = pts[i + 1];
+  const ai = cachedAiGuide(from, to);
+  body.innerHTML = renderRoute(data.route) + (ai
+    ? `<div class="ai-guide"><p class="small">✨ AI family guide (saved – no extra cost)</p>${renderGuideText(ai.guide)}</div>`
+    : renderGuideText(freeGuide(data.route, to.name)) +
+      (data.aiAvailable ? `<button class="btn btn-secondary full ai-btn" type="button" data-act="ai" data-i="${i}">✨ AI family guide · paid, ${AI_COST_NOTE}</button>` : ""));
+}
+
+async function aiGuide(btn) {
+  const i = Number(btn.dataset.i);
+  const pts = points(active());
+  btn.disabled = true;
+  btn.textContent = "Writing your guide… (about 10 seconds)";
+  try {
+    const res = await loadAiGuide(pts[i], pts[i + 1], pts[i + 1].name);
+    if (!res) { btn.disabled = false; btn.textContent = `✨ AI family guide · paid, ${AI_COST_NOTE}`; return; }
+    fillLegBody(i, btn.closest(".leg-body"));
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = `✨ Try again · paid, ${AI_COST_NOTE}`;
+    alert(`Sorry: ${err.message}`);
+  }
+}
+
+/* ---------- plan editing ---------- */
+function setStart(p) {
+  active().start = p;
+  save();
+  render();
+}
+
+function addStop(p) {
+  const route = active();
+  if (route.stops.some((s) => s.id === p.id)) return;
+  route.stops.push(p);
+  save();
+  renderPlan();
+  renderBrowse();
+  els.timeline.lastElementChild?.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function useMyLocationAsStart() {
   if (!navigator.geolocation) return alert("Location is not available on this device.");
-  els.useLocation.disabled = true;
   navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      els.useLocation.disabled = false;
-      setDraft(pos.coords.latitude, pos.coords.longitude, "My location", true);
-    },
-    () => {
-      els.useLocation.disabled = false;
-      alert("Could not get your location. Search or tap the map instead.");
-    },
+    (pos) => setStart({ lat: pos.coords.latitude, lng: pos.coords.longitude, name: "Where we started", id: "pin-start" }),
+    () => alert("Could not get your location. Use “Pick on map / search” instead."),
     { enableHighAccuracy: true, timeout: 10000 },
   );
 }
 
-/* ---------- search with Google Places Autocomplete (via /api) ---------- */
-let sessionToken = crypto.randomUUID();
-let searchTimer, searchSeq = 0;
-
-els.search.addEventListener("input", () => {
-  clearTimeout(searchTimer);
-  const q = els.search.value.trim();
-  if (q.length < 3) { hideSuggestions(); return; }
-  searchTimer = setTimeout(() => runSearch(q), 350);
-});
-
-async function runSearch(q) {
-  const seq = ++searchSeq;
-  try {
-    const { suggestions } = await getJSON(`/api/autocomplete?q=${encodeURIComponent(q)}&session=${sessionToken}`);
-    if (seq !== searchSeq) return;
-    if (!suggestions.length) {
-      els.suggestions.innerHTML = `<li aria-disabled="true">No matches – try another name</li>`;
-    } else {
-      els.suggestions.innerHTML = suggestions.map((s) =>
-        `<li role="option" tabindex="0" data-id="${esc(s.id)}" data-name="${esc(s.main)}">${esc(s.main)}<small>${esc(s.secondary)}</small></li>`).join("");
+async function onPlanAction(btn) {
+  const route = active();
+  const i = Number(btn.dataset.i);
+  switch (btn.dataset.act) {
+    case "start":
+      return openPicker({
+        title: state.mode === "trip" ? "Where does this day start?" : "Where are you starting?",
+        initial: route.start, saveText: "Start here", onSave: setStart,
+      });
+    case "here": return useMyLocationAsStart();
+    case "up": [route.stops[i - 1], route.stops[i]] = [route.stops[i], route.stops[i - 1]]; break;
+    case "down": [route.stops[i + 1], route.stops[i]] = [route.stops[i], route.stops[i + 1]]; break;
+    case "remove": route.stops.splice(i, 1); break;
+    case "leg-details": return toggleLegDetails(btn);
+    case "ai": return aiGuide(btn);
+    case "share": {
+      const how = await shareTrip(state.trip);
+      if (how === "copied") alert("Link copied! Send it to the other phone and open it there.");
+      return;
     }
-    els.suggestions.hidden = false;
-  } catch (err) {
-    els.suggestions.innerHTML = `<li aria-disabled="true">${esc(err.message)}</li>`;
-    els.suggestions.hidden = false;
+    case "delete-day":
+      if (!confirm(`Delete Day ${state.day + 1} and its places?`)) return;
+      state.trip.days.splice(state.day, 1);
+      if (!state.trip.days.length) state.trip.days.push(newDay());
+      state.day = Math.min(state.day, state.trip.days.length - 1);
+      break;
+    case "new-adventure":
+      if (route.stops.length && !confirm("Start a new adventure? Today's route will be cleared.")) return;
+      state.adventure = { start: null, stops: [] };
+      break;
+    case "to-trip": {
+      const d = newDay({ ...route.start }, tokyoNow().date);
+      d.stops = route.stops.map((s) => ({ ...s }));
+      state.trip.days.push(d);
+      state.day = state.trip.days.length - 1;
+      save();
+      alert(`Saved as Day ${state.day + 1} in your trip plan.`);
+      return setMode("trip");
+    }
+    default: return;
   }
+  save();
+  render();
 }
 
-function hideSuggestions() { els.suggestions.hidden = true; els.suggestions.innerHTML = ""; }
-
-async function chooseSuggestion(li) {
-  if (!li?.dataset.id) return;
-  const name = li.dataset.name;
-  hideSuggestions();
-  els.search.value = name;
-  try {
-    const p = await getJSON(`/api/place?id=${encodeURIComponent(li.dataset.id)}&session=${sessionToken}`);
-    setDraft(p.lat, p.lng, name, true);
-  } catch (err) {
-    alert(err.message);
-  } finally {
-    sessionToken = crypto.randomUUID(); // a session ends once a place is picked
-  }
-}
-els.suggestions.addEventListener("click", (e) => chooseSuggestion(e.target.closest("li")));
-els.suggestions.addEventListener("keydown", (e) => { if (e.key === "Enter") chooseSuggestion(e.target.closest("li")); });
-
-/* ---------- activities ---------- */
+/* ---------- browse activities ---------- */
 function renderCategories() {
   els.categories.innerHTML = CATEGORIES.map(([id, label]) =>
-    `<button class="chip" type="button" data-cat="${id}" aria-pressed="${id === state.category}">${label}</button>`).join("");
+    `<button class="chip" type="button" data-cat="${id}" aria-pressed="${id === state.browse.category}">${label}</button>`).join("");
 }
 
-async function loadActivities() {
-  if (!state.start) { els.status.textContent = "Set a starting point first."; els.list.innerHTML = ""; return; }
-  const near = `${r(state.start.lat, 2)},${r(state.start.lng, 2)}`;
-  const cacheKey = `cache:act:${state.category}:${near}`;
+async function loadActivities(center) {
+  const b = state.browse;
+  b.center = center;
+  const near = `${r(center.lat, 2)},${r(center.lng, 2)}`;
+  const cacheKey = `cache:act:${b.category}:${near}`;
   let data = store.getFresh(cacheKey);
   if (!data) {
     els.status.textContent = "Finding fun places…";
     els.list.innerHTML = "";
     try {
-      data = await getJSON(`/api/activities?category=${state.category}&near=${near}`);
+      data = await getJSON(`/api/activities?category=${b.category}&near=${near}`);
       store.setFresh(cacheKey, data);
     } catch (err) {
       els.status.textContent = `Sorry: ${err.message}`;
       return;
     }
   }
-  if (data.category !== state.category) return; // user switched meanwhile
-  state.places = data.places
-    .map((p) => ({ ...p, km: distanceKm(state.start, p) }))
-    .sort((a, b) => a.km - b.km);
-  renderList();
+  if (data.category !== b.category) return; // switched meanwhile
+  b.places = data.places;
+  renderBrowse();
 }
 
-function renderList() {
-  const now = tokyoNow();
-  const todayIdx = (now.day + 6) % 7; // Google's weekdayDescriptions start on Monday
-  let items = state.places.map((p) => ({ ...p, open: p.temporarilyClosed ? false : isOpenNow(p.periods) }));
-  if (state.openOnly) items = items.filter((p) => p.open === true);
+function renderBrowse() {
+  const b = state.browse;
+  const here = anchor();
+  const trip = state.mode === "trip";
+  els.browseTitle.textContent = trip ? `Add places to Day ${state.day + 1}` : "What's next?";
+  if (!here) {
+    els.browseNear.textContent = "";
+    els.status.textContent = "Set a starting point above to see things to do nearby.";
+    els.list.innerHTML = "";
+    return;
+  }
+  // Re-sorting by the newest stop is free; fetching a new list is a Google call,
+  // so only offer it when the route has moved more than ~1.5 km.
+  const moved = !b.center || distanceKm(b.center, here) > 1.5;
+  els.browseNear.innerHTML = `Nearest to <strong>${esc(here.name)}</strong>` +
+    (moved && b.center ? ` <button class="btn btn-secondary small-btn" type="button" data-act="refresh">🔄 Find places near here</button>` : "");
+  if (!b.center) { loadActivities(here); return; }
 
+  const added = new Set(active().stops.map((s) => s.id));
+  let items = b.places.map((p) => ({ ...p, km: distanceKm(here, p), open: p.temporarilyClosed ? false : isOpenNow(p.periods) }))
+    .sort((a, c) => a.km - c.km);
+  if (b.openOnly) items = items.filter((p) => p.open === true);
   els.status.textContent = items.length
     ? `${items.length} place${items.length === 1 ? "" : "s"}, nearest first`
-    : state.openOnly ? "Nothing open right now in this category. Try another one!" : "No places found.";
+    : b.openOnly ? "Nothing open right now in this category. Try another one!" : "No places found.";
 
+  const todayIdx = (tokyoNow().day + 6) % 7;
   els.list.innerHTML = items.map((p) => {
-    const badge = p.temporarilyClosed
-      ? `<span class="badge closed">Temporarily closed</span>`
+    const badge = p.temporarilyClosed ? `<span class="badge closed">Temporarily closed</span>`
       : p.open === true ? `<span class="badge open">Open now</span>`
       : p.open === false ? `<span class="badge closed">Closed now</span>` : "";
     const rating = p.rating ? `★ ${p.rating.toFixed(1)} <span class="small">(${p.reviews.toLocaleString()} reviews)</span>` : "No rating yet";
@@ -264,14 +370,13 @@ function renderList() {
       ? `<ul class="hours">${p.hours.map((h, i) => `<li class="${i === todayIdx ? "today" : ""}">${esc(h)}</li>`).join("")}</ul>`
       : "Not listed";
     const hasSite = /^https?:\/\//.test(p.website || "");
-    const navUrl = `https://www.google.com/maps/dir/?api=1&origin=${state.start.lat},${state.start.lng}` +
-      `&destination=${encodeURIComponent(p.name)}&destination_place_id=${encodeURIComponent(p.id)}&travelmode=transit`;
+    const isAdded = added.has(p.id);
     return `
-<details class="activity" data-id="${esc(p.id)}">
+<details class="activity">
   <summary>
     <span class="name">${esc(p.name)}</span>
     <span class="dist">${fmtDist(p.km)}</span>
-    <span class="meta">${rating}${badge}</span>
+    <span class="meta">${rating}${badge}${isAdded ? `<span class="badge added">✓ In plan</span>` : ""}</span>
   </summary>
   <div class="details">
     <dl>
@@ -279,202 +384,115 @@ function renderList() {
       <dt>Address</dt><dd>${esc(p.address)}</dd>
       <dt>Rating</dt><dd>${rating}</dd>
       <dt>Price</dt><dd>${esc(PRICE[p.price] || "Not listed")}</dd>
-      <dt>Distance</dt><dd>${fmtDist(p.km)} (straight line)</dd>
+      <dt>Distance</dt><dd>${fmtDist(p.km)} from ${esc(here.name)}</dd>
       <dt>Hours</dt><dd>${hours}</dd>
     </dl>
     <div class="actions">
-      <button class="btn btn-primary wide" type="button" data-guide="${esc(p.id)}">🚆 How to get there</button>
-      <a class="btn btn-secondary${hasSite ? "" : " wide"}" href="${esc(navUrl)}" target="_blank" rel="noopener">🧭 Navigate</a>
+      <button class="btn btn-primary wide" type="button" data-add="${esc(p.id)}" ${isAdded ? "disabled" : ""}>
+        ${isAdded ? "✓ Already in the plan" : trip ? `➕ Add to Day ${state.day + 1}` : "➕ Go here next"}</button>
+      <a class="btn btn-secondary${hasSite ? "" : " wide"}" href="${esc(navUrl(here, p))}" target="_blank" rel="noopener">🧭 Navigate</a>
       ${hasSite ? `<a class="btn btn-secondary" href="${esc(p.website)}" target="_blank" rel="noopener">🌐 Official site</a>` : ""}
     </div>
-    <div class="guide-slot"></div>
   </div>
 </details>`;
   }).join("");
 }
 
-/* ---------- route guide ---------- */
-const VEHICLE_ICON = { Subway: "🚇", Train: "🚆", Shinkansen: "🚄", Monorail: "🚝", Tram: "🚋", Bus: "🚌", Ferry: "⛴️", "Cable car": "🚡", Ropeway: "🚡" };
-
-const AI_COST_NOTE = "about 1 US cent";
-
-function tripKeys(place) {
-  const from = `${r(state.start.lat, 3)},${r(state.start.lng, 3)}`;
-  const to = `${r(place.lat, 4)},${r(place.lng, 4)}`;
-  return { from, to, routeKey: `cache:route:${from}:${to}`, aiKey: `cache:guide:${from}:${to}` };
-}
-const plannedAt = (iso) => new Date(iso).toLocaleString("en-GB", { timeZone: "Asia/Tokyo", dateStyle: "medium", timeStyle: "short" });
-
-/** FREE: route data from Google (free monthly usage) + built-in tips. */
-async function showGuide(button) {
-  const place = state.places.find((p) => p.id === button.dataset.guide);
-  const slot = button.closest(".details").querySelector(".guide-slot");
-  if (!place || !state.start) return;
-  const k = tripKeys(place);
-
-  let data = store.getFresh(k.routeKey);
-  if (!data) {
-    button.disabled = true;
-    slot.innerHTML = `<div class="guide"><p>Planning the trip…</p></div>`;
-    try {
-      data = await getJSON(`/api/route?from=${k.from}&to=${k.to}`);
-      store.setFresh(k.routeKey, data);
-    } catch (err) {
-      slot.innerHTML = `<div class="guide"><p><strong>Sorry:</strong> ${esc(err.message)}</p><p>Tap “Navigate” to open Google Maps instead.</p></div>`;
-      return;
-    } finally {
-      button.disabled = false;
-    }
-  }
-
-  const ai = store.getFresh(k.aiKey);
-  const aiPart = ai
-    ? `<div class="ai-guide"><p class="small">✨ AI family guide (saved – no extra cost)</p>${renderGuideText(ai.guide)}</div>`
-    : data.aiAvailable
-      ? `<button class="btn btn-secondary wide ai-btn" type="button" data-ai="${esc(place.id)}">✨ AI family guide · paid, ${AI_COST_NOTE}</button>`
-      : "";
-  slot.innerHTML = `<div class="guide">${renderRoute(data.route)}
-    ${ai ? "" : renderGuideText(freeGuide(data.route, place.name))}
-    ${aiPart}
-    <p class="small">Planned ${plannedAt(data.createdAt)} (Tokyo time). Always check station signs.</p></div>`;
-  slot.scrollIntoView({ behavior: "smooth", block: "nearest" });
+function addFromList(id) {
+  const p = state.browse.places.find((x) => x.id === id);
+  if (!p) return;
+  const { id: pid, name, type, address, lat, lng, rating, reviews, price, website, hours, periods } = p;
+  addStop({ id: pid, name, type, address, lat, lng, rating, reviews, price, website, hours, periods });
 }
 
-/** PAID: asks Claude for a guide – only after the user says yes. */
-async function showAiGuide(button) {
-  const place = state.places.find((p) => p.id === button.dataset.ai);
-  if (!place || !state.start) return;
-  const k = tripKeys(place);
-  if (!store.getFresh(k.aiKey)) {
-    const ok = confirm(
-      `This is a PAID step.\n\nClaude (AI) will write a family guide for ${place.name}. ` +
-      `It costs ${AI_COST_NOTE}, taken from your prepaid Anthropic credit.\n\n` +
-      `The guide is saved for 24 hours, so opening it again is free.\n\nContinue?`);
-    if (!ok) return;
-    button.disabled = true;
-    button.textContent = "Writing your guide… (about 10 seconds)";
-    try {
-      store.setFresh(k.aiKey, await getJSON(`/api/guide?from=${k.from}&to=${k.to}&name=${encodeURIComponent(place.name)}`));
-    } catch (err) {
-      button.disabled = false;
-      button.textContent = `✨ Try again · paid, ${AI_COST_NOTE}`;
-      alert(`Sorry: ${err.message}`);
-      return;
-    }
-  }
-  showGuide(button.closest(".details").querySelector("[data-guide]"));
+/* ---------- render all ---------- */
+function render() {
+  if (!state.trip.days.length) state.trip.days.push(newDay());
+  state.day = Math.max(0, Math.min(state.day, state.trip.days.length - 1));
+  renderDays();
+  renderPlan();
+  renderBrowse();
 }
 
-/** Free, built-in guide made only from the route data + general tips. */
-function freeGuide(route, name) {
-  const lines = ["## Steps"];
-  let n = 1;
-  if (route.kind === "walk") {
-    lines.push(`${n++}. Walk about ${route.totalMinutes} min to ${name}. Tap Navigate for the walking map.`);
-  } else if (route.kind === "stations") {
-    const s = route.startStations[0], e = route.endStations[0];
-    lines.push(`${n++}. Walk about ${s.walkMinutes} min to **${s.name}**.`);
-    lines.push(`${n++}. Take the train to **${e.name}** – tap Navigate to see which line and where to change.`);
-    lines.push(`${n++}. Walk about ${e.walkMinutes} min to ${name}.`);
-  } else {
-    for (const st of route.steps) {
-      lines.push(st.mode === "WALK"
-        ? `${n++}. Walk ${st.minutes} min (${st.meters} m).`
-        : `${n++}. Take the **${st.line}**${st.direction ? ` toward ${st.direction}` : ""} from ${st.from} to **${st.to}**${st.stops != null ? ` (${st.stops} stops)` : ""}.`);
-    }
-  }
-  lines.push("## Good to know");
-  if (route.kind !== "walk") {
-    lines.push("- Everyone needs their own IC card (Suica/PASMO) or ticket. Tap in and tap out.");
-    lines.push("- Elementary-school kids (usually up to 12) pay about half fare; junior high and up pay adult fare.");
-    lines.push("- Weekday rush hours (about 7:30–9:30 and 17:30–19:30) are very crowded – stay together at the gates.");
-  }
-  lines.push("- Follow the coloured line signs; big stations can mean long walks between lines.");
-  return lines.join("\n");
-}
-
-function renderRoute(route) {
-  if (route.kind === "walk") {
-    return `<p class="route-summary">🚶 Walk about ${route.totalMinutes} min (${route.distanceKm} km)</p>`;
-  }
-  if (route.kind === "stations") {
-    const st = (list) => list.map((x, i) =>
-      `<li><span class="icon">${i ? "·" : "🚉"}</span><span>${i ? "" : "<strong>"}${esc(x.name)}${i ? "" : "</strong>"} <span class="small">· ~${x.walkMinutes} min walk</span></span></li>`).join("");
-    return `<p class="route-summary">📏 ${route.distanceKm} km away (straight line)</p>
-      <p class="small">Google doesn't share Japanese train timetables with apps, so tap <strong>Navigate</strong> for the exact lines. Nearest stations:</p>
-      <p><strong>Near your start</strong></p><ul class="legs">${st(route.startStations)}</ul>
-      <p><strong>Near the destination</strong></p><ul class="legs">${st(route.endStations)}</ul>`;
-  }
-  const head = `⏱ ${route.totalMinutes} min · ${route.transfers} transfer${route.transfers === 1 ? "" : "s"}` +
-    (route.adultFare ? ` · ${esc(route.adultFare)} per adult` : "");
-  const legs = route.steps.map((s) => {
-    if (s.mode === "WALK") return `<li><span class="icon">🚶</span><span>Walk ${s.minutes} min (${s.meters} m)</span></li>`;
-    const hex = (c) => (/^#[0-9a-f]{3,8}$/i.test(c || "") ? c : null);
-    const style = hex(s.color) ? `style="background:${hex(s.color)};color:${hex(s.textColor) || "#fff"}"` : "";
-    return `<li><span class="icon">${VEHICLE_ICON[s.vehicle] || "🚆"}</span><span>
-      <span class="line-tag" ${style}>${esc(s.lineShort || s.line)}</span>${s.lineShort ? esc(s.line) : ""}
-      ${s.direction ? `<br>toward <strong>${esc(s.direction)}</strong>` : ""}
-      <br>${esc(s.from)} → <strong>${esc(s.to)}</strong>
-      <span class="small">${s.stops != null ? ` · ${s.stops} stop${s.stops === 1 ? "" : "s"}` : ""} · ${s.minutes} min${s.everyMinutes ? ` · every ~${s.everyMinutes} min` : ""}</span>
-    </span></li>`;
-  }).join("");
-  return `<p class="route-summary">${head}</p><ul class="legs">${legs}</ul>`;
-}
-
-/** Renders the small "## heading / 1. step / - bullet" format the guide uses. */
-function renderGuideText(text) {
-  let html = "", list = null;
-  const close = () => { if (list) { html += `</${list}>`; list = null; } };
-  const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-  for (const raw of String(text).split("\n")) {
-    const line = raw.trim();
-    if (!line) continue;
-    let m;
-    if ((m = line.match(/^#{1,4}\s+(.*)/))) { close(); html += `<h3>${inline(m[1])}</h3>`; }
-    else if ((m = line.match(/^\d+[.)]\s+(.*)/))) { if (list !== "ol") { close(); html += "<ol>"; list = "ol"; } html += `<li>${inline(m[1])}</li>`; }
-    else if ((m = line.match(/^[-*•]\s+(.*)/))) { if (list !== "ul") { close(); html += "<ul>"; list = "ul"; } html += `<li>${inline(m[1])}</li>`; }
-    else { close(); html += `<p>${inline(line)}</p>`; }
-  }
-  close();
-  return html;
-}
-
-/* ---------- wire up ---------- */
-els.changeStart.addEventListener("click", openPicker);
-els.saveStart.addEventListener("click", saveStart);
-els.useLocation.addEventListener("click", useMyLocation);
+/* ---------- events ---------- */
+els.modes.forEach((b) => b.addEventListener("click", () => setMode(b.dataset.mode)));
+els.daysBar.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-day]");
+  if (!b) return;
+  if (b.dataset.day === "new") return addDay();
+  state.day = Number(b.dataset.day);
+  save();
+  render();
+});
+els.date.addEventListener("change", () => {
+  active().date = els.date.value;
+  save();
+  render();
+});
+els.timeline.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
+els.planActions.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
+els.addPlace.addEventListener("click", () => openPicker({
+  title: state.mode === "trip" ? `Add a place to Day ${state.day + 1}` : "Where to next?",
+  initial: anchor(), saveText: "Add", onSave: addStop,
+}));
 els.categories.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-cat]");
-  if (!btn || btn.dataset.cat === state.category) return;
-  state.category = btn.dataset.cat;
-  store.set("category", state.category);
+  if (!btn || btn.dataset.cat === state.browse.category) return;
+  state.browse.category = btn.dataset.cat;
+  store.set("category", state.browse.category);
   renderCategories();
-  loadActivities();
+  const here = anchor();
+  if (here) loadActivities(here);
 });
 els.openNow.addEventListener("change", () => {
-  state.openOnly = els.openNow.checked;
-  store.set("openOnly", state.openOnly);
-  renderList();
+  state.browse.openOnly = els.openNow.checked;
+  store.set("openOnly", state.browse.openOnly);
+  renderBrowse();
+});
+els.browseNear.addEventListener("click", (e) => {
+  if (e.target.closest("[data-act='refresh']")) { const here = anchor(); if (here) loadActivities(here); }
 });
 els.list.addEventListener("click", (e) => {
-  const ai = e.target.closest("[data-ai]");
-  if (ai) return showAiGuide(ai);
-  const btn = e.target.closest("[data-guide]");
-  if (btn) showGuide(btn);
+  const add = e.target.closest("[data-add]");
+  if (add) addFromList(add.dataset.add);
 });
 
-(function init() {
+/* ---------- start ---------- */
+(async function init() {
   store.prune();
-  state.start = store.get("start");
-  state.category = CATEGORIES.some(([id]) => id === store.get("category")) ? store.get("category") : "all";
-  state.openOnly = store.get("openOnly") === true;
-  els.openNow.checked = state.openOnly;
-  renderCategories();
-  showStart();
-  if (state.start) loadActivities();
-  else { els.status.textContent = "Set a starting point to see activities."; openPicker(); }
+  state.trip = store.get("trip") || { days: [] };
+  state.adventure = store.get("adventure") || { start: store.get("start") ? { ...store.get("start"), name: store.get("start").label } : null, stops: [] };
+  state.day = store.get("day") || 0;
+  state.mode = store.get("mode") === "adventure" ? "adventure" : "trip";
+  const cat = store.get("category");
+  state.browse.category = CATEGORIES.some(([id]) => id === cat) ? cat : "all";
+  state.browse.openOnly = store.get("openOnly") === true;
+  els.openNow.checked = state.browse.openOnly;
 
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  // A shared trip link (#trip=...)
+  try {
+    const shared = await readTripFromHash();
+    if (shared?.days.length) {
+      const stops = shared.days.reduce((n, d) => n + d.stops.length, 0);
+      if (confirm(`Open the shared trip plan (${shared.days.length} day${shared.days.length === 1 ? "" : "s"}, ${stops} places)?\n\nIt replaces the trip plan on this phone.`)) {
+        state.trip = shared;
+        state.mode = "trip";
+        state.day = 0;
+      }
+    }
+  } catch {
+    alert("This trip link looks broken – ask for a new one.");
   }
+  if (location.hash.startsWith("#trip=")) history.replaceState(null, "", location.pathname);
+
+  // In trip mode, jump to today's day if there is one.
+  const todayIdx = state.trip.days.findIndex((d) => d.date === tokyoNow().date);
+  if (todayIdx >= 0 && state.mode === "trip") state.day = todayIdx;
+
+  els.modes.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode)));
+  renderCategories();
+  save();
+  render();
+
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
 })();
