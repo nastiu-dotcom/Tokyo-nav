@@ -12,6 +12,10 @@ import {
 import { openPicker } from "./js/picker.js";
 import { readTripFromHash, shareTrip } from "./js/share.js";
 import { buildPlanDays, mapsLink, planDay, planStop, TIPS } from "./js/plan.js";
+import {
+  buildTripDays, edgeBetween, edgeSummary, foodFor, isTripKey, loadTrip2027, maxLeg, reachable, routeStops,
+  toAppStop, TRIP_CATS, tripDay, tripReady, tripStop,
+} from "./js/trip2027.js";
 
 const CATEGORIES = [
   ["all", "⭐ Top picks"],
@@ -190,8 +194,24 @@ function stopMore(p) {
     ${p.tip ? `<p>${esc(p.tip)}</p>` : ""}
     ${p.closedNote ? `<p class="warn">📅 ${esc(p.closedNote)}</p>` : ""}
     ${p.tickets?.note ? `<p class="small">🎟️ ${esc(p.tickets.note)}</p>` : ""}
+    ${p.weatherAlt ? `<p class="small">☔ ${esc(p.weatherAlt)}</p>` : ""}
+    ${p.verify?.length ? `<p class="small verify">⚠️ Check before you go: ${esc(p.verify.join(", "))}</p>` : ""}
     <div class="links">${links.join("")}</div>
+    ${foodListHtml(p.id)}
   </details>`;
+}
+
+/** 3–4 food options near a ready-made April 2027 stop. */
+function foodListHtml(id) {
+  const list = foodFor(id);
+  if (!list.length) return "";
+  const kind = { snack: "Quick snack", meal: "Cheap meal", special: "Special" };
+  return `<div class="food-list"><p class="sub">🍽️ Eat nearby</p><ul>${list.map((f) => `<li>
+      <span class="fname">${f.emoji} ${esc(f.name)}</span>
+      <span class="small">${esc(kind[f.kind] || f.kind)} · ~${f.walkMinutes} min walk · ${esc(f.cost)}${f.cashOnly ? " · 💴 cash only" : ""} · ${esc(f.hours)}</span>
+      <span class="small">👪 ${esc(f.kidFriendly)}</span>
+      <a class="mini-link" href="${esc(mapsLink(f))}" target="_blank" rel="noopener">📍 Map</a>
+    </li>`).join("")}</ul></div>`;
 }
 
 function renderDayIntro(route, trip) {
@@ -199,6 +219,25 @@ function renderDayIntro(route, trip) {
   const hasPlan = state.trip.days.some((d) => d.planKey);
   const info = planDay(route.planKey);
   let html = "";
+  const apr = tripDay(route.planKey);
+  if (apr) {
+    const wd = weekdayOf(route.date);
+    const closedStops = route.stops.filter((st) => Array.isArray(st.closed) && wd != null && st.closed.includes(wd));
+    const b = apr.budgetYen;
+    html += `<div class="intro">
+      <p class="intro-area">${esc(apr.area)}</p>
+      <h3>${esc(apr.title)}</h3>
+      <p>${esc(apr.summary)}</p>
+      <p class="budget">💴 ≈ ¥${b.total.toLocaleString()} for three (adult ¥${b.adult.toLocaleString()} · age 12 ¥${b.age12.toLocaleString()} · age 10 ¥${b.age10.toLocaleString()}) – attractions, budget food, IC transport</p>
+      ${closedStops.length ? `<p class="warn">⚠️ Closed on this date: ${closedStops.map((x) => esc(x.name)).join(", ")}</p>` : ""}
+      <ul class="before">${apr.before.map((x) => `<li>✅ ${esc(x)}</li>`).join("")}</ul>
+      <div class="row tight">
+        <button class="btn btn-secondary" type="button" data-act="trip-route" data-kind="five">Short day (5 stops)</button>
+        <button class="btn btn-secondary" type="button" data-act="trip-route" data-kind="seven">Full day (7 stops)</button>
+      </div>
+      <p class="small">After each stop, “Next stop” below only shows places within 45 minutes. Times and prices are researched estimates – ⚠️ marks things to check.</p>
+    </div>`;
+  }
   if (info) {
     const wd = weekdayOf(route.date);
     const clashes = route.stops.filter((s) => Array.isArray(s.closed) && wd != null && s.closed.includes(wd));
@@ -210,6 +249,12 @@ function renderDayIntro(route, trip) {
       ${clashes.length ? `<p class="warn">⚠️ On this date ${clashes.map((s) => esc(s.name)).join(" and ")} ${clashes.length > 1 ? "are" : "is"} closed – swap with another day (change the date) or skip ${clashes.length > 1 ? "them" : "it"}.</p>` : ""}
       ${route.date ? "" : `<p class="small">Tip: set the date above to see opening days and hours for that day.</p>`}
       <ul class="before">${info.before.map((b) => `<li>✅ ${esc(b)}</li>`).join("")}</ul>
+    </div>`;
+  }
+  if (!state.trip.days.some((d) => isTripKey(d.planKey))) {
+    html += `<div class="promo">
+      <p><strong>April 1–5, 2027:</strong> your 5-day family trip from Rainbow Palace Yoyogi – Shinjuku sakura, Skytree, Tokyo Dome, Odaiba and Ikebukuro, with a “next stop within 45 minutes” guide and food after every stop.</p>
+      <button class="btn btn-primary full" type="button" data-act="load-trip2027">📥 Load the April 2027 5-day trip</button>
     </div>`;
   }
   if (!hasPlan) {
@@ -243,6 +288,8 @@ async function loadLegs(pts) {
     const li = els.timeline.querySelector(`[data-leg="${i - 1}"]`);
     if (!li) continue;
     li.querySelector(".nav").href = navUrl(from, to);
+    const known = tripLeg(from, to);
+    if (known) { li.querySelector(".leg-summary").innerHTML = known; continue; }
     try {
       const data = await loadLeg(from, to);
       if (run !== legRun) return;
@@ -266,11 +313,27 @@ function toggleLegDetails(btn) {
   if (open) fillLegBody(i, body);
 }
 
-function fillLegBody(i, body) {
-  const data = legData.get(i);
-  if (!data) { body.innerHTML = `<p class="small">Still loading…</p>`; return; }
+/** Leg summary from the April 2027 dataset (no API call), or null. */
+function tripLeg(from, to) {
+  const e = edgeBetween(from.id, to.id);
+  if (e) return edgeSummary(e);
+  if (from.id === "pin-hotel" && tripStop(to.id)) return `🏨 ~${tripStop(to.id).hotelMinutes} min from the hotel (estimate)`;
+  return null;
+}
+
+async function fillLegBody(i, body) {
   const pts = points(active());
   const from = pts[i], to = pts[i + 1];
+  if (!legData.has(i)) {
+    body.innerHTML = `<p class="small">Loading the live route…</p>`;
+    try {
+      legData.set(i, await loadLeg(from, to));
+    } catch (err) {
+      body.innerHTML = `<p class="small">Couldn't get the live route (${esc(err.message)}). Tap Navigate.</p>`;
+      return;
+    }
+  }
+  const data = legData.get(i);
   const ai = cachedAiGuide(from, to);
   body.innerHTML = renderRoute(data.route) + (ai
     ? `<div class="ai-guide"><p class="small">✨ AI family guide (saved – no extra cost)</p>${renderGuideText(ai.guide)}</div>`
@@ -336,6 +399,23 @@ async function onPlanAction(btn) {
         initial: route.start, saveText: "Start here", onSave: setStart,
       });
     case "here": return useMyLocationAsStart();
+    case "load-trip2027": {
+      const hasStops = state.trip.days.some((d) => d.stops.length);
+      if (hasStops && !confirm("Replace your current trip plan with the April 1–5, 2027 five-day trip?")) return;
+      try { await loadTrip2027(); } catch (err) { return alert(err.message); }
+      state.trip.days = buildTripDays("seven");
+      state.day = 0;
+      state.browse.tripCat = "all";
+      save();
+      render();
+      return;
+    }
+    case "trip-route": {
+      const kind = btn.dataset.kind;
+      if (route.stops.length && !confirm(`Replace today's stops with the suggested ${kind === "five" ? "5" : "7"}-stop route?`)) return;
+      route.stops = routeStops(route.planKey, kind);
+      break;
+    }
     case "load-plan": {
       const hasStops = state.trip.days.some((d) => d.stops.length);
       if (hasStops && !confirm("Replace your current trip plan with the ready-made 3-day plan?")) return;
@@ -386,8 +466,11 @@ async function onPlanAction(btn) {
 
 /* ---------- browse activities ---------- */
 function renderCategories() {
-  els.categories.innerHTML = CATEGORIES.map(([id, label]) =>
-    `<button class="chip" type="button" data-cat="${id}" aria-pressed="${id === state.browse.category}">${label}</button>`).join("");
+  const trip = tripDayActive();
+  const cats = trip ? TRIP_CATS : CATEGORIES;
+  const current = trip ? state.browse.tripCat || "all" : state.browse.category;
+  els.categories.innerHTML = cats.map(([id, label]) =>
+    `<button class="chip" type="button" data-cat="${id}" aria-pressed="${id === current}">${label}</button>`).join("");
 }
 
 async function loadActivities(center) {
@@ -412,7 +495,62 @@ async function loadActivities(center) {
   renderBrowse();
 }
 
+const tripDayActive = () => state.mode === "trip" && isTripKey(active()?.planKey) && tripReady();
+
+function renderTripBrowse() {
+  const route = active();
+  const last = route.stops[route.stops.length - 1];
+  const fromId = last && tripStop(last.id) ? last.id : null;
+  els.browseTitle.textContent = `Next stop for Day ${state.day + 1} (≤ ${maxLeg()} min)`;
+  els.browseNear.innerHTML = fromId
+    ? `Only places within ${maxLeg()} minutes door to door from <strong>${esc(last.name)}</strong>`
+    : "From your hotel – choose the first stop";
+  els.openNow.closest("label").hidden = true;
+  const cat = state.browse.tripCat || "all";
+  const added = new Set(route.stops.map((x) => x.id));
+  const wd = weekdayOf(route.date);
+  const items = reachable(route.planKey, fromId)
+    .filter((x) => cat === "all" || x.stop.categories.includes(cat))
+    .sort((a, b) => Number(added.has(a.stop.id)) - Number(added.has(b.stop.id)) || a.minutes - b.minutes); // new places first
+  els.status.textContent = items.length ? `${items.length} place${items.length === 1 ? "" : "s"}, closest first` : "Nothing in this category within 45 minutes – try another.";
+  els.list.innerHTML = items.map(({ stop: s, minutes, line, mode }) => {
+    const isAdded = added.has(s.id);
+    const closed = Array.isArray(s.closed) && wd != null && s.closed.includes(wd);
+    const how = mode === "mixed" ? "from the hotel" : mode === "walk" ? "on foot" : esc(line);
+    return `
+<details class="activity">
+  <summary>
+    <span class="name">${s.emoji} ${esc(s.name)}</span>
+    <span class="dist">${minutes} min</span>
+    <span class="meta">${esc(s.cost.split("·")[0].trim())}${closed ? `<span class="badge closed">Closed that day</span>` : ""}${isAdded ? `<span class="badge added">✓ In plan</span>` : ""}</span>
+  </summary>
+  <div class="details">
+    <p class="small">🚆 ${minutes} min ${how}</p>
+    <dl>
+      <dt>Type</dt><dd>${esc(s.type)}</dd>
+      <dt>Hours</dt><dd>${esc(s.hours)}${s.closedNote ? `<br><span class="small">${esc(s.closedNote)}</span>` : ""}</dd>
+      <dt>Cost</dt><dd>${esc(s.cost)}</dd>
+      <dt>Stay</dt><dd>${esc(s.stay)} · best: ${esc(s.bestTime)}</dd>
+      <dt>Station</dt><dd>${esc(s.station)}</dd>
+      ${s.booking !== "none" ? `<dt>Booking</dt><dd>${esc(s.booking)}</dd>` : ""}
+    </dl>
+    <p>${esc(s.tip)}</p>
+    ${s.verify?.length ? `<p class="small verify">⚠️ Check before you go: ${esc(s.verify.join(", "))}</p>` : ""}
+    <div class="actions">
+      <button class="btn btn-primary wide" type="button" data-trip-add="${esc(s.id)}" ${isAdded ? "disabled" : ""}>${isAdded ? "✓ Already in the plan" : "➕ Go here next"}</button>
+      <a class="btn btn-secondary" href="${esc(mapsLink(s))}" target="_blank" rel="noopener">📍 Google Maps</a>
+      ${/^https?:\/\//.test(s.website || "") ? `<a class="btn btn-secondary" href="${esc(s.website)}" target="_blank" rel="noopener">🌐 Official site</a>` : ""}
+    </div>
+    ${foodListHtml(s.id)}
+  </div>
+</details>`;
+  }).join("");
+}
+
 function renderBrowse() {
+  renderCategories();
+  if (tripDayActive()) return renderTripBrowse();
+  els.openNow.closest("label").hidden = false;
   const b = state.browse;
   const here = anchor();
   const trip = state.mode === "trip";
@@ -526,6 +664,10 @@ els.addPlace.addEventListener("click", () => openPicker({
 }));
 els.categories.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-cat]");
+  if (btn && tripDayActive()) {
+    state.browse.tripCat = btn.dataset.cat;
+    return renderBrowse();
+  }
   if (!btn || btn.dataset.cat === state.browse.category) return;
   state.browse.category = btn.dataset.cat;
   store.set("category", state.browse.category);
@@ -542,6 +684,8 @@ els.browseNear.addEventListener("click", (e) => {
   if (e.target.closest("[data-act='refresh']")) { const here = anchor(); if (here) loadActivities(here); }
 });
 els.list.addEventListener("click", (e) => {
+  const tripAdd = e.target.closest("[data-trip-add]");
+  if (tripAdd) { const s = tripStop(tripAdd.dataset.tripAdd); if (s) addStop(toAppStop(s)); return; }
   const add = e.target.closest("[data-add]");
   if (add) addFromList(add.dataset.add);
 });
@@ -574,6 +718,15 @@ els.list.addEventListener("click", (e) => {
   }
   if (location.hash.startsWith("#trip=")) history.replaceState(null, "", location.pathname);
 
+  // April 2027 trip: load its data (45-min engine, food) and refresh stop details.
+  if (state.trip.days.some((d) => isTripKey(d.planKey))) {
+    try {
+      await loadTrip2027();
+      for (const d of state.trip.days) {
+        d.stops = d.stops.map((st) => (tripStop(st.id) ? { ...st, ...toAppStop(tripStop(st.id), st.time) } : st));
+      }
+    } catch { /* offline: keep saved stops */ }
+  }
   // Ready-made plan stops: always use the latest details (tips, prices, links).
   for (const d of state.trip.days) {
     d.stops = d.stops.map((st) => (planStop(st.id) ? { ...st, ...planStop(st.id) } : st));

@@ -29,6 +29,16 @@ things to do in Tokyo and get there by train, subway or bus.
   `js/plan.js` (facts checked Nov 2026 – prices change, links go to official
   sites). A **🇯🇵 Family tips** card covers passes, IC cards, cash, cheap
   eats, manners and emergency numbers.
+- **📥 April 1–5, 2027 five-day trip** (1 adult + kids 12 and 10, base Rainbow
+  Palace Yoyogi) – tap “Load the April 2027 5-day trip” in Trip mode:
+  Shinjuku/Harajuku/Shibuya · Skytree/Sumida/Ryogoku · Tokyo Dome/Kanda ·
+  Toyosu/Odaiba · Ikebukuro (Monday-proof). 62 researched attractions,
+  3–4 food options after each, 5- and 7-stop routes per day, and a
+  **“next stop within 45 minutes”** chooser. Data: `data/tokyo-5day-2027.json`;
+  readable guide: `docs/tokyo-5day-guide.md`; source + validation:
+  `scripts/trip2027/` (`python3 scripts/trip2027/build.py`).
+  Travel times are estimates from a rail-network model (walk + wait + ride +
+  transfers); items marked ⚠️ need checking closer to the date.
 - **Start points and places:** tap or drag a pin on the map (Leaflet +
   OpenStreetMap), search a hotel, station or landmark (Google Places
   Autocomplete), or use the phone's location. Everything is saved on the phone.
