@@ -1,0 +1,17 @@
+{
+  "name": "tokyo-kids-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mobile-first PWA that helps a family find and reach kid-friendly activities in Tokyo.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "dev": "node scripts/dev-server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.10.0"
+  }
+}
