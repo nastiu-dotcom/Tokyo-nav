@@ -9,7 +9,7 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
-from data import ATTRACTIONS, DATES, FOOD, HOTEL, KONBINI_TIP  # noqa: E402
+from data import ARRIVAL, ATTRACTIONS, DATES, FOOD, HOTEL, KONBINI_TIP, PREP  # noqa: E402
 from network import WAIT, journey, rail, walk_minutes  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -194,6 +194,9 @@ def build():
                       "address": HOTEL["address"]},
             "firstDate": DATES[0], "kidsAges": [10, 12], "maxLegMinutes": MAX_LEG, "categories": CATS,
         },
+        "arrival": ARRIVAL,
+        "preparation": [{"id": sec["id"], "icon": sec["icon"], "title": sec["title"],
+                         "items": [{"id": f"{sec['id']}-{k}", "text": t} for k, t in sec["items"]]} for sec in PREP],
         "days": days, "stops": stops, "food": food, "edges": edges,
         "verification": {
             "researched": "2026-11-18 via web search (official sites where found). April 2027 details are provisional unless stated.",
@@ -291,7 +294,7 @@ def guide(data):
         return edges[frozenset((a, b))]
 
     hh = lambda m: f"{m // 60:02d}:{m % 60:02d}"  # noqa: E731
-    out = ["# Tokyo Kids Explorer – 5-day family plan (April 1–5, 2027)", "",
+    out = ["# Tokyo Kids Explorer – arrival day + 5-day family plan (March 31 – April 5, 2027)", "",
            "**Family:** 1 adult + kids aged 12 and 10 · **Base:** Rainbow Palace Yoyogi (3-55-1 Yoyogi) · "
            "**Rule:** after each stop, the app shows only places reachable within **45 minutes** door to door.", "",
            "> **Read first**",
@@ -302,6 +305,21 @@ def guide(data):
            "> - **Closed during the trip:** Miraikan (reopens Apr 23, 2027), Unicorn Gundam statue (removed 2026), Toyosu Market on Sunday Apr 4.",
            "> - Travel minutes are estimates from a rail-network model; the app's Navigate button gives live Google Maps directions.",
            ""]
+    a = data["arrival"]
+    out += [f"## ✈️ Arrival day · Wed Mar 31 — {a['area']}", "", f"**{a['title']}.** {a['summary']}", "",
+            f"*{a['duration']}*", "", "### At Narita Airport, step by step", ""]
+    for st in a["airportSteps"]:
+        out.append(f"- **{st['title']}** – {st['detail']}")
+    out += ["", "### Getting to Rainbow Palace Yoyogi", ""]
+    for rt in a["routes"]:
+        out += [f"#### {'⭐ ' if rt['recommended'] else ''}{rt['name']}", f"{rt['time']} · {rt['cost']}. {rt['why']}", ""]
+        out += [f"{i}. {x}" for i, x in enumerate(rt["steps"], 1)] + [""]
+    out += ["### Arrival checklist", ""] + [f"- [ ] {c}" for c in a["checklist"]] + [""]
+    out += [f"**Evening:** {a['evening']}", "", f"**Budget:** {a['budget']}", "",
+            "⚠️ Check before you go: " + ", ".join(a["verify"]), "",
+            "## ✅ Preparation checklist", ""]
+    for sec in data["preparation"]:
+        out += [f"### {sec['icon']} {sec['title']}", ""] + [f"- [ ] {it['text']}" for it in sec["items"]] + [""]
     names = {"museum": "🏛️ Museum", "anime": "⚡ Anime & characters", "food": "🍜 Food", "views": "🌆 Views",
              "kids_fun": "🎢 Kids' fun", "arcade": "🕹️ Arcade"}
     for d in data["days"]:

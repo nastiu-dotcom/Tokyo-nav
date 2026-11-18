@@ -14,7 +14,7 @@ import { readTripFromHash, shareTrip } from "./js/share.js";
 import { buildPlanDays, mapsLink, planDay, planStop, TIPS } from "./js/plan.js";
 import {
   buildTripDays, edgeBetween, edgeSummary, foodFor, isTripKey, loadTrip2027, maxLeg, reachable, routeStops,
-  toAppStop, TRIP_CATS, tripDay, tripReady, tripStop,
+  toAppStop, TRIP_CATS, tripDay, tripReady, tripStop, arrivalInfo, prepSections, isArrivalKey,
 } from "./js/trip2027.js";
 
 const CATEGORIES = [
@@ -32,6 +32,8 @@ const $ = (sel) => document.querySelector(sel);
 const els = {
   modes: document.querySelectorAll("[data-mode]"), daysBar: $("#days-bar"),
   planTitle: $("#plan-title"), dateWrap: $("#date-wrap"), date: $("#day-date"),
+  planSection: $("#plan"), browseSection: $("#browse"), prep: $("#prep"), prepList: $("#prep-list"),
+  prepProgress: $("#prep-progress"), prepReset: $("#prep-reset"),
   timeline: $("#timeline"), dayIntro: $("#day-intro"), tips: $("#tips-list"), addPlace: $("#add-place"), planActions: $("#plan-actions"),
   browseTitle: $("#browse-title"), browseNear: $("#browse-near"), categories: $("#categories"),
   openNow: $("#open-now"), status: $("#status"), list: $("#list"),
@@ -60,6 +62,44 @@ const points = (route) => (route.start ? [route.start, ...route.stops] : []);
 const anchor = () => { const p = points(active()); return p[p.length - 1] || null; };
 const isToday = () => state.mode === "adventure" || active().date === tokyoNow().date;
 
+/** "✈️ Arrival", "Day 1"… (April 2027 days keep their own numbers). */
+function dayName(d, i) {
+  if (d && isTripKey(d.planKey)) {
+    const n = Number(d.planKey.slice(5));
+    return n === 0 ? "✈️ Arrival" : `Day ${n}`;
+  }
+  return `Day ${i + 1}`;
+}
+const curDayName = () => dayName(state.trip.days[state.day], state.day);
+
+/* ---------- checklists (arrival + preparation), saved on this phone ---------- */
+const checks = () => store.get("checks") || {};
+function setCheck(id, on) {
+  const c = checks();
+  if (on) c[id] = true; else delete c[id];
+  store.set("checks", c);
+}
+const checkItem = (id, text) => `<li><label><input type="checkbox" data-check="${esc(id)}" ${checks()[id] ? "checked" : ""}><span>${esc(text)}</span></label></li>`;
+
+async function renderPrep() {
+  if (!tripReady()) {
+    els.prepList.innerHTML = `<p class="hint">Loading the checklist…</p>`;
+    try { await loadTrip2027(); } catch (err) { els.prepList.innerHTML = `<p class="warn">${esc(err.message)}</p>`; return; }
+  }
+  const c = checks();
+  const secs = prepSections();
+  const all = secs.flatMap((x) => x.items);
+  const done = all.filter((it) => c[it.id]).length;
+  els.prepProgress.textContent = `${done} of ${all.length} done${done === all.length ? " – you're ready! 🎉" : ""}`;
+  els.prepList.innerHTML = secs.map((sec) => {
+    const n = sec.items.filter((it) => c[it.id]).length;
+    return `<details class="prep-sec" ${n < sec.items.length ? "open" : ""}>
+      <summary><span>${sec.icon} ${esc(sec.title)}</span><span class="prep-count">${n}/${sec.items.length}</span></summary>
+      <ul class="checklist">${sec.items.map((it) => checkItem(it.id, it.text)).join("")}</ul>
+    </details>`;
+  }).join("");
+}
+
 /* ---------- mode + days ---------- */
 function setMode(mode) {
   state.mode = mode;
@@ -73,7 +113,7 @@ function renderDays() {
   if (state.mode !== "trip") return;
   const today = tokyoNow().date;
   els.daysBar.innerHTML = state.trip.days.map((d, i) => {
-    const label = `Day ${i + 1}${d.date ? ` · ${fmtDate(d.date)}` : ""}${d.date === today ? " · Today" : ""}`;
+    const label = `${dayName(d, i)}${d.date ? ` · ${fmtDate(d.date)}` : ""}${d.date === today ? " · Today" : ""}`;
     return `<button class="chip" type="button" data-day="${i}" aria-pressed="${i === state.day}">${esc(label)}</button>`;
   }).join("") + `<button class="chip add" type="button" data-day="new">＋ Add day</button>`;
 }
@@ -97,7 +137,7 @@ function renderPlan() {
   const route = active();
   const trip = state.mode === "trip";
   els.planTitle.textContent = trip
-    ? `Day ${state.day + 1}${route.date ? ` · ${fmtDate(route.date)}` : ""}`
+    ? `${curDayName()}${route.date ? ` · ${fmtDate(route.date)}` : ""}`
     : "Today's adventure";
   els.dateWrap.hidden = !trip;
   if (trip) els.date.value = route.date || "";
@@ -219,6 +259,29 @@ function renderDayIntro(route, trip) {
   const hasPlan = state.trip.days.some((d) => d.planKey);
   const info = planDay(route.planKey);
   let html = "";
+  const arr = isArrivalKey(route.planKey) ? arrivalInfo() : null;
+  if (arr) {
+    html += `<div class="intro">
+      <p class="intro-area">${esc(arr.area)}</p>
+      <h3>${esc(arr.title)}</h3>
+      <p>${esc(arr.summary)}</p>
+      <p class="small">⏱ ${esc(arr.duration)}</p>
+      <h4>🛬 At Narita Airport, step by step</h4>
+      <ol class="steps">${arr.airportSteps.map((st) => `<li><strong>${esc(st.title)}</strong>${esc(st.detail)}</li>`).join("")}</ol>
+      <h4>🚆 Getting to the hotel</h4>
+      ${arr.routes.map((rt) => `<details class="route-opt" ${rt.recommended ? "open" : ""}>
+        <summary>${rt.recommended ? "⭐ " : ""}${esc(rt.name)}</summary>
+        <p class="small">${esc(rt.time)} · ${esc(rt.cost)}</p>
+        <p>${esc(rt.why)}</p>
+        <ol>${rt.steps.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+      </details>`).join("")}
+      <h4>✅ Arrival checklist</h4>
+      <ul class="checklist">${arr.checklist.map((t, k) => checkItem(`arrival-${k}`, t)).join("")}</ul>
+      <p>🌙 ${esc(arr.evening)}</p>
+      <p class="budget">💴 ${esc(arr.budget)}</p>
+      <p class="small verify">⚠️ Check before you go: ${esc(arr.verify.join(", "))}</p>
+    </div>`;
+  }
   const apr = tripDay(route.planKey);
   if (apr) {
     const wd = weekdayOf(route.date);
@@ -235,6 +298,7 @@ function renderDayIntro(route, trip) {
         <button class="btn btn-secondary" type="button" data-act="trip-route" data-kind="five">Short day (5 stops)</button>
         <button class="btn btn-secondary" type="button" data-act="trip-route" data-kind="seven">Full day (7 stops)</button>
       </div>
+      ${state.trip.days.some((d) => isArrivalKey(d.planKey)) ? "" : `<button class="btn btn-secondary full" type="button" data-act="add-arrival">✈️ Add the arrival day (Narita → hotel guide)</button>`}
       <p class="small">After each stop, “Next stop” below only shows places within 45 minutes. Times and prices are researched estimates – ⚠️ marks things to check.</p>
     </div>`;
   }
@@ -317,6 +381,7 @@ function toggleLegDetails(btn) {
 function tripLeg(from, to) {
   const e = edgeBetween(from.id, to.id);
   if (e) return edgeSummary(e);
+  if (from.id === "pin-narita" && to.id === "pin-hotel") return "🚆 ≈ 1 h 45 min door to door · Narita Express → Odakyu Line (steps above)";
   if (from.id === "pin-hotel" && tripStop(to.id)) return `🏨 ~${tripStop(to.id).hotelMinutes} min from the hotel (estimate)`;
   return null;
 }
@@ -410,6 +475,12 @@ async function onPlanAction(btn) {
       render();
       return;
     }
+    case "add-arrival": {
+      try { await loadTrip2027(); } catch (err) { return alert(err.message); }
+      state.trip.days.unshift(buildTripDays("seven")[0]);
+      state.day = 0;
+      break;
+    }
     case "trip-route": {
       const kind = btn.dataset.kind;
       if (route.stops.length && !confirm(`Replace today's stops with the suggested ${kind === "five" ? "5" : "7"}-stop route?`)) return;
@@ -440,7 +511,7 @@ async function onPlanAction(btn) {
       return;
     }
     case "delete-day":
-      if (!confirm(`Delete Day ${state.day + 1} and its places?`)) return;
+      if (!confirm(`Delete ${curDayName()} and its places?`)) return;
       state.trip.days.splice(state.day, 1);
       if (!state.trip.days.length) state.trip.days.push(newDay());
       state.day = Math.min(state.day, state.trip.days.length - 1);
@@ -455,7 +526,7 @@ async function onPlanAction(btn) {
       state.trip.days.push(d);
       state.day = state.trip.days.length - 1;
       save();
-      alert(`Saved as Day ${state.day + 1} in your trip plan.`);
+      alert(`Saved as ${curDayName()} in your trip plan.`);
       return setMode("trip");
     }
     default: return;
@@ -501,7 +572,7 @@ function renderTripBrowse() {
   const route = active();
   const last = route.stops[route.stops.length - 1];
   const fromId = last && tripStop(last.id) ? last.id : null;
-  els.browseTitle.textContent = `Next stop for Day ${state.day + 1} (≤ ${maxLeg()} min)`;
+  els.browseTitle.textContent = `Next stop for ${curDayName()} (≤ ${maxLeg()} min)`;
   els.browseNear.innerHTML = fromId
     ? `Only places within ${maxLeg()} minutes door to door from <strong>${esc(last.name)}</strong>`
     : "From your hotel – choose the first stop";
@@ -509,7 +580,12 @@ function renderTripBrowse() {
   const cat = state.browse.tripCat || "all";
   const added = new Set(route.stops.map((x) => x.id));
   const wd = weekdayOf(route.date);
-  const items = reachable(route.planKey, fromId)
+  const arrivalDay = isArrivalKey(route.planKey);
+  if (arrivalDay) {
+    els.browseTitle.textContent = "This evening near the hotel (only if you have energy)";
+    els.browseNear.textContent = "Day 1 places within 30 minutes of the hotel – most families just eat and sleep";
+  }
+  const items = (arrivalDay ? reachable("apr-d1", null).filter((x) => x.minutes <= 30) : reachable(route.planKey, fromId))
     .filter((x) => cat === "all" || x.stop.categories.includes(cat))
     .sort((a, b) => Number(added.has(a.stop.id)) - Number(added.has(b.stop.id)) || a.minutes - b.minutes); // new places first
   els.status.textContent = items.length ? `${items.length} place${items.length === 1 ? "" : "s"}, closest first` : "Nothing in this category within 45 minutes – try another.";
@@ -554,7 +630,7 @@ function renderBrowse() {
   const b = state.browse;
   const here = anchor();
   const trip = state.mode === "trip";
-  els.browseTitle.textContent = trip ? `Add places to Day ${state.day + 1}` : "What's next?";
+  els.browseTitle.textContent = trip ? `Add places to ${curDayName()}` : "What's next?";
   if (!here) {
     els.browseNear.textContent = "";
     els.status.textContent = "Set a starting point above to see things to do nearby.";
@@ -605,7 +681,7 @@ function renderBrowse() {
     </dl>
     <div class="actions">
       <button class="btn btn-primary wide" type="button" data-add="${esc(p.id)}" ${isAdded ? "disabled" : ""}>
-        ${isAdded ? "✓ Already in the plan" : trip ? `➕ Add to Day ${state.day + 1}` : "➕ Go here next"}</button>
+        ${isAdded ? "✓ Already in the plan" : trip ? `➕ Add to ${curDayName()}` : "➕ Go here next"}</button>
       <a class="btn btn-secondary${hasSite ? "" : " wide"}" href="${esc(navUrl(here, p))}" target="_blank" rel="noopener">🧭 Navigate</a>
       ${hasSite ? `<a class="btn btn-secondary" href="${esc(p.website)}" target="_blank" rel="noopener">🌐 Official site</a>` : ""}
     </div>
@@ -623,6 +699,11 @@ function addFromList(id) {
 
 /* ---------- render all ---------- */
 function render() {
+  const prep = state.mode === "prep";
+  els.prep.hidden = !prep;
+  els.planSection.hidden = prep;
+  els.browseSection.hidden = prep;
+  if (prep) { els.daysBar.hidden = true; renderPrep(); return; }
   if (!state.trip.days.length) state.trip.days.push(newDay());
   state.day = Math.max(0, Math.min(state.day, state.trip.days.length - 1));
   renderDays();
@@ -655,11 +736,24 @@ els.date.addEventListener("change", () => {
   save();
   render();
 });
+document.addEventListener("change", (e) => {
+  const cb = e.target.closest("[data-check]");
+  if (!cb) return;
+  setCheck(cb.dataset.check, cb.checked);
+  if (state.mode === "prep") renderPrep();
+});
+els.prepReset.addEventListener("click", () => {
+  if (!confirm("Untick every item on the preparation list?")) return;
+  const c = checks();
+  for (const sec of prepSections()) for (const it of sec.items) delete c[it.id];
+  store.set("checks", c);
+  renderPrep();
+});
 els.dayIntro.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
 els.timeline.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
 els.planActions.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
 els.addPlace.addEventListener("click", () => openPicker({
-  title: state.mode === "trip" ? `Add a place to Day ${state.day + 1}` : "Where to next?",
+  title: state.mode === "trip" ? `Add a place to ${curDayName()}` : "Where to next?",
   initial: anchor(), saveText: "Add", onSave: addStop,
 }));
 els.categories.addEventListener("click", (e) => {
@@ -696,7 +790,7 @@ els.list.addEventListener("click", (e) => {
   state.trip = store.get("trip") || { days: [] };
   state.adventure = store.get("adventure") || { start: store.get("start") ? { ...store.get("start"), name: store.get("start").label } : null, stops: [] };
   state.day = store.get("day") || 0;
-  state.mode = store.get("mode") === "adventure" ? "adventure" : "trip";
+  state.mode = ["adventure", "prep"].includes(store.get("mode")) ? store.get("mode") : "trip";
   const cat = store.get("category");
   state.browse.category = CATEGORIES.some(([id]) => id === cat) ? cat : "all";
   state.browse.openOnly = store.get("openOnly") === true;

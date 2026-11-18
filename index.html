@@ -20,6 +20,7 @@
     <div class="modes" role="group" aria-label="Mode">
       <button type="button" data-mode="trip" aria-pressed="true">🗓️ Trip plan</button>
       <button type="button" data-mode="adventure" aria-pressed="false">🧭 Adventure</button>
+      <button type="button" data-mode="prep" aria-pressed="false">✅ Prepare</button>
     </div>
   </header>
 
@@ -37,6 +38,14 @@
       <ol id="timeline" class="timeline"></ol>
       <button id="add-place" class="btn btn-secondary full" type="button">➕ Add any place (search or map)</button>
       <div id="plan-actions" class="row"></div>
+    </section>
+
+    <!-- Preparation checklist -->
+    <section class="card" id="prep" aria-labelledby="prep-title" hidden>
+      <h2 id="prep-title">✅ Prepare for the trip</h2>
+      <p id="prep-progress" class="budget"></p>
+      <div id="prep-list"></div>
+      <button class="btn btn-secondary full" type="button" id="prep-reset">↺ Untick everything</button>
     </section>
 
     <!-- Browse activities and add them to the plan -->
