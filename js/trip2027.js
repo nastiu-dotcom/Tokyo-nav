@@ -35,6 +35,9 @@ export async function loadTrip2027() {
 }
 
 export const tripReady = () => Boolean(DATA);
+export const arrivalInfo = () => DATA?.arrival || null;
+export const prepSections = () => DATA?.preparation || [];
+export const isArrivalKey = (k) => k === "apr-d0";
 export const isTripKey = (k) => /^apr-d\d$/.test(k || "");
 export const tripStop = (id) => BY_ID.get(id) || null;
 export const foodFor = (id) => FOOD.get(id) || [];
@@ -54,13 +57,21 @@ export function toAppStop(s, time = "") {
 
 /** Trip days for the app (route kind: "seven" or "five"). */
 export function buildTripDays(kind = "seven") {
-  return DATA.days.map((d) => ({
+  const a = DATA.arrival;
+  const arrival = a ? [{
+    id: uid(),
+    planKey: "apr-d0",
+    date: a.date,
+    start: { ...a.narita },
+    stops: [{ ...hotelPoint(), emoji: "🏨", type: "Your hotel", tip: a.evening, verify: a.verify }],
+  }] : [];
+  return arrival.concat(DATA.days.map((d) => ({
     id: uid(),
     planKey: `apr-${d.key}`,
     date: d.date,
     start: hotelPoint(),
     stops: d.routes[kind].map((id, i) => toAppStop(BY_ID.get(id), d.routeTimes?.[kind]?.[i] || "")),
-  }));
+  })));
 }
 
 export function routeStops(planKey, kind) {

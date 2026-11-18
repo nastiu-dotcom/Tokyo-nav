@@ -51,3 +51,14 @@ test("Monday April 5 avoids Monday-closed attractions in its routes", () => {
   const d5 = data.days.find((d) => d.date === "2027-04-05");
   for (const id of d5.routes.seven) assert.ok(!stops.get(id).closed.includes(1), id);
 });
+
+test("arrival day and preparation checklist are present and well-formed", () => {
+  const a = data.arrival;
+  assert.equal(a.date, "2027-03-31");
+  assert.ok(a.airportSteps.length >= 8);
+  assert.ok(a.routes.some((r) => r.recommended && r.steps.length >= 5));
+  assert.ok(a.checklist.length >= 8);
+  const ids = data.preparation.flatMap((s) => s.items.map((i) => i.id));
+  assert.equal(new Set(ids).size, ids.length);
+  assert.ok(ids.length >= 30);
+});

@@ -1,4 +1,4 @@
-# Tokyo Kids Explorer – 5-day family plan (April 1–5, 2027)
+# Tokyo Kids Explorer – arrival day + 5-day family plan (March 31 – April 5, 2027)
 
 **Family:** 1 adult + kids aged 12 and 10 · **Base:** Rainbow Palace Yoyogi (3-55-1 Yoyogi) · **Rule:** after each stop, the app shows only places reachable within **45 minutes** door to door.
 
@@ -9,6 +9,154 @@
 > - **Monday April 5:** many museums close on Mondays – Day 5 (Ikebukuro) avoids them. Shinjuku Gyoen is open every day Mar 25–Apr 24, 2027 (official calendar).
 > - **Closed during the trip:** Miraikan (reopens Apr 23, 2027), Unicorn Gundam statue (removed 2026), Toyosu Market on Sunday Apr 4.
 > - Travel minutes are estimates from a rail-network model; the app's Navigate button gives live Google Maps directions.
+
+## ✈️ Arrival day · Wed Mar 31 — Narita Airport · Shinjuku · Yoyogi
+
+**Arrival: Narita Airport → Rainbow Palace Yoyogi.** Land, get through immigration and customs, sort out cash, phone data and IC cards, then ride the Narita Express to Shinjuku and one more stop to the hotel. Keep the evening easy – dinner near the hotel and an early night so Day 1 can start at 9:00.
+
+*About 2–3 hours from landing to the hotel door (immigration + baggage 45–90 min, train ~80–90 min, transfer and walk ~20 min).*
+
+### At Narita Airport, step by step
+
+- **Before landing (on the plane)** – Open Visit Japan Web screenshots: one immigration + customs QR code per person (finish registration at least 6 hours before landing, before you fly). Keep the three passports and a pen in one easy pocket. Use the plane toilet before landing – immigration queues can be long.
+- **1 · Walk to Immigration** – Follow the yellow 'Arrival / Immigration' signs. Join the 'Foreign Passport' (non-Japanese) lane together – families stay together at one booth.
+- **2 · Immigration booth** – Show passports and your Visit Japan Web immigration QR (or a paper landing card if you didn't register). You (16+) give fingerprints and a photo; children under 16 don't. The officer puts a 'Temporary Visitor' landing sticker in each passport – check all three have one.
+- **3 · Baggage claim** – Find your flight on the screens for the carousel number. Trolleys are free. Count the bags before leaving.
+- **4 · Customs** – Use the customs e-gates with your Visit Japan Web customs QR + passport (or hand in the paper customs form – one per family). Most families have nothing to declare. Medicines must be within the limits (see Prepare tab).
+- **5 · Arrivals hall: cash** – Withdraw ¥30,000–50,000 from a 7-Eleven (Seven Bank) or Japan Post ATM – they accept foreign cards. Many small shops, food stalls and temples are cash only.
+- **6 · Phone data** – Activate your eSIM (bought before the trip) or pick up a pocket Wi-Fi at its counter. Check Google Maps works before leaving the airport.
+- **7 · IC cards (Suica)** – Go to the JR East Travel Service Center at the airport station (B1). Welcome Suica (tourist card, no deposit, valid 28 days) is sold there and at machines. You: adult card. 12-year-old: buy an ADULT card – from April 1 they pay adult fares. 10-year-old: CHILD Welcome Suica at the counter (bring the child's passport). Load ~¥2,000–3,000 each. iPhone users can also use the Welcome Suica Mobile app.
+- **8 · Train tickets** – At the same JR East Travel Service Center buy Narita Express (N'EX) tickets to Shinjuku. Foreign passport holders can buy the N'EX round-trip ticket (adult ¥5,200, valid 14 days) if you will fly home from Narita; otherwise one-way (~¥3,070–3,330 adult, children about half). On March 31 BOTH kids still count as children (school year ends March 31). All N'EX seats are reserved – ask for three seats together and write down the car number.
+- **9 · Optional: send big suitcases to the hotel** – Luggage-delivery counters (e.g. Yamato / ABC) in the arrivals hall can send suitcases to the hotel, usually arriving the next day. Keep an overnight bag with pyjamas, chargers and medicines. Ask the hotel first whether they accept deliveries. Price per bag – check at the counter.
+- **10 · Last stop before the train** – Toilets, water and a konbini snack for the ride. Then follow the red 'JR Lines' signs down to the platform.
+
+### Getting to Rainbow Palace Yoyogi
+
+#### ⭐ Recommended: Narita Express (N'EX) + Odakyu Line
+≈ 1 h 45 min door to door · ≈ ¥3,100–3,300 adult + about half per child (one-way) · or N'EX round trip ¥5,200 adult. Reserved seats, big luggage racks, no changes until Shinjuku. Easiest with kids after a long flight.
+
+1. Take the N'EX bound for Shinjuku from the B1 platform (trains roughly every 30–60 min – check the board).
+2. IMPORTANT: N'EX trains split at Tokyo station. Sit in the car number printed on your ticket – that's the part going to Shinjuku.
+3. Put big suitcases in the racks at the end of the car (they have a lock). Ride ~80–90 min.
+4. Get off at Shinjuku. Follow signs to the 'Odakyu Line' (west side of the station). Tap in with Suica.
+5. Take an Odakyu LOCAL train (各駅停車, 'Local') one stop to Minami-Shinjuku (~2 min). Expresses don't stop there.
+6. From Minami-Shinjuku walk ~8 min to Rainbow Palace Yoyogi (3-55-1 Yoyogi). Open the hotel in Google Maps before you leave the platform.
+7. Alternative last step: JR Chuo-Sobu local one stop to Yoyogi, then ~12 min walk. With very heavy bags, a taxi from Shinjuku South Exit is the only taxi this trip should need.
+
+#### Easiest with sleepy kids: Airport Limousine Bus to Shinjuku
+≈ 1.5–2.5 h depending on traffic · ≈ ¥3,200–3,900 adult, children half – check current fare. Staff load your suitcases; no stairs or changes. Slower in traffic.
+
+1. Buy tickets at the Airport Limousine counter in the arrivals hall (or online).
+2. Go to the bus stop number on your ticket; staff put suitcases in the hold – keep the baggage tags.
+3. Get off at Busta Shinjuku (Shinjuku Expressway Bus Terminal, 4F above the South Exit).
+4. From Busta Shinjuku walk ~15 min to the hotel, or go down to the Odakyu Line and ride one stop to Minami-Shinjuku.
+
+#### Budget/fastest train: Keisei Skyliner + JR Yamanote
+≈ 1 h 30 min · Skyliner reserved seat + JR fare – check current prices. Fast to Nippori, but one change with luggage on stairs/escalators.
+
+1. Buy Skyliner tickets at the Keisei counter (B1).
+2. Skyliner to Nippori (~36–45 min).
+3. Change to the JR Yamanote Line (green) toward Ikebukuro/Shinjuku – ~20 min to Shinjuku, or ride on to Yoyogi.
+4. Continue as in the recommended route (Odakyu to Minami-Shinjuku, or walk from Yoyogi).
+
+### Arrival checklist
+
+- [ ] Visit Japan Web QR codes for all three (screenshots, not only in the app)
+- [ ] Three passports – landing sticker in each after immigration
+- [ ] All bags collected (count them) and customs passed
+- [ ] Cash withdrawn (¥30,000–50,000)
+- [ ] eSIM / pocket Wi-Fi working – Google Maps opens
+- [ ] Suica cards: adult card for you, ADULT card for the 12-year-old, CHILD card for the 10-year-old
+- [ ] N'EX tickets with three seats together – car number noted (train splits at Tokyo!)
+- [ ] Hotel address saved in Google Maps: 3-55-1 Yoyogi, Shibuya-ku (東京都渋谷区代々木3-55-1)
+- [ ] Overnight bag kept with you if suitcases are sent ahead
+- [ ] Toilet + water + snack before boarding
+- [ ] At the hotel: ask about breakfast, laundry and the nearest konbini; charge all phones
+- [ ] Early night – Day 1 starts at 9:00 at Shinjuku Gyoen
+
+**Evening:** Dinner options near the hotel: konbini picnic in the room, or the restaurant floors around Shinjuku South Exit (NEWoMan / Lumine) – about 15 min away. Jet lag: get daylight, eat at local time, go to bed by 21:00.
+
+**Budget:** ≈ ¥8,000–10,000 for three: N'EX one-way (~¥3,300 adult + ~¥1,650 per child) + Odakyu ~¥150 each + IC-card top-ups and dinner. Round-trip N'EX, eSIM and luggage delivery are extra.
+
+⚠️ Check before you go: exact N'EX and bus fares in 2027, luggage-delivery prices, hotel check-in time and luggage acceptance, walking times from Minami-Shinjuku / Yoyogi to the hotel
+
+## ✅ Preparation checklist
+
+### 🛂 Documents & entry
+
+- [ ] Passports for all three, valid for the whole trip (check the kids' expiry dates)
+- [ ] Check visa-free entry for your nationality. JESTA (Japan's future e-travel authorization) is NOT needed for 2027 trips – ignore sites selling it
+- [ ] Register on Visit Japan Web (one account can hold the whole family) and complete immigration + customs at least 6 hours before landing; screenshot each person's QR code
+- [ ] Travelling as the only parent? Carry a consent letter from the other parent if your home country or airline may ask
+- [ ] Travel insurance with medical cover for all three (save the emergency number)
+- [ ] Hotel booking confirmation + address in Japanese and English (東京都渋谷区代々木3-55-1) – printed and on the phone
+- [ ] Flight times, terminal and booking codes saved offline
+- [ ] Photos of passports and insurance stored in the cloud and printed
+
+### 🎟️ Bookings (with deadlines)
+
+- [ ] Ikebukuro Bosaikan earthquake simulator for Mon Apr 5 – bookings open up to 5 months ahead (≈ from early November 2026)
+- [ ] TOKYO SKYTREE weekday advance tickets for Fri Apr 2 (cheaper online)
+- [ ] Kirby Café Tokyo for Fri Apr 2 – reservations sell out quickly
+- [ ] Tokyo Joypolis e-tickets for Sun Apr 4 (if you choose it)
+- [ ] SHIBUYA SKY for Thu Apr 1 (optional – the free Hikarie view is the budget alternative)
+- [ ] Decide N'EX round trip (¥5,200 adult, foreign passport) vs one-way – depends on your return airport
+- [ ] LEGOLAND Discovery Center Tokyo dated ticket (optional)
+
+### 💴 Money
+
+- [ ] Two payment cards without foreign-transaction fees; tell your bank you're travelling
+- [ ] Plan to withdraw ¥30,000–50,000 at Narita (7-Eleven / Japan Post ATMs take foreign cards)
+- [ ] Coin purse for ¥100 coins (gashapon, lockers, crane games)
+- [ ] Kids' souvenir and arcade budgets agreed before the trip
+- [ ] Tax-free shopping changes to a refund system from November 2026 – keep receipts and passports when shopping
+
+### 📱 Phone & tech
+
+- [ ] eSIM or pocket Wi-Fi for at least two devices (so a kid's phone or tablet can call you)
+- [ ] Apps: Google Maps (download Tokyo offline), Google Translate (Japanese offline + camera), Welcome Suica Mobile (iPhone), Visit Japan Web, this app installed on the home screen
+- [ ] Plug adapter for Japan's Type A sockets (two flat pins, 100 V – most phone chargers are fine)
+- [ ] Power bank in hand luggage (not in checked bags) + cables for everyone
+- [ ] Kids' headphones for the flight and trains
+
+### 💊 Health & medicines
+
+- [ ] Medicines in original packaging with a copy of the prescription; prescription meds up to 1 month, non-prescription up to 2 months (more needs a Yakkan Shoumei import certificate)
+- [ ] Do NOT pack pseudoephedrine products (e.g. Sudafed, Actifed, Vicks inhaler) or Adderall-type stimulants – they are prohibited in Japan
+- [ ] Kids' fever/pain medicine, plasters, motion-sickness tablets, any allergy medicine (spring = cedar-pollen season)
+- [ ] Hand sanitizer, tissues, wet wipes
+- [ ] Emergency numbers saved: police 110, ambulance/fire 119, Japan Visitor Hotline 050-3816-2787
+
+### 🧥 Clothes (Tokyo early April: mild days, cool evenings)
+
+- [ ] Layers: T-shirts, a warm sweater/fleece and a light jacket for each person
+- [ ] Compact umbrella or light rain jackets
+- [ ] Comfortable walking shoes that slip on and off easily (shoes come off in some places)
+- [ ] Good socks without holes – everyone will see them when shoes come off
+- [ ] Small hand towels – many public toilets have no paper towels
+- [ ] Overnight bag packed separately (in case suitcases are sent ahead from the airport)
+
+### 🎒 Daily bag
+
+- [ ] Refillable water bottles
+- [ ] Small bag for rubbish (public bins are rare)
+- [ ] Snacks for queues
+- [ ] Picnic sheet for sakura days (Shinjuku Gyoen, Sumida Park)
+- [ ] Contact card for each child: your phone number, hotel name and address in Japanese + English
+
+### 🧒 Talk with the kids before the trip
+
+- [ ] 'If we get separated' rule: stay where you are, or ask station staff and show your contact card
+- [ ] Quiet on trains, no eating while walking, stand on the left on escalators, shoes off when you see slippers
+- [ ] Arcade rule: under-16s leave arcades by 18:00
+- [ ] Five phrases: konnichiwa, arigatō, sumimasen, onegai shimasu, toire wa doko desu ka?
+
+### 🏠 Before leaving home
+
+- [ ] Online check-in, seats together for all three
+- [ ] Bag weight checked; leave space for souvenirs
+- [ ] House keys, lights, plants/pets arranged
+- [ ] Charge every device the night before
 
 ## Day 1 · Thu Apr 1 — Yoyogi · Shinjuku · Harajuku · Shibuya
 
