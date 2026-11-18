@@ -18,9 +18,10 @@
   <header class="topbar">
     <h1>Tokyo Kids Explorer</h1>
     <div class="modes" role="group" aria-label="Mode">
-      <button type="button" data-mode="trip" aria-pressed="true">🗓️ Trip plan</button>
+      <button type="button" data-mode="trip" aria-pressed="true">🗓️ Trip</button>
       <button type="button" data-mode="adventure" aria-pressed="false">🧭 Adventure</button>
       <button type="button" data-mode="prep" aria-pressed="false">✅ Prepare</button>
+      <button type="button" data-mode="tax" aria-pressed="false">🧾 Tax refund</button>
     </div>
   </header>
 
@@ -46,6 +47,12 @@
       <p id="prep-progress" class="budget"></p>
       <div id="prep-list"></div>
       <button class="btn btn-secondary full" type="button" id="prep-reset">↺ Untick everything</button>
+    </section>
+
+    <!-- Tax refund receipts -->
+    <section class="card" id="tax" aria-labelledby="tax-title" hidden>
+      <h2 id="tax-title">🧾 Tax refund receipts</h2>
+      <div id="tax-root"></div>
     </section>
 
     <!-- Browse activities and add them to the plan -->

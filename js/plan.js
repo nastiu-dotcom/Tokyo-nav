@@ -76,7 +76,7 @@ const STOPS = [
     id: "plan-kiddyland", day: 2, emoji: "🧸", name: "Kiddy Land Harajuku", type: "Toy store",
     lat: 35.6688, lng: 139.7083, time: "11:00", stay: "45 min", cost: "Free to browse",
     maps: "Kiddy Land Harajuku",
-    tip: "Five floors of Japanese characters (Sanrio, Ghibli, Snoopy, Pokémon). Give each kid a small souvenir budget. Tax-free with passport from ¥5,000. Then walk down Cat Street to Shibuya (~15 min, flat).",
+    tip: "Five floors of Japanese characters (Sanrio, Ghibli, Snoopy, Pokémon). Give each kid a small souvenir budget. Tax refund with passport from ¥5,000 – save the receipt in the 🧾 Tax refund tab. Then walk down Cat Street to Shibuya (~15 min, flat).",
   },
   {
     id: "plan-uobei", day: 2, emoji: "🍣", food: true, name: "Lunch: Uobei Shibuya (bullet-train sushi)", type: "Conveyor sushi",
@@ -186,7 +186,7 @@ export const TIPS = [
   ["🙇", "Manners kids should know", "Be quiet on trains, no phone calls. Stand on the left on Tokyo escalators. Don't eat while walking. Few bins – carry a small trash bag. Shoes off where you see a step up or slippers."],
   ["🧭", "Stay together", "Give each kid a card with the hotel name, address (in Japanese) and your phone number. Agree a meeting point at big stations (e.g. a named ticket gate). Download Google Maps offline and Google Translate (camera mode reads menus)."],
   ["🚻", "Toilets & lockers", "Free, clean toilets at stations, konbini and department stores. Coin lockers at most stations (cash or IC card) – handy for shopping bags."],
-  ["🛍️", "Tax-free", "Many shops remove the 10% tax on purchases from ¥5,000 per shop per day – bring passports."],
+  ["🛍️", "Tax refund", "Since Nov 1, 2026 you pay the full price (incl. 10% tax) and show your passport at the till; the tax is refunded after customs checks the goods when you leave Japan (≥ ¥5,000 before tax per shop per day, keep goods unused in hand luggage). Save every receipt with a product photo in the 🧾 Tax refund tab."],
   ["🆘", "Help", "Police 110 · Ambulance/fire 119 · Japan Visitor Hotline (24h, English) 050-3816-2787."],
 ];
 
