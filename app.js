@@ -12,6 +12,7 @@ import {
 import { openPicker } from "./js/picker.js";
 import { readTripFromHash, shareTrip } from "./js/share.js";
 import { initTax, renderTax } from "./js/tax.js";
+import { initMapView, renderMapView } from "./js/mapview.js";
 import { buildPlanDays, mapsLink, planDay, planStop, TIPS } from "./js/plan.js";
 import {
   buildTripDays, edgeBetween, edgeSummary, foodFor, isTripKey, loadTrip2027, maxLeg, reachable, routeStops,
@@ -34,7 +35,7 @@ const els = {
   modes: document.querySelectorAll("[data-mode]"), daysBar: $("#days-bar"),
   planTitle: $("#plan-title"), dateWrap: $("#date-wrap"), date: $("#day-date"),
   planSection: $("#plan"), browseSection: $("#browse"), prep: $("#prep"), prepList: $("#prep-list"),
-  prepProgress: $("#prep-progress"), prepReset: $("#prep-reset"), tax: $("#tax"), taxRoot: $("#tax-root"),
+  prepProgress: $("#prep-progress"), prepReset: $("#prep-reset"), tax: $("#tax"), taxRoot: $("#tax-root"), mapview: $("#mapview"), mapRoot: $("#mapview-root"),
   timeline: $("#timeline"), dayIntro: $("#day-intro"), tips: $("#tips-list"), addPlace: $("#add-place"), planActions: $("#plan-actions"),
   browseTitle: $("#browse-title"), browseNear: $("#browse-near"), categories: $("#categories"),
   openNow: $("#open-now"), status: $("#status"), list: $("#list"),
@@ -702,10 +703,17 @@ function addFromList(id) {
 function render() {
   const prep = state.mode === "prep";
   const tax = state.mode === "tax";
+  const mapMode = state.mode === "map";
   els.prep.hidden = !prep;
   els.tax.hidden = !tax;
-  els.planSection.hidden = prep || tax;
-  els.browseSection.hidden = prep || tax;
+  els.mapview.hidden = !mapMode;
+  els.planSection.hidden = prep || tax || mapMode;
+  els.browseSection.hidden = prep || tax || mapMode;
+  if (mapMode) {
+    els.daysBar.hidden = true;
+    renderMapView(els.mapRoot, { days: () => state.trip.days, dayName });
+    return;
+  }
   if (prep) { els.daysBar.hidden = true; renderPrep(); return; }
   if (tax) { els.daysBar.hidden = true; renderTax(els.taxRoot); return; }
   if (!state.trip.days.length) state.trip.days.push(newDay());
@@ -794,8 +802,9 @@ els.list.addEventListener("click", (e) => {
   state.trip = store.get("trip") || { days: [] };
   state.adventure = store.get("adventure") || { start: store.get("start") ? { ...store.get("start"), name: store.get("start").label } : null, stops: [] };
   state.day = store.get("day") || 0;
-  state.mode = ["adventure", "prep", "tax"].includes(store.get("mode")) ? store.get("mode") : "trip";
+  state.mode = ["adventure", "prep", "tax", "map"].includes(store.get("mode")) ? store.get("mode") : "trip";
   initTax(els.taxRoot);
+  initMapView(els.mapRoot);
   const cat = store.get("category");
   state.browse.category = CATEGORIES.some(([id]) => id === cat) ? cat : "all";
   state.browse.openOnly = store.get("openOnly") === true;
