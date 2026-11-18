@@ -518,19 +518,19 @@ Free: gardens/parks (kids), Fire Museum, shrines, free views, browsing shops. Ex
 
 1. **09:34 🌸 Koishikawa Korakuen Garden** – 45 min · Adult ¥300 · age 10: FREE (elementary) · age 12: free only for Tokyo-resident junior-high students – otherwise expect ¥300
 1. **10:24 ⚾ Baseball Hall of Fame and Museum** – 45 min–1 h · Adult ¥600 · kids: reduced (check)
-1. **55:27 🎡 Tokyo Dome City Attractions** – 1.5–2 h · Free entry · pay per ride (~¥500–1,200) or ride passport – check price calendar
-1. **57:11 ⛩️ Kanda Myojin Shrine** – 30 min · Free (charms ~¥500–1,000)
-1. **57:50 🚆 mAAch ecute Kanda Manseibashi** – 45 min · Cafés & meals ~¥800–1,800
-1. **58:36 🤖 Akihabara Radio Kaikan** – 1 h · Free to browse
-1. **59:41 👾 Super Potato Retro Game Center (5F)** – 45 min · Free to enter · retro games ~¥100 per play
+1. **11:12 🎡 Tokyo Dome City Attractions** – 1.5–2 h · Free entry · pay per ride (~¥500–1,200) or ride passport – check price calendar
+1. **12:56 ⛩️ Kanda Myojin Shrine** – 30 min · Free (charms ~¥500–1,000)
+1. **13:35 🚆 mAAch ecute Kanda Manseibashi** – 45 min · Cafés & meals ~¥800–1,800
+1. **14:21 🤖 Akihabara Radio Kaikan** – 1 h · Free to browse
+1. **15:26 👾 Super Potato Retro Game Center (5F)** – 45 min · Free to enter · retro games ~¥100 per play
 
 ### Short route (5 stops)
 
-1. **09:33 ⚾ Baseball Hall of Fame and Museum** – 45 min–1 h · Adult ¥600 · kids: reduced (check)
-1. **54:35 🎡 Big O Ferris Wheel (Tokyo Dome City)** – 20 min · ~¥900 per person – check
-1. **55:10 ⛩️ Kanda Myojin Shrine** – 30 min · Free (charms ~¥500–1,000)
-1. **55:49 🚆 mAAch ecute Kanda Manseibashi** – 45 min · Cafés & meals ~¥800–1,800
-1. **56:39 👾 Super Potato Retro Game Center (5F)** – 45 min · Free to enter · retro games ~¥100 per play
+1. **10:00 ⚾ Baseball Hall of Fame and Museum** – 45 min–1 h · Adult ¥600 · kids: reduced (check)
+1. **10:47 🎡 Big O Ferris Wheel (Tokyo Dome City)** – 20 min · ~¥900 per person – check
+1. **11:22 ⛩️ Kanda Myojin Shrine** – 30 min · Free (charms ~¥500–1,000)
+1. **12:01 🚆 mAAch ecute Kanda Manseibashi** – 45 min · Cafés & meals ~¥800–1,800
+1. **12:51 👾 Super Potato Retro Game Center (5F)** – 45 min · Free to enter · retro games ~¥100 per play
 
 ### Stop by stop: what's reachable next (≤ 45 min) and where to eat
 
@@ -767,21 +767,21 @@ Free: gardens/parks (kids), Fire Museum, shrines, free views, browsing shops. Ex
 
 ### Suggested route (7 stops)
 
-1. **09:58 🐟 Toyosu Senkyaku Banrai** – 1–1.5 h · Free entry · seafood bowls ~¥1,500–3,000 · street snacks ~¥300–800
-1. **11:10 🧭 Sona Area Tokyo (disaster-survival experience)** – 1 h · Free
-1. **12:27 🤖 DiverCity Tokyo Plaza – Gundam Base & Unicorn head** – 45 min · Free to browse · model kits from ~¥800
-1. **13:13 🎳 Round1 (DiverCity Tokyo Plaza)** – 45–60 min · Free entry · games ~¥100 · bowling per game
-1. **14:02 📺 Fuji TV Building Spherical Observatory** – 45 min · Sphere: ~¥800 adult, less for kids – check
-1. **14:51 🎢 Tokyo Joypolis (SEGA)** – 2.5–3 h · EXPENSIVE · passport: adult ¥6,000 · ages 12 & 10 (school age) ¥5,000 – online e-tickets cheaper
-1. **17:22 🐙 Odaiba Takoyaki Museum & Daiba 1-chome Shotengai (DECKS)** – 30–45 min · Takoyaki ~¥600–800 · retro sweets from ¥10
+1. **10:00 🐟 Toyosu Senkyaku Banrai** – 1–1.5 h · Free entry · seafood bowls ~¥1,500–3,000 · street snacks ~¥300–800
+1. **11:12 🧭 Sona Area Tokyo (disaster-survival experience)** – 1 h · Free
+1. **12:29 🤖 DiverCity Tokyo Plaza – Gundam Base & Unicorn head** – 45 min · Free to browse · model kits from ~¥800
+1. **13:15 🎳 Round1 (DiverCity Tokyo Plaza)** – 45–60 min · Free entry · games ~¥100 · bowling per game
+1. **14:04 📺 Fuji TV Building Spherical Observatory** – 45 min · Sphere: ~¥800 adult, less for kids – check
+1. **14:53 🎢 Tokyo Joypolis (SEGA)** – 2.5–3 h · EXPENSIVE · passport: adult ¥6,000 · ages 12 & 10 (school age) ¥5,000 – online e-tickets cheaper
+1. **17:24 🐙 Odaiba Takoyaki Museum & Daiba 1-chome Shotengai (DECKS)** – 30–45 min · Takoyaki ~¥600–800 · retro sweets from ¥10
 
 ### Short route (5 stops)
 
-1. **09:58 🐟 Toyosu Senkyaku Banrai** – 1–1.5 h · Free entry · seafood bowls ~¥1,500–3,000 · street snacks ~¥300–800
-1. **11:10 🧭 Sona Area Tokyo (disaster-survival experience)** – 1 h · Free
-1. **12:27 🤖 DiverCity Tokyo Plaza – Gundam Base & Unicorn head** – 45 min · Free to browse · model kits from ~¥800
-1. **13:13 🎳 Round1 (DiverCity Tokyo Plaza)** – 45–60 min · Free entry · games ~¥100 · bowling per game
-1. **14:05 🎢 Tokyo Joypolis (SEGA)** – 2.5–3 h · EXPENSIVE · passport: adult ¥6,000 · ages 12 & 10 (school age) ¥5,000 – online e-tickets cheaper
+1. **10:00 🐟 Toyosu Senkyaku Banrai** – 1–1.5 h · Free entry · seafood bowls ~¥1,500–3,000 · street snacks ~¥300–800
+1. **11:12 🧭 Sona Area Tokyo (disaster-survival experience)** – 1 h · Free
+1. **12:29 🤖 DiverCity Tokyo Plaza – Gundam Base & Unicorn head** – 45 min · Free to browse · model kits from ~¥800
+1. **13:15 🎳 Round1 (DiverCity Tokyo Plaza)** – 45–60 min · Free entry · games ~¥100 · bowling per game
+1. **14:07 🎢 Tokyo Joypolis (SEGA)** – 2.5–3 h · EXPENSIVE · passport: adult ¥6,000 · ages 12 & 10 (school age) ¥5,000 – online e-tickets cheaper
 
 ### Stop by stop: what's reachable next (≤ 45 min) and where to eat
 
@@ -1001,8 +1001,8 @@ Free: gardens/parks (kids), Fire Museum, shrines, free views, browsing shops. Ex
 
 ### Suggested route (7 stops)
 
-1. **09:39 ✨ Konica Minolta Planetarium 'Manten'** – 45 min · ~¥1,500–1,800 per seat by program – check
-1. **10:25 🦭 Sunshine Aquarium** – 1.5–2 h · Around ¥2,600 adult / ~¥1,300 child – check official prices
+1. **09:39 🦭 Sunshine Aquarium** – 1.5–2 h · Around ¥2,600 adult / ~¥1,300 child – check official prices
+1. **11:10 ✨ Konica Minolta Planetarium 'Manten'** – 45 min · ~¥1,500–1,800 per seat by program – check
 1. **11:57 ⚡ Pokémon Center Mega Tokyo** – 45 min · Free to browse
 1. **12:43 🎰 Gashapon Department Store Ikebukuro** – 45 min · Capsules ~¥200–500 each
 1. **13:29 🥟 Namja Town (incl. Gyoza Stadium)** – 1.5–2 h · Entry ~¥1,200 adult (kids less) · Passport with attractions from ~¥4,000 adult – check
@@ -1012,10 +1012,10 @@ Free: gardens/parks (kids), Fire Museum, shrines, free views, browsing shops. Ex
 ### Short route (5 stops)
 
 1. **09:36 🌋 Ikebukuro Life Safety Learning Center (Bosaikan)** – 1 h 40 min (guided) · FREE
-1. **10:47 🍜 Ramen Mutekiya** – 45 min · ~¥1,000–1,400 per bowl
-1. **11:35 🕹️ GiGO Ikebukuro (crane-game flagship)** – 45 min · Free entry · ~¥100–200 per play
-1. **12:27 ⚡ Pokémon Center Mega Tokyo** – 45 min · Free to browse
-1. **13:13 🌇 Sunshine 60 Observatory 'Tenbou-Park'** – 45 min · Weekday ~¥700 adult / ~¥500 child (elementary–junior high); peak-season prices higher
+1. **11:27 🍜 Ramen Mutekiya** – 45 min · ~¥1,000–1,400 per bowl
+1. **12:15 🕹️ GiGO Ikebukuro (crane-game flagship)** – 45 min · Free entry · ~¥100–200 per play
+1. **13:07 ⚡ Pokémon Center Mega Tokyo** – 45 min · Free to browse
+1. **13:53 🌇 Sunshine 60 Observatory 'Tenbou-Park'** – 45 min · Weekday ~¥700 adult / ~¥500 child (elementary–junior high); peak-season prices higher
 
 ### Stop by stop: what's reachable next (≤ 45 min) and where to eat
 

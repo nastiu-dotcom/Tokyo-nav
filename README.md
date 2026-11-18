@@ -32,7 +32,7 @@ things to do in Tokyo and get there by train, subway or bus.
 - **📥 April 1–5, 2027 five-day trip** (1 adult + kids 12 and 10, base Rainbow
   Palace Yoyogi) – tap “Load the April 2027 5-day trip” in Trip mode:
   Shinjuku/Harajuku/Shibuya · Skytree/Sumida/Ryogoku · Tokyo Dome/Kanda ·
-  Toyosu/Odaiba · Ikebukuro (Monday-proof). 61 researched attractions,
+  Toyosu/Odaiba · Ikebukuro (Monday-proof). 62 researched attractions,
   3–4 food options after each, 5- and 7-stop routes per day, and a
   **“next stop within 45 minutes”** chooser. Data: `data/tokyo-5day-2027.json`;
   readable guide: `docs/tokyo-5day-guide.md`; source + validation:

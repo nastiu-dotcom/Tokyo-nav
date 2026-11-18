@@ -59,7 +59,7 @@ DAYS = [
                  "Book the Bosaikan (earthquake simulator) in advance; tours are in Japanese.",
                  "Bring ¥100 coins for Gashapon (change machines inside)."],
          five=["bosaikan", "mutekiya", "gigo-ikebukuro", "pokemon-center-mega", "tenbou-park"],
-         seven=["planetarium-manten", "sunshine-aquarium", "pokemon-center-mega", "gashapon-store", "namja-town",
+         seven=["sunshine-aquarium", "planetarium-manten", "pokemon-center-mega", "gashapon-store", "namja-town",
                 "gigo-ikebukuro-2", "tenbou-park"]),
 ]
 
@@ -75,11 +75,13 @@ def yen(n):
 
 
 def stay_minutes(s):
-    nums = [float(x) for x in re.findall(r"\d+(?:\.\d+)?", s)]
-    if not nums:
+    """'1.5–2 h' -> 90, '45 min' -> 45, '45 min–1 h' -> 45, '1 h 40 min' -> 100."""
+    m = re.search(r"(\d+(?:\.\d+)?)\s*(?:–\s*\d+(?:\.\d+)?)?\s*(h|min)", s)
+    if not m:
         return 45
-    v = nums[0]
-    return int(v * 60) if " h" in s or s.strip().endswith("h") and v < 6 else int(v)
+    v = float(m.group(1)) * (60 if m.group(2) == "h" else 1)
+    extra = re.search(r"h\s+(\d+)\s*min", s)
+    return int(v + (int(extra.group(1)) if m.group(2) == "h" and extra else 0))
 
 
 def place(a):
@@ -273,6 +275,9 @@ def route_times(route, by_id, edge_of):
         s = by_id[r]
         if i:
             t += edge_of(route[i - 1], r)["minutes"]
+        m = re.search(r"(\d{1,2}):(\d{2})", s["hours"])  # first time in the hours = opening time
+        if m:
+            t = max(t, int(m.group(1)) * 60 + int(m.group(2)))
         rows.append((t, s))
         t += stay_minutes(s["stay"])
     return rows

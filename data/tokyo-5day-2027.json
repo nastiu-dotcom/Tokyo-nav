@@ -244,20 +244,20 @@
    },
    "routeTimes": {
     "five": [
-     "09:33",
-     "54:35",
-     "55:10",
-     "55:49",
-     "56:39"
+     "10:00",
+     "10:47",
+     "11:22",
+     "12:01",
+     "12:51"
     ],
     "seven": [
      "09:34",
      "10:24",
-     "55:27",
-     "57:11",
-     "57:50",
-     "58:36",
-     "59:41"
+     "11:12",
+     "12:56",
+     "13:35",
+     "14:21",
+     "15:26"
     ]
    }
   },
@@ -325,20 +325,20 @@
    },
    "routeTimes": {
     "five": [
-     "09:58",
-     "11:10",
-     "12:27",
-     "13:13",
-     "14:05"
+     "10:00",
+     "11:12",
+     "12:29",
+     "13:15",
+     "14:07"
     ],
     "seven": [
-     "09:58",
-     "11:10",
-     "12:27",
-     "13:13",
-     "14:02",
-     "14:51",
-     "17:22"
+     "10:00",
+     "11:12",
+     "12:29",
+     "13:15",
+     "14:04",
+     "14:53",
+     "17:24"
     ]
    }
   },
@@ -355,8 +355,8 @@
     "Bring ¥100 coins for Gashapon (change machines inside)."
    ],
    "suggestedRoute": [
-    "plan-d5-planetarium-manten",
     "plan-d5-sunshine-aquarium",
+    "plan-d5-planetarium-manten",
     "plan-d5-pokemon-center-mega",
     "plan-d5-gashapon-store",
     "plan-d5-namja-town",
@@ -372,8 +372,8 @@
      "plan-d5-tenbou-park"
     ],
     "seven": [
-     "plan-d5-planetarium-manten",
      "plan-d5-sunshine-aquarium",
+     "plan-d5-planetarium-manten",
      "plan-d5-pokemon-center-mega",
      "plan-d5-gashapon-store",
      "plan-d5-namja-town",
@@ -405,14 +405,14 @@
    "routeTimes": {
     "five": [
      "09:36",
-     "10:47",
-     "11:35",
-     "12:27",
-     "13:13"
+     "11:27",
+     "12:15",
+     "13:07",
+     "13:53"
     ],
     "seven": [
      "09:39",
-     "10:25",
+     "11:10",
      "11:57",
      "12:43",
      "13:29",
