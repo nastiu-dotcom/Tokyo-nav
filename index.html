@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tokyo Kids Explorer</title>
+  <meta name="description" content="Find fun family activities in Tokyo and get simple directions by train.">
+  <meta name="theme-color" content="#0b5cad">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Tokyo Kids">
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Tokyo Kids Explorer</h1>
+  </header>
+
+  <main>
+    <!-- Starting point -->
+    <section class="card" aria-labelledby="start-h">
+      <h2 id="start-h">Starting point</h2>
+      <p id="start-label" class="start-label">Not set yet</p>
+      <button id="change-start" class="btn btn-secondary" type="button">Change starting point</button>
+
+      <div id="picker" class="picker" hidden>
+        <label for="search" class="label">Search a hotel, station, street or landmark</label>
+        <div class="search-wrap">
+          <input id="search" type="search" autocomplete="off" placeholder="e.g. Shinjuku Station" enterkeyhint="search">
+          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+        </div>
+        <p class="hint">…or tap the map / drag the pin.</p>
+        <div id="map" class="map" aria-label="Map to pick a starting point"></div>
+        <div class="row">
+          <button id="use-location" class="btn btn-secondary" type="button">📍 Use my location</button>
+          <button id="save-start" class="btn btn-primary" type="button">Save this point</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="card" aria-labelledby="act-h">
+      <h2 id="act-h">Things to do</h2>
+      <div id="categories" class="chips" role="group" aria-label="Category"></div>
+      <label class="toggle">
+        <input id="open-now" type="checkbox">
+        <span>Open now only</span>
+      </label>
+      <p id="status" class="status" role="status"></p>
+      <div id="list" class="list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Places &amp; routes: Google · Map: © OpenStreetMap contributors · Guides written by Claude (AI) — double-check signs at the station.
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
