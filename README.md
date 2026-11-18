@@ -3,9 +3,18 @@
 A mobile-first web app (installable PWA) that helps a family with kids find fun
 things to do in Tokyo and get there by train, subway or bus.
 
-- **Starting point:** tap or drag a pin on the map (Leaflet + OpenStreetMap),
-  search a hotel, station or landmark (Google Places Autocomplete), or use your
-  phone's location. Saved on the phone.
+- **Two modes** (switch at the top):
+  - **🗓️ Trip plan** – build your days in advance. Each day has a date, a start
+    (hotel) and places in order. The main page shows the day's plan and **how
+    to get from each place to the next**. New days start at the same hotel.
+    **🔗 Share trip** makes a link that opens the same plan on another phone
+    (the plan travels inside the link – no accounts, no database).
+  - **🧭 Adventure** – today's route, built as you go: start from your
+    location, see what's nearby, tap **“Go here next”**, and the route grows
+    stop by stop. **Save to trip plan** keeps it as a day.
+- **Start points and places:** tap or drag a pin on the map (Leaflet +
+  OpenStreetMap), search a hotel, station or landmark (Google Places
+  Autocomplete), or use the phone's location. Everything is saved on the phone.
 - **Activities:** live family-friendly places from Google Places (New), sorted
   by distance. Tap one to see address, rating, reviews, opening hours, an
   "Open now" badge, price level, distance and the official website. Filter by
@@ -28,7 +37,8 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 
 | Path | What it does |
 |---|---|
-| `index.html`, `styles.css`, `app.js` | The app (plain HTML/CSS/JS) |
+| `index.html`, `styles.css`, `app.js` | The app (plain HTML/CSS/JS): modes, day plan, browsing |
+| `js/` | Browser modules: helpers, route legs, map/search picker, share links |
 | `manifest.webmanifest`, `sw.js`, `icons/` | PWA: install to home screen, offline shell |
 | `vendor/leaflet/` | Leaflet 1.9.4 map library (BSD-2 licence) |
 | `api/autocomplete.js` | Places Autocomplete (New) for the search box |
@@ -60,6 +70,11 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 - **Caching:** activity lists and route guides are cached for 24 hours in
   Vercel's CDN (shared by everyone) *and* on the phone. The start point is
   rounded (~1 km for activity lists, ~100 m for routes) so cache hits are likely.
+- **Adding a stop doesn't search again:** the list is re-sorted from the new
+  stop for free; a new Google search only happens when you tap
+  “Find places near here”.
+- **Stations are looked up once per place**, shared by the leg that arrives
+  there and the leg that leaves.
 - **"Open now" is computed on the phone** from weekly hours, so cached lists
   never show a stale badge.
 - **Claude:** only after you confirm; one short request per trip per day (`claude-opus-5-5`, low effort, ~150-word answer).

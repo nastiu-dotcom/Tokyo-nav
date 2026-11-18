@@ -147,3 +147,63 @@ input[type="search"] {
 @media (min-width: 600px) {
   .map { height: 400px; }
 }
+
+/* ---------- modes, days, plan timeline ---------- */
+.topbar { display: flex; flex-direction: column; gap: 10px; }
+.modes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: rgba(255,255,255,.18); padding: 4px; border-radius: 14px; }
+.modes button {
+  min-height: 48px; border: 0; border-radius: 10px; font: inherit; font-weight: 700;
+  background: transparent; color: var(--primary-text); cursor: pointer;
+}
+.modes button[aria-pressed="true"] { background: var(--card); color: var(--text); }
+.chips.days { padding: 4px 0 12px; }
+.chip.add { border-style: dashed; }
+
+.plan-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.plan-head h2 { margin: 0; }
+.date-wrap { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.date-wrap input { min-height: 48px; font: inherit; padding: 0 10px; border-radius: 10px; border: 2px solid var(--line); background: var(--card); color: var(--text); }
+
+.timeline { list-style: none; margin: 0 0 12px; padding: 0; }
+.point { display: grid; grid-template-columns: 44px 1fr auto; gap: 6px 10px; align-items: center; padding: 10px 0; }
+.point:not(.start) { grid-template-columns: 44px 1fr; }
+.point:not(.start) .controls { grid-column: 2; }
+.point:not(.start) .dot { grid-row: 1 / span 2; align-self: start; }
+.point .dot {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--primary); color: var(--primary-text); font-weight: 800; font-size: 1.05rem;
+}
+.point.start .dot { background: var(--accent); font-size: 1.3rem; }
+.point.empty { grid-template-columns: 44px 1fr; }
+.pname { margin: 0; font-weight: 700; font-size: 1.08rem; overflow-wrap: anywhere; }
+.point .small { margin: 2px 0 0; }
+.controls { display: flex; gap: 4px; }
+.mini {
+  min-width: 40px; min-height: 40px; border-radius: 10px; border: 2px solid var(--line);
+  background: var(--card); color: var(--text); font: inherit; font-weight: 700; cursor: pointer;
+  display: inline-grid; place-items: center; text-decoration: none;
+}
+.mini:disabled { opacity: .35; }
+.leg { margin-left: 19px; padding: 6px 0 10px 24px; border-left: 4px dotted var(--primary); }
+.leg-summary { margin: 0 0 8px; font-weight: 600; }
+.row.tight { margin-top: 0; gap: 8px; }
+.row.tight .btn { flex: 1 1 120px; min-height: 48px; }
+.leg-body { margin-top: 10px; padding: 12px; border-radius: 12px; background: var(--accent); }
+.leg-body h4 { margin: 12px 0 6px; }
+.leg-body ol, .leg-body ul:not(.legs) { margin: 0; padding-left: 1.4em; }
+.sub { font-weight: 700; margin: 10px 0 4px; }
+.empty-note { color: var(--muted); padding: 8px 0 4px 54px; }
+.full { width: 100%; }
+.small-btn { min-height: 40px; padding: 0 12px; font-size: .9rem; margin-left: 6px; }
+.badge.added { background: var(--accent); color: var(--text); }
+
+/* ---------- picker sheet ---------- */
+.sheet {
+  position: fixed; inset: 0; z-index: 2000; background: var(--card); overflow-y: auto;
+  padding: calc(12px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));
+}
+.sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.sheet-head h2 { margin: 0; }
+.sheet-head .btn { min-width: var(--tap); padding: 0; }
+.sheet .map { height: 45vh; min-height: 260px; }
+body.sheet-open { overflow: hidden; }

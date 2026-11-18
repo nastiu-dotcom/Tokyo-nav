@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Tokyo Kids Explorer</title>
-  <meta name="description" content="Find fun family activities in Tokyo and get simple directions by train.">
+  <meta name="description" content="Plan family days in Tokyo or go on an adventure, with simple directions from place to place.">
   <meta name="theme-color" content="#0b5cad">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
@@ -17,33 +17,31 @@
 <body>
   <header class="topbar">
     <h1>Tokyo Kids Explorer</h1>
+    <div class="modes" role="group" aria-label="Mode">
+      <button type="button" data-mode="trip" aria-pressed="true">🗓️ Trip plan</button>
+      <button type="button" data-mode="adventure" aria-pressed="false">🧭 Adventure</button>
+    </div>
   </header>
 
   <main>
-    <!-- Starting point -->
-    <section class="card" aria-labelledby="start-h">
-      <h2 id="start-h">Starting point</h2>
-      <p id="start-label" class="start-label">Not set yet</p>
-      <button id="change-start" class="btn btn-secondary" type="button">Change starting point</button>
+    <!-- Trip mode: one chip per day -->
+    <nav id="days-bar" class="chips days" aria-label="Days"></nav>
 
-      <div id="picker" class="picker" hidden>
-        <label for="search" class="label">Search a hotel, station, street or landmark</label>
-        <div class="search-wrap">
-          <input id="search" type="search" autocomplete="off" placeholder="e.g. Shinjuku Station" enterkeyhint="search">
-          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
-        </div>
-        <p class="hint">…or tap the map / drag the pin.</p>
-        <div id="map" class="map" aria-label="Map to pick a starting point"></div>
-        <div class="row">
-          <button id="use-location" class="btn btn-secondary" type="button">📍 Use my location</button>
-          <button id="save-start" class="btn btn-primary" type="button">Save this point</button>
-        </div>
+    <!-- The plan: start → how to get there → stop → … -->
+    <section class="card" id="plan" aria-labelledby="plan-title">
+      <div class="plan-head">
+        <h2 id="plan-title">Day 1</h2>
+        <label id="date-wrap" class="date-wrap">Date <input id="day-date" type="date"></label>
       </div>
+      <ol id="timeline" class="timeline"></ol>
+      <button id="add-place" class="btn btn-secondary full" type="button">➕ Add any place (search or map)</button>
+      <div id="plan-actions" class="row"></div>
     </section>
 
-    <!-- Activities -->
-    <section class="card" aria-labelledby="act-h">
-      <h2 id="act-h">Things to do</h2>
+    <!-- Browse activities and add them to the plan -->
+    <section class="card" id="browse" aria-labelledby="browse-title">
+      <h2 id="browse-title">Things to do</h2>
+      <p id="browse-near" class="hint"></p>
       <div id="categories" class="chips" role="group" aria-label="Category"></div>
       <label class="toggle">
         <input id="open-now" type="checkbox">
@@ -57,6 +55,25 @@
   <footer class="footer">
     Places &amp; routes: Google · Map: © OpenStreetMap contributors · Optional AI guides by Claude — double-check signs at the station.
   </footer>
+
+  <!-- Point picker sheet -->
+  <div id="picker" class="sheet" role="dialog" aria-modal="true" aria-labelledby="picker-title" hidden>
+    <div class="sheet-head">
+      <h2 id="picker-title">Choose a place</h2>
+      <button id="picker-close" class="btn btn-secondary" type="button" aria-label="Close">✕</button>
+    </div>
+    <label for="search" class="label">Search a hotel, station, street or landmark</label>
+    <div class="search-wrap">
+      <input id="search" type="search" autocomplete="off" placeholder="e.g. Shinjuku Station" enterkeyhint="search">
+      <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+    </div>
+    <p class="hint">…or tap the map / drag the pin.</p>
+    <div id="map" class="map" aria-label="Map to pick a place"></div>
+    <div class="row">
+      <button id="use-location" class="btn btn-secondary" type="button">📍 Use my location</button>
+      <button id="save-point" class="btn btn-primary" type="button">Save</button>
+    </div>
+  </div>
 
   <script src="/vendor/leaflet/leaflet.js"></script>
   <script src="/app.js" type="module"></script>
