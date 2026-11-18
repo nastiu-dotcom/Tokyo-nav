@@ -21,6 +21,7 @@
       <button type="button" data-mode="trip" aria-pressed="true">🗓️ Trip</button>
       <button type="button" data-mode="adventure" aria-pressed="false">🧭 Adventure</button>
       <button type="button" data-mode="prep" aria-pressed="false">✅ Prepare</button>
+      <button type="button" data-mode="map" aria-pressed="false">🗺️ Map</button>
       <button type="button" data-mode="tax" aria-pressed="false">🧾 Tax refund</button>
     </div>
   </header>
@@ -47,6 +48,12 @@
       <p id="prep-progress" class="budget"></p>
       <div id="prep-list"></div>
       <button class="btn btn-secondary full" type="button" id="prep-reset">↺ Untick everything</button>
+    </section>
+
+    <!-- Map of all saved places -->
+    <section class="card" id="mapview" aria-labelledby="mapview-title" hidden>
+      <h2 id="mapview-title">🗺️ All my places</h2>
+      <div id="mapview-root"></div>
     </section>
 
     <!-- Tax refund receipts -->

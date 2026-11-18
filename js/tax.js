@@ -7,7 +7,7 @@ const DB_NAME = "tke-tax";
 const STORE = "receipts";
 let root;
 let editing = null;          // record being edited (or a new one)
-let draft = { receipt: null, product: null, enhance: true };
+let draft = { receipt: null, product: null, enhance: true, loc: null };
 let urls = [];               // object URLs to revoke on re-render
 
 /* ---------------- IndexedDB ---------------- */
@@ -32,6 +32,8 @@ async function tx(mode, fn) {
 const allRecords = async () => (await tx("readonly", (s) => s.getAll())) || [];
 const putRecord = (r) => tx("readwrite", (s) => s.put(r));
 const deleteRecord = (id) => tx("readwrite", (s) => s.delete(id));
+export const allTaxRecords = allRecords;
+export const saveTaxRecord = putRecord;
 
 /* ---------------- images ---------------- */
 async function loadBitmap(file) {
@@ -164,6 +166,10 @@ function formHtml(r) {
     <p class="sub">3 · Details</p>
     <label class="label">What did you buy?<textarea name="description" rows="2" placeholder="e.g. Pokémon plush + 2 card packs">${esc(r.description || "")}</textarea></label>
     <label class="label">Shop<input name="shop" type="text" value="${esc(r.shop || "")}" placeholder="e.g. Pokémon Center Mega Tokyo"></label>
+    <div class="row tight">
+      <button class="btn btn-secondary" type="button" data-tax="here">📍 I'm at the shop</button>
+      <span class="small" data-loc>${draft.loc ? "📍 Shop location saved" : "Saves the shop's location for the 🗺️ Map tab"}</span>
+    </div>
     <div class="two-col">
       <label class="label">Date<input name="date" type="date" value="${esc(r.date || tokyoNow().date)}"></label>
       <label class="label">Paid (¥, incl. tax)<input name="amount" type="number" inputmode="numeric" min="0" step="1" value="${esc(r.amount ?? "")}"></label>
@@ -182,7 +188,8 @@ function formHtml(r) {
 
 function showForm(r) {
   editing = r;
-  draft = { receipt: r.receipt || null, product: r.product || null, enhance: draft.enhance };
+  draft = { receipt: r.receipt || null, product: r.product || null, enhance: draft.enhance,
+    loc: Number.isFinite(r.lat) ? { lat: r.lat, lng: r.lng } : null };
   const slot = root.querySelector("#tax-form-slot");
   slot.innerHTML = formHtml(r);
   updateEstimate();
@@ -293,6 +300,15 @@ export function initTax(container) {
         return overlay(`<img class="viewer-img" src="${img}" alt="">`);
       }
       case "customs": return customsView();
+      case "here": {
+        const out = root.querySelector("[data-loc]");
+        if (!navigator.geolocation) { out.textContent = "Location not available on this device"; return undefined; }
+        out.textContent = "Getting your location…";
+        return navigator.geolocation.getCurrentPosition(
+          (pos) => { draft.loc = { lat: pos.coords.latitude, lng: pos.coords.longitude }; out.textContent = "📍 Shop location saved"; },
+          () => { out.textContent = "Couldn't get your location"; },
+          { enableHighAccuracy: true, timeout: 10000 });
+      }
       case "export": return exportBackup();
       default: return undefined;
     }
@@ -334,6 +350,9 @@ export function initTax(container) {
       rate: f.rate.value === "reduced" ? "reduced" : "standard",
       receipt: draft.receipt,
       product: draft.product,
+      lat: draft.loc ? draft.loc.lat : editing.lat,
+      lng: draft.loc ? draft.loc.lng : editing.lng,
+      notFound: draft.loc ? false : editing.notFound,
       createdAt: editing.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

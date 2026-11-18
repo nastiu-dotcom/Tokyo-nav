@@ -170,3 +170,21 @@ test("AI_GUIDES=off blocks the paid endpoint and hides the button", async () => 
     delete process.env.AI_GUIDES;
   }
 });
+
+test("/api/find searches inside Japan with a minimal field mask", async () => {
+  globalThis.fetch = async (url, init) => {
+    calls.push({ url, body: JSON.parse(init.body), headers: new Headers(init.headers) });
+    return new Response(JSON.stringify({ places: [{ id: "abc", displayName: { text: "Pokémon Center Mega Tokyo" }, formattedAddress: "Ikebukuro", location: { latitude: 35.7288, longitude: 139.7188 } }] }), { status: 200 });
+  };
+  const { default: handler } = await import("../api/find.js");
+  const res = fakeRes();
+  await handler({ method: "GET", query: { q: "Pokemon Center Mega Tokyo" } }, res);
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.place.lat, 35.7288);
+  const c = calls[0];
+  assert.ok(c.body.locationRestriction.rectangle);
+  assert.equal(c.headers.get("x-goog-fieldmask"), "places.id,places.displayName,places.formattedAddress,places.location");
+  const bad = fakeRes();
+  await handler({ method: "GET", query: { q: "x" } }, bad);
+  assert.equal(bad.statusCode, 400);
+});

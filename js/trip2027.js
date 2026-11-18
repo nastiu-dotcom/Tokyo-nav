@@ -40,6 +40,8 @@ export const prepSections = () => DATA?.preparation || [];
 export const isArrivalKey = (k) => k === "apr-d0";
 export const isTripKey = (k) => /^apr-d\d$/.test(k || "");
 export const tripStop = (id) => BY_ID.get(id) || null;
+export const allPoolStops = () => DATA?.stops || [];
+export const allFood = () => DATA?.food || [];
 export const foodFor = (id) => FOOD.get(id) || [];
 export const edgeBetween = (a, b) => (a && b ? EDGES.get(key(a, b)) || null : null);
 export const tripDay = (planKey) => (DATA && isTripKey(planKey) ? DATA.days.find((d) => `apr-${d.key}` === planKey) : null);

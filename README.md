@@ -44,6 +44,12 @@ things to do in Tokyo and get there by train, subway or bus.
   the phone (IndexedDB), with the estimated refund, the ¥5,000 per-shop-per-day
   check, the 90-day export deadline, a “Show at customs” screen, sharing, and
   a backup file you can save and restore.
+- **🗺️ Map tab:** every saved place on one map (free OpenStreetMap, no key) –
+  your plan (colour per day), more ideas and food from the 5-day pools, your
+  own **Google Maps saved places** (import the Google Takeout .zip /
+  “Saved Places.json” / list .csv – read on the phone, nothing uploaded) and
+  **tax-refund shops**. Tap a pin → open in Google Maps or get directions.
+  Places without coordinates can be found with `/api/find` (Google free tier).
 - **Start points and places:** tap or drag a pin on the map (Leaflet +
   OpenStreetMap), search a hotel, station or landmark (Google Places
   Autocomplete), or use the phone's location. Everything is saved on the phone.

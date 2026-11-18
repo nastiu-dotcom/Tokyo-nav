@@ -150,7 +150,7 @@ input[type="search"] {
 
 /* ---------- modes, days, plan timeline ---------- */
 .topbar { display: flex; flex-direction: column; gap: 10px; }
-.modes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; background: rgba(255,255,255,.18); padding: 4px; border-radius: 14px; }
+.modes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; background: rgba(255,255,255,.18); padding: 4px; border-radius: 14px; }
 .modes button {
   min-height: 48px; border: 0; border-radius: 10px; font: inherit; font-weight: 700;
   background: transparent; color: var(--primary-text); cursor: pointer;
@@ -264,9 +264,9 @@ body.sheet-open { overflow: hidden; }
 .prep-sec { margin-bottom: 8px; }
 .prep-sec > summary { cursor: pointer; font-weight: 800; font-size: 1.08rem; min-height: var(--tap); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .prep-count { font-size: .9rem; color: var(--muted); font-weight: 700; }
-.modes button { font-size: .95rem; padding: 0 4px; }
+.modes button { font-size: .95rem; padding: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-@media (max-width: 460px) { .modes { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .modes { grid-template-columns: repeat(6, 1fr); } .modes button { grid-column: span 2; } .modes button:nth-child(4), .modes button:nth-child(5) { grid-column: span 3; } }
 
 /* ---------- tax refund ---------- */
 .tax-info, .tax-backup { border: 2px solid var(--line); border-radius: 12px; padding: 0 12px; margin: 8px 0 12px; }
@@ -304,3 +304,16 @@ body.sheet-open { overflow: hidden; }
 .customs-item { display: grid; grid-template-columns: 96px 1fr 64px; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .customs-item img { width: 96px; height: 96px; object-fit: cover; border-radius: 10px; }
 .customs-item img.rcpt { width: 64px; height: 64px; }
+
+/* ---------- map tab ---------- */
+.big-map { height: 62vh; min-height: 320px; border-radius: 12px; border: 2px solid var(--line); margin: 8px 0; }
+.pin { background: none; border: 0; }
+.pin span { display: grid; place-items: center; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.45); color: #fff; font-weight: 800; }
+.pop { font-size: 15px; line-height: 1.35; min-width: 190px; }
+.pop-links { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.pop-links a { display: block; padding: 8px 10px; border-radius: 8px; background: #e8f0fb; color: #0b5cad; font-weight: 700; text-decoration: none; }
+.map-list { border: 2px solid var(--line); border-radius: 12px; padding: 0 12px; margin: 8px 0; }
+.map-list summary { cursor: pointer; font-weight: 700; min-height: var(--tap); display: flex; align-items: center; }
+.map-ul { list-style: none; padding: 0; margin: 0 0 10px; }
+.map-ul li { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+@media (max-width: 460px) { .modes button { font-size: .82rem; } }
