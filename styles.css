@@ -237,3 +237,13 @@ body.sheet-open { overflow: hidden; }
 .tip summary { cursor: pointer; font-weight: 700; min-height: var(--tap); display: flex; align-items: center; }
 .tip p { margin: 0 0 10px; }
 .tip .btn { margin-bottom: 12px; min-height: 44px; }
+
+/* ---------- April 2027 trip: food lists, checks ---------- */
+.food-list { margin-top: 10px; }
+.food-list ul { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 8px; }
+.food-list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; padding: 8px 10px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); }
+.food-list .fname { font-weight: 700; grid-column: 1; }
+.food-list .small { grid-column: 1; margin: 0; }
+.food-list .mini-link { grid-column: 2; grid-row: 1 / span 3; align-self: center; font-weight: 700; color: var(--primary); text-decoration: none; padding: 8px; }
+.verify { color: var(--muted); }
+.activity .details > p { margin: 8px 0; }
