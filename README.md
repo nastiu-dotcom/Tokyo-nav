@@ -39,6 +39,11 @@ things to do in Tokyo and get there by train, subway or bus.
   `scripts/trip2027/` (`python3 scripts/trip2027/build.py`).
   Travel times are estimates from a rail-network model (walk + wait + ride +
   transfers); items marked ⚠️ need checking closer to the date.
+- **🧾 Tax refund tab:** scan or upload each receipt, add a product photo,
+  shop, date, amount and description. Records (with photos) are stored only on
+  the phone (IndexedDB), with the estimated refund, the ¥5,000 per-shop-per-day
+  check, the 90-day export deadline, a “Show at customs” screen, sharing, and
+  a backup file you can save and restore.
 - **Start points and places:** tap or drag a pin on the map (Leaflet +
   OpenStreetMap), search a hotel, station or landmark (Google Places
   Autocomplete), or use the phone's location. Everything is saved on the phone.
