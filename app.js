@@ -12,7 +12,7 @@ import {
 import { openPicker } from "./js/picker.js";
 import { readTripFromHash, shareTrip } from "./js/share.js";
 import { initTax, renderTax } from "./js/tax.js";
-import { initMapView, renderMapView } from "./js/mapview.js";
+import { initMapView, renderMapView, stopMapTracking } from "./js/mapview.js";
 import { buildPlanDays, mapsLink, planDay, planStop, TIPS } from "./js/plan.js";
 import {
   buildTripDays, edgeBetween, edgeSummary, foodFor, isTripKey, loadTrip2027, maxLeg, reachable, routeStops,
@@ -709,6 +709,7 @@ function render() {
   els.mapview.hidden = !mapMode;
   els.planSection.hidden = prep || tax || mapMode;
   els.browseSection.hidden = prep || tax || mapMode;
+  if (!mapMode) stopMapTracking(); // GPS only while the map is open
   if (mapMode) {
     els.daysBar.hidden = true;
     renderMapView(els.mapRoot, { days: () => state.trip.days, dayName });

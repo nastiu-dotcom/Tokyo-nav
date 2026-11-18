@@ -15,10 +15,89 @@ const LAYERS = [
   ["food", "🍽️ Food", false],
   ["google", "⭐ My Google places", true],
   ["tax", "🧾 Tax-refund shops", true],
+  ["mine", "📌 My spots", true],
 ];
 
 let map, group, root, ctx;
 const ui = { layers: Object.fromEntries(LAYERS.map(([k, , on]) => [k, on])), day: "all", busy: false, msg: "" };
+
+/* ---------------- my live location + saved spots ---------------- */
+const loc = { on: store.get("mapTrack") === true, follow: false, watch: null, pos: null, dot: null, ring: null, error: "" };
+const mySpots = () => store.get("myspots") || [];
+const setMySpots = (l) => store.set("myspots", l);
+
+function kmBetween(a, b) {
+  const R = 6371, t = (x) => (x * Math.PI) / 180;
+  const h = Math.sin(t(b.lat - a.lat) / 2) ** 2 + Math.cos(t(a.lat)) * Math.cos(t(b.lat)) * Math.sin(t(b.lng - a.lng) / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+const fmtKm = (km) => (km < 1 ? `${Math.round(km * 1000 / 10) * 10} m` : `${km.toFixed(km < 10 ? 1 : 0)} km`);
+
+function drawMe() {
+  if (!map || !loc.pos) return;
+  const ll = [loc.pos.lat, loc.pos.lng];
+  if (!loc.dot || !map.hasLayer(loc.dot)) {
+    loc.ring = L.circle(ll, { radius: loc.pos.acc, color: "#1a73e8", weight: 1, fillColor: "#1a73e8", fillOpacity: 0.12, interactive: false }).addTo(map);
+    loc.dot = L.marker(ll, { icon: L.divIcon({ className: "me-dot", html: "<span></span>", iconSize: [22, 22], iconAnchor: [11, 11] }), zIndexOffset: 1000, title: "You are here" })
+      .bindPopup(() => mePopup()).addTo(map);
+  } else {
+    loc.dot.setLatLng(ll);
+    loc.ring.setLatLng(ll).setRadius(loc.pos.acc);
+  }
+  if (loc.follow) map.setView(ll, Math.max(map.getZoom(), 16), { animate: false });
+}
+
+function mePopup() {
+  const p = loc.pos;
+  return `<div class="pop"><strong>📍 You are here</strong><br><span class="small">Accuracy ±${Math.round(p.acc)} m</span>
+    <div class="pop-links"><button type="button" data-spot-save="me">📌 Save this spot</button>
+    <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank" rel="noopener">📍 Open in Google Maps</a></div></div>`;
+}
+
+function setStatus(t) { const el = root?.querySelector("#map-status"); if (el) el.textContent = t; }
+
+function startTracking(center) {
+  if (!navigator.geolocation) { loc.error = "Location is not available on this device."; loc.on = false; return; }
+  if (loc.watch !== null) { if (center && loc.pos) map.setView([loc.pos.lat, loc.pos.lng], 16); return; }
+  let first = true;
+  loc.watch = navigator.geolocation.watchPosition((pos) => {
+    loc.pos = { lat: pos.coords.latitude, lng: pos.coords.longitude, acc: pos.coords.accuracy || 30 };
+    loc.error = "";
+    drawMe();
+    if (first && center) map.setView([loc.pos.lat, loc.pos.lng], 16, { animate: false });
+    first = false;
+    updateMeButtons();
+  }, (err) => {
+    loc.error = err.code === 1 ? "Location permission was denied – allow it in your browser settings to see yourself on the map." : "Couldn't get your location right now.";
+    if (err.code === 1) { loc.on = false; store.set("mapTrack", false); stopMapTracking(); }
+    setStatus(loc.error);
+    updateMeButtons();
+  }, { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+}
+
+/** Stop GPS (called when leaving the Map tab, to save battery). */
+export function stopMapTracking() {
+  if (loc.watch !== null) navigator.geolocation.clearWatch(loc.watch);
+  loc.watch = null;
+  loc.follow = false;
+}
+
+function updateMeButtons() {
+  const me = root?.querySelector("[data-mapact='me']");
+  const fol = root?.querySelector("[data-mapact='follow']");
+  if (me) { me.textContent = loc.on ? "📍 My location: on" : "📍 Show my location"; me.setAttribute("aria-pressed", String(loc.on)); }
+  if (fol) { fol.hidden = !loc.on; fol.setAttribute("aria-pressed", String(loc.follow)); fol.textContent = loc.follow ? "🎯 Following you" : "🎯 Follow me"; }
+}
+
+function saveSpot(lat, lng) {
+  const name = prompt("Name this spot (e.g. 'Great ramen', 'Meeting point'):", "My spot");
+  if (name === null) return;
+  const list = mySpots();
+  list.push({ id: `s-${Date.now().toString(36)}`, name: name.trim() || "My spot", lat, lng, created: new Date().toISOString() });
+  setMySpots(list);
+  map.closePopup();
+  drawMarkers(false);
+}
 const gplaces = () => store.get("gplaces") || [];
 const setGplaces = (list) => store.set("gplaces", list);
 
@@ -91,6 +170,13 @@ async function collect() {
     }
   }
 
+  if (ui.layers.mine && dayFilter === "all") {
+    for (const sp of mySpots()) {
+      out.push({ layer: "mine", lat: sp.lat, lng: sp.lng, color: "#0f8b8d", emoji: "📌", title: sp.name,
+        sub: `Saved ${sp.created.slice(0, 10)}`, link: `https://www.google.com/maps/search/?api=1&query=${sp.lat},${sp.lng}`, spotId: sp.id });
+    }
+  }
+
   if (ui.layers.tax && dayFilter === "all") {
     for (const r of await taxRecordsSafe()) {
       if (!Number.isFinite(r.lat)) continue;
@@ -106,9 +192,11 @@ async function taxRecordsSafe() {
 }
 
 function popupHtml(m) {
-  return `<div class="pop"><strong>${esc(m.title)}</strong><br><span class="small">${esc(m.sub)}</span>
+  const dist = loc.pos ? `<br><span class="small">📏 ${fmtKm(kmBetween(loc.pos, m))} from you (straight line)</span>` : "";
+  return `<div class="pop"><strong>${esc(m.title)}</strong><br><span class="small">${esc(m.sub)}</span>${dist}
     <div class="pop-links"><a href="${esc(m.link)}" target="_blank" rel="noopener">📍 Open in Google Maps</a>
-    <a href="${esc(directions(m))}" target="_blank" rel="noopener">🧭 Directions</a></div></div>`;
+    <a href="${esc(directions(m))}" target="_blank" rel="noopener">🧭 Directions</a>
+    ${m.spotId ? `<button type="button" data-spot-del="${esc(m.spotId)}">🗑️ Delete this spot</button>` : ""}</div></div>`;
 }
 
 /* ---------------- render ---------------- */
@@ -133,8 +221,10 @@ export async function renderMapView(container, context) {
     <div id="big-map" class="big-map" aria-label="Map of all saved places"></div>
     <div class="row tight">
       <button class="btn btn-secondary" type="button" data-mapact="fit">🔍 Show all</button>
-      <button class="btn btn-secondary" type="button" data-mapact="me">📍 Where am I?</button>
+      <button class="btn btn-secondary" type="button" data-mapact="me" aria-pressed="${loc.on}">${loc.on ? "📍 My location: on" : "📍 Show my location"}</button>
+      <button class="btn btn-secondary" type="button" data-mapact="follow" aria-pressed="${loc.follow}" ${loc.on ? "" : "hidden"}>${loc.follow ? "🎯 Following you" : "🎯 Follow me"}</button>
     </div>
+    <p class="small">Tip: long-press anywhere on the map (or tap your blue dot) to save a 📌 spot.</p>
     <p class="status" id="map-status">${esc(ui.msg)}</p>
     <details class="map-list"><summary>📋 List of places on the map</summary><div id="map-list"></div></details>
 
@@ -164,8 +254,22 @@ export async function renderMapView(container, context) {
       maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     group = L.featureGroup().addTo(map);
+    loc.dot = null; // new map: redraw my location layer
+    map.on("contextmenu", (e) => saveSpot(e.latlng.lat, e.latlng.lng)); // long-press on phones
+    map.on("dragstart", () => { if (loc.follow) { loc.follow = false; updateMeButtons(); } });
+    map.on("popupopen", (e) => {
+      const el = e.popup.getElement();
+      el.querySelector("[data-spot-save]")?.addEventListener("click", () => saveSpot(loc.pos.lat, loc.pos.lng));
+      el.querySelector("[data-spot-del]")?.addEventListener("click", (ev) => {
+        if (!confirm("Delete this saved spot?")) return;
+        setMySpots(mySpots().filter((x) => x.id !== ev.currentTarget.dataset.spotDel));
+        map.closePopup();
+        drawMarkers(false);
+      });
+    });
   }
   await drawMarkers(true);
+  if (loc.on) { drawMe(); startTracking(false); }
 }
 
 let drawRun = 0;
@@ -174,7 +278,7 @@ async function drawMarkers(fit) {
   const markers = await collect();
   if (run !== drawRun) return; // a newer draw started
   group.clearLayers();
-  for (const m of markers) L.marker([m.lat, m.lng], { icon: pinIcon(m.emoji, m.color, m.small), title: m.title }).bindPopup(popupHtml(m)).addTo(group);
+  for (const m of markers) L.marker([m.lat, m.lng], { icon: pinIcon(m.emoji, m.color, m.small), title: m.title }).bindPopup(() => popupHtml(m)).addTo(group);
   const m0 = map, g0 = group;
   setTimeout(() => {
     if (m0 !== map || !m0.getContainer().isConnected) return; // map was rebuilt meanwhile
@@ -233,12 +337,28 @@ export function initMapView(container) {
     if (!act) return undefined;
     if (act === "fit") return drawMarkers(true);
     if (act === "me") {
-      if (!navigator.geolocation) return alert("Location is not available on this device.");
-      return navigator.geolocation.getCurrentPosition((pos) => {
-        const ll = [pos.coords.latitude, pos.coords.longitude];
-        L.circleMarker(ll, { radius: 9, color: "#fff", weight: 3, fillColor: "#1a73e8", fillOpacity: 1 }).addTo(group).bindPopup("You are here");
-        map.setView(ll, 15);
-      }, () => alert("Could not get your location."), { enableHighAccuracy: true, timeout: 10000 });
+      if (loc.on && loc.pos && !map.getBounds().contains([loc.pos.lat, loc.pos.lng])) {
+        map.setView([loc.pos.lat, loc.pos.lng], 16); // already on: bring me back into view
+        return undefined;
+      }
+      loc.on = !loc.on;
+      store.set("mapTrack", loc.on);
+      if (loc.on) {
+        setStatus("Finding your location…");
+        root.querySelector("#big-map").scrollIntoView({ behavior: "smooth", block: "center" });
+        startTracking(true);
+      } else {
+        stopMapTracking();
+        if (loc.dot) { map.removeLayer(loc.dot); map.removeLayer(loc.ring); loc.dot = null; }
+        loc.pos = null;
+        drawMarkers(false);
+      }
+      return updateMeButtons();
+    }
+    if (act === "follow") {
+      loc.follow = !loc.follow;
+      if (loc.follow && loc.pos) map.setView([loc.pos.lat, loc.pos.lng], Math.max(map.getZoom(), 16));
+      return updateMeButtons();
     }
     if (act === "clear-google") {
       if (!confirm("Remove all imported Google places from this app? (Your Google account is not changed.)")) return undefined;

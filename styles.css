@@ -317,3 +317,12 @@ body.sheet-open { overflow: hidden; }
 .map-ul { list-style: none; padding: 0; margin: 0 0 10px; }
 .map-ul li { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
 @media (max-width: 460px) { .modes button { font-size: .82rem; } }
+
+/* ---------- my location on the map ---------- */
+.me-dot { background: none; border: 0; }
+.me-dot span { display: block; width: 22px; height: 22px; border-radius: 50%; background: #1a73e8; border: 3px solid #fff;
+  box-shadow: 0 0 0 0 rgba(26,115,232,.6), 0 1px 4px rgba(0,0,0,.4); animation: me-pulse 2s infinite; }
+@keyframes me-pulse { 0% { box-shadow: 0 0 0 0 rgba(26,115,232,.55), 0 1px 4px rgba(0,0,0,.4); } 70% { box-shadow: 0 0 0 16px rgba(26,115,232,0), 0 1px 4px rgba(0,0,0,.4); } 100% { box-shadow: 0 0 0 0 rgba(26,115,232,0), 0 1px 4px rgba(0,0,0,.4); } }
+@media (prefers-reduced-motion: reduce) { .me-dot span { animation: none; } }
+.pop-links button { display: block; width: 100%; padding: 8px 10px; border-radius: 8px; border: 0; background: #e8f0fb; color: #0b5cad; font: inherit; font-weight: 700; text-align: left; cursor: pointer; }
+[data-mapact][aria-pressed="true"] { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 14%, var(--card)); }
