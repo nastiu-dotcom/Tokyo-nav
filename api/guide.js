@@ -1,11 +1,12 @@
 // GET /api/guide?from=35.681,139.767&to=35.715,139.797&name=Senso-ji
-// 1. Gets a transit route from the Google Routes API.
+// 1. Gets route data: a Google Routes API transit route, or (Google has no
+//    transit data for Japan) a walking route / the nearest stations.
 // 2. Sends it to Claude to write a short family guide.
 // The whole result is cached 24 h in Vercel's CDN (the browser also keeps it
 // 24 h), so each origin/destination pair costs at most one Routes call and one
 // Claude call per day.
 import { cacheFor, handle, HttpError, memo, ONE_DAY, parseLatLng, round } from "../lib/common.js";
-import { fetchTransitRoute } from "../lib/route.js";
+import { getRouteData } from "../lib/route.js";
 import { writeGuide } from "../lib/claude.js";
 
 export default handle(async (req, res) => {
@@ -20,7 +21,7 @@ export default handle(async (req, res) => {
   const key = `guide:${a.lat},${a.lng}:${b.lat},${b.lng}:${name}`;
 
   const result = await memo(key, ONE_DAY, async () => {
-    const route = await fetchTransitRoute(a, b);
+    const route = await getRouteData(a, b);
     const guide = await writeGuide(name, route);
     return { route, guide, createdAt: new Date().toISOString() };
   });

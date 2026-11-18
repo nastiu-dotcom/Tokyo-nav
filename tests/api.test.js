@@ -41,6 +41,7 @@ const json = (obj, status = 200) =>
 
 beforeEach(() => {
   calls = [];
+  globalThis.NO_TRANSIT = false;
   globalThis.fetch = async (input, init = {}) => {
     const url = typeof input === "string" ? input : input.url;
     const headers = new Headers(init.headers || (input.headers ?? {}));
@@ -53,7 +54,11 @@ beforeEach(() => {
         { id: "gone", displayName: { text: "Closed" }, location: { latitude: 35.7, longitude: 139.7 }, businessStatus: "CLOSED_PERMANENTLY" },
       ] });
     }
-    if (url.includes("computeRoutes")) return json({ routes: [ROUTE] });
+    if (url.includes("computeRoutes")) return json(globalThis.NO_TRANSIT ? {} : { routes: [ROUTE] });
+    if (url.includes("searchNearby")) {
+      const lat = body.locationRestriction.circle.center.latitude;
+      return json({ places: [{ displayName: { text: lat > 35.7 ? "Ueno Station" : "Shimbashi Station" }, location: { latitude: lat + 0.003, longitude: 139.77 } }] });
+    }
     if (url.includes("/v1/messages")) {
       return json({
         id: "msg_1", type: "message", role: "assistant", model: "claude-opus-5-5",
@@ -124,4 +129,17 @@ test("/api/guide gets a transit route, asks Claude, returns both", async () => {
   assert.equal(claude.body.fallbacks, "default");
   assert.equal(claude.body.output_config.effort, "low");
   assert.match(res.headers["cache-control"], /s-maxage=86400/);
+});
+
+test("/api/guide falls back to nearest stations when Google has no transit (Japan)", async () => {
+  globalThis.NO_TRANSIT = true;
+  const { default: handler } = await import("../api/guide.js");
+  const res = fakeRes();
+  await handler({ method: "GET", query: { from: "35.666,139.770", to: "35.7141,139.7700", name: "Ueno Park" } }, res);
+  assert.equal(res.statusCode, 200, JSON.stringify(res.body));
+  assert.equal(res.body.route.kind, "stations");
+  assert.equal(res.body.route.startStations[0].name, "Shimbashi Station");
+  assert.equal(res.body.route.endStations[0].name, "Ueno Station");
+  const claude = calls.find((c) => c.url.includes("/v1/messages"));
+  assert.match(claude.body.messages[0].content, /"kind": "stations"/);
 });

@@ -319,11 +319,22 @@ async function showGuide(button) {
     }
   }
   slot.innerHTML = `<div class="guide">${renderRoute(data.route)}${renderGuideText(data.guide)}
-    <p class="small">Planned ${new Date(data.createdAt).toLocaleString("en-GB", { timeZone: "Asia/Tokyo", dateStyle: "medium", timeStyle: "short" })} (Tokyo time). Trains change – check station signs.</p></div>`;
+    <p class="small">Planned ${new Date(data.createdAt).toLocaleString("en-GB", { timeZone: "Asia/Tokyo", dateStyle: "medium", timeStyle: "short" })} (Tokyo time). Always check station signs.</p></div>`;
   slot.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function renderRoute(route) {
+  if (route.kind === "walk") {
+    return `<p class="route-summary">🚶 Walk about ${route.totalMinutes} min (${route.distanceKm} km)</p>`;
+  }
+  if (route.kind === "stations") {
+    const st = (list) => list.map((x, i) =>
+      `<li><span class="icon">${i ? "·" : "🚉"}</span><span>${i ? "" : "<strong>"}${esc(x.name)}${i ? "" : "</strong>"} <span class="small">· ~${x.walkMinutes} min walk</span></span></li>`).join("");
+    return `<p class="route-summary">📏 ${route.distanceKm} km away (straight line)</p>
+      <p class="small">Google doesn't share Japanese train timetables with apps, so tap <strong>Navigate</strong> for the exact lines. Nearest stations:</p>
+      <p><strong>Near your start</strong></p><ul class="legs">${st(route.startStations)}</ul>
+      <p><strong>Near the destination</strong></p><ul class="legs">${st(route.endStations)}</ul>`;
+  }
   const head = `⏱ ${route.totalMinutes} min · ${route.transfers} transfer${route.transfers === 1 ? "" : "s"}` +
     (route.adultFare ? ` · ${esc(route.adultFare)} per adult` : "");
   const legs = route.steps.map((s) => {

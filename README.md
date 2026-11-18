@@ -10,9 +10,15 @@ things to do in Tokyo and get there by train, subway or bus.
   by distance. Tap one to see address, rating, reviews, opening hours, an
   "Open now" badge, price level, distance and the official website. Filter by
   category and "Open now".
-- **How to get there:** gets a transit route from the Google Routes API and asks
-  Claude to write a short, simple family guide (steps, things to watch out for,
+- **How to get there:** asks the Google Routes API for a transit route and has
+  Claude write a short, simple family guide (steps, things to watch out for,
   IC cards / child fares, tips). Cached for 24 hours.
+  **Japan limitation:** Google does not give apps train/subway data for Japan
+  (the transit request comes back empty in Tokyo). The app then falls back to
+  real data it *can* get: a walking route for short trips (≤ 1.6 km), or the
+  nearest stations at both ends (Places Nearby Search) for longer trips. The
+  guide then says which stations to use, and the **Navigate** button
+  (Google Maps app) gives the exact lines.
 - **Navigate:** opens Google Maps with transit directions.
 
 No data is entered by hand, and the API keys never reach the browser: every
@@ -28,7 +34,7 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 | `api/autocomplete.js` | Places Autocomplete (New) for the search box |
 | `api/place.js` | Place Details (New): coordinates of the chosen suggestion |
 | `api/activities.js` | Places Text Search (New): activities by category |
-| `api/guide.js` | Routes API (transit) + Claude guide |
+| `api/guide.js` | Routes API (transit → walk → nearest stations) + Claude guide |
 | `lib/` | Shared server code (not public routes) |
 | `scripts/dev-server.js` | Run everything locally without the Vercel CLI |
 | `tests/` | `npm test` – checks the API functions with fake Google/Claude replies |
@@ -141,6 +147,13 @@ browser (Chrome or Safari). Tip: if a page looks cramped, use the browser menu
 - "This API key is not authorized…" / "API has not been used in project": the
   API isn't enabled, or isn't ticked under **API restrictions** (step a-4 / a-6).
   Changes can take a few minutes.
-- "Google found no public-transport route": Google has no transit data for that
-  trip – use the **Navigate** button instead.
+- The guide names stations but no train lines: expected in Japan (see the
+  limitation above) – tap **Navigate** for the exact lines.
 - To see server errors: Vercel project → **Logs**.
+
+### Keep your keys secret
+
+Only put keys in Vercel's **Environment Variables** – never in the code, in
+GitHub, or in chat messages/screenshots. If a key was ever shared somewhere,
+make a new one (Google: Credentials → the key → **Regenerate key**; Anthropic:
+API keys → delete and create a new one) and update it in Vercel.
