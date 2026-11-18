@@ -1,27 +1,20 @@
 // GET /api/guide?from=35.681,139.767&to=35.715,139.797&name=Senso-ji
-// 1. Gets route data: a Google Routes API transit route, or (Google has no
-//    transit data for Japan) a walking route / the nearest stations.
+// PAID step (Claude API): the app only calls this after the user confirms.
+// 1. Gets the same route data as /api/route (Google, free tier).
 // 2. Sends it to Claude to write a short family guide.
-// The whole result is cached 24 h in Vercel's CDN (the browser also keeps it
-// 24 h), so each origin/destination pair costs at most one Routes call and one
-// Claude call per day.
-import { cacheFor, handle, HttpError, memo, ONE_DAY, parseLatLng, round } from "../lib/common.js";
-import { getRouteData } from "../lib/route.js";
+// Cached 24 h in Vercel's CDN and on the phone, so each trip is paid for at
+// most once a day.
+import { cacheFor, handle, HttpError, memo, ONE_DAY } from "../lib/common.js";
 import { writeGuide } from "../lib/claude.js";
+import { cachedRoute, routePoints } from "./route.js";
 
 export default handle(async (req, res) => {
-  const from = parseLatLng(String(req.query.from || ""));
-  const to = parseLatLng(String(req.query.to || ""));
-  if (!from || !to) throw new HttpError(400, "Both points must be in the Tokyo area");
+  if (process.env.AI_GUIDES === "off") throw new HttpError(403, "AI guides are switched off.");
+  const { a, b } = routePoints(req.query);
   const name = String(req.query.name || "your destination").slice(0, 120);
 
-  // ~100 m precision: enough for routing, and makes cache hits likely.
-  const a = { lat: round(from.lat, 3), lng: round(from.lng, 3) };
-  const b = { lat: round(to.lat, 4), lng: round(to.lng, 4) };
-  const key = `guide:${a.lat},${a.lng}:${b.lat},${b.lng}:${name}`;
-
-  const result = await memo(key, ONE_DAY, async () => {
-    const route = await getRouteData(a, b);
+  const result = await memo(`guide:${a.lat},${a.lng}:${b.lat},${b.lng}:${name}`, ONE_DAY, async () => {
+    const route = await cachedRoute(a, b);
     const guide = await writeGuide(name, route);
     return { route, guide, createdAt: new Date().toISOString() };
   });

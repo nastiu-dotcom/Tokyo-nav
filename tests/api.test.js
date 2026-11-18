@@ -143,3 +143,30 @@ test("/api/guide falls back to nearest stations when Google has no transit (Japa
   const claude = calls.find((c) => c.url.includes("/v1/messages"));
   assert.match(claude.body.messages[0].content, /"kind": "stations"/);
 });
+
+test("/api/route is free: Google only, never calls Claude", async () => {
+  const { default: handler } = await import("../api/route.js");
+  const res = fakeRes();
+  await handler({ method: "GET", query: { from: "35.666,139.758", to: "35.7141,139.7774" } }, res);
+  assert.equal(res.statusCode, 200, JSON.stringify(res.body));
+  assert.equal(res.body.route.kind, "transit");
+  assert.equal(res.body.aiAvailable, true);
+  assert.equal(calls.some((c) => c.url.includes("anthropic")), false);
+});
+
+test("AI_GUIDES=off blocks the paid endpoint and hides the button", async () => {
+  process.env.AI_GUIDES = "off";
+  try {
+    const guide = (await import("../api/guide.js")).default;
+    const res = fakeRes();
+    await guide({ method: "GET", query: { from: "35.600,139.758", to: "35.7141,139.7774" } }, res);
+    assert.equal(res.statusCode, 403);
+    const route = (await import("../api/route.js")).default;
+    const res2 = fakeRes();
+    await route({ method: "GET", query: { from: "35.600,139.758", to: "35.7141,139.7774" } }, res2);
+    assert.equal(res2.body.aiAvailable, false);
+    assert.equal(calls.some((c) => c.url.includes("anthropic")), false);
+  } finally {
+    delete process.env.AI_GUIDES;
+  }
+});

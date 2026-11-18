@@ -251,7 +251,7 @@ function renderList() {
   if (state.openOnly) items = items.filter((p) => p.open === true);
 
   els.status.textContent = items.length
-    ? `${items.length} places, nearest first`
+    ? `${items.length} place${items.length === 1 ? "" : "s"}, nearest first`
     : state.openOnly ? "Nothing open right now in this category. Try another one!" : "No places found.";
 
   els.list.innerHTML = items.map((p) => {
@@ -296,21 +296,29 @@ function renderList() {
 /* ---------- route guide ---------- */
 const VEHICLE_ICON = { Subway: "🚇", Train: "🚆", Shinkansen: "🚄", Monorail: "🚝", Tram: "🚋", Bus: "🚌", Ferry: "⛴️", "Cable car": "🚡", Ropeway: "🚡" };
 
+const AI_COST_NOTE = "about 1 US cent";
+
+function tripKeys(place) {
+  const from = `${r(state.start.lat, 3)},${r(state.start.lng, 3)}`;
+  const to = `${r(place.lat, 4)},${r(place.lng, 4)}`;
+  return { from, to, routeKey: `cache:route:${from}:${to}`, aiKey: `cache:guide:${from}:${to}` };
+}
+const plannedAt = (iso) => new Date(iso).toLocaleString("en-GB", { timeZone: "Asia/Tokyo", dateStyle: "medium", timeStyle: "short" });
+
+/** FREE: route data from Google (free monthly usage) + built-in tips. */
 async function showGuide(button) {
   const place = state.places.find((p) => p.id === button.dataset.guide);
   const slot = button.closest(".details").querySelector(".guide-slot");
   if (!place || !state.start) return;
+  const k = tripKeys(place);
 
-  const from = `${r(state.start.lat, 3)},${r(state.start.lng, 3)}`;
-  const to = `${r(place.lat, 4)},${r(place.lng, 4)}`;
-  const cacheKey = `cache:guide:${from}:${to}`;
-  let data = store.getFresh(cacheKey);
+  let data = store.getFresh(k.routeKey);
   if (!data) {
     button.disabled = true;
-    slot.innerHTML = `<div class="guide"><p>Planning the trip and writing your guide… (about 10 seconds)</p></div>`;
+    slot.innerHTML = `<div class="guide"><p>Planning the trip…</p></div>`;
     try {
-      data = await getJSON(`/api/guide?from=${from}&to=${to}&name=${encodeURIComponent(place.name)}`);
-      store.setFresh(cacheKey, data);
+      data = await getJSON(`/api/route?from=${k.from}&to=${k.to}`);
+      store.setFresh(k.routeKey, data);
     } catch (err) {
       slot.innerHTML = `<div class="guide"><p><strong>Sorry:</strong> ${esc(err.message)}</p><p>Tap “Navigate” to open Google Maps instead.</p></div>`;
       return;
@@ -318,9 +326,71 @@ async function showGuide(button) {
       button.disabled = false;
     }
   }
-  slot.innerHTML = `<div class="guide">${renderRoute(data.route)}${renderGuideText(data.guide)}
-    <p class="small">Planned ${new Date(data.createdAt).toLocaleString("en-GB", { timeZone: "Asia/Tokyo", dateStyle: "medium", timeStyle: "short" })} (Tokyo time). Always check station signs.</p></div>`;
+
+  const ai = store.getFresh(k.aiKey);
+  const aiPart = ai
+    ? `<div class="ai-guide"><p class="small">✨ AI family guide (saved – no extra cost)</p>${renderGuideText(ai.guide)}</div>`
+    : data.aiAvailable
+      ? `<button class="btn btn-secondary wide ai-btn" type="button" data-ai="${esc(place.id)}">✨ AI family guide · paid, ${AI_COST_NOTE}</button>`
+      : "";
+  slot.innerHTML = `<div class="guide">${renderRoute(data.route)}
+    ${ai ? "" : renderGuideText(freeGuide(data.route, place.name))}
+    ${aiPart}
+    <p class="small">Planned ${plannedAt(data.createdAt)} (Tokyo time). Always check station signs.</p></div>`;
   slot.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+/** PAID: asks Claude for a guide – only after the user says yes. */
+async function showAiGuide(button) {
+  const place = state.places.find((p) => p.id === button.dataset.ai);
+  if (!place || !state.start) return;
+  const k = tripKeys(place);
+  if (!store.getFresh(k.aiKey)) {
+    const ok = confirm(
+      `This is a PAID step.\n\nClaude (AI) will write a family guide for ${place.name}. ` +
+      `It costs ${AI_COST_NOTE}, taken from your prepaid Anthropic credit.\n\n` +
+      `The guide is saved for 24 hours, so opening it again is free.\n\nContinue?`);
+    if (!ok) return;
+    button.disabled = true;
+    button.textContent = "Writing your guide… (about 10 seconds)";
+    try {
+      store.setFresh(k.aiKey, await getJSON(`/api/guide?from=${k.from}&to=${k.to}&name=${encodeURIComponent(place.name)}`));
+    } catch (err) {
+      button.disabled = false;
+      button.textContent = `✨ Try again · paid, ${AI_COST_NOTE}`;
+      alert(`Sorry: ${err.message}`);
+      return;
+    }
+  }
+  showGuide(button.closest(".details").querySelector("[data-guide]"));
+}
+
+/** Free, built-in guide made only from the route data + general tips. */
+function freeGuide(route, name) {
+  const lines = ["## Steps"];
+  let n = 1;
+  if (route.kind === "walk") {
+    lines.push(`${n++}. Walk about ${route.totalMinutes} min to ${name}. Tap Navigate for the walking map.`);
+  } else if (route.kind === "stations") {
+    const s = route.startStations[0], e = route.endStations[0];
+    lines.push(`${n++}. Walk about ${s.walkMinutes} min to **${s.name}**.`);
+    lines.push(`${n++}. Take the train to **${e.name}** – tap Navigate to see which line and where to change.`);
+    lines.push(`${n++}. Walk about ${e.walkMinutes} min to ${name}.`);
+  } else {
+    for (const st of route.steps) {
+      lines.push(st.mode === "WALK"
+        ? `${n++}. Walk ${st.minutes} min (${st.meters} m).`
+        : `${n++}. Take the **${st.line}**${st.direction ? ` toward ${st.direction}` : ""} from ${st.from} to **${st.to}**${st.stops != null ? ` (${st.stops} stops)` : ""}.`);
+    }
+  }
+  lines.push("## Good to know");
+  if (route.kind !== "walk") {
+    lines.push("- Everyone needs their own IC card (Suica/PASMO) or ticket. Tap in and tap out.");
+    lines.push("- Elementary-school kids (usually up to 12) pay about half fare; junior high and up pay adult fare.");
+    lines.push("- Weekday rush hours (about 7:30–9:30 and 17:30–19:30) are very crowded – stay together at the gates.");
+  }
+  lines.push("- Follow the coloured line signs; big stations can mean long walks between lines.");
+  return lines.join("\n");
 }
 
 function renderRoute(route) {
@@ -387,6 +457,8 @@ els.openNow.addEventListener("change", () => {
   renderList();
 });
 els.list.addEventListener("click", (e) => {
+  const ai = e.target.closest("[data-ai]");
+  if (ai) return showAiGuide(ai);
   const btn = e.target.closest("[data-guide]");
   if (btn) showGuide(btn);
 });

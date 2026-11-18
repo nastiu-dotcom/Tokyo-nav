@@ -138,6 +138,8 @@ input[type="search"] {
 .legs li:last-child { border-bottom: 0; }
 .legs .icon { font-size: 1.3rem; width: 1.6em; text-align: center; }
 .line-tag { display: inline-block; padding: 0 8px; border-radius: 6px; font-weight: 700; margin-right: 4px; }
+.ai-btn { width: 100%; margin-top: 12px; white-space: normal; text-align: center; padding: 8px 12px; }
+.ai-guide { margin-top: 8px; }
 .small { font-size: .85rem; color: var(--muted); }
 
 .footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 0 16px 24px; }

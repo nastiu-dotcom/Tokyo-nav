@@ -39,6 +39,18 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 | `scripts/dev-server.js` | Run everything locally without the Vercel CLI |
 | `tests/` | `npm test` – checks the API functions with fake Google/Claude replies |
 
+## Budget: what is free and what is paid
+
+| Action in the app | Who | Cost |
+|---|---|---|
+| Map, pin, "Use my location", Navigate button | OpenStreetMap / Google Maps link | Free, no key |
+| Search box, activity lists, "How to get there" (route + built-in tips) | Google | Free within Google's monthly free usage – cap it with quotas (step a-7) so it can never become paid |
+| **✨ AI family guide** | Claude (Anthropic) | **Paid, about 1 US cent per guide.** The app asks *"This is a PAID step… Continue?"* every time. Re-opening a saved guide (24 h) is free. |
+
+- No Anthropic key at all → the AI button is hidden and the app is 100% free.
+- Have a key but want to pause AI → in Vercel add the environment variable
+  `AI_GUIDES` = `off` and redeploy.
+
 ## Keeping costs low
 
 - **Field masks:** each Google call asks only for the fields the screen shows.
@@ -50,7 +62,7 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
   rounded (~1 km for activity lists, ~100 m for routes) so cache hits are likely.
 - **"Open now" is computed on the phone** from weekly hours, so cached lists
   never show a stale badge.
-- **Claude:** one short request per route per day (`claude-opus-5-5`, low effort, ~150-word answer).
+- **Claude:** only after you confirm; one short request per trip per day (`claude-opus-5-5`, low effort, ~150-word answer).
 - **Tokyo only:** the server refuses points outside greater Tokyo, so your keys
   can't be used as a free worldwide proxy.
 
@@ -96,25 +108,49 @@ browser (Chrome or Safari). Tip: if a page looks cramped, use the browser menu
      would break it. It never appears in the web page.)
    - **API restrictions:** choose **Restrict key** → tick **Places API (New)**
      and **Routes API** only → **OK** → **Save**.
-7. **Set a safety limit (recommended):** menu ☰ → **APIs & Services** →
-   **Enabled APIs** → tap **Places API (New)** → **Quotas & system limits**.
-   Find the "requests per day" rows (e.g. Text Search, Autocomplete) → pencil
-   icon → set e.g. **300 per day** → **Submit**. Do the same for **Routes API**
-   (e.g. 200 per day). Also: menu ☰ → **Billing** → **Budgets & alerts** →
-   **Create budget** → e.g. 10 USD with email alerts.
+7. **Cap Google so it stays free (important):** Google charges automatically
+   once a monthly free amount is used up. A *quota* is a hard limit: when
+   reached, Google refuses calls instead of charging. Menu ☰ → **APIs &
+   Services** → **Enabled APIs & services** → tap the API → **Quotas & system
+   limits** → tick a row → pencil ✏️ → enter the number → **Submit**.
 
-## (b) Create an Anthropic API key with a spending limit
+   | API → quota row (names can vary slightly) | Free per month* | Set to (per day) |
+   |---|---|---|
+   | Places API (New) → **Text Search** requests | 1,000 (fields used are "Enterprise") | **30** |
+   | Places API (New) → **Nearby Search** requests | 5,000 ("Pro") | **150** |
+   | Places API (New) → **Autocomplete** requests | 10,000 | **300** |
+   | Places API (New) → **Place Details** (Get Place) requests | 10,000 ("Essentials") | **300** |
+   | Routes API → **Compute Routes** requests | 10,000 ("Essentials") | **300** |
+
+   30 days × the daily cap stays under each free amount. If a row only offers
+   **per minute**, set it low (e.g. 2–5 per minute) and rely on the alert below.
+   *Free amounts per Google's pricing page (Maps Platform, "free usage caps");
+   check it once, as Google changes them occasionally.
+
+   Then add an early warning: menu ☰ → **Billing** → **Budgets & alerts** →
+   **Create budget** → amount **1 USD** → alerts at 50 % / 100 % → email.
+   (A budget only warns; the quotas are what actually stop charges.)
+
+## (b) Create an Anthropic API key with a spending limit (optional, paid)
+
+The Claude API has **no free tier** – it is only used for the optional
+✨ AI guide button. Skip this whole step to keep the app 100 % free.
 
 1. Open **console.anthropic.com** (Claude Console) and sign up / sign in.
-2. **Add credit:** **Settings** → **Billing** → buy a small amount of prepaid
-   credit (e.g. 5 USD). Each route guide costs about one US cent, so this
-   lasts a long time. When the credit runs out, calls simply stop – you can't
-   be charged more than you loaded unless you turn on auto-reload (leave it **off**).
+2. **Add credit:** **Settings** → **Billing** → buy the smallest prepaid
+   amount (about 5 USD). Each AI guide costs about one US cent. Keep
+   **auto-reload OFF** – then you can never be charged more than you loaded;
+   when the credit is used up, the AI button just shows an error.
 3. **Set a spend limit:** **Settings** → **Limits** (or **Billing → Spend
    limits**) → set a **monthly limit**, e.g. 5 USD → save.
 4. **Create the key:** **Settings** → **API keys** → **Create key** → name it
-   `tokyo-kids` → **Create**. Copy the key (starts with `sk-ant-…`) right away
-   – it is shown only once. Keep it private.
+   `tokyo-kids`.
+   - **If it asks where the code runs / how you'll use the key:** choose the
+     **server / backend / cloud** option (the code runs on Vercel's servers,
+     not on your phone or computer). If it asks for a language or SDK: **TypeScript / JavaScript (Node.js)**.
+     If it asks for allowed IP addresses, leave it empty (Vercel's addresses change).
+   - **Create** → copy the key (starts with `sk-ant-…`) right away – it is
+     shown only once. Paste it only into Vercel (step c), never into a chat.
 
 ## (c) Deploy on Vercel and add both keys
 
@@ -127,6 +163,7 @@ browser (Chrome or Safari). Tip: if a page looks cramped, use the browser menu
    - Open **Environment Variables** and add two:
      - Name `GOOGLE_MAPS_API_KEY` → value: your `AIza…` key → **Add**
      - Name `ANTHROPIC_API_KEY` → value: your `sk-ant-…` key → **Add**
+       (optional – leave it out to keep the app 100 % free)
    - Tap **Deploy** and wait about a minute.
 4. Tap **Continue to Dashboard** → **Visit**. Your app lives at an address like
    `https://tokyo-nav-xxxx.vercel.app`.
