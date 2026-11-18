@@ -11,9 +11,11 @@ import {
 } from "./js/legs.js";
 import { openPicker } from "./js/picker.js";
 import { readTripFromHash, shareTrip } from "./js/share.js";
+import { buildPlanDays, mapsLink, planDay, planStop, TIPS } from "./js/plan.js";
 
 const CATEGORIES = [
   ["all", "⭐ Top picks"],
+  ["food", "🍜 Food"],
   ["museums", "🔬 Museums"],
   ["animals", "🐼 Zoos & aquariums"],
   ["parks", "🌳 Parks"],
@@ -26,7 +28,7 @@ const $ = (sel) => document.querySelector(sel);
 const els = {
   modes: document.querySelectorAll("[data-mode]"), daysBar: $("#days-bar"),
   planTitle: $("#plan-title"), dateWrap: $("#date-wrap"), date: $("#day-date"),
-  timeline: $("#timeline"), addPlace: $("#add-place"), planActions: $("#plan-actions"),
+  timeline: $("#timeline"), dayIntro: $("#day-intro"), tips: $("#tips-list"), addPlace: $("#add-place"), planActions: $("#plan-actions"),
   browseTitle: $("#browse-title"), browseNear: $("#browse-near"), categories: $("#categories"),
   openNow: $("#open-now"), status: $("#status"), list: $("#list"),
 };
@@ -96,6 +98,7 @@ function renderPlan() {
   els.dateWrap.hidden = !trip;
   if (trip) els.date.value = route.date || "";
 
+  renderDayIntro(route, trip);
   const pts = points(route);
   let html = "";
   if (!route.start) {
@@ -130,10 +133,12 @@ function renderPlan() {
   loadLegs(pts);
 }
 
+const weekdayOf = (iso) => (iso ? new Date(`${iso}T12:00:00+09:00`).getUTCDay() : null);
+
 function pointHtml(p, i, trip) {
   const isStart = i === -1;
   const route = active();
-  let meta = [];
+  const meta = [];
   if (p.type) meta.push(esc(p.type));
   if (p.rating) meta.push(`★ ${p.rating.toFixed(1)}`);
   if (!isStart && p.hours) {
@@ -141,25 +146,79 @@ function pointHtml(p, i, trip) {
     if (line) meta.push(`🕘 ${esc(line)}`);
   }
   let badge = "";
-  if (!isStart && isToday()) {
+  const wd = trip ? weekdayOf(route.date) : tokyoNow().day;
+  if (!isStart && Array.isArray(p.closed) && wd != null && p.closed.includes(wd)) {
+    badge = `<span class="badge closed">⚠️ Closed that day</span>`;
+  } else if (!isStart && isToday()) {
     const open = isOpenNow(p.periods);
     badge = open === true ? `<span class="badge open">Open now</span>` : open === false ? `<span class="badge closed">Closed now</span>` : "";
   }
-  const site = /^https?:\/\//.test(p.website || "") ? `<a class="mini" href="${esc(p.website)}" target="_blank" rel="noopener" aria-label="Official site">🌐</a>` : "";
   const controls = isStart
     ? `<button class="mini" type="button" data-act="start" aria-label="Change start">✏️</button>`
-    : `${site}
-       <button class="mini" type="button" data-act="up" data-i="${i}" aria-label="Move earlier" ${i === 0 ? "disabled" : ""}>↑</button>
+    : `<button class="mini" type="button" data-act="up" data-i="${i}" aria-label="Move earlier" ${i === 0 ? "disabled" : ""}>↑</button>
        <button class="mini" type="button" data-act="down" data-i="${i}" aria-label="Move later" ${i === route.stops.length - 1 ? "disabled" : ""}>↓</button>
        <button class="mini" type="button" data-act="remove" data-i="${i}" aria-label="Remove">✕</button>`;
+  const chips = [];
+  if (p.time) chips.push(`<span class="chip-sm time">🕗 ${esc(p.time)}</span>`);
+  if (p.stay) chips.push(`<span class="chip-sm">⏳ ${esc(p.stay)}</span>`);
+  if (p.optional) chips.push(`<span class="chip-sm opt">Optional</span>`);
+  if (p.food) chips.push(`<span class="chip-sm food">🍽️ Food</span>`);
   return `<li class="point${isStart ? " start" : ""}">
     <span class="dot">${isStart ? (trip ? "🏨" : "📍") : i + 1}</span>
     <div class="body">
-      <p class="pname">${esc(p.name)} ${badge}</p>
+      ${chips.length ? `<div class="chips-sm">${chips.join("")}</div>` : ""}
+      <p class="pname">${p.emoji ? `${p.emoji} ` : ""}${esc(p.name)} ${badge}</p>
+      ${p.cost ? `<p class="cost">💴 ${esc(p.cost)}</p>` : ""}
       ${meta.length ? `<p class="small">${meta.join(" · ")}</p>` : p.address ? `<p class="small">${esc(p.address)}</p>` : ""}
+      ${isStart ? "" : stopMore(p)}
     </div>
     <div class="controls">${controls}</div>
   </li>`;
+}
+
+/** Expandable info + links for a stop (Google Maps, tickets, official site). */
+function stopMore(p) {
+  const links = [`<a class="btn btn-secondary" href="${esc(mapsLink(p))}" target="_blank" rel="noopener">📍 Google Maps</a>`];
+  if (p.tickets && /^https?:\/\//.test(p.tickets.url)) {
+    links.push(`<a class="btn btn-primary" href="${esc(p.tickets.url)}" target="_blank" rel="noopener">🎟️ ${esc(p.tickets.label || "Tickets")}</a>`);
+  }
+  if (/^https?:\/\//.test(p.website || "")) {
+    links.push(`<a class="btn btn-secondary" href="${esc(p.website)}" target="_blank" rel="noopener">🌐 Official site</a>`);
+  }
+  return `<details class="stop-more">
+    <summary>Info, tickets &amp; map</summary>
+    ${p.tip ? `<p>${esc(p.tip)}</p>` : ""}
+    ${p.closedNote ? `<p class="warn">📅 ${esc(p.closedNote)}</p>` : ""}
+    ${p.tickets?.note ? `<p class="small">🎟️ ${esc(p.tickets.note)}</p>` : ""}
+    <div class="links">${links.join("")}</div>
+  </details>`;
+}
+
+function renderDayIntro(route, trip) {
+  if (!trip) { els.dayIntro.innerHTML = ""; return; }
+  const hasPlan = state.trip.days.some((d) => d.planKey);
+  const info = planDay(route.planKey);
+  let html = "";
+  if (info) {
+    const wd = weekdayOf(route.date);
+    const clashes = route.stops.filter((s) => Array.isArray(s.closed) && wd != null && s.closed.includes(wd));
+    html += `<div class="intro">
+      <p class="intro-area">${esc(info.area)}</p>
+      <h3>${esc(info.title)}</h3>
+      <p>${esc(info.summary)}</p>
+      <p class="budget">💴 ${esc(info.budget)}</p>
+      ${clashes.length ? `<p class="warn">⚠️ On this date ${clashes.map((s) => esc(s.name)).join(" and ")} ${clashes.length > 1 ? "are" : "is"} closed – swap with another day (change the date) or skip ${clashes.length > 1 ? "them" : "it"}.</p>` : ""}
+      ${route.date ? "" : `<p class="small">Tip: set the date above to see opening days and hours for that day.</p>`}
+      <ul class="before">${info.before.map((b) => `<li>✅ ${esc(b)}</li>`).join("")}</ul>
+    </div>`;
+  }
+  if (!hasPlan) {
+    html += `<div class="promo">
+      <p><strong>New:</strong> a ready-made 3-day family plan – temples, dinosaurs, sushi trains, Pokémon, teamLab and the bay – with times, costs, tickets and food stops.</p>
+      <button class="btn btn-primary full" type="button" data-act="load-plan">📥 Use the ready-made 3-day plan</button>
+    </div>`;
+  }
+  els.dayIntro.innerHTML = html;
 }
 
 function legHtml(i) {
@@ -238,6 +297,12 @@ async function aiGuide(btn) {
 /* ---------- plan editing ---------- */
 function setStart(p) {
   active().start = p;
+  if (state.mode === "trip") {
+    const empty = state.trip.days.filter((d) => !d.start);
+    if (empty.length && confirm(`Use “${p.name}” as the start for the other ${empty.length} day${empty.length === 1 ? "" : "s"} too?`)) {
+      empty.forEach((d) => { d.start = { ...p }; });
+    }
+  }
   save();
   render();
 }
@@ -271,6 +336,19 @@ async function onPlanAction(btn) {
         initial: route.start, saveText: "Start here", onSave: setStart,
       });
     case "here": return useMyLocationAsStart();
+    case "load-plan": {
+      const hasStops = state.trip.days.some((d) => d.stops.length);
+      if (hasStops && !confirm("Replace your current trip plan with the ready-made 3-day plan?")) return;
+      const first = state.trip.days[0];
+      state.trip.days = buildPlanDays(first?.start, first?.date);
+      state.day = 0;
+      save();
+      render();
+      if (!state.trip.days[0].start) {
+        alert("Plan loaded! Now set your hotel as the start of each day (tap “Choose start”). New days copy it automatically.");
+      }
+      return;
+    }
     case "up": [route.stops[i - 1], route.stops[i]] = [route.stops[i], route.stops[i - 1]]; break;
     case "down": [route.stops[i + 1], route.stops[i]] = [route.stops[i], route.stops[i + 1]]; break;
     case "remove": route.stops.splice(i, 1); break;
@@ -426,9 +504,20 @@ els.daysBar.addEventListener("click", (e) => {
 });
 els.date.addEventListener("change", () => {
   active().date = els.date.value;
+  // Fill in the following days that have no date yet (Day 2 = next day, …).
+  if (els.date.value) {
+    const base = new Date(`${els.date.value}T12:00:00Z`);
+    state.trip.days.slice(state.day + 1).forEach((d, k) => {
+      if (d.date) return;
+      const x = new Date(base);
+      x.setUTCDate(x.getUTCDate() + k + 1);
+      d.date = x.toISOString().slice(0, 10);
+    });
+  }
   save();
   render();
 });
+els.dayIntro.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
 els.timeline.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
 els.planActions.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (b) onPlanAction(b); });
 els.addPlace.addEventListener("click", () => openPicker({
@@ -484,6 +573,13 @@ els.list.addEventListener("click", (e) => {
     alert("This trip link looks broken – ask for a new one.");
   }
   if (location.hash.startsWith("#trip=")) history.replaceState(null, "", location.pathname);
+
+  // Ready-made plan stops: always use the latest details (tips, prices, links).
+  for (const d of state.trip.days) {
+    d.stops = d.stops.map((st) => (planStop(st.id) ? { ...st, ...planStop(st.id) } : st));
+  }
+  els.tips.innerHTML = TIPS.map(([icon, title, text, url]) => `<details class="tip"><summary>${icon} ${esc(title)}</summary>
+    <p>${esc(text)}</p>${url ? `<a class="btn btn-secondary" href="${esc(url)}" target="_blank" rel="noopener">🌐 More info</a>` : ""}</details>`).join("");
 
   // In trip mode, jump to today's day if there is one.
   const todayIdx = state.trip.days.findIndex((d) => d.date === tokyoNow().date);

@@ -103,10 +103,11 @@ export const PRICE = {
 
 /** Google Maps directions link (no key needed). */
 export function navUrl(from, to, mode = "transit") {
-  let u = `https://www.google.com/maps/dir/?api=1&origin=${from.lat},${from.lng}&destination=${to.lat},${to.lng}&travelmode=${mode}`;
-  if (to.id && !String(to.id).startsWith("pin-")) {
-    u = `https://www.google.com/maps/dir/?api=1&origin=${from.lat},${from.lng}` +
-      `&destination=${encodeURIComponent(to.name || `${to.lat},${to.lng}`)}&destination_place_id=${encodeURIComponent(to.id)}&travelmode=${mode}`;
+  const origin = `origin=${from.lat},${from.lng}`;
+  let dest = `destination=${to.lat},${to.lng}`;
+  if (to.maps) dest = `destination=${encodeURIComponent(to.maps)}`; // ready-made plan stops: search by name
+  else if (to.id && !String(to.id).startsWith("pin-")) {
+    dest = `destination=${encodeURIComponent(to.name || `${to.lat},${to.lng}`)}&destination_place_id=${encodeURIComponent(to.id)}`;
   }
-  return u;
+  return `https://www.google.com/maps/dir/?api=1&${origin}&${dest}&travelmode=${mode}`;
 }

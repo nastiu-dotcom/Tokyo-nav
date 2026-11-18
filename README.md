@@ -12,13 +12,30 @@ things to do in Tokyo and get there by train, subway or bus.
   - **🧭 Adventure** – today's route, built as you go: start from your
     location, see what's nearby, tap **“Go here next”**, and the route grows
     stop by stop. **Save to trip plan** keeps it as a day.
+- **Ready-made 3-day plan** (tap “📥 Use the ready-made 3-day plan” in Trip
+  mode), budget-minded for kids 10–12, food stops included:
+  1. *Old Tokyo & dinosaurs* – Senso-ji, melon bread, Museum of Nature and
+     Science (kids free), Ameyoko lunch, Ueno Zoo, Akihabara, Yodobashi dinner.
+  2. *Shrines, sushi trains & Pokémon* – Meiji Jingu, Takeshita crepes,
+     Kiddy Land, Uobei sushi, Shibuya Crossing, Pokémon Center/Nintendo,
+     free sunset deck at the Metropolitan Government Building, ramen.
+  3. *Digital art & the bay* – teamLab Planets (book ahead), LaLaport food
+     court, Yurikamome to Odaiba Seaside Park (or SMALL WORLDS), Tokyo
+     Character Street, Tokyo Ramen Street.
+
+  Each stop has a time, how long to stay, cost, a tip, and links to Google
+  Maps, tickets and the official site. Each day shows a family budget and
+  warns if a place is closed on the chosen date. The plan lives in
+  `js/plan.js` (facts checked Nov 2026 – prices change, links go to official
+  sites). A **🇯🇵 Family tips** card covers passes, IC cards, cash, cheap
+  eats, manners and emergency numbers.
 - **Start points and places:** tap or drag a pin on the map (Leaflet +
   OpenStreetMap), search a hotel, station or landmark (Google Places
   Autocomplete), or use the phone's location. Everything is saved on the phone.
 - **Activities:** live family-friendly places from Google Places (New), sorted
   by distance. Tap one to see address, rating, reviews, opening hours, an
   "Open now" badge, price level, distance and the official website. Filter by
-  category and "Open now".
+  category (now including 🍜 Food) and "Open now".
 - **How to get there:** asks the Google Routes API for a transit route and has
   Claude write a short, simple family guide (steps, things to watch out for,
   IC cards / child fares, tips). Cached for 24 hours.

@@ -8,7 +8,7 @@ const n5 = (x) => Math.round(x * 1e5) / 1e5;
 
 function pack(trip) {
   const pt = (p) => (p ? [n5(p.lat), n5(p.lng), p.name || "", p.id || "", p.address || ""] : null);
-  return { v: 1, d: trip.days.map((d) => ({ t: d.date || "", s: pt(d.start), p: d.stops.map(pt) })) };
+  return { v: 1, d: trip.days.map((d) => ({ t: d.date || "", k: d.planKey || "", s: pt(d.start), p: d.stops.map(pt) })) };
 }
 
 function unpack(obj) {
@@ -20,6 +20,7 @@ function unpack(obj) {
     days: obj.d.slice(0, 60).map((d) => ({
       id: Math.random().toString(36).slice(2, 10),
       date: /^\d{4}-\d{2}-\d{2}$/.test(d.t) ? d.t : "",
+      planKey: /^d\d{1,2}$/.test(d.k || "") ? d.k : "",
       start: pt(d.s),
       stops: (Array.isArray(d.p) ? d.p : []).slice(0, 40).map(pt).filter(Boolean),
     })),
