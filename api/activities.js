@@ -19,6 +19,7 @@ export const CATEGORIES = {
   fun: "amusement park, indoor play center or game arcade",
   anime: "anime, character and toy shops for kids",
   views: "observation deck with city view",
+  food: "kid friendly cheap restaurant, ramen, sushi or food court",
 };
 
 const FIELD_MASK = [
