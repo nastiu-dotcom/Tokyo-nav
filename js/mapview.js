@@ -3,12 +3,13 @@
 // Layers: your plan · more ideas from the 5-day pools · food · your Google Maps
 // saved places (imported from Google Takeout) · tax-refund shops.
 import { esc, getJSON, store } from "./util.js";
+import { L as tr, t, tn } from "./i18n.js";
+import { dayColor } from "./theme.js";
 import { inJapan, mergePlaces, placesFromFile } from "./takeout.js";
 import { allTaxRecords, saveTaxRecord } from "./tax.js";
 import { allFood, allPoolStops, tripReady } from "./trip2027.js";
 import { mapsLink } from "./plan.js";
 
-const DAY_COLORS = ["#6b7280", "#0b5cad", "#d62828", "#2a9d3c", "#e76f00", "#7b3fb5", "#0f8b8d", "#b5179e", "#4361ee"];
 const LAYERS = [
   ["plan", "🗓️ My plan", true],
   ["ideas", "💡 More ideas", false],
@@ -16,6 +17,7 @@ const LAYERS = [
   ["google", "⭐ My Google places", true],
   ["tax", "🧾 Tax-refund shops", true],
   ["mine", "📌 My spots", true],
+  ["wish", "💖 Kids' wishlist", true],
 ];
 
 let map, group, root, ctx;
@@ -31,14 +33,14 @@ function kmBetween(a, b) {
   const h = Math.sin(t(b.lat - a.lat) / 2) ** 2 + Math.cos(t(a.lat)) * Math.cos(t(b.lat)) * Math.sin(t(b.lng - a.lng) / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(h));
 }
-const fmtKm = (km) => (km < 1 ? `${Math.round(km * 1000 / 10) * 10} m` : `${km.toFixed(km < 10 ? 1 : 0)} km`);
+const fmtKm = (km) => (km < 1 ? t("{n} m", { n: Math.round(km * 1000 / 10) * 10 }) : t("{n} km", { n: km.toFixed(km < 10 ? 1 : 0) }));
 
 function drawMe() {
   if (!map || !loc.pos) return;
   const ll = [loc.pos.lat, loc.pos.lng];
   if (!loc.dot || !map.hasLayer(loc.dot)) {
     loc.ring = L.circle(ll, { radius: loc.pos.acc, color: "#1a73e8", weight: 1, fillColor: "#1a73e8", fillOpacity: 0.12, interactive: false }).addTo(map);
-    loc.dot = L.marker(ll, { icon: L.divIcon({ className: "me-dot", html: "<span></span>", iconSize: [22, 22], iconAnchor: [11, 11] }), zIndexOffset: 1000, title: "You are here" })
+    loc.dot = L.marker(ll, { icon: L.divIcon({ className: "me-dot", html: "<span></span>", iconSize: [22, 22], iconAnchor: [11, 11] }), zIndexOffset: 1000, title: t("You are here") })
       .bindPopup(() => mePopup()).addTo(map);
   } else {
     loc.dot.setLatLng(ll);
@@ -49,15 +51,15 @@ function drawMe() {
 
 function mePopup() {
   const p = loc.pos;
-  return `<div class="pop"><strong>📍 You are here</strong><br><span class="small">Accuracy ±${Math.round(p.acc)} m</span>
-    <div class="pop-links"><button type="button" data-spot-save="me">📌 Save this spot</button>
-    <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank" rel="noopener">📍 Open in Google Maps</a></div></div>`;
+  return `<div class="pop"><strong>${t("📍 You are here")}</strong><br><span class="small">${t("Accuracy ±{n} m", { n: Math.round(p.acc) })}</span>
+    <div class="pop-links"><button type="button" data-spot-save="me">${ctx?.isKid?.() ? t("💖 Suggest this spot") : t("📌 Save this spot")}</button>
+    <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank" rel="noopener">${t("📍 Open in Google Maps")}</a></div></div>`;
 }
 
 function setStatus(t) { const el = root?.querySelector("#map-status"); if (el) el.textContent = t; }
 
 function startTracking(center) {
-  if (!navigator.geolocation) { loc.error = "Location is not available on this device."; loc.on = false; return; }
+  if (!navigator.geolocation) { loc.error = t("Location is not available on this device."); loc.on = false; return; }
   if (loc.watch !== null) { if (center && loc.pos) map.setView([loc.pos.lat, loc.pos.lng], 16); return; }
   let first = true;
   loc.watch = navigator.geolocation.watchPosition((pos) => {
@@ -68,7 +70,7 @@ function startTracking(center) {
     first = false;
     updateMeButtons();
   }, (err) => {
-    loc.error = err.code === 1 ? "Location permission was denied – allow it in your browser settings to see yourself on the map." : "Couldn't get your location right now.";
+    loc.error = err.code === 1 ? t("Location permission was denied – allow it in your browser settings to see yourself on the map.") : t("Couldn't get your location right now.");
     if (err.code === 1) { loc.on = false; store.set("mapTrack", false); stopMapTracking(); }
     setStatus(loc.error);
     updateMeButtons();
@@ -85,15 +87,16 @@ export function stopMapTracking() {
 function updateMeButtons() {
   const me = root?.querySelector("[data-mapact='me']");
   const fol = root?.querySelector("[data-mapact='follow']");
-  if (me) { me.textContent = loc.on ? "📍 My location: on" : "📍 Show my location"; me.setAttribute("aria-pressed", String(loc.on)); }
-  if (fol) { fol.hidden = !loc.on; fol.setAttribute("aria-pressed", String(loc.follow)); fol.textContent = loc.follow ? "🎯 Following you" : "🎯 Follow me"; }
+  if (me) { me.textContent = loc.on ? t("📍 My location: on") : t("📍 Show my location"); me.setAttribute("aria-pressed", String(loc.on)); }
+  if (fol) { fol.hidden = !loc.on; fol.setAttribute("aria-pressed", String(loc.follow)); fol.textContent = loc.follow ? t("🎯 Following you") : t("🎯 Follow me"); }
 }
 
 function saveSpot(lat, lng) {
-  const name = prompt("Name this spot (e.g. 'Great ramen', 'Meeting point'):", "My spot");
+  if (ctx?.isKid?.()) { map.closePopup(); ctx.onSuggestAt(lat, lng); return; }
+  const name = prompt(t("Name this spot (e.g. 'Great ramen', 'Meeting point'):"), t("My spot"));
   if (name === null) return;
   const list = mySpots();
-  list.push({ id: `s-${Date.now().toString(36)}`, name: name.trim() || "My spot", lat, lng, created: new Date().toISOString() });
+  list.push({ id: `s-${Date.now().toString(36)}`, name: name.trim() || t("My spot"), lat, lng, created: new Date().toISOString() });
   setMySpots(list);
   map.closePopup();
   drawMarkers(false);
@@ -123,7 +126,7 @@ async function collect() {
   days.forEach((d, i) => {
     const n = d.planKey?.startsWith("apr-d") ? Number(d.planKey.slice(5)) : i + 1;
     if (dayFilter !== "all" && Number(dayFilter) !== i) return;
-    const color = DAY_COLORS[n % DAY_COLORS.length];
+    const color = dayColor(d, i).ink;
     const label = ctx.dayName(d, i);
     const pts = [d.start, ...d.stops].filter(Boolean);
     pts.forEach((p, k) => {
@@ -132,7 +135,7 @@ async function collect() {
       const isBase = /^pin-(hotel|narita)/.test(p.id || "") || (k === 0 && !p.categories);
       out.push({
         layer: "plan", lat: p.lat, lng: p.lng, color, emoji: isBase ? (p.id === "pin-narita" ? "✈️" : "🏨") : (p.emoji || String(k)),
-        title: p.name, sub: `${label}${p.time ? ` · ${p.time}` : ""}${p.type ? ` · ${p.type}` : ""}`, link: placeLink(p), small: false,
+        title: p.name, sub: `${label}${p.time ? ` · ${p.time}` : ""}${tr(p, "type") ? ` · ${tr(p, "type")}` : ""}`, link: placeLink(p), small: false,
       });
     });
   });
@@ -145,8 +148,8 @@ async function collect() {
     if (ui.layers.ideas) {
       for (const s of allPoolStops()) {
         if (planIds.has(s.id) || (dayNums && !dayNums.includes(s.day))) continue;
-        out.push({ layer: "ideas", lat: s.lat, lng: s.lng, color: DAY_COLORS[s.day], emoji: s.emoji, title: s.name,
-          sub: `Idea for Day ${s.day} · ${s.type}`, link: placeLink(s), small: true });
+        out.push({ layer: "ideas", lat: s.lat, lng: s.lng, color: dayColor({ planKey: `apr-d${s.day}` }, 0).ink, emoji: s.emoji, title: s.name,
+          sub: `${t("Idea for Day {n}", { n: s.day })} · ${tr(s, "type")}`, link: placeLink(s), small: true });
       }
     }
     if (ui.layers.food) {
@@ -157,7 +160,7 @@ async function collect() {
         if (seen.has(k)) continue;
         seen.add(k);
         out.push({ layer: "food", lat: f.lat, lng: f.lng, color: "#8d5524", emoji: f.emoji, title: f.name,
-          sub: `${f.type} · ${f.cost}${f.cashOnly ? " · cash only" : ""}`, link: placeLink(f), small: true });
+          sub: `${tr(f, "type")} · ${tr(f, "cost")}${f.cashOnly ? ` · ${t("💴 cash only")}` : ""}`, link: placeLink(f), small: true });
       }
     }
   }
@@ -173,15 +176,24 @@ async function collect() {
   if (ui.layers.mine && dayFilter === "all") {
     for (const sp of mySpots()) {
       out.push({ layer: "mine", lat: sp.lat, lng: sp.lng, color: "#0f8b8d", emoji: "📌", title: sp.name,
-        sub: `Saved ${sp.created.slice(0, 10)}`, link: `https://www.google.com/maps/search/?api=1&query=${sp.lat},${sp.lng}`, spotId: sp.id });
+        sub: t("Saved {date}", { date: sp.created.slice(0, 10) }), link: `https://www.google.com/maps/search/?api=1&query=${sp.lat},${sp.lng}`, spotId: sp.id });
+    }
+  }
+
+  if (ui.layers.wish && dayFilter === "all" && ctx.wishlist) {
+    for (const w of ctx.wishlist()) {
+      const st = w.status === "approved" ? t("✅ Approved") : w.status === "declined" ? t("✖ Not this time") : t("⏳ Waiting for approval");
+      out.push({ layer: "wish", lat: w.lat, lng: w.lng, color: w.status === "approved" ? "#22703D" : w.status === "declined" ? "#8A8A8A" : "#D63F7A",
+        emoji: w.emoji || "💖", title: w.name, sub: `${t("💖 {name}'s idea", { name: w.by })} · ${st}${w.note ? ` · “${w.note}”` : ""}`,
+        link: placeLink({ name: w.name, lat: w.lat, lng: w.lng, id: w.placeId || "pin-x" }) });
     }
   }
 
   if (ui.layers.tax && dayFilter === "all") {
     for (const r of await taxRecordsSafe()) {
       if (!Number.isFinite(r.lat)) continue;
-      out.push({ layer: "tax", lat: r.lat, lng: r.lng, color: "#c9184a", emoji: "🧾", title: r.shop || "Shop",
-        sub: `${r.description || "Purchase"} · ${r.date}`, link: placeLink({ name: r.shop, lat: r.lat, lng: r.lng, id: r.placeId }), small: false });
+      out.push({ layer: "tax", lat: r.lat, lng: r.lng, color: "#c9184a", emoji: "🧾", title: r.shop || t("Shop"),
+        sub: `${r.description || t("Purchase")} · ${r.date}`, link: placeLink({ name: r.shop, lat: r.lat, lng: r.lng, id: r.placeId }), small: false });
     }
   }
   return out;
@@ -192,11 +204,11 @@ async function taxRecordsSafe() {
 }
 
 function popupHtml(m) {
-  const dist = loc.pos ? `<br><span class="small">📏 ${fmtKm(kmBetween(loc.pos, m))} from you (straight line)</span>` : "";
+  const dist = loc.pos ? `<br><span class="small">📏 ${t("{d} from you (straight line)", { d: fmtKm(kmBetween(loc.pos, m)) })}</span>` : "";
   return `<div class="pop"><strong>${esc(m.title)}</strong><br><span class="small">${esc(m.sub)}</span>${dist}
-    <div class="pop-links"><a href="${esc(m.link)}" target="_blank" rel="noopener">📍 Open in Google Maps</a>
-    <a href="${esc(directions(m))}" target="_blank" rel="noopener">🧭 Directions</a>
-    ${m.spotId ? `<button type="button" data-spot-del="${esc(m.spotId)}">🗑️ Delete this spot</button>` : ""}</div></div>`;
+    <div class="pop-links"><a href="${esc(m.link)}" target="_blank" rel="noopener">${t("📍 Open in Google Maps")}</a>
+    <a href="${esc(directions(m))}" target="_blank" rel="noopener">${t("🧭 Directions")}</a>
+    ${m.spotId ? `<button type="button" data-spot-del="${esc(m.spotId)}">${t("🗑️ Delete this spot")}</button>` : ""}</div></div>`;
 }
 
 /* ---------------- render ---------------- */
@@ -212,40 +224,40 @@ export async function renderMapView(container, context) {
   const days = ctx.days();
 
   root.innerHTML = `
-    <div class="chips" role="group" aria-label="Layers">${LAYERS.map(([k, label]) =>
-      `<button class="chip" type="button" data-layer="${k}" aria-pressed="${ui.layers[k]}">${label}</button>`).join("")}</div>
-    <div class="chips" role="group" aria-label="Day">
-      <button class="chip" type="button" data-mapday="all" aria-pressed="${ui.day === "all"}">All days</button>
-      ${days.map((d, i) => `<button class="chip" type="button" data-mapday="${i}" aria-pressed="${ui.day === String(i)}">${esc(ctx.dayName(d, i))}</button>`).join("")}
+    <div class="chips" role="group" aria-label="${t("Layers")}">${LAYERS.filter(([k]) => !(ctx.isKid?.() && ["tax", "google", "mine"].includes(k))).filter(([k]) => k !== "wish" || ctx.wishlist?.().length).map(([k, label]) =>
+      `<button class="chip" type="button" data-layer="${k}" aria-pressed="${ui.layers[k]}">${t(label)}</button>`).join("")}</div>
+    <div class="chips" role="group" aria-label="${t("Day")}">
+      <button class="chip" type="button" data-mapday="all" aria-pressed="${ui.day === "all"}">${t("All days")}</button>
+      ${days.map((d, i) => `<button class="chip day-chip" style="--day-bg:${dayColor(d, i).bg};--day-ink:${dayColor(d, i).ink}" type="button" data-mapday="${i}" aria-pressed="${ui.day === String(i)}">${esc(ctx.dayName(d, i))}</button>`).join("")}
     </div>
-    <div id="big-map" class="big-map" aria-label="Map of all saved places"></div>
+    <div id="big-map" class="big-map" aria-label="${t("Map of all saved places")}" dir="ltr"></div>
     <div class="row tight">
-      <button class="btn btn-secondary" type="button" data-mapact="fit">🔍 Show all</button>
-      <button class="btn btn-secondary" type="button" data-mapact="me" aria-pressed="${loc.on}">${loc.on ? "📍 My location: on" : "📍 Show my location"}</button>
-      <button class="btn btn-secondary" type="button" data-mapact="follow" aria-pressed="${loc.follow}" ${loc.on ? "" : "hidden"}>${loc.follow ? "🎯 Following you" : "🎯 Follow me"}</button>
+      <button class="btn btn-secondary" type="button" data-mapact="fit">${t("🔍 Show all")}</button>
+      <button class="btn btn-secondary" type="button" data-mapact="me" aria-pressed="${loc.on}">${loc.on ? t("📍 My location: on") : t("📍 Show my location")}</button>
+      <button class="btn btn-secondary" type="button" data-mapact="follow" aria-pressed="${loc.follow}" ${loc.on ? "" : "hidden"}>${loc.follow ? t("🎯 Following you") : t("🎯 Follow me")}</button>
     </div>
-    <p class="small">Tip: long-press anywhere on the map (or tap your blue dot) to save a 📌 spot.</p>
+    <p class="small">${ctx.isKid?.() ? t("Tip: long-press anywhere on the map to suggest that place to your parent 💖") : t("Tip: long-press anywhere on the map (or tap your blue dot) to save a 📌 spot.")}</p>
     <p class="status" id="map-status">${esc(ui.msg)}</p>
-    <details class="map-list"><summary>📋 List of places on the map</summary><div id="map-list"></div></details>
+    <details class="map-list"><summary>${t("📋 List of places on the map")}</summary><div id="map-list"></div></details>
 
-    <details class="tax-info" ${!g.length || gPending ? "open" : ""}>
-      <summary>⭐ Import my Google Maps saved places</summary>
+    ${ctx.isKid?.() ? "" : `<details class="tax-info" ${!g.length || gPending ? "open" : ""}>
+      <summary>${t("⭐ Import my Google Maps saved places")}</summary>
       <ol>
-        <li>Open <a href="https://takeout.google.com/" target="_blank" rel="noopener">takeout.google.com</a> (signed in to your Google account).</li>
-        <li>Tap <strong>Deselect all</strong>, then tick <strong>Saved</strong> (your lists) and <strong>Maps (your places)</strong> (starred places).</li>
-        <li><strong>Next step → Create export</strong>. Google emails a link, usually within minutes.</li>
-        <li>Download the <strong>.zip</strong> on this phone, then choose it below (or the “Saved Places.json” / list .csv files inside it).</li>
+        <li>${t("Open <a href=\"https://takeout.google.com/\" target=\"_blank\" rel=\"noopener\">takeout.google.com</a> (signed in to your Google account).")}</li>
+        <li>${t("Tap <strong>Deselect all</strong>, then tick <strong>Saved</strong> (your lists) and <strong>Maps (your places)</strong> (starred places).")}</li>
+        <li>${t("<strong>Next step → Create export</strong>. Google emails a link, usually within minutes.")}</li>
+        <li>${t("Download the <strong>.zip</strong> on this phone, then choose it below (or the “Saved Places.json” / list .csv files inside it).")}</li>
       </ol>
-      <label class="btn btn-primary full">📂 Choose Takeout file(s)<input type="file" accept=".zip,.json,.csv,application/zip,application/json,text/csv" multiple data-mapfile hidden></label>
-      <p class="small">Read on this phone only – nothing is uploaded. Only places in Japan are shown.</p>
-      ${g.length ? `<p>⭐ ${gShown} place${gShown === 1 ? "" : "s"} on the map${gOutside ? ` · ${gOutside} outside Japan (hidden)` : ""}${gPending ? ` · ${gPending} without coordinates` : ""}</p>` : ""}
-      ${gPending ? `<button class="btn btn-secondary full" type="button" data-mapact="find-google">🔎 Find ${gPending} place${gPending === 1 ? "" : "s"} with Google</button>
-        <p class="small">Google exports saved lists without coordinates. Each lookup uses one Google search from your free monthly allowance (your daily cap may stop it – try the rest tomorrow).</p>` : ""}
-      ${g.length ? `<button class="btn btn-secondary full" type="button" data-mapact="clear-google">🗑️ Remove imported Google places</button>` : ""}
-    </details>
-    ${taxPending ? `<div class="promo"><p>🧾 ${taxPending} tax-refund shop${taxPending === 1 ? " has" : "s have"} no location yet.</p>
-      <button class="btn btn-secondary full" type="button" data-mapact="find-tax">🔎 Find ${taxPending} shop${taxPending === 1 ? "" : "s"} with Google</button>
-      <p class="small">Tip: when adding a receipt you can also tap “📍 I'm at the shop” to save the location for free.</p></div>` : ""}`;
+      <label class="btn btn-primary full">${t("📂 Choose Takeout file(s)")}<input type="file" accept=".zip,.json,.csv,application/zip,application/json,text/csv" multiple data-mapfile hidden></label>
+      <p class="small">${t("Read on this phone only – nothing is uploaded. Only places in Japan are shown.")}</p>
+      ${g.length ? `<p>⭐ ${tn(gShown, "1 place on the map", "{n} places on the map")}${gOutside ? ` · ${t("{n} outside Japan (hidden)", { n: gOutside })}` : ""}${gPending ? ` · ${t("{n} without coordinates", { n: gPending })}` : ""}</p>` : ""}
+      ${gPending ? `<button class="btn btn-secondary full" type="button" data-mapact="find-google">${t("🔎 Find {n} with Google", { n: gPending })}</button>
+        <p class="small">${t("Google exports saved lists without coordinates. Each lookup uses one Google search from your free monthly allowance (your daily cap may stop it – try the rest tomorrow).")}</p>` : ""}
+      ${g.length ? `<button class="btn btn-secondary full" type="button" data-mapact="clear-google">${t("🗑️ Remove imported Google places")}</button>` : ""}
+    </details>`}
+    ${taxPending && !ctx.isKid?.() ? `<div class="promo"><p>🧾 ${t("{n} tax-refund shops have no location yet.", { n: taxPending })}</p>
+      <button class="btn btn-secondary full" type="button" data-mapact="find-tax">${t("🔎 Find {n} with Google", { n: taxPending })}</button>
+      <p class="small">${t("Tip: when adding a receipt you can also tap “📍 I'm at the shop” to save the location for free.")}</p></div>` : ""}`;
 
   {
     if (map) map.remove(); // the container was re-rendered
@@ -261,7 +273,7 @@ export async function renderMapView(container, context) {
       const el = e.popup.getElement();
       el.querySelector("[data-spot-save]")?.addEventListener("click", () => saveSpot(loc.pos.lat, loc.pos.lng));
       el.querySelector("[data-spot-del]")?.addEventListener("click", (ev) => {
-        if (!confirm("Delete this saved spot?")) return;
+        if (!confirm(t("Delete this saved spot?"))) return;
         setMySpots(mySpots().filter((x) => x.id !== ev.currentTarget.dataset.spotDel));
         map.closePopup();
         drawMarkers(false);
@@ -291,11 +303,11 @@ async function drawMarkers(fit) {
   }, 60);
   const counts = LAYERS.map(([k, label]) => [label, markers.filter((m) => m.layer === k).length]).filter(([, n]) => n);
   root.querySelector("#map-status").textContent = ui.msg || (markers.length
-    ? `${markers.length} places · ${counts.map(([l, n]) => `${l.split(" ").slice(1).join(" ")} ${n}`).join(" · ")}`
-    : "No places yet – load the April trip, add stops, or import your Google places.");
+    ? `${tn(markers.length, "1 place", "{n} places")} · ${counts.map(([l, n]) => `${t(l).split(" ").slice(1).join(" ")} ${n}`).join(" · ")}`
+    : t("No places yet – load the April trip, add stops, or import your Google places."));
   root.querySelector("#map-list").innerHTML = markers.length ? `<ul class="map-ul">${markers.map((m) =>
     `<li><span>${m.emoji} <strong>${esc(m.title)}</strong><br><span class="small">${esc(m.sub)}</span></span>
-     <a class="mini-link" href="${esc(m.link)}" target="_blank" rel="noopener">Google Maps</a></li>`).join("")}</ul>` : "";
+     <a class="mini-link" href="${esc(m.link)}" target="_blank" rel="noopener">${t("Google Maps")}</a></li>`).join("")}</ul>` : "";
 }
 
 /* ---------------- lookups (Google, free tier) ---------------- */
@@ -305,19 +317,19 @@ async function lookupMany(items, query, apply, label) {
   let ok = 0, miss = 0;
   try {
     for (let i = 0; i < items.length; i++) {
-      root.querySelector("#map-status").textContent = `Finding ${label} ${i + 1} of ${items.length}…`;
+      root.querySelector("#map-status").textContent = t("Finding {i} of {n}…", { i: i + 1, n: items.length });
       try {
         const { place } = await getJSON(`/api/find?q=${encodeURIComponent(query(items[i]))}`);
         if (place && inJapan(place.lat, place.lng)) { await apply(items[i], place); ok++; } else { await apply(items[i], null); miss++; }
       } catch (err) {
-        ui.msg = `Stopped: ${err.message}. Found ${ok} so far – try the rest later.`;
+        ui.msg = t("Stopped: {e}. Found {n} so far – try the rest later.", { e: err.message, n: ok });
         break;
       }
     }
   } finally {
     ui.busy = false;
   }
-  if (!ui.msg) ui.msg = `Found ${ok} ${label}${ok === 1 ? "" : "s"}${miss ? `, ${miss} not found in Japan` : ""}.`;
+  if (!ui.msg) ui.msg = t("Found {n}.", { n: ok }) + (miss ? ` ${t("{n} not found in Japan.", { n: miss })}` : "");
   await renderMapView(root, ctx);
   ui.msg = "";
 }
@@ -344,7 +356,7 @@ export function initMapView(container) {
       loc.on = !loc.on;
       store.set("mapTrack", loc.on);
       if (loc.on) {
-        setStatus("Finding your location…");
+        setStatus(t("Finding your location…"));
         root.querySelector("#big-map").scrollIntoView({ behavior: "smooth", block: "center" });
         startTracking(true);
       } else {
@@ -361,13 +373,13 @@ export function initMapView(container) {
       return updateMeButtons();
     }
     if (act === "clear-google") {
-      if (!confirm("Remove all imported Google places from this app? (Your Google account is not changed.)")) return undefined;
+      if (!confirm(t("Remove all imported Google places from this app? (Your Google account is not changed.)"))) return undefined;
       setGplaces([]);
       return renderMapView(root, ctx);
     }
     if (act === "find-google") {
       const pending = gplaces().filter((p) => !Number.isFinite(p.lat) && !p.notFound);
-      if (pending.length > 25 && !confirm(`Look up ${pending.length} places with Google? Each uses one search from your free monthly allowance.`)) return undefined;
+      if (pending.length > 25 && !confirm(t("Look up {n} places with Google? Each uses one search from your free monthly allowance.", { n: pending.length }))) return undefined;
       return lookupMany(pending, (p) => [p.name, p.address].filter(Boolean).join(" "), (p, place) => {
         const list = gplaces();
         const t = list.find((x) => x.id === p.id);
@@ -392,20 +404,20 @@ export function initMapView(container) {
     const files = [...input.files];
     input.value = "";
     const status = container.querySelector("#map-status");
-    status.textContent = "Reading your Google Takeout file…";
+    status.textContent = t("Reading your Google Takeout file…");
     let incoming = [];
     for (const f of files) {
       try { incoming = incoming.concat(await placesFromFile(f)); } catch (err) { alert(`${f.name}: ${err.message}`); }
     }
     if (!incoming.length) {
-      ui.msg = "No saved places found in that file. Choose the Takeout .zip, “Saved Places.json” or a list .csv.";
+      ui.msg = t("No saved places found in that file. Choose the Takeout .zip, “Saved Places.json” or a list .csv.");
       return renderMapView(root, ctx).then(() => { ui.msg = ""; });
     }
     const before = gplaces().length;
     const merged = mergePlaces(gplaces(), incoming);
     setGplaces(merged);
     const added = merged.length - before;
-    ui.msg = `Imported ${added} new place${added === 1 ? "" : "s"} (${incoming.length - added} already there).`;
+    ui.msg = t("Imported {n} new places ({m} already there).", { n: added, m: incoming.length - added });
     ui.layers.google = true;
     await renderMapView(root, ctx);
     ui.msg = "";

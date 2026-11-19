@@ -4,6 +4,8 @@
 // Coordinates are approximate (used for directions); the Google Maps links
 // search by name, so they always open the right place.
 
+import { DAYS_HE, STOPS_HE, TIPS_HE } from "./plan-he.js";
+
 export const PLAN_VERSION = "2026-11";
 
 const STOPS = [
@@ -177,7 +179,7 @@ export const PLAN_DAYS = [
   },
 ];
 
-export const TIPS = [
+const TIP_ROWS = [
   ["🚇", "Transport passes", "Tokyo Subway Ticket (Tokyo Metro + Toei subways only): 24h ¥1,000 / 48h ¥1,500 / 72h ¥2,000 adult, half for kids 6–11. Worth it from about 4 subway rides a day. Buy at the airports or big electronics stores with your passport. JR lines and the Yurikamome are not included – use an IC card for those.", "https://www.tokyometro.jp/lang_en/ticket/value/travel/index.html"],
   ["💳", "IC cards (Suica / PASMO)", "Everyone needs their own card. iPhone: add Suica in Apple Wallet or use the Welcome Suica Mobile app. Physical Welcome Suica at the airport. Kids 6–11 pay half fare only with a child IC card (issued at a staffed JR/subway office with the child's passport) or a child paper ticket. A 12-year-old pays child fare while still in elementary school.", "https://www.jreast.co.jp/multi/en/welcomesuica/"],
   ["💴", "Cash", "Carry ¥10,000–20,000 in cash. Temple stalls, markets and small restaurants are often cash only. 7-Eleven and Japan Post ATMs take foreign cards."],
@@ -189,6 +191,18 @@ export const TIPS = [
   ["🛍️", "Tax refund", "Since Nov 1, 2026 you pay the full price (incl. 10% tax) and show your passport at the till; the tax is refunded after customs checks the goods when you leave Japan (≥ ¥5,000 before tax per shop per day, keep goods unused in hand luggage). Save every receipt with a product photo in the 🧾 Tax refund tab."],
   ["🆘", "Help", "Police 110 · Ambulance/fire 119 · Japan Visitor Hotline (24h, English) 050-3816-2787."],
 ];
+
+// Hebrew texts (L() in i18n.js picks them when the app is in Hebrew).
+for (const st of STOPS) {
+  const he = STOPS_HE[st.id];
+  if (!he) continue;
+  st.he = { ...he };
+  if (st.tickets && he.tickets) st.tickets = { ...st.tickets, he: he.tickets };
+}
+for (const d of PLAN_DAYS) if (DAYS_HE[d.key]) d.he = DAYS_HE[d.key];
+
+/** Tips as objects: {icon, title, text, url, he}. */
+export const TIPS = TIP_ROWS.map(([icon, title, text, url], i) => ({ icon, title, text, url, he: TIPS_HE[i] }));
 
 const BY_ID = Object.fromEntries(STOPS.map((s) => [s.id, s]));
 export const planStop = (id) => BY_ID[id] || null;

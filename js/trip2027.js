@@ -1,6 +1,7 @@
 // April 2027 five-day family trip: loads data/tokyo-5day-2027.json and powers
 // the "choose your own route" engine (only places ≤ 45 min away are offered).
 import { uid } from "./util.js";
+import { t } from "./i18n.js";
 
 const URL = "/data/tokyo-5day-2027.json";
 let DATA = null;
@@ -49,7 +50,7 @@ export const maxLeg = () => DATA?.trip.maxLegMinutes || 45;
 
 export function hotelPoint() {
   const h = DATA.trip.hotel;
-  return { id: "pin-hotel", name: `${h.name} (hotel)`, lat: h.lat, lng: h.lng, address: h.address || "", maps: h.address || h.name };
+  return { id: "pin-hotel", name: `${h.name} (${t("hotel")})`, lat: h.lat, lng: h.lng, address: h.address || "", maps: h.address || h.name };
 }
 
 /** A dataset attraction as a stop the app can show/save. */
@@ -65,7 +66,8 @@ export function buildTripDays(kind = "seven") {
     planKey: "apr-d0",
     date: a.date,
     start: { ...a.narita },
-    stops: [{ ...hotelPoint(), emoji: "🏨", type: "Your hotel", tip: a.evening, verify: a.verify }],
+    stops: [{ ...hotelPoint(), emoji: "🏨", type: "Your hotel", tip: a.evening, verify: a.verify,
+      he: { type: "המלון שלכם", tip: a.he?.evening, verify: a.he?.verify } }],
   }] : [];
   return arrival.concat(DATA.days.map((d) => ({
     id: uid(),
@@ -104,5 +106,5 @@ export function reachable(planKey, fromId) {
 
 export function edgeSummary(e) {
   const icon = e.mode === "walk" ? "🚶" : e.mode === "subway" ? "🚇" : "🚆";
-  return e.mode === "walk" ? `${icon} ~${e.minutes} min on foot` : `${icon} ~${e.minutes} min door to door · ${e.line}`;
+  return e.mode === "walk" ? t("{icon} ~{n} min on foot", { icon, n: e.minutes }) : t("{icon} ~{n} min door to door · {line}", { icon, n: e.minutes, line: e.line });
 }

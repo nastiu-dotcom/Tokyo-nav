@@ -1,3 +1,4 @@
+import { t } from "./i18n.js";
 // Share the trip plan as a link (no accounts, no database).
 // The plan is packed into the part of the URL after "#", which never reaches
 // the server.
@@ -55,9 +56,9 @@ export async function readTripFromHash() {
 export async function shareTrip(trip) {
   const url = await tripLink(trip);
   if (navigator.share) {
-    try { await navigator.share({ title: "Our Tokyo trip plan", url }); return "shared"; } catch (e) { if (e.name === "AbortError") return "cancelled"; }
+    try { await navigator.share({ title: t("Our Tokyo trip plan"), url }); return "shared"; } catch (e) { if (e.name === "AbortError") return "cancelled"; }
   }
   try { await navigator.clipboard.writeText(url); return "copied"; } catch { /* fall through */ }
-  prompt("Copy this link:", url);
+  prompt(t("Copy this link:"), url);
   return "shown";
 }

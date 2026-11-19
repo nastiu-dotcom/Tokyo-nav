@@ -11,6 +11,9 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from data import ARRIVAL, ATTRACTIONS, DATES, FOOD, HOTEL, KONBINI_TIP, PREP  # noqa: E402
 from network import WAIT, journey, rail, walk_minutes  # noqa: E402
+from he_attractions import ATTR_HE  # noqa: E402
+from he_food import FOOD_HE, KONBINI_HE  # noqa: E402
+from he_trip import ARRIVAL_HE, DAYS_HE, PREP_HE, VERIFY_HE  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 CATS = ["museum", "anime", "food", "views", "kids_fun", "arcade"]
@@ -96,6 +99,17 @@ def hotel_minutes(a):
     return best
 
 
+def arrival_with_he():
+    a = json.loads(json.dumps(ARRIVAL))
+    he = ARRIVAL_HE
+    for st, sh in zip(a["airportSteps"], he["airportSteps"]):
+        st["he"] = sh
+    for rt, rh in zip(a["routes"], he["routes"]):
+        rt["he"] = rh
+    a["he"] = {k: v for k, v in he.items() if k not in ("airportSteps", "routes")}
+    return a
+
+
 def build():
     by_id = {a["id"]: a for a in ATTRACTIONS}
     stops, food, edges = [], [], []
@@ -116,6 +130,12 @@ def build():
         s["weatherAlt"] = a["weatherAlt"]
         s["priceYen"] = {"adult": a["prices"][0], "age12": a["prices"][1], "age10": a["prices"][2]}
         s["verify"] = a["verify"]
+        he = dict(ATTR_HE.get(a["id"][5:], {}))
+        if "tickets" in he:
+            if a["tickets"]:
+                s["tickets"] = {**s["tickets"], "he": he["tickets"]}
+            del he["tickets"]
+        s["he"] = he
         stops.append(s)
 
         # ---- food: nearest meal / special / snack within ~10 min + nearest konbini
@@ -148,6 +168,7 @@ def build():
                 "lat": f["lat"], "lng": f["lng"], "walkMinutes": w, "hours": f["hours"], "closed": f["closed"],
                 "cost": f["cost"], "cashOnly": f["cashOnly"], "kidFriendly": f["kidFriendly"], "maps": f["maps"],
                 "tip": f["tip"], "verify": f["verify"],
+                "he": {**FOOD_HE.get(f["slug"], {}), "verify": [VERIFY_HE.get(v, v) for v in f["verify"]]},
             })
         food.append({
             "id": f"plan-d{a['day']}-food-{a['id'].split('-', 2)[2]}-konbini", "day": a["day"], "food": True,
@@ -156,6 +177,7 @@ def build():
             "closed": [], "cost": "¥300–700", "cashOnly": False, "kidFriendly": "Very – onigiri, sandwiches, ice cream",
             "maps": f"convenience store near {a['maps']}", "tip": KONBINI_TIP,
             "verify": ["coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"],
+            "he": KONBINI_HE,
         })
 
     for d in range(1, 6):
@@ -181,8 +203,13 @@ def build():
                   f"(adult {yen(adult)} · age 12 {yen(k12)} · age 10 {yen(k10)}). "
                   f"Attractions {yen(sum(att))}, food {yen(sum(FOOD_PP))} (budget meals), transport {yen(sum(t))} (IC card; "
                   f"the 12-year-old pays adult fares from Apr 1). Extras (arcades, gashapon, souvenirs) not included.")
+        budget_he = (f"מסלול 7 תחנות ≈ {yen(adult + k12 + k10)} לשלושתנו "
+                     f"(מבוגר {yen(adult)} · בן 12 {yen(k12)} · בן 10 {yen(k10)}). "
+                     f"אטרקציות {yen(sum(att))}, אוכל {yen(sum(FOOD_PP))} (ארוחות חסכוניות), תחבורה {yen(sum(t))} (כרטיס IC; "
+                     f"מ-1 באפריל בן ה-12 משלם מחיר מבוגר). תוספות (ארקיידים, גאשאפון, מזכרות) לא כלולות.")
         days.append({"key": d["key"], "date": DATES[i], "title": d["title"], "area": d["area"], "summary": d["summary"],
                      "budget": budget, "before": d["before"], "suggestedRoute": seven,
+                     "he": {**DAYS_HE[d["key"]], "budget": budget_he},
                      "routes": {"five": five, "seven": seven},
                      "budgetYen": {"adult": adult, "age12": k12, "age10": k10, "total": adult + k12 + k10,
                                    "attractions": att, "food": list(FOOD_PP), "transport": list(t)}})
@@ -194,9 +221,10 @@ def build():
                       "address": HOTEL["address"]},
             "firstDate": DATES[0], "kidsAges": [10, 12], "maxLegMinutes": MAX_LEG, "categories": CATS,
         },
-        "arrival": ARRIVAL,
-        "preparation": [{"id": sec["id"], "icon": sec["icon"], "title": sec["title"],
-                         "items": [{"id": f"{sec['id']}-{k}", "text": t} for k, t in sec["items"]]} for sec in PREP],
+        "arrival": arrival_with_he(),
+        "preparation": [{"id": sec["id"], "icon": sec["icon"], "title": sec["title"], "he": {"title": PREP_HE[sec["id"]][0]},
+                         "items": [{"id": f"{sec['id']}-{k}", "text": t, "he": {"text": PREP_HE[sec["id"]][1][k]}} for k, t in sec["items"]]}
+                        for sec in PREP],
         "days": days, "stops": stops, "food": food, "edges": edges,
         "verification": {
             "researched": "2026-11-18 via web search (official sites where found). April 2027 details are provisional unless stated.",
@@ -230,6 +258,20 @@ def validate(data):
             errs.append(f"{s['id']} bad day")
         if any(c not in CATS for c in s["categories"]):
             errs.append(f"{s['id']} unknown category")
+    for s in data["stops"]:
+        for f in ("type", "tip", "cost", "hours", "stay", "bestTime"):
+            if not s.get("he", {}).get(f):
+                errs.append(f"{s['id']} missing Hebrew {f}")
+    for f in data["food"]:
+        for k in ("type", "tip", "kidFriendly"):
+            if not f.get("he", {}).get(k):
+                errs.append(f"{f['id']} missing Hebrew {k}")
+    a = data["arrival"]
+    if len(a["he"]["checklist"]) != len(a["checklist"]) or any("he" not in x for x in a["airportSteps"] + a["routes"]):
+        errs.append("arrival Hebrew incomplete")
+    for rt in a["routes"]:
+        if len(rt["he"]["steps"]) != len(rt["steps"]):
+            errs.append(f"route {rt['name']} Hebrew steps count differs")
     edge_set = {}
     for e in data["edges"]:
         if e["from"] not in stop_ids or e["to"] not in stop_ids:

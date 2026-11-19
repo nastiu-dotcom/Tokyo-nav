@@ -1,107 +1,119 @@
 <!doctype html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Tokyo Kids Explorer</title>
   <meta name="description" content="Plan family days in Tokyo or go on an adventure, with simple directions from place to place.">
-  <meta name="theme-color" content="#0b5cad">
+  <meta name="theme-color" content="#FFF8F1">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/icons/icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Tokyo Kids">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap">
   <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <header class="topbar">
-    <h1>Tokyo Kids Explorer</h1>
-    <div class="modes" role="group" aria-label="Mode">
-      <button type="button" data-mode="trip" aria-pressed="true">🗓️ Trip</button>
-      <button type="button" data-mode="adventure" aria-pressed="false">🧭 Adventure</button>
-      <button type="button" data-mode="prep" aria-pressed="false">✅ Prepare</button>
-      <button type="button" data-mode="map" aria-pressed="false">🗺️ Map</button>
-      <button type="button" data-mode="tax" aria-pressed="false">🧾 Tax refund</button>
+    <div class="title-row">
+      <h1><span class="logo" aria-hidden="true">🗼</span> <span data-i18n="Tokyo Kids Explorer">Tokyo Kids Explorer</span></h1>
+      <button id="lang-btn" class="lang-btn" type="button">EN</button>
+    </div>
+    <div class="modes" role="group" data-i18n-aria="Mode" aria-label="Mode">
+      <button type="button" data-mode="trip" aria-pressed="true" data-i18n="🗓️ Trip">🗓️ Trip</button>
+      <button type="button" data-mode="adventure" aria-pressed="false" data-i18n="🧭 Adventure">🧭 Adventure</button>
+      <button type="button" data-mode="prep" aria-pressed="false" data-i18n="✅ Prepare">✅ Prepare</button>
+      <button type="button" data-mode="map" aria-pressed="false" data-i18n="🗺️ Map">🗺️ Map</button>
+      <button type="button" data-mode="tax" aria-pressed="false" data-i18n="🧾 Tax refund">🧾 Tax refund</button>
     </div>
   </header>
 
   <main>
     <!-- Trip mode: one chip per day -->
-    <nav id="days-bar" class="chips days" aria-label="Days"></nav>
+    <nav id="days-bar" class="chips days" data-i18n-aria="Days" aria-label="Days"></nav>
+
+    <!-- Family sharing: parent's suggestions inbox / kid's corner -->
+    <section class="card family-card" id="family" hidden></section>
 
     <!-- The plan: start → how to get there → stop → … -->
-    <section class="card" id="plan" aria-labelledby="plan-title">
+    <section class="card plan-card" id="plan" aria-labelledby="plan-title">
       <div class="plan-head">
         <h2 id="plan-title">Day 1</h2>
-        <label id="date-wrap" class="date-wrap">Date <input id="day-date" type="date"></label>
+        <label id="date-wrap" class="date-wrap"><span data-i18n="Date">Date</span> <input id="day-date" type="date"></label>
       </div>
       <div id="day-intro"></div>
       <ol id="timeline" class="timeline"></ol>
-      <button id="add-place" class="btn btn-secondary full" type="button">➕ Add any place (search or map)</button>
+      <button id="add-place" class="btn btn-secondary full" type="button" data-i18n="➕ Add any place (search or map)">➕ Add any place (search or map)</button>
       <div id="plan-actions" class="row"></div>
     </section>
 
     <!-- Preparation checklist -->
     <section class="card" id="prep" aria-labelledby="prep-title" hidden>
-      <h2 id="prep-title">✅ Prepare for the trip</h2>
+      <h2 id="prep-title" data-i18n="✅ Prepare for the trip">✅ Prepare for the trip</h2>
       <p id="prep-progress" class="budget"></p>
       <div id="prep-list"></div>
-      <button class="btn btn-secondary full" type="button" id="prep-reset">↺ Untick everything</button>
+      <button class="btn btn-secondary full" type="button" id="prep-reset" data-i18n="↺ Untick everything">↺ Untick everything</button>
     </section>
 
     <!-- Map of all saved places -->
     <section class="card" id="mapview" aria-labelledby="mapview-title" hidden>
-      <h2 id="mapview-title">🗺️ All my places</h2>
+      <h2 id="mapview-title" data-i18n="🗺️ All my places">🗺️ All my places</h2>
       <div id="mapview-root"></div>
     </section>
 
     <!-- Tax refund receipts -->
     <section class="card" id="tax" aria-labelledby="tax-title" hidden>
-      <h2 id="tax-title">🧾 Tax refund receipts</h2>
+      <h2 id="tax-title" data-i18n="🧾 Tax refund receipts">🧾 Tax refund receipts</h2>
       <div id="tax-root"></div>
     </section>
 
     <!-- Browse activities and add them to the plan -->
     <section class="card" id="browse" aria-labelledby="browse-title">
-      <h2 id="browse-title">Things to do</h2>
+      <h2 id="browse-title" data-i18n="Things to do">Things to do</h2>
       <p id="browse-near" class="hint"></p>
-      <div id="categories" class="chips" role="group" aria-label="Category"></div>
+      <div id="categories" class="chips" role="group" data-i18n-aria="Category" aria-label="Category"></div>
       <label class="toggle">
         <input id="open-now" type="checkbox">
-        <span>Open now only</span>
+        <span data-i18n="Open now only">Open now only</span>
       </label>
       <p id="status" class="status" role="status"></p>
       <div id="list" class="list"></div>
     </section>
+
     <!-- Japan travel tips -->
-    <section class="card" aria-labelledby="tips-title">
-      <h2 id="tips-title">🇯🇵 Family tips for Japan</h2>
-      <p class="hint">Save money and avoid surprises – tap a topic.</p>
+    <section class="card" id="tips-card" aria-labelledby="tips-title">
+      <h2 id="tips-title" data-i18n="🇯🇵 Family tips for Japan">🇯🇵 Family tips for Japan</h2>
+      <p class="hint" data-i18n="Save money and avoid surprises – tap a topic.">Save money and avoid surprises – tap a topic.</p>
       <div id="tips-list" class="tips"></div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" data-i18n="Places & routes: Google · Map: © OpenStreetMap contributors · Optional AI guides by Claude — double-check signs at the station.">
     Places &amp; routes: Google · Map: © OpenStreetMap contributors · Optional AI guides by Claude — double-check signs at the station.
   </footer>
+
+  <div id="toast" class="toast" role="status" hidden></div>
 
   <!-- Point picker sheet -->
   <div id="picker" class="sheet" role="dialog" aria-modal="true" aria-labelledby="picker-title" hidden>
     <div class="sheet-head">
       <h2 id="picker-title">Choose a place</h2>
-      <button id="picker-close" class="btn btn-secondary" type="button" aria-label="Close">✕</button>
+      <button id="picker-close" class="btn btn-secondary" type="button" data-i18n-aria="Close" aria-label="Close">✕</button>
     </div>
-    <label for="search" class="label">Search a hotel, station, street or landmark</label>
+    <label for="search" class="label" data-i18n="Search a hotel, station, street or landmark">Search a hotel, station, street or landmark</label>
     <div class="search-wrap">
-      <input id="search" type="search" autocomplete="off" placeholder="e.g. Shinjuku Station" enterkeyhint="search">
+      <input id="search" type="search" autocomplete="off" data-i18n-ph="e.g. Shinjuku Station" placeholder="e.g. Shinjuku Station" enterkeyhint="search">
       <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
     </div>
-    <p class="hint">…or tap the map / drag the pin.</p>
-    <div id="map" class="map" aria-label="Map to pick a place"></div>
+    <p class="hint" data-i18n="…or tap the map / drag the pin.">…or tap the map / drag the pin.</p>
+    <div id="map" class="map" dir="ltr" data-i18n-aria="Map to pick a place" aria-label="Map to pick a place"></div>
     <div class="row">
-      <button id="use-location" class="btn btn-secondary" type="button">📍 Use my location</button>
-      <button id="save-point" class="btn btn-primary" type="button">Save</button>
+      <button id="use-location" class="btn btn-secondary" type="button" data-i18n="📍 Use my location">📍 Use my location</button>
+      <button id="save-point" class="btn btn-primary" type="button" data-i18n="Save">Save</button>
     </div>
   </div>
 

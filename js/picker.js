@@ -1,6 +1,7 @@
 // Full-screen sheet to choose a point: Google search, map tap / pin drag, or
 // the phone's location. Used for day start points and for adding any place.
 import { esc, getJSON } from "./util.js";
+import { t } from "./i18n.js";
 
 const TOKYO_STATION = { lat: 35.6812, lng: 139.7671 };
 const $ = (s) => document.querySelector(s);
@@ -44,7 +45,7 @@ export function closePicker() {
 function setDraft(p, recenter = false) {
   draft = {
     ...p,
-    name: p.name || `Pinned spot (${p.lat.toFixed(4)}, ${p.lng.toFixed(4)})`,
+    name: p.name || t("Pinned spot ({lat}, {lng})", { lat: p.lat.toFixed(4), lng: p.lng.toFixed(4) }),
     id: p.id || `pin-${p.lat.toFixed(5)},${p.lng.toFixed(5)}`,
   };
   marker.setLatLng([p.lat, p.lng]);
@@ -61,11 +62,11 @@ els.save.addEventListener("click", () => {
 els.close.addEventListener("click", closePicker);
 
 els.useLocation.addEventListener("click", () => {
-  if (!navigator.geolocation) return alert("Location is not available on this device.");
+  if (!navigator.geolocation) return alert(t("Location is not available on this device."));
   els.useLocation.disabled = true;
   navigator.geolocation.getCurrentPosition(
-    (pos) => { els.useLocation.disabled = false; setDraft({ lat: pos.coords.latitude, lng: pos.coords.longitude, name: "My location" }, true); },
-    () => { els.useLocation.disabled = false; alert("Could not get your location. Search or tap the map instead."); },
+    (pos) => { els.useLocation.disabled = false; setDraft({ lat: pos.coords.latitude, lng: pos.coords.longitude, name: t("My location") }, true); },
+    () => { els.useLocation.disabled = false; alert(t("Could not get your location. Search or tap the map instead.")); },
     { enableHighAccuracy: true, timeout: 10000 },
   );
 });
@@ -85,7 +86,7 @@ async function runSearch(q) {
     if (seq !== searchSeq) return;
     els.suggestions.innerHTML = suggestions.length
       ? suggestions.map((s) => `<li role="option" tabindex="0" data-id="${esc(s.id)}" data-name="${esc(s.main)}">${esc(s.main)}<small>${esc(s.secondary)}</small></li>`).join("")
-      : `<li aria-disabled="true">No matches – try another name</li>`;
+      : `<li aria-disabled="true">${t("No matches – try another name")}</li>`;
   } catch (err) {
     els.suggestions.innerHTML = `<li aria-disabled="true">${esc(err.message)}</li>`;
   }
