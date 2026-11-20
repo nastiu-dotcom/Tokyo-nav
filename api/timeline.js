@@ -7,7 +7,7 @@
 //   {action: "remove", id}             delete one
 //   {action: "trip",   trip, segments} trip title, budget and country dates
 import { randomBytes } from "node:crypto";
-import { HttpError, handleJson } from "../lib/common.js";
+import { HttpError, areaOf, handleJson } from "../lib/common.js";
 import { kv } from "../lib/kv.js";
 import { requireAdult, requireUser } from "../lib/users.js";
 
@@ -63,6 +63,12 @@ export function cleanItem(item) {
       name: clip(item.name, 100), address: clip(item.address, 200),
       checkIn: date(item.checkIn, "Check-in"), checkOut: date(item.checkOut, "Check-out"),
     };
+    // optional map location (found with 📍) – used as the start of plan days
+    const lat = Number(item.lat), lng = Number(item.lng);
+    if (item.lat !== undefined && item.lat !== "" && item.lat !== null && Number.isFinite(lat) && Number.isFinite(lng) && areaOf(lat, lng)) {
+      out.lat = Math.round(lat * 1e6) / 1e6;
+      out.lng = Math.round(lng * 1e6) / 1e6;
+    }
     if (!out.name) throw new HttpError(400, "The stay needs a name");
     if (out.checkOut <= out.checkIn) throw new HttpError(400, "Check-out must be after check-in");
     return out;

@@ -19,7 +19,7 @@ export default handle(async (req, res) => {
     const allowed = await aiAllowed();
     if (!allowed.ok) { count("ai:blocked"); throw new HttpError(403, allowed.reason); }
     const route = await cachedRoute(a, b);
-    const guide = await writeGuide(name, route);
+    const guide = await writeGuide(name, route, a.area);
     return { route, guide, createdAt: new Date().toISOString() };
   });
 

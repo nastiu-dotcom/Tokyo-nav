@@ -5,7 +5,7 @@
 import { esc, getJSON, store } from "./util.js";
 import { L as tr, t, tn } from "./i18n.js";
 import { dayColor } from "./theme.js";
-import { inJapan, mergePlaces, placesFromFile } from "./takeout.js";
+import { inTrip as inJapan, mergePlaces, placesFromFile } from "./takeout.js";
 import { allTaxRecords, saveTaxRecord } from "./tax.js";
 import { allFood, allPoolStops, tripReady } from "./trip2027.js";
 import { mapsLink } from "./plan.js";
@@ -249,8 +249,8 @@ export async function renderMapView(container, context) {
         <li>${t("Download the <strong>.zip</strong> on this phone, then choose it below (or the “Saved Places.json” / list .csv files inside it).")}</li>
       </ol>
       <label class="btn btn-primary full">${t("📂 Choose Takeout file(s)")}<input type="file" accept=".zip,.json,.csv,application/zip,application/json,text/csv" multiple data-mapfile hidden></label>
-      <p class="small">${t("Read on this phone only – nothing is uploaded. Only places in Japan are shown.")}</p>
-      ${g.length ? `<p>⭐ ${tn(gShown, "1 place on the map", "{n} places on the map")}${gOutside ? ` · ${t("{n} outside Japan (hidden)", { n: gOutside })}` : ""}${gPending ? ` · ${t("{n} without coordinates", { n: gPending })}` : ""}</p>` : ""}
+      <p class="small">${t("Read on this phone only – nothing is uploaded. Only places in Japan and Thailand are shown.")}</p>
+      ${g.length ? `<p>⭐ ${tn(gShown, "1 place on the map", "{n} places on the map")}${gOutside ? ` · ${t("{n} outside Japan and Thailand (hidden)", { n: gOutside })}` : ""}${gPending ? ` · ${t("{n} without coordinates", { n: gPending })}` : ""}</p>` : ""}
       ${gPending ? `<button class="btn btn-secondary full" type="button" data-mapact="find-google">${t("🔎 Find {n} with Google", { n: gPending })}</button>
         <p class="small">${t("Google exports saved lists without coordinates. Each lookup uses one Google search from your free monthly allowance (your daily cap may stop it – try the rest tomorrow).")}</p>` : ""}
       ${g.length ? `<button class="btn btn-secondary full" type="button" data-mapact="clear-google">${t("🗑️ Remove imported Google places")}</button>` : ""}

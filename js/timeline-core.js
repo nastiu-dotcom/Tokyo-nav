@@ -109,3 +109,46 @@ export function fixedCosts(doc) {
 }
 
 export const nights = (s) => daysBetween(s.from, s.to);
+
+/* ---------- holidays, plan dates, hotel starts ---------- */
+
+/** Japan's Golden Week (29 Apr – 5 May, every year): crowds, higher prices, book ahead. */
+export function goldenWeek(date) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date || "")) return false;
+  const md = date.slice(5);
+  return md >= "04-29" && md <= "05-05";
+}
+
+/** Golden Week ranges that fall inside the Japan part of the trip. */
+export function holidayNotes(doc) {
+  const out = [];
+  for (const s of doc?.segments || []) {
+    if (s.country !== "JP") continue;
+    for (let y = Number(s.from.slice(0, 4)); y <= Number(s.to.slice(0, 4)); y++) {
+      const from = `${y}-04-29`, to = `${y}-05-05`;
+      if (to >= s.from && from <= s.to) out.push({ kind: "holiday", id: `gw${y}`, date: from > s.from ? from : s.from, to: to < s.to ? to : s.to, segment: s.id });
+    }
+  }
+  return out;
+}
+
+/** The date the Tokyo plan should start on: the first day in Japan (if plan days clash). */
+export function planShiftTarget(doc, planDays) {
+  if (!planClashes(doc, planDays).length) return null;
+  const jp = [...(doc?.segments || [])].filter((s) => s.country === "JP").sort((a, b) => a.from.localeCompare(b.from))[0];
+  const first = (planDays || []).map((d) => d.date).filter(Boolean).sort()[0];
+  return jp && first && first !== jp.from ? { from: first, to: jp.from, days: daysBetween(first, jp.from) } : null;
+}
+
+const far = (a, b) => !a || !Number.isFinite(a.lat) || Math.abs(a.lat - b.lat) > 0.003 || Math.abs(a.lng - b.lng) > 0.003;
+/** Plan days whose start isn't the hotel booked for that night (hotels located with 📍 only). */
+export function startSuggestions(doc, planDays) {
+  const stays = (doc?.items || []).filter((it) => it.kind === "stay" && Number.isFinite(it.lat));
+  const byStay = new Map();
+  (planDays || []).forEach((d, index) => {
+    if (!d.date) return;
+    const stay = stays.find((s) => d.date >= s.checkIn && d.date < s.checkOut);
+    if (stay && far(d.start, stay)) byStay.set(stay.id, { stay, days: [...(byStay.get(stay.id)?.days || []), index] });
+  });
+  return [...byStay.values()];
+}

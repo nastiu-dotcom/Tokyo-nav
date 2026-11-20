@@ -20,6 +20,15 @@ export function installFakeKv() {
         h.set(a[1], (Number(h.get(a[1])) || 0) + Number(a[2]));
         return h.get(a[1]);
       }
+      case "HSET": {
+        const h = db.get(a[0]) instanceof Map ? db.get(a[0]) : new Map();
+        db.set(a[0], h);
+        let added = 0;
+        for (let i = 1; i + 1 < a.length; i += 2) { if (!h.has(a[i])) added++; h.set(a[i], a[i + 1]); }
+        return added;
+      }
+      case "HDEL": { const h = db.get(a[0]); return h instanceof Map ? a.slice(1).reduce((n, f) => n + (h.delete(f) ? 1 : 0), 0) : 0; }
+      case "INCR": { const n = (Number(db.get(a[0])) || 0) + 1; db.set(a[0], String(n)); return n; }
       case "HGET": { const h = db.get(a[0]); return h instanceof Map && h.has(a[1]) ? String(h.get(a[1])) : null; }
       case "HGETALL": { const h = db.get(a[0]); return h instanceof Map ? [...h.entries()].flatMap(([k, v]) => [k, String(v)]) : []; }
       case "DBSIZE": return db.size;

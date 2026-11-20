@@ -50,6 +50,33 @@ things to do in Tokyo and get there by train, subway or bus.
   “Saved Places.json” / list .csv – read on the phone, nothing uploaded) and
   **tax-refund shops**. Tap a pin → open in Google Maps or get directions.
   Places without coordinates can be found with `/api/find` (Google free tier).
+- **💰 Wallet** (grown-ups only – kids never see money): the ₪80,000 trip
+  budget, shared by the family.
+  - **Left to spend**, with flights and stays you priced in 🧳 the whole trip
+    counted as *booked*; before the trip: what that leaves per day; during the
+    trip: **what you can still spend today** and whether you're on pace
+    ("at this pace the trip costs ₪…").
+  - **Quick add**: amount → currency (picked from the country you're in that
+    day: ฿ in Thailand, ¥ in Japan) → category → cash/card. ₪ is worked out
+    with that day's exchange rate (European Central Bank, free – or type the
+    exact ₪ from your card app). Tap any entry to edit or delete it.
+  - **By category** with optional budgets per category, **spending per day**
+    (chart with the daily budget line), **by country**, the full list, and
+    **⬇️ CSV** for Excel / Google Sheets.
+  - **Works offline**: entries made without signal wait on the phone (⏳) and
+    are sent automatically later. Tax-refund receipts live in the same tab.
+  - If rates can't be fetched, the last saved rates are used; an admin can type
+    rates by hand. The app never guesses a rate.
+- **🌏 Thailand + all of Japan:** search, activities, routes, kids'
+  suggestions, saved Google places and the AI guide work anywhere in Japan and
+  Thailand (the server still refuses other countries, so your key can't be
+  misused). Family tips for both countries – the one you're in comes first –
+  including Thailand's 7% VAT refund rules.
+- **Trip-proofing:** logins last 60 days and renew every time the app opens;
+  🧳 the whole trip offers to **move the Tokyo plan to your Japan dates**,
+  to **start each day at the hotel you booked** (📍 find the hotel on the map
+  once), and marks **Golden Week** (29 Apr – 5 May). Admins can
+  **⬇️ download a backup of everything** (👤 → Manage users).
 - **💰 Running costs** (admins only: 👤 → 💰 Running costs): everything that can
   cost money, measured by the app itself on every API call and refreshed every
   30 seconds –
@@ -138,6 +165,9 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 | `middleware.js`, `login.html`, `admin.html` | Login gate for every page and API; login and user-management pages |
 | `api/auth.js`, `api/admin.js`, `lib/users.js`, `lib/session.js` | Log in/out, change password; admin user management; signed session cookie |
 | `api/timeline.js`, `js/timeline.js`, `js/timeline-core.js` | The whole trip: countries, flights, stays, notes, checks |
+| `api/wallet.js`, `js/wallet.js`, `js/wallet-core.js`, `lib/fx.js` | 💰 Wallet: spending, budgets, exchange rates |
+| `api/backup.js` | Admin: download everything as one JSON file |
+| `.github/workflows/test.yml` | Runs `npm test` on GitHub for every change |
 | `api/family.js` | Family sharing: create, read plan + wishlist, kids suggest, parent approves |
 | `lib/` | Shared server code (not public routes); `lib/kv.js` talks to Upstash Redis |
 | `js/i18n.js`, `js/i18n-he.js` | Language switch and Hebrew texts |

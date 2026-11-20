@@ -75,8 +75,11 @@ beforeEach(() => {
   useFakeAuth(); // Redis calls go to the in-memory fake, everything else to the fake Google above
 });
 
-test("parseLatLng accepts Tokyo, rejects elsewhere and junk", () => {
-  assert.deepEqual(parseLatLng("35.68,139.76"), { lat: 35.68, lng: 139.76 });
+test("parseLatLng accepts Japan and Thailand, rejects elsewhere and junk", () => {
+  assert.deepEqual(parseLatLng("35.68,139.76"), { lat: 35.68, lng: 139.76, area: "JP" });
+  assert.deepEqual(parseLatLng("34.99,135.75"), { lat: 34.99, lng: 135.75, area: "JP" }, "Kyoto");
+  assert.deepEqual(parseLatLng("13.75,100.50"), { lat: 13.75, lng: 100.5, area: "TH" }, "Bangkok");
+  assert.deepEqual(parseLatLng("7.88,98.39"), { lat: 7.88, lng: 98.39, area: "TH" }, "Phuket");
   assert.equal(parseLatLng("48.85,2.35"), null);
   assert.equal(parseLatLng("abc"), null);
 });
@@ -104,7 +107,8 @@ test("/api/activities uses a field mask, drops closed places, caches 24h", async
   const g = calls[0];
   assert.equal(g.headers.get("x-goog-api-key"), "test-google-key");
   assert.match(g.headers.get("x-goog-fieldmask"), /places\.websiteUri/);
-  assert.equal(g.body.textQuery, "zoo or aquarium in Tokyo");
+  assert.equal(g.body.textQuery, "zoo or aquarium");
+  assert.equal(g.body.regionCode, "JP");
 });
 
 test("/api/activities rejects bad input", async () => {
@@ -203,4 +207,14 @@ test("API refuses calls without a login", async () => {
   await handler({ method: "GET", headers: { cookie: "tke_s=eyJ1IjoibmFzdGlhIn0.bad" }, query: { category: "animals", near: "35.68,139.77" } }, forged);
   assert.equal(forged.statusCode, 401);
   assert.ok(!calls.some((c) => c.url.includes("places:searchText")), "Google must not be called");
+});
+
+test("/api/activities works in Thailand with Thai wording", async () => {
+  const { default: handler } = await import("../api/activities.js");
+  const res = fakeRes();
+  await handler({ method: "GET", headers: { cookie }, query: { category: "food", near: "13.74,100.53" } }, res);
+  assert.equal(res.statusCode, 200);
+  const g = calls.find((c) => c.url.includes("places:searchText"));
+  assert.equal(g.body.regionCode, "TH");
+  assert.match(g.body.textQuery, /Thai food/);
 });

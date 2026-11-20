@@ -32,7 +32,7 @@
       <button type="button" data-mode="adventure" aria-pressed="false" data-i18n="🧭 Adventure">🧭 Adventure</button>
       <button type="button" data-mode="prep" aria-pressed="false" data-i18n="✅ Prepare">✅ Prepare</button>
       <button type="button" data-mode="map" aria-pressed="false" data-i18n="🗺️ Map">🗺️ Map</button>
-      <button type="button" data-mode="tax" aria-pressed="false" data-i18n="🧾 Tax refund">🧾 Tax refund</button>
+      <button type="button" data-mode="wallet" aria-pressed="false" data-i18n="💰 Wallet">💰 Wallet</button>
     </div>
   </header>
 
@@ -72,7 +72,10 @@
       <div id="mapview-root"></div>
     </section>
 
-    <!-- Tax refund receipts -->
+    <!-- 💰 Wallet: the trip budget (grown-ups only) -->
+    <section id="wallet" class="wallet viz-root" aria-label="Wallet" hidden></section>
+
+    <!-- Tax refund receipts (shown inside the Wallet tab) -->
     <section class="card" id="tax" aria-labelledby="tax-title" hidden>
       <h2 id="tax-title" data-i18n="🧾 Tax refund receipts">🧾 Tax refund receipts</h2>
       <div id="tax-root"></div>
@@ -93,7 +96,7 @@
 
     <!-- Japan travel tips -->
     <section class="card" id="tips-card" aria-labelledby="tips-title">
-      <h2 id="tips-title" data-i18n="🇯🇵 Family tips for Japan">🇯🇵 Family tips for Japan</h2>
+      <h2 id="tips-title" data-i18n="🧳 Family tips">🧳 Family tips</h2>
       <p class="hint" data-i18n="Save money and avoid surprises – tap a topic.">Save money and avoid surprises – tap a topic.</p>
       <div id="tips-list" class="tips"></div>
     </section>

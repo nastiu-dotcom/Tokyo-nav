@@ -48,7 +48,13 @@ function render() {
       <select id="new-role">${Object.entries(roles).map(([k, label]) => `<option value="${k}" ${k === "member" ? "selected" : ""}>${label}</option>`).join("")}</select>
       <button class="btn btn-primary full" type="submit">${t("➕ Add")}</button>
       <p class="small">${t("Send the name and password to the person privately. They can change the password in the 👤 menu.")}</p>
-    </form>`;
+    </form>
+    <section class="card">
+      <h2>${t("💾 Backup")}</h2>
+      <p class="small">${t("One file with the timeline, the wallet, the shared plan, users (no passwords) and settings. Save it to Google Drive or Files now and then – especially before and during the trip.")}</p>
+      <a class="btn btn-primary full" href="/api/backup" download>${t("⬇️ Download a backup of everything")}</a>
+      <p class="small">${t("Tax-refund receipts and photos stay on each phone – save them from 🧾 Tax refund → Backup.")}</p>
+    </section>`;
 }
 
 async function act(body, done) {
