@@ -5,6 +5,9 @@ import http from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
+import { installFakeKv } from "./fake-kv.js";
+
+if (process.env.FAKE_KV === "1") installFakeKv(); // local testing of family sharing
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const port = Number(process.env.PORT) || 3000;
@@ -21,6 +24,11 @@ http.createServer(async (req, res) => {
     try {
       const mod = await import(join(root, "api", `${name}.js`));
       req.query = Object.fromEntries(url.searchParams);
+      if (req.method === "POST") {
+        let raw = "";
+        for await (const chunk of req) raw += chunk;
+        try { req.body = JSON.parse(raw || "{}"); } catch { req.body = {}; }
+      }
       res.status = (code) => { res.statusCode = code; return res; };
       res.json = (obj) => { res.setHeader("Content-Type", "application/json"); res.end(JSON.stringify(obj)); };
       return await mod.default(req, res);

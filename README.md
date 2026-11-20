@@ -50,6 +50,23 @@ things to do in Tokyo and get there by train, subway or bus.
   “Saved Places.json” / list .csv – read on the phone, nothing uploaded) and
   **tax-refund shops**. Tap a pin → open in Google Maps or get directions.
   Places without coordinates can be found with `/api/find` (Google free tier).
+- **🇮🇱 Hebrew (default) + English:** the whole app – buttons, the 3-day plan,
+  the April trip, arrival guide, checklist, tax refund and map – is in Hebrew,
+  right-to-left. The **EN / עב** button at the top switches language.
+  UI texts: `js/i18n-he.js`; trip content: `js/plan-he.js` and
+  `scripts/trip2027/he_*.py`. `npm test` fails if a text has no Hebrew.
+- **🎨 Pastel design, one colour per day:** arrival = lavender, Day 1 sakura
+  pink, Day 2 sky blue, Day 3 mint, Day 4 peach, Day 5 lilac. Day chips, the
+  day's header, timeline and map pins use that colour (`js/theme.js`).
+- **👨‍👩‍👧 Share with the kids:** in Trip mode tap **“Share with the kids”** and
+  send the link. On the kids' phones the plan and map open **read-only** (they
+  type their name once). They can **suggest places** – search, “I'm here”, or
+  long-press on the map. You see the suggestions (with a badge on 🗓️ Trip),
+  pick a day and tap **✅ Add to day** or **✖ No**; the kids see the answer.
+  Changes to your plan reach their phones automatically (checked every 90 s
+  while the app is open, or tap 🔄). Needs the free Upstash Redis database –
+  see step (d). Only hashed keys are stored; data expires 180 days after the
+  last change.
 - **Start points and places:** tap or drag a pin on the map (Leaflet +
   OpenStreetMap), search a hotel, station or landmark (Google Places
   Autocomplete), or use the phone's location. Everything is saved on the phone.
@@ -83,7 +100,10 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 | `api/place.js` | Place Details (New): coordinates of the chosen suggestion |
 | `api/activities.js` | Places Text Search (New): activities by category |
 | `api/guide.js` | Routes API (transit → walk → nearest stations) + Claude guide |
-| `lib/` | Shared server code (not public routes) |
+| `api/family.js` | Family sharing: create, read plan + wishlist, kids suggest, parent approves |
+| `lib/` | Shared server code (not public routes); `lib/kv.js` talks to Upstash Redis |
+| `js/i18n.js`, `js/i18n-he.js` | Language switch and Hebrew texts |
+| `js/theme.js`, `js/family.js` | Day colours; family sharing on the phone |
 | `scripts/dev-server.js` | Run everything locally without the Vercel CLI |
 | `tests/` | `npm test` – checks the API functions with fake Google/Claude replies |
 
@@ -93,6 +113,7 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 |---|---|---|
 | Map, pin, "Use my location", Navigate button | OpenStreetMap / Google Maps link | Free, no key |
 | Search box, activity lists, "How to get there" (route + built-in tips) | Google | Free within Google's monthly free usage – cap it with quotas (step a-7) so it can never become paid |
+| Family sharing (kids' link, suggestions) | Upstash Redis via Vercel | Free plan – a family uses a tiny part of it. No card needed. |
 | **✨ AI family guide** | Claude (Anthropic) | **Paid, about 1 US cent per guide.** The app asks *"This is a PAID step… Continue?"* every time. Re-opening a saved guide (24 h) is free. |
 
 - No Anthropic key at all → the AI button is hidden and the app is 100% free.
@@ -229,6 +250,30 @@ The Claude API has **no free tier** – it is only used for the optional
 7. **Install on the phone:** open the app address →
    - iPhone (Safari): Share button → **Add to Home Screen**.
    - Android (Chrome): menu ⋮ → **Install app** / **Add to Home screen**.
+
+## (d) Turn on family sharing (free Upstash Redis)
+
+Only needed for **👨‍👩‍👧 Share with the kids**. Everything else works without it.
+
+1. Open **vercel.com** → your **Tokyo-nav** project → tab **Storage**.
+2. Tap **Create Database** (or **Browse Marketplace**) → choose
+   **Upstash** → **Upstash for Redis** → **Continue**.
+3. Pick the **Free** plan, region **Tokyo (ap-northeast-1)** if offered
+   (any region works), give it a name like `tokyo-family` → **Create**.
+   If it asks for a card, stop – the free plan shouldn't need one.
+4. On the next screen **Connect** it to the **Tokyo-nav** project (all
+   environments). Vercel adds the variables `KV_REST_API_URL` and
+   `KV_REST_API_TOKEN` for you – don't copy them anywhere.
+5. **Deployments** → newest → **⋯** → **Redeploy**.
+6. In the app: 🗓️ Trip → **👨‍👩‍👧 Share with the kids** → send the link to
+   each kid (WhatsApp/Messages). They open it in the phone's browser and can
+   **Add to Home Screen** too.
+
+If the app says *“Family sharing is not set up yet”*, the database isn't
+connected to the project or you didn't redeploy. The kid link is like a
+password – anyone with it can see the plan and suggest places. To stop
+sharing, tap **⚙️ Family settings → Stop sharing on this phone** (the data is
+deleted automatically after 180 days without changes).
 
 ### If something doesn't work
 

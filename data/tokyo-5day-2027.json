@@ -40,47 +40,91 @@
   "airportSteps": [
    {
     "title": "Before landing (on the plane)",
-    "detail": "Open Visit Japan Web screenshots: one immigration + customs QR code per person (finish registration at least 6 hours before landing, before you fly). Keep the three passports and a pen in one easy pocket. Use the plane toilet before landing – immigration queues can be long."
+    "detail": "Open Visit Japan Web screenshots: one immigration + customs QR code per person (finish registration at least 6 hours before landing, before you fly). Keep the three passports and a pen in one easy pocket. Use the plane toilet before landing – immigration queues can be long.",
+    "he": {
+     "title": "לפני הנחיתה (במטוס)",
+     "detail": "פתחו את צילומי המסך של Visit Japan Web: קוד QR אחד לביקורת גבולות ולמכס לכל אחד (סיימו את ההרשמה לפחות 6 שעות לפני הנחיתה, עוד לפני הטיסה). שמרו את שלושת הדרכונים ועט בכיס אחד נוח. השתמשו בשירותים במטוס לפני הנחיתה – התורים בביקורת יכולים להיות ארוכים."
+    }
    },
    {
     "title": "1 · Walk to Immigration",
-    "detail": "Follow the yellow 'Arrival / Immigration' signs. Join the 'Foreign Passport' (non-Japanese) lane together – families stay together at one booth."
+    "detail": "Follow the yellow 'Arrival / Immigration' signs. Join the 'Foreign Passport' (non-Japanese) lane together – families stay together at one booth.",
+    "he": {
+     "title": "1 · הולכים לביקורת הגבולות",
+     "detail": "עקבו אחרי השלטים הצהובים 'Arrival / Immigration'. נכנסים יחד לתור 'Foreign Passport' (לא יפנים) – משפחה נשארת יחד בעמדה אחת."
+    }
    },
    {
     "title": "2 · Immigration booth",
-    "detail": "Show passports and your Visit Japan Web immigration QR (or a paper landing card if you didn't register). You (16+) give fingerprints and a photo; children under 16 don't. The officer puts a 'Temporary Visitor' landing sticker in each passport – check all three have one."
+    "detail": "Show passports and your Visit Japan Web immigration QR (or a paper landing card if you didn't register). You (16+) give fingerprints and a photo; children under 16 don't. The officer puts a 'Temporary Visitor' landing sticker in each passport – check all three have one.",
+    "he": {
+     "title": "2 · עמדת ביקורת הגבולות",
+     "detail": "מציגים דרכונים ואת קוד ה-QR לביקורת מ-Visit Japan Web (או כרטיס נחיתה מנייר אם לא נרשמתם). אתם (16+) נותנים טביעות אצבע ותמונה; ילדים מתחת ל-16 לא. הפקיד מדביק בכל דרכון מדבקת 'Temporary Visitor' – בדקו שיש בשלושתם."
+    }
    },
    {
     "title": "3 · Baggage claim",
-    "detail": "Find your flight on the screens for the carousel number. Trolleys are free. Count the bags before leaving."
+    "detail": "Find your flight on the screens for the carousel number. Trolleys are free. Count the bags before leaving.",
+    "he": {
+     "title": "3 · איסוף מזוודות",
+     "detail": "מצאו את הטיסה במסכים כדי לדעת את מספר המסוע. העגלות בחינם. ספרו את התיקים לפני שיוצאים."
+    }
    },
    {
     "title": "4 · Customs",
-    "detail": "Use the customs e-gates with your Visit Japan Web customs QR + passport (or hand in the paper customs form – one per family). Most families have nothing to declare. Medicines must be within the limits (see Prepare tab)."
+    "detail": "Use the customs e-gates with your Visit Japan Web customs QR + passport (or hand in the paper customs form – one per family). Most families have nothing to declare. Medicines must be within the limits (see Prepare tab).",
+    "he": {
+     "title": "4 · מכס",
+     "detail": "משתמשים בשערים האלקטרוניים של המכס עם קוד ה-QR למכס + דרכון (או מוסרים טופס מכס מנייר – אחד למשפחה). לרוב המשפחות אין מה להצהיר. תרופות צריכות להיות בתוך המגבלות (ראו לשונית ההכנות)."
+    }
    },
    {
     "title": "5 · Arrivals hall: cash",
-    "detail": "Withdraw ¥30,000–50,000 from a 7-Eleven (Seven Bank) or Japan Post ATM – they accept foreign cards. Many small shops, food stalls and temples are cash only."
+    "detail": "Withdraw ¥30,000–50,000 from a 7-Eleven (Seven Bank) or Japan Post ATM – they accept foreign cards. Many small shops, food stalls and temples are cash only.",
+    "he": {
+     "title": "5 · אולם הנוסעים הנכנסים: מזומן",
+     "detail": "מושכים ¥30,000–50,000 בכספומט של 7-Eleven (Seven Bank) או של הדואר היפני – הם מקבלים כרטיסים זרים. הרבה חנויות קטנות, דוכני אוכל ומקדשים מקבלים רק מזומן."
+    }
    },
    {
     "title": "6 · Phone data",
-    "detail": "Activate your eSIM (bought before the trip) or pick up a pocket Wi-Fi at its counter. Check Google Maps works before leaving the airport."
+    "detail": "Activate your eSIM (bought before the trip) or pick up a pocket Wi-Fi at its counter. Check Google Maps works before leaving the airport.",
+    "he": {
+     "title": "6 · אינטרנט בטלפון",
+     "detail": "הפעילו את ה-eSIM (שנקנה לפני הטיול) או אספו נתב כיס מהדלפק שלו. בדקו שגוגל מפות עובד לפני שיוצאים משדה התעופה."
+    }
    },
    {
     "title": "7 · IC cards (Suica)",
-    "detail": "Go to the JR East Travel Service Center at the airport station (B1). Welcome Suica (tourist card, no deposit, valid 28 days) is sold there and at machines. You: adult card. 12-year-old: buy an ADULT card – from April 1 they pay adult fares. 10-year-old: CHILD Welcome Suica at the counter (bring the child's passport). Load ~¥2,000–3,000 each. iPhone users can also use the Welcome Suica Mobile app."
+    "detail": "Go to the JR East Travel Service Center at the airport station (B1). Welcome Suica (tourist card, no deposit, valid 28 days) is sold there and at machines. You: adult card. 12-year-old: buy an ADULT card – from April 1 they pay adult fares. 10-year-old: CHILD Welcome Suica at the counter (bring the child's passport). Load ~¥2,000–3,000 each. iPhone users can also use the Welcome Suica Mobile app.",
+    "he": {
+     "title": "7 · כרטיסי IC (סואיקה)",
+     "detail": "לכו ל-JR East Travel Service Center בתחנה של שדה התעופה (B1). Welcome Suica (כרטיס לתיירים, בלי פיקדון, תקף 28 יום) נמכר שם ובמכונות. אתם: כרטיס מבוגר. בן 12: לקנות כרטיס מבוגר – מ-1 באפריל הוא משלם מחיר מבוגר. בן 10: Welcome Suica לילד בדלפק (להביא את הדרכון של הילד). טוענים בערך ¥2,000–3,000 לכל אחד. משתמשי אייפון יכולים גם להשתמש באפליקציית Welcome Suica Mobile."
+    }
    },
    {
     "title": "8 · Train tickets",
-    "detail": "At the same JR East Travel Service Center buy Narita Express (N'EX) tickets to Shinjuku. Foreign passport holders can buy the N'EX round-trip ticket (adult ¥5,200, valid 14 days) if you will fly home from Narita; otherwise one-way (~¥3,070–3,330 adult, children about half). On March 31 BOTH kids still count as children (school year ends March 31). All N'EX seats are reserved – ask for three seats together and write down the car number."
+    "detail": "At the same JR East Travel Service Center buy Narita Express (N'EX) tickets to Shinjuku. Foreign passport holders can buy the N'EX round-trip ticket (adult ¥5,200, valid 14 days) if you will fly home from Narita; otherwise one-way (~¥3,070–3,330 adult, children about half). On March 31 BOTH kids still count as children (school year ends March 31). All N'EX seats are reserved – ask for three seats together and write down the car number.",
+    "he": {
+     "title": "8 · כרטיסי רכבת",
+     "detail": "באותו JR East Travel Service Center קונים כרטיסי נריטה אקספרס (N'EX) לשינג'וקו. בעלי דרכון זר יכולים לקנות כרטיס הלוך-חזור ל-N'EX (מבוגר ¥5,200, תקף 14 יום) אם טסים הביתה מנריטה; אחרת כרטיס לכיוון אחד (בערך ¥3,070–3,330 למבוגר, ילדים בערך חצי). ב-31 במרץ שני הילדים עדיין נחשבים ילדים (שנת הלימודים נגמרת ב-31 במרץ). כל המושבים ב-N'EX משוריינים – בקשו שלושה מושבים יחד ורשמו את מספר הקרון."
+    }
    },
    {
     "title": "9 · Optional: send big suitcases to the hotel",
-    "detail": "Luggage-delivery counters (e.g. Yamato / ABC) in the arrivals hall can send suitcases to the hotel, usually arriving the next day. Keep an overnight bag with pyjamas, chargers and medicines. Ask the hotel first whether they accept deliveries. Price per bag – check at the counter."
+    "detail": "Luggage-delivery counters (e.g. Yamato / ABC) in the arrivals hall can send suitcases to the hotel, usually arriving the next day. Keep an overnight bag with pyjamas, chargers and medicines. Ask the hotel first whether they accept deliveries. Price per bag – check at the counter.",
+    "he": {
+     "title": "9 · אופציונלי: לשלוח מזוודות גדולות למלון",
+     "detail": "בדלפקי משלוח המזוודות (למשל Yamato / ABC) באולם הנוסעים אפשר לשלוח מזוודות למלון, לרוב הן מגיעות למחרת. השאירו אצלכם תיק לילה עם פיג'מות, מטענים ותרופות. שאלו קודם את המלון אם הוא מקבל משלוחים. המחיר למזוודה – לבדוק בדלפק."
+    }
    },
    {
     "title": "10 · Last stop before the train",
-    "detail": "Toilets, water and a konbini snack for the ride. Then follow the red 'JR Lines' signs down to the platform."
+    "detail": "Toilets, water and a konbini snack for the ride. Then follow the red 'JR Lines' signs down to the platform.",
+    "he": {
+     "title": "10 · עצירה אחרונה לפני הרכבת",
+     "detail": "שירותים, מים וחטיף מהקונביני לנסיעה. ואז עקבו אחרי השלטים האדומים 'JR Lines' למטה לרציף."
+    }
    }
   ],
   "routes": [
@@ -98,7 +142,22 @@
      "Take an Odakyu LOCAL train (各駅停車, 'Local') one stop to Minami-Shinjuku (~2 min). Expresses don't stop there.",
      "From Minami-Shinjuku walk ~8 min to Rainbow Palace Yoyogi (3-55-1 Yoyogi). Open the hotel in Google Maps before you leave the platform.",
      "Alternative last step: JR Chuo-Sobu local one stop to Yoyogi, then ~12 min walk. With very heavy bags, a taxi from Shinjuku South Exit is the only taxi this trip should need."
-    ]
+    ],
+    "he": {
+     "name": "מומלץ: נריטה אקספרס (N'EX) + קו אודאקיו",
+     "time": "≈ שעה ו-45 דקות מדלת לדלת",
+     "cost": "≈ ¥3,100–3,300 למבוגר + בערך חצי לילד (כיוון אחד) · או N'EX הלוך-חזור ¥5,200 למבוגר",
+     "why": "מושבים משוריינים, מדפים גדולים למזוודות, בלי החלפות עד שינג'וקו. הכי קל עם ילדים אחרי טיסה ארוכה.",
+     "steps": [
+      "עולים ל-N'EX לכיוון שינג'וקו מהרציף ב-B1 (רכבות בערך כל 30–60 דקות – בדקו בלוח).",
+      "חשוב: רכבות N'EX מתפצלות בתחנת טוקיו. שבו בקרון שמספרו מודפס על הכרטיס – זה החלק שנוסע לשינג'וקו.",
+      "שימו מזוודות גדולות במדפים בקצה הקרון (יש בהם מנעול). נסיעה של בערך 80–90 דקות.",
+      "יורדים בשינג'וקו. עוקבים אחרי השלטים ל-'Odakyu Line' (בצד המערבי של התחנה). מעבירים סואיקה.",
+      "נוסעים ברכבת אודאקיו מקומית (各駅停車, 'Local') תחנה אחת למינאמי-שינג'וקו (בערך 2 דקות). רכבות אקספרס לא עוצרות שם.",
+      "ממינאמי-שינג'וקו הולכים בערך 8 דקות לריינבו פאלאס יויוגי (3-55-1 Yoyogi). פתחו את המלון בגוגל מפות לפני שיוצאים מהרציף.",
+      "חלופה לשלב האחרון: JR צ'ואו-סובו מקומי תחנה אחת ליויוגי ואז בערך 12 דקות הליכה. עם מזוודות כבדות מאוד, מונית מהיציאה הדרומית של שינג'וקו היא המונית היחידה שהטיול הזה צריך."
+     ]
+    }
    },
    {
     "name": "Easiest with sleepy kids: Airport Limousine Bus to Shinjuku",
@@ -111,7 +170,19 @@
      "Go to the bus stop number on your ticket; staff put suitcases in the hold – keep the baggage tags.",
      "Get off at Busta Shinjuku (Shinjuku Expressway Bus Terminal, 4F above the South Exit).",
      "From Busta Shinjuku walk ~15 min to the hotel, or go down to the Odakyu Line and ride one stop to Minami-Shinjuku."
-    ]
+    ],
+    "he": {
+     "name": "הכי קל עם ילדים עייפים: אוטובוס Airport Limousine לשינג'וקו",
+     "time": "≈ 1.5–2.5 שעות לפי התנועה",
+     "cost": "≈ ¥3,200–3,900 למבוגר, ילדים חצי – לבדוק מחיר עדכני",
+     "why": "הצוות מעמיס את המזוודות; בלי מדרגות או החלפות. איטי יותר בפקקים.",
+     "steps": [
+      "קונים כרטיסים בדלפק Airport Limousine באולם הנוסעים (או אונליין).",
+      "הולכים לתחנת האוטובוס שמספרה על הכרטיס; הצוות מכניס את המזוודות לתא המטען – שמרו את תגי המזוודות.",
+      "יורדים ב-Busta Shinjuku (מסוף האוטובוסים של שינג'וקו, קומה 4 מעל היציאה הדרומית).",
+      "מ-Busta Shinjuku הולכים בערך 15 דקות למלון, או יורדים לקו אודאקיו ונוסעים תחנה אחת למינאמי-שינג'וקו."
+     ]
+    }
    },
    {
     "name": "Budget/fastest train: Keisei Skyliner + JR Yamanote",
@@ -124,7 +195,19 @@
      "Skyliner to Nippori (~36–45 min).",
      "Change to the JR Yamanote Line (green) toward Ikebukuro/Shinjuku – ~20 min to Shinjuku, or ride on to Yoyogi.",
      "Continue as in the recommended route (Odakyu to Minami-Shinjuku, or walk from Yoyogi)."
-    ]
+    ],
+    "he": {
+     "name": "תקציבי/מהיר: קייסיי סקיליינר + JR יאמאנוטה",
+     "time": "≈ שעה וחצי",
+     "cost": "מושב משוריין בסקיליינר + מחיר JR – לבדוק מחירים עדכניים",
+     "why": "מהיר עד ניפורי, אבל החלפה אחת עם מזוודות במדרגות ובמדרגות נעות.",
+     "steps": [
+      "קונים כרטיסי סקיליינר בדלפק של קייסיי (B1).",
+      "סקיליינר לניפורי (בערך 36–45 דקות).",
+      "מחליפים לקו JR יאמאנוטה (ירוק) לכיוון איקבוקורו/שינג'וקו – בערך 20 דקות לשינג'וקו, או ממשיכים ליויוגי.",
+      "ממשיכים כמו במסלול המומלץ (אודאקיו למינאמי-שינג'וקו, או הליכה מיויוגי)."
+     ]
+    }
    }
   ],
   "checklist": [
@@ -148,45 +231,100 @@
    "luggage-delivery prices",
    "hotel check-in time and luggage acceptance",
    "walking times from Minami-Shinjuku / Yoyogi to the hotel"
-  ]
+  ],
+  "he": {
+   "title": "נחיתה: נמל התעופה נריטה ← ריינבו פאלאס יויוגי",
+   "area": "נמל התעופה נריטה · שינג'וקו · יויוגי",
+   "summary": "נוחתים, עוברים ביקורת גבולות ומכס, מסדרים מזומן, אינטרנט בטלפון וכרטיסי IC, ואז נוסעים בנריטה אקספרס לשינג'וקו ועוד תחנה אחת למלון. הערב בלי מאמץ – ארוחה ליד המלון והולכים לישון מוקדם כדי שיום 1 יתחיל ב-9:00.",
+   "duration": "בערך 2–3 שעות מהנחיתה עד דלת המלון (ביקורת גבולות + מזוודות 45–90 דקות, רכבת 80–90 דקות, מעבר והליכה בערך 20 דקות).",
+   "checklist": [
+    "קודי QR של Visit Japan Web לשלושתנו (צילומי מסך, לא רק באפליקציה)",
+    "שלושה דרכונים – מדבקת נחיתה בכל אחד אחרי הביקורת",
+    "כל התיקים נאספו (לספור) ועברנו מכס",
+    "נמשך מזומן (¥30,000–50,000)",
+    "eSIM / נתב כיס עובד – גוגל מפות נפתח",
+    "כרטיסי סואיקה: מבוגר בשבילכם, מבוגר לבן ה-12, ילד לבן ה-10",
+    "כרטיסי N'EX עם שלושה מושבים יחד – מספר הקרון רשום (הרכבת מתפצלת בטוקיו!)",
+    "כתובת המלון שמורה בגוגל מפות: 3-55-1 Yoyogi, Shibuya-ku (東京都渋谷区代々木3-55-1)",
+    "תיק לילה אצלנו אם המזוודות נשלחו",
+    "שירותים + מים + חטיף לפני העלייה לרכבת",
+    "במלון: לשאול על ארוחת בוקר, כביסה והקונביני הקרוב; לטעון את כל הטלפונים",
+    "לילה מוקדם – יום 1 מתחיל ב-9:00 בשינג'וקו גיואן"
+   ],
+   "evening": "ארוחת ערב ליד המלון: פיקניק מהקונביני בחדר, או קומות המסעדות ליד היציאה הדרומית של שינג'וקו (NEWoMan / Lumine) – בערך 15 דקות משם. ג'ט-לג: לצאת לאור יום, לאכול לפי השעה המקומית וללכת לישון עד 21:00.",
+   "budget": "≈ ¥8,000–10,000 לשלושה: N'EX לכיוון אחד (בערך ¥3,300 למבוגר + בערך ¥1,650 לילד) + אודאקיו בערך ¥150 לכל אחד + טעינת כרטיסי IC וארוחת ערב. N'EX הלוך-חזור, eSIM ומשלוח מזוודות בנפרד.",
+   "verify": [
+    "מחירי N'EX והאוטובוס ב-2027",
+    "מחירי משלוח מזוודות",
+    "שעת הצ'ק-אין במלון וקבלת מזוודות",
+    "זמני ההליכה ממינאמי-שינג'וקו / יויוגי למלון"
+   ]
+  }
  },
  "preparation": [
   {
    "id": "docs",
    "icon": "🛂",
    "title": "Documents & entry",
+   "he": {
+    "title": "מסמכים וכניסה"
+   },
    "items": [
     {
      "id": "docs-passports",
-     "text": "Passports for all three, valid for the whole trip (check the kids' expiry dates)"
+     "text": "Passports for all three, valid for the whole trip (check the kids' expiry dates)",
+     "he": {
+      "text": "דרכונים לשלושתנו, בתוקף לכל הטיול (לבדוק את תוקף הדרכונים של הילדים)"
+     }
     },
     {
      "id": "docs-visa",
-     "text": "Check visa-free entry for your nationality. JESTA (Japan's future e-travel authorization) is NOT needed for 2027 trips – ignore sites selling it"
+     "text": "Check visa-free entry for your nationality. JESTA (Japan's future e-travel authorization) is NOT needed for 2027 trips – ignore sites selling it",
+     "he": {
+      "text": "לבדוק כניסה ללא ויזה לפי האזרחות. JESTA (ההיתר האלקטרוני העתידי של יפן) לא נדרש לטיולים ב-2027 – להתעלם מאתרים שמוכרים אותו"
+     }
     },
     {
      "id": "docs-vjw",
-     "text": "Register on Visit Japan Web (one account can hold the whole family) and complete immigration + customs at least 6 hours before landing; screenshot each person's QR code"
+     "text": "Register on Visit Japan Web (one account can hold the whole family) and complete immigration + customs at least 6 hours before landing; screenshot each person's QR code",
+     "he": {
+      "text": "להירשם ל-Visit Japan Web (חשבון אחד לכל המשפחה) ולמלא ביקורת גבולות + מכס לפחות 6 שעות לפני הנחיתה; לצלם מסך של קוד ה-QR של כל אחד"
+     }
     },
     {
      "id": "docs-consent",
-     "text": "Travelling as the only parent? Carry a consent letter from the other parent if your home country or airline may ask"
+     "text": "Travelling as the only parent? Carry a consent letter from the other parent if your home country or airline may ask",
+     "he": {
+      "text": "טסים עם הורה אחד? קחו מכתב הסכמה מההורה השני, אם המדינה או חברת התעופה עשויות לבקש"
+     }
     },
     {
      "id": "docs-insurance",
-     "text": "Travel insurance with medical cover for all three (save the emergency number)"
+     "text": "Travel insurance with medical cover for all three (save the emergency number)",
+     "he": {
+      "text": "ביטוח נסיעות עם כיסוי רפואי לשלושתנו (לשמור את מספר החירום)"
+     }
     },
     {
      "id": "docs-hotel",
-     "text": "Hotel booking confirmation + address in Japanese and English (東京都渋谷区代々木3-55-1) – printed and on the phone"
+     "text": "Hotel booking confirmation + address in Japanese and English (東京都渋谷区代々木3-55-1) – printed and on the phone",
+     "he": {
+      "text": "אישור הזמנת המלון + כתובת ביפנית ובאנגלית (東京都渋谷区代々木3-55-1) – מודפס ובטלפון"
+     }
     },
     {
      "id": "docs-flights",
-     "text": "Flight times, terminal and booking codes saved offline"
+     "text": "Flight times, terminal and booking codes saved offline",
+     "he": {
+      "text": "שעות טיסה, טרמינל וקודי הזמנה שמורים לשימוש לא מקוון"
+     }
     },
     {
      "id": "docs-copies",
-     "text": "Photos of passports and insurance stored in the cloud and printed"
+     "text": "Photos of passports and insurance stored in the cloud and printed",
+     "he": {
+      "text": "צילומים של הדרכונים והביטוח בענן ומודפסים"
+     }
     }
    ]
   },
@@ -194,34 +332,58 @@
    "id": "book",
    "icon": "🎟️",
    "title": "Bookings (with deadlines)",
+   "he": {
+    "title": "הזמנות (עם מועדים)"
+   },
    "items": [
     {
      "id": "book-bosaikan",
-     "text": "Ikebukuro Bosaikan earthquake simulator for Mon Apr 5 – bookings open up to 5 months ahead (≈ from early November 2026)"
+     "text": "Ikebukuro Bosaikan earthquake simulator for Mon Apr 5 – bookings open up to 5 months ahead (≈ from early November 2026)",
+     "he": {
+      "text": "סימולטור רעידות האדמה בבוסאיקאן איקבוקורו ליום שני 5.4 – ההזמנות נפתחות עד 5 חודשים מראש (≈ מתחילת נובמבר 2026)"
+     }
     },
     {
      "id": "book-skytree",
-     "text": "TOKYO SKYTREE weekday advance tickets for Fri Apr 2 (cheaper online)"
+     "text": "TOKYO SKYTREE weekday advance tickets for Fri Apr 2 (cheaper online)",
+     "he": {
+      "text": "כרטיסים מראש לסקייטרי ליום חול – שישי 2.4 (זול יותר אונליין)"
+     }
     },
     {
      "id": "book-kirby",
-     "text": "Kirby Café Tokyo for Fri Apr 2 – reservations sell out quickly"
+     "text": "Kirby Café Tokyo for Fri Apr 2 – reservations sell out quickly",
+     "he": {
+      "text": "קירבי קפה טוקיו לשישי 2.4 – ההזמנות נגמרות מהר"
+     }
     },
     {
      "id": "book-joypolis",
-     "text": "Tokyo Joypolis e-tickets for Sun Apr 4 (if you choose it)"
+     "text": "Tokyo Joypolis e-tickets for Sun Apr 4 (if you choose it)",
+     "he": {
+      "text": "כרטיסים אלקטרוניים לג'ויפוליס ליום ראשון 4.4 (אם בוחרים בו)"
+     }
     },
     {
      "id": "book-shibuyasky",
-     "text": "SHIBUYA SKY for Thu Apr 1 (optional – the free Hikarie view is the budget alternative)"
+     "text": "SHIBUYA SKY for Thu Apr 1 (optional – the free Hikarie view is the budget alternative)",
+     "he": {
+      "text": "SHIBUYA SKY לחמישי 1.4 (אופציונלי – התצפית החינמית בהיקארי היא החלופה הזולה)"
+     }
     },
     {
      "id": "book-nex",
-     "text": "Decide N'EX round trip (¥5,200 adult, foreign passport) vs one-way – depends on your return airport"
+     "text": "Decide N'EX round trip (¥5,200 adult, foreign passport) vs one-way – depends on your return airport",
+     "he": {
+      "text": "להחליט N'EX הלוך-חזור (¥5,200 למבוגר, דרכון זר) או כיוון אחד – תלוי בשדה התעופה בחזרה"
+     }
     },
     {
      "id": "book-legoland",
-     "text": "LEGOLAND Discovery Center Tokyo dated ticket (optional)"
+     "text": "LEGOLAND Discovery Center Tokyo dated ticket (optional)",
+     "he": {
+      "text": "כרטיס לגולנד דיסקברי סנטר טוקיו לפי תאריך (אופציונלי)"
+     }
     }
    ]
   },
@@ -229,26 +391,44 @@
    "id": "money",
    "icon": "💴",
    "title": "Money",
+   "he": {
+    "title": "כסף"
+   },
    "items": [
     {
      "id": "money-cards",
-     "text": "Two payment cards without foreign-transaction fees; tell your bank you're travelling"
+     "text": "Two payment cards without foreign-transaction fees; tell your bank you're travelling",
+     "he": {
+      "text": "שני כרטיסי אשראי בלי עמלת המרה; להודיע לבנק שנוסעים"
+     }
     },
     {
      "id": "money-cash",
-     "text": "Plan to withdraw ¥30,000–50,000 at Narita (7-Eleven / Japan Post ATMs take foreign cards)"
+     "text": "Plan to withdraw ¥30,000–50,000 at Narita (7-Eleven / Japan Post ATMs take foreign cards)",
+     "he": {
+      "text": "לתכנן למשוך ¥30,000–50,000 בנריטה (כספומטים של 7-Eleven / הדואר היפני מקבלים כרטיסים זרים)"
+     }
     },
     {
      "id": "money-coins",
-     "text": "Coin purse for ¥100 coins (gashapon, lockers, crane games)"
+     "text": "Coin purse for ¥100 coins (gashapon, lockers, crane games)",
+     "he": {
+      "text": "ארנק מטבעות למטבעות של ¥100 (גאשאפון, לוקרים, מכונות מנוף)"
+     }
     },
     {
      "id": "money-budget",
-     "text": "Kids' souvenir and arcade budgets agreed before the trip"
+     "text": "Kids' souvenir and arcade budgets agreed before the trip",
+     "he": {
+      "text": "תקציב מזכרות וארקיידים לילדים – לסכם לפני הטיול"
+     }
     },
     {
      "id": "money-tax",
-     "text": "Tax-free shopping changes to a refund system from November 2026 – keep receipts and passports when shopping"
+     "text": "Tax-free shopping changes to a refund system from November 2026 – keep receipts and passports when shopping",
+     "he": {
+      "text": "שיטת הקניות ללא מס עברה להחזר מנובמבר 2026 – לשמור קבלות ודרכונים בקניות"
+     }
     }
    ]
   },
@@ -256,26 +436,44 @@
    "id": "tech",
    "icon": "📱",
    "title": "Phone & tech",
+   "he": {
+    "title": "טלפון וטכנולוגיה"
+   },
    "items": [
     {
      "id": "tech-esim",
-     "text": "eSIM or pocket Wi-Fi for at least two devices (so a kid's phone or tablet can call you)"
+     "text": "eSIM or pocket Wi-Fi for at least two devices (so a kid's phone or tablet can call you)",
+     "he": {
+      "text": "eSIM או נתב כיס לפחות לשני מכשירים (שגם לטלפון או לטאבלט של ילד יהיה איך להתקשר)"
+     }
     },
     {
      "id": "tech-apps",
-     "text": "Apps: Google Maps (download Tokyo offline), Google Translate (Japanese offline + camera), Welcome Suica Mobile (iPhone), Visit Japan Web, this app installed on the home screen"
+     "text": "Apps: Google Maps (download Tokyo offline), Google Translate (Japanese offline + camera), Welcome Suica Mobile (iPhone), Visit Japan Web, this app installed on the home screen",
+     "he": {
+      "text": "אפליקציות: גוגל מפות (להוריד את טוקיו למצב לא מקוון), Google Translate (יפנית לא מקוון + מצלמה), Welcome Suica Mobile (אייפון), Visit Japan Web, והאפליקציה הזו במסך הבית"
+     }
     },
     {
      "id": "tech-plug",
-     "text": "Plug adapter for Japan's Type A sockets (two flat pins, 100 V – most phone chargers are fine)"
+     "text": "Plug adapter for Japan's Type A sockets (two flat pins, 100 V – most phone chargers are fine)",
+     "he": {
+      "text": "מתאם לשקעים מסוג A ביפן (שני פינים שטוחים, 100 וולט – רוב מטעני הטלפונים מתאימים)"
+     }
     },
     {
      "id": "tech-powerbank",
-     "text": "Power bank in hand luggage (not in checked bags) + cables for everyone"
+     "text": "Power bank in hand luggage (not in checked bags) + cables for everyone",
+     "he": {
+      "text": "סוללה ניידת בתיק היד (לא במזוודה) + כבלים לכולם"
+     }
     },
     {
      "id": "tech-headphones",
-     "text": "Kids' headphones for the flight and trains"
+     "text": "Kids' headphones for the flight and trains",
+     "he": {
+      "text": "אוזניות לילדים לטיסה ולרכבות"
+     }
     }
    ]
   },
@@ -283,26 +481,44 @@
    "id": "health",
    "icon": "💊",
    "title": "Health & medicines",
+   "he": {
+    "title": "בריאות ותרופות"
+   },
    "items": [
     {
      "id": "health-meds",
-     "text": "Medicines in original packaging with a copy of the prescription; prescription meds up to 1 month, non-prescription up to 2 months (more needs a Yakkan Shoumei import certificate)"
+     "text": "Medicines in original packaging with a copy of the prescription; prescription meds up to 1 month, non-prescription up to 2 months (more needs a Yakkan Shoumei import certificate)",
+     "he": {
+      "text": "תרופות באריזה המקורית עם העתק מרשם; תרופות מרשם עד חודש, ללא מרשם עד חודשיים (יותר מזה צריך אישור יבוא Yakkan Shoumei)"
+     }
     },
     {
      "id": "health-banned",
-     "text": "Do NOT pack pseudoephedrine products (e.g. Sudafed, Actifed, Vicks inhaler) or Adderall-type stimulants – they are prohibited in Japan"
+     "text": "Do NOT pack pseudoephedrine products (e.g. Sudafed, Actifed, Vicks inhaler) or Adderall-type stimulants – they are prohibited in Japan",
+     "he": {
+      "text": "לא לארוז מוצרים עם פסאודואפדרין (למשל Sudafed, Actifed, משאף Vicks) או ממריצים כמו אדרל – הם אסורים ביפן"
+     }
     },
     {
      "id": "health-kidsmeds",
-     "text": "Kids' fever/pain medicine, plasters, motion-sickness tablets, any allergy medicine (spring = cedar-pollen season)"
+     "text": "Kids' fever/pain medicine, plasters, motion-sickness tablets, any allergy medicine (spring = cedar-pollen season)",
+     "he": {
+      "text": "תרופות חום/כאב לילדים, פלסטרים, כדורים נגד בחילה בנסיעה, תרופות אלרגיה (אביב = עונת אבקת ארז)"
+     }
     },
     {
      "id": "health-sanitizer",
-     "text": "Hand sanitizer, tissues, wet wipes"
+     "text": "Hand sanitizer, tissues, wet wipes",
+     "he": {
+      "text": "ג'ל לחיטוי ידיים, טישו, מגבונים לחים"
+     }
     },
     {
      "id": "health-emergency",
-     "text": "Emergency numbers saved: police 110, ambulance/fire 119, Japan Visitor Hotline 050-3816-2787"
+     "text": "Emergency numbers saved: police 110, ambulance/fire 119, Japan Visitor Hotline 050-3816-2787",
+     "he": {
+      "text": "מספרי חירום שמורים: משטרה 110, אמבולנס/כיבוי 119, קו חם למבקרים ביפן 050-3816-2787"
+     }
     }
    ]
   },
@@ -310,30 +526,51 @@
    "id": "clothes",
    "icon": "🧥",
    "title": "Clothes (Tokyo early April: mild days, cool evenings)",
+   "he": {
+    "title": "בגדים (טוקיו בתחילת אפריל: ימים נעימים, ערבים קרירים)"
+   },
    "items": [
     {
      "id": "clothes-layers",
-     "text": "Layers: T-shirts, a warm sweater/fleece and a light jacket for each person"
+     "text": "Layers: T-shirts, a warm sweater/fleece and a light jacket for each person",
+     "he": {
+      "text": "שכבות: חולצות, סוודר/פליז חם ומעיל קל לכל אחד"
+     }
     },
     {
      "id": "clothes-rain",
-     "text": "Compact umbrella or light rain jackets"
+     "text": "Compact umbrella or light rain jackets",
+     "he": {
+      "text": "מטרייה קטנה או מעילי גשם קלים"
+     }
     },
     {
      "id": "clothes-shoes",
-     "text": "Comfortable walking shoes that slip on and off easily (shoes come off in some places)"
+     "text": "Comfortable walking shoes that slip on and off easily (shoes come off in some places)",
+     "he": {
+      "text": "נעלי הליכה נוחות שקל לחלוץ ולנעול (חולצים נעליים בחלק מהמקומות)"
+     }
     },
     {
      "id": "clothes-socks",
-     "text": "Good socks without holes – everyone will see them when shoes come off"
+     "text": "Good socks without holes – everyone will see them when shoes come off",
+     "he": {
+      "text": "גרביים טובות בלי חורים – כולם יראו כשחולצים נעליים"
+     }
     },
     {
      "id": "clothes-towel",
-     "text": "Small hand towels – many public toilets have no paper towels"
+     "text": "Small hand towels – many public toilets have no paper towels",
+     "he": {
+      "text": "מגבות ידיים קטנות – בהרבה שירותים ציבוריים אין מגבות נייר"
+     }
     },
     {
      "id": "clothes-pyjamas",
-     "text": "Overnight bag packed separately (in case suitcases are sent ahead from the airport)"
+     "text": "Overnight bag packed separately (in case suitcases are sent ahead from the airport)",
+     "he": {
+      "text": "תיק לילה ארוז בנפרד (למקרה שהמזוודות נשלחות משדה התעופה)"
+     }
     }
    ]
   },
@@ -341,26 +578,44 @@
    "id": "daybag",
    "icon": "🎒",
    "title": "Daily bag",
+   "he": {
+    "title": "תיק יומי"
+   },
    "items": [
     {
      "id": "daybag-bottle",
-     "text": "Refillable water bottles"
+     "text": "Refillable water bottles",
+     "he": {
+      "text": "בקבוקי מים רב-פעמיים"
+     }
     },
     {
      "id": "daybag-trash",
-     "text": "Small bag for rubbish (public bins are rare)"
+     "text": "Small bag for rubbish (public bins are rare)",
+     "he": {
+      "text": "שקית קטנה לאשפה (אין הרבה פחים ציבוריים)"
+     }
     },
     {
      "id": "daybag-snacks",
-     "text": "Snacks for queues"
+     "text": "Snacks for queues",
+     "he": {
+      "text": "חטיפים לתורים"
+     }
     },
     {
      "id": "daybag-picnic",
-     "text": "Picnic sheet for sakura days (Shinjuku Gyoen, Sumida Park)"
+     "text": "Picnic sheet for sakura days (Shinjuku Gyoen, Sumida Park)",
+     "he": {
+      "text": "שמיכת פיקניק לימי הסאקורה (שינג'וקו גיואן, פארק סומידה)"
+     }
     },
     {
      "id": "daybag-cards",
-     "text": "Contact card for each child: your phone number, hotel name and address in Japanese + English"
+     "text": "Contact card for each child: your phone number, hotel name and address in Japanese + English",
+     "he": {
+      "text": "כרטיס פרטים לכל ילד: הטלפון שלכם, שם וכתובת המלון ביפנית ובאנגלית"
+     }
     }
    ]
   },
@@ -368,22 +623,37 @@
    "id": "kids",
    "icon": "🧒",
    "title": "Talk with the kids before the trip",
+   "he": {
+    "title": "לדבר עם הילדים לפני הטיול"
+   },
    "items": [
     {
      "id": "kids-lost",
-     "text": "'If we get separated' rule: stay where you are, or ask station staff and show your contact card"
+     "text": "'If we get separated' rule: stay where you are, or ask station staff and show your contact card",
+     "he": {
+      "text": "כלל 'אם הלכנו לאיבוד': נשארים במקום, או פונים לעובד בתחנה ומראים את כרטיס הפרטים"
+     }
     },
     {
      "id": "kids-manners",
-     "text": "Quiet on trains, no eating while walking, stand on the left on escalators, shoes off when you see slippers"
+     "text": "Quiet on trains, no eating while walking, stand on the left on escalators, shoes off when you see slippers",
+     "he": {
+      "text": "שקט ברכבות, לא אוכלים תוך כדי הליכה, עומדים בצד שמאל במדרגות נעות, חולצים נעליים כשרואים נעלי בית"
+     }
     },
     {
      "id": "kids-arcade",
-     "text": "Arcade rule: under-16s leave arcades by 18:00"
+     "text": "Arcade rule: under-16s leave arcades by 18:00",
+     "he": {
+      "text": "כלל הארקיידים: מתחת לגיל 16 יוצאים מהארקייד עד 18:00"
+     }
     },
     {
      "id": "kids-phrases",
-     "text": "Five phrases: konnichiwa, arigatō, sumimasen, onegai shimasu, toire wa doko desu ka?"
+     "text": "Five phrases: konnichiwa, arigatō, sumimasen, onegai shimasu, toire wa doko desu ka?",
+     "he": {
+      "text": "חמישה ביטויים: קוניצ'יווה (שלום), אריגאטו (תודה), סומימאסן (סליחה), אונגאי שימאס (בבקשה), טוירה וא דוקו דס קה? (איפה השירותים?)"
+     }
     }
    ]
   },
@@ -391,22 +661,37 @@
    "id": "home",
    "icon": "🏠",
    "title": "Before leaving home",
+   "he": {
+    "title": "לפני שיוצאים מהבית"
+   },
    "items": [
     {
      "id": "home-checkin",
-     "text": "Online check-in, seats together for all three"
+     "text": "Online check-in, seats together for all three",
+     "he": {
+      "text": "צ'ק-אין אונליין, מושבים יחד לשלושתנו"
+     }
     },
     {
      "id": "home-weight",
-     "text": "Bag weight checked; leave space for souvenirs"
+     "text": "Bag weight checked; leave space for souvenirs",
+     "he": {
+      "text": "לבדוק משקל מזוודות; להשאיר מקום למזכרות"
+     }
     },
     {
      "id": "home-keys",
-     "text": "House keys, lights, plants/pets arranged"
+     "text": "House keys, lights, plants/pets arranged",
+     "he": {
+      "text": "מפתחות הבית, אורות, עציצים/חיות מסודרים"
+     }
     },
     {
      "id": "home-charge",
-     "text": "Charge every device the night before"
+     "text": "Charge every device the night before",
+     "he": {
+      "text": "לטעון כל מכשיר בלילה שלפני"
+     }
     }
    ]
   }
@@ -433,6 +718,17 @@
     "plan-d1-hikarie-sky-lobby",
     "plan-d1-mandarake-shibuya"
    ],
+   "he": {
+    "title": "גני סאקורה, כבאיות וגודזילה",
+    "area": "יויוגי · שינג'וקו · הראג'וקו · שיבויה",
+    "summary": "מתחילים ליד המלון עם פריחת הדובדבן בשינג'וקו גיואן, מוזיאון כבאות חינמי וגודזילה שמציץ מעל שינג'וקו. אחר הצהריים בהראג'וקו ובשיבויה: גיוזה, אוצרות אנימה, ארקיידים ותצפית חינמית (או בתשלום) על העיר.",
+    "before": [
+     "שינג'וקו גיואן בשבוע השיא של הסאקורה: הגיעו ב-9:00; בלי אלכוהול, בודקים תיקים.",
+     "ארקיידים: מתחת לגיל 16 יוצאים עד 18:00 – לכו אליהם אחר הצהריים.",
+     "SHIBUYA SKY אופציונלי ויקר – הזמינו אונליין רק אם רוצים."
+    ],
+    "budget": "מסלול 7 תחנות ≈ ¥10,100 לשלושתנו (מבוגר ¥4,100 · בן 12 ¥3,400 · בן 10 ¥2,600). אטרקציות ¥500, אוכל ¥8,100 (ארוחות חסכוניות), תחבורה ¥1,500 (כרטיס IC; מ-1 באפריל בן ה-12 משלם מחיר מבוגר). תוספות (ארקיידים, גאשאפון, מזכרות) לא כלולות."
+   },
    "routes": {
     "five": [
      "plan-d1-shinjuku-gyoen",
@@ -512,6 +808,17 @@
     "plan-d2-sumida-park",
     "plan-d2-taito-asakusa"
    ],
+   "he": {
+    "title": "סקייטרי, פינגווינים ואדו העתיקה",
+    "area": "אושיאגה · סקייטרי · סומידה · ריוגוקו",
+    "summary": "יום שישי במזרח טוקיו: מוזיאון אדו-טוקיו שנפתח מחדש, ואז סקייטרי, קירבי ופוקימון תחת קורת גג אחת ופינגווינים באקווריום סומידה. מסיימים עם פריחת דובדבן על הנהר ומשחקי ארקייד.",
+    "before": [
+     "הזמינו אונליין את הסקייטרי (מראש, יום חול) ואת קירבי קפה.",
+     "מוזיאון הסומו פתוח רק בימי חול – היום זו ההזדמנות.",
+     "סאקורה בפארק סומידה: יום שישי רגוע יותר מסוף השבוע."
+    ],
+    "budget": "מסלול 7 תחנות ≈ ¥27,250 לשלושתנו (מבוגר ¥11,600 · בן 12 ¥8,700 · בן 10 ¥6,950). אטרקציות ¥16,650, אוכל ¥8,100 (ארוחות חסכוניות), תחבורה ¥2,500 (כרטיס IC; מ-1 באפריל בן ה-12 משלם מחיר מבוגר). תוספות (ארקיידים, גאשאפון, מזכרות) לא כלולות."
+   },
    "routes": {
     "five": [
      "plan-d2-edo-tokyo-museum",
@@ -591,6 +898,17 @@
     "plan-d3-radio-kaikan",
     "plan-d3-super-potato"
    ],
+   "he": {
+    "title": "מתקנים, בייסבול ומשחקי רטרו",
+    "area": "טוקיו דום · קוראקואן · קנדה · אקיהברה",
+    "summary": "שבת של מתקנים בטוקיו דום סיטי, אוטאני במוזיאון הבייסבול וגן מתקופת אדו בפריחה. אחר כך מקדש האנימה של קנדה, רכבות שחולפות ב-mAAch ecute ומשחקי ארקייד רטרו באקיהברה.",
+    "before": [
+     "שבת + חופשת אביב: התורים למתקנים גדלים אחרי 11:00 – התחילו בטוקיו דום סיטי בפתיחה.",
+     "בדקו את לוח המחירים של כרטיס המתקנים יום לפני.",
+     "אוריגמי קאיקאן בדרך כלל סגור בימי ראשון – שבת מתאים."
+    ],
+    "budget": "מסלול 7 תחנות ≈ ¥20,400 לשלושתנו (מבוגר ¥7,700 · בן 12 ¥7,300 · בן 10 ¥5,400). אטרקציות ¥10,300, אוכל ¥8,100 (ארוחות חסכוניות), תחבורה ¥2,000 (כרטיס IC; מ-1 באפריל בן ה-12 משלם מחיר מבוגר). תוספות (ארקיידים, גאשאפון, מזכרות) לא כלולות."
+   },
    "routes": {
     "five": [
      "plan-d3-baseball-museum",
@@ -672,6 +990,19 @@
     "plan-d4-joypolis",
     "plan-d4-decks-takoyaki"
    ],
+   "he": {
+    "title": "יום במפרץ: אמבט רגליים, גאנדאם וג'ויפוליס",
+    "area": "טויוסו · אריאקה · אודאיבה",
+    "summary": "יום ראשון ליד המפרץ: בראנץ' בשוק ואמבט רגליים חינמי בטויוסו, הרפתקת הישרדות ברעידת אדמה בסונה אריאה וגאנדאם בדייברסיטי. מסיימים עם ארקיידים, ג'ויפוליס (או לגולנד) וטקויאקי עם ממתקי רטרו ב-DECKS.",
+    "before": [
+     "שוק טויוסו סגור בימי ראשון – סנקיאקו באנראי (קומת האוכל) פתוח.",
+     "מיראיקאן סגור עד 23.4.2027 ופסל הגאנדאם הענק הוסר (2026).",
+     "ג'ויפוליס יקר (בערך ¥16,000 לשלושה) – החליטו מראש; Round1 היא החלופה הזולה.",
+     "יוריקאמומה וקו רינקאי לא כלולים בכרטיס הרכבת התחתית.",
+     "אופציה לערב: הליכה חינמית על גשר הקשת (בערך 1.7 ק\"מ; סגור ביום שני השלישי בחודש וברוח חזקה) – אכלו קודם, אין אוכל על הגשר."
+    ],
+    "budget": "מסלול 7 תחנות ≈ ¥30,150 לשלושתנו (מבוגר ¥11,500 · בן 12 ¥10,000 · בן 10 ¥8,650). אטרקציות ¥17,800, אוכל ¥8,100 (ארוחות חסכוניות), תחבורה ¥4,250 (כרטיס IC; מ-1 באפריל בן ה-12 משלם מחיר מבוגר). תוספות (ארקיידים, גאשאפון, מזכרות) לא כלולות."
+   },
    "routes": {
     "five": [
      "plan-d4-senkyaku-banrai",
@@ -751,6 +1082,17 @@
     "plan-d5-gigo-ikebukuro-2",
     "plan-d5-tenbou-park"
    ],
+   "he": {
+    "title": "פוקימון, צעצועי קפסולה והאקווריום על הגג",
+    "area": "איקבוקורו · סאנשיין סיטי",
+    "summary": "יום שמתאים ליום שני (הרבה מוזיאונים סגורים בשני, סאנשיין סיטי לא): סימולטור רעידות אדמה, אקווריום על הגג ופלנטריום. ואז פוקימון סנטר מגה טוקיו, 3,000 מכונות קפסולה, גיוזה בנאמג'ה טאון ושקיעה בגובה 240 מטר.",
+    "before": [
+     "יום שני 5 באפריל: רוב מוזיאוני העיר סגורים – היום הזה עוקף אותם.",
+     "הזמינו מראש את הבוסאיקאן (סימולטור רעידות אדמה); הסיורים ביפנית.",
+     "הביאו מטבעות של ¥100 לגאשאפון (יש מכונות החלפה בפנים)."
+    ],
+    "budget": "מסלול 7 תחנות ≈ ¥25,650 לשלושתנו (מבוגר ¥9,600 · בן 12 ¥9,200 · בן 10 ¥6,850). אטרקציות ¥16,300, אוכל ¥8,100 (ארוחות חסכוניות), תחבורה ¥1,250 (כרטיס IC; מ-1 באפריל בן ה-12 משלם מחיר מבוגר). תוספות (ארקיידים, גאשאפון, מזכרות) לא כלולות."
+   },
    "routes": {
     "five": [
      "plan-d5-bosaikan",
@@ -853,7 +1195,20 @@
    },
    "verify": [
     "exact 2027 spring hours (9:00–18:00 assumed from the official Mar 15–Sep 30 schedule)"
-   ]
+   ],
+   "he": {
+    "type": "גן · פריחת הדובדבן",
+    "hours": "9:00–18:00 (השערים נסגרים ב-17:30) מ-15 במרץ; ימי פתיחה מיוחדים באביב 25.3–24.4.2027: פתוח כל יום",
+    "closedNote": "בדרך כלל סגור בימי שני, אבל פתוח כל יום 25.3–24.4.2027 (לוח רשמי)",
+    "bestTime": "בפתיחה ב-9:00 (העומס של הסאקורה מתחיל מהר)",
+    "stay": "1.5–2 שעות",
+    "cost": "מבוגר ¥500 · בני 12 ו-10: חינם (עד חטיבת ביניים)",
+    "tip": "שבוע השיא של הדובדבנים: הגיעו ב-9:00 ולכו קודם לגן היפני. אסור להכניס אלכוהול וציוד משחק, ובודקים תיקים בשער – קחו חטיפים, שמיכת פיקניק ותוכנית בלי כדור (תופסת, למצוא סוגים שונים של סאקורה).",
+    "weatherAlt": "גשם: מוזיאון הכבאות של טוקיו (בפנים, בחינם) במרחק 2 תחנות",
+    "verify": [
+     "שעות האביב המדויקות ב-2027 (9:00–18:00 לפי הלוח הרשמי 15.3–30.9)"
+    ]
+   }
   },
   {
    "id": "plan-d1-yoyogi-park",
@@ -897,7 +1252,20 @@
    },
    "verify": [
     "official website (none confirmed)"
-   ]
+   ],
+   "he": {
+    "type": "פארק · פיקניק ומופעי רחוב",
+    "hours": "פתוח כל היום (הפארק); המתקנים משתנים",
+    "closedNote": "",
+    "bestTime": "בוקר או אחר הצהריים המאוחרים",
+    "stay": "שעה",
+    "cost": "חינם",
+    "tip": "מדשאות ענקיות לפרוק אנרגיה אחרי מוזיאונים; בסופי שבוע יש רקדנים ומוזיקאים. מקומות הפיקניק תחת הסאקורה מתמלאים מוקדם בשבוע הראשון של אפריל.",
+    "weatherAlt": "גשם: מוזיאון האולימפיאדה היפני (בפנים)",
+    "verify": [
+     "אתר רשמי (לא אומת)"
+    ]
+   }
   },
   {
    "id": "plan-d1-fire-museum",
@@ -941,7 +1309,18 @@
     "age12": 0,
     "age10": 0
    },
-   "verify": []
+   "verify": [],
+   "he": {
+    "type": "מוזיאון · כבאיות ומסוק",
+    "hours": "9:30–17:00 (כניסה אחרונה 16:30)",
+    "closedNote": "סגור בימי שני (ביום החול הבא אם שני הוא חג)",
+    "bestTime": "כל שעה; שקט בבוקר",
+    "stay": "1–1.5 שעות",
+    "cost": "חינם לכולם",
+    "tip": "טפסו לתא הטייס של מסוק כבאות אמיתי בקומת הגג ושבו בכיסאות הנהג של הכבאיות. הילדים יכולים ללבוש מעילי כבאים קטנים לתמונות.",
+    "weatherAlt": "",
+    "verify": []
+   }
   },
   {
    "id": "plan-d1-olympic-museum",
@@ -985,7 +1364,18 @@
     "age12": 0,
     "age10": 0
    },
-   "verify": []
+   "verify": [],
+   "he": {
+    "type": "מוזיאון · ספורט אינטראקטיבי",
+    "hours": "10:00–17:00 (כניסה אחרונה 16:30)",
+    "closedNote": "סגור בימי שני (למחרת אם שני הוא חג)",
+    "bestTime": "אחר הצהריים",
+    "stay": "1–1.5 שעות",
+    "cost": "קומה 1 בחינם · תערוכות בקומה 2: מבוגר ¥500 · בני 12 ו-10: חינם (עד תיכון)",
+    "tip": "בקומה השנייה מתחרים באולימפיונים וירטואליים ובודקים קפיצה וזמן תגובה – דרך מעולה לפרוק אנרגיה בפנים.",
+    "weatherAlt": "",
+    "verify": []
+   }
   },
   {
    "id": "plan-d1-godzilla-head",
@@ -1029,7 +1419,20 @@
    },
    "verify": [
     "terrace access rules (a booking site reported it suspended)"
-   ]
+   ],
+   "he": {
+    "type": "אתר מפורסם · מפלצות קאיג'ו",
+    "hours": "נראה מהרחוב בכל שעה",
+    "closedNote": "הגישה למרפסת בקומה 8 מוגבלת (אורחי מלון / לקוחות בית הקפה)",
+    "bestTime": "שעות היום",
+    "stay": "15–20 דקות",
+    "cost": "חינם (צופים מ-Central Road / רחוב גודזילה)",
+    "tip": "הביטו למעלה מ'רחוב גודזילה' וראו את גודזילה מציץ מעל בית הקולנוע. בואו באור יום והישארו ברחוב הראשי – קבוקיצ'ו הוא אזור חיי לילה.",
+    "weatherAlt": "",
+    "verify": [
+     "כללי הגישה למרפסת (אתר הזמנות דיווח שהיא סגורה)"
+    ]
+   }
   },
   {
    "id": "plan-d1-taito-kabukicho",
@@ -1074,7 +1477,22 @@
     "exact address",
     "opening hours",
     "official URL"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד · 383 מכונות מנוף",
+    "hours": "בערך מ-10:00 עד מאוחר בלילה",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00 (תקנות הנוער בטוקיו)",
+    "bestTime": "סוף הבוקר / אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "כניסה חופשית · מכונות מנוף בערך ¥100–200 למשחק",
+    "tip": "נפתח במרץ 2026 עם שלטים באנגלית שמסבירים את המכונות. קבעו תקציב (למשל ¥1,000 לכל אחד) ונסו את המכונות עם שתי צבתות. הרבה מכונות מקבלות סואיקה.",
+    "weatherAlt": "",
+    "verify": [
+     "כתובת מדויקת",
+     "שעות פתיחה",
+     "אתר רשמי"
+    ]
+   }
   },
   {
    "id": "plan-d1-gigo-shibuya",
@@ -1118,7 +1536,21 @@
    "verify": [
     "exact address and hours",
     "purikura floor rules"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד · תאי צילום פוריקורה",
+    "hours": "בערך מ-10:00 עד מאוחר בלילה",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00",
+    "bestTime": "אחר הצהריים",
+    "stay": "30–45 דקות",
+    "cost": "כניסה חופשית · פוריקורה בערך ¥500–700 לסשן",
+    "tip": "פוריקורה = תאי צילום מדבקות שנותנים עיניים ענקיות ונצנצים. בחלק מקומות הפוריקורה אסור לקבוצות של גברים בלבד – הורה עם ילדים זה בסדר.",
+    "weatherAlt": "",
+    "verify": [
+     "כתובת ושעות מדויקות",
+     "כללי קומת הפוריקורה"
+    ]
+   }
   },
   {
    "id": "plan-d1-shibuya-sky",
@@ -1147,7 +1579,11 @@
    "tickets": {
     "url": "https://www.shibuya-scramble-square.com/sky/",
     "label": "Book SHIBUYA SKY",
-    "note": "Timed tickets; buy online for the lower price. Free alternative: Shibuya Hikarie Sky Lobby."
+    "note": "Timed tickets; buy online for the lower price. Free alternative: Shibuya Hikarie Sky Lobby.",
+    "he": {
+     "label": "הזמנת SHIBUYA SKY",
+     "note": "כרטיסים לפי שעה; באונליין זול יותר. חלופה חינמית: Sky Lobby בשיבויה היקארי."
+    }
    },
    "indoor": false,
    "hotelMinutes": 22,
@@ -1162,7 +1598,21 @@
    "verify": [
     "junior-high price",
     "2027 prices"
-   ]
+   ],
+   "he": {
+    "type": "תצפית גג (בתשלום)",
+    "hours": "בערך 10:00–22:30 (כניסה אחרונה מוקדם יותר)",
+    "closedNote": "",
+    "bestTime": "לפני 15:00 זול יותר; משבצות השקיעה נגמרות שבועות מראש",
+    "stay": "שעה",
+    "cost": "יקר · אונליין: מבוגר ¥2,700 (לפני 15:00) / ¥3,400 (מ-15:00); יסודי ¥1,200 (באותו יום, בקופה); בן 12: מחיר חטיבת ביניים – לבדוק",
+    "tip": "גג פתוח עם נוף על מעבר החצייה של שיבויה מגובה 229 מ'. כובעים ותיקים חייבים להיכנס ללוקרים – הרוח חזקה.",
+    "weatherAlt": "גשם: התצפית נסגרת בסערה – לכו ל-Sky Lobby בשיבויה היקארי (בפנים, בחינם)",
+    "verify": [
+     "מחיר לחטיבת ביניים",
+     "מחירי 2027"
+    ]
+   }
   },
   {
    "id": "plan-d1-hikarie-sky-lobby",
@@ -1205,7 +1655,20 @@
    },
    "verify": [
     "sky lobby opening hours"
-   ]
+   ],
+   "he": {
+    "type": "תצפית חינמית בפנים",
+    "hours": "שעות הבניין (בערך 10:00–21:00)",
+    "closedNote": "",
+    "bestTime": "אחר הצהריים המאוחרים",
+    "stay": "15–20 דקות",
+    "cost": "חינם",
+    "tip": "חלונות ענק בחינם מעל הרכבות של תחנת שיבויה – ספרו כמה צבעים שונים של רכבות אתם מוצאים.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות ה-Sky Lobby"
+    ]
+   }
   },
   {
    "id": "plan-d1-mandarake-shibuya",
@@ -1248,7 +1711,20 @@
    },
    "verify": [
     "opening hours"
-   ]
+   ],
+   "he": {
+    "type": "אספנות אנימה ומנגה",
+    "hours": "בערך 12:00–20:00",
+    "closedNote": "יש בו מחלקה ל-18+ – הישארו במעברים הראשיים",
+    "bestTime": "אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "להסתכל בחינם · בובות, קלפים ומנגה יד שנייה",
+    "tip": "מערה של מוצרי אנימה יד שנייה – מעולה לקלפי פוקימון ובובות במחיר נמוך מחדש. קבעו תקציב כבר בכניסה.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות פתיחה"
+    ]
+   }
   },
   {
    "id": "plan-d1-isetan-food-hall",
@@ -1291,7 +1767,20 @@
    },
    "verify": [
     "opening hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל בכלבו",
+    "hours": "בערך 10:00–20:00",
+    "closedNote": "",
+    "bestTime": "צהריים, או אחרי 19:00 בשביל הנחות",
+    "stay": "45 דקות",
+    "cost": "להסתכל בחינם · בנטו וממתקים בערך ¥600–2,000",
+    "tip": "'דפאצ'יקה': מאות קופסאות בנטו יפות, סושי וממתקים. קנו כאן ארוחת צהריים ועשו פיקניק בשינג'וקו גיואן (בלי אלכוהול).",
+    "weatherAlt": "",
+    "verify": [
+     "שעות פתיחה"
+    ]
+   }
   },
   {
    "id": "plan-d1-harajuku-gyoza-lou",
@@ -1335,7 +1824,21 @@
    "verify": [
     "prices",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדת גיוזה זולה",
+    "hours": "מצהריים עד הערב (תור בשעות העומס)",
+    "closedNote": "מזומן בלבד",
+    "bestTime": "לפני 12:00 או אחרי 14:00",
+    "stay": "45 דקות",
+    "cost": "צלחת גיוזה בערך ¥300–600 · ארוחה בערך ¥800–1,000 לאדם",
+    "tip": "הזמינו צלחת אחת 'יאקי' (מטוגנים) ואחת 'סוי' (מבושלים) להשוואה. התור זז מהר, מזומן בלבד.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירים",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-skytree",
@@ -1364,7 +1867,11 @@
    "tickets": {
     "url": "https://www.tokyo-skytree.jp/en/",
     "label": "Buy Skytree tickets (official)",
-    "note": "Advance online tickets are cheaper; prices differ weekday/weekend."
+    "note": "Advance online tickets are cheaper; prices differ weekday/weekend.",
+    "he": {
+     "label": "כרטיסים לסקייטרי (רשמי)",
+     "note": "כרטיסים מראש באונליין זולים יותר; המחיר שונה ביום חול ובסוף שבוע."
+    }
    },
    "indoor": true,
    "hotelMinutes": 50,
@@ -1379,7 +1886,21 @@
    "verify": [
     "2027 prices (sources disagree slightly)",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מגדל תצפית (בתשלום)",
+    "hours": "בערך 10:00–21:00 (כניסה אחרונה 20:00)",
+    "closedNote": "",
+    "bestTime": "בוקר של יום חול; להזמין משבצת שעה",
+    "stay": "1–1.5 שעות",
+    "cost": "יקר · מראש ביום חול: מבוגר ¥2,100 · בן 12 (12–17) בערך ¥1,400 · בן 10 (6–11) בערך ¥850; באותו יום יקר יותר",
+    "tip": "עומדים על רצפת זכוכית בגובה 340 מ'. בבקרים בהירים רואים את הר פוג'י. הגלריה בגובה 450 מ' בתשלום נוסף – מרפסת הטמבו מספיקה.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי 2027 (המקורות לא מסכימים לגמרי)",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-sumida-aquarium",
@@ -1408,7 +1929,11 @@
    "tickets": {
     "url": "https://sumida-aquarium.com/en/about/price",
     "label": "Prices & tickets",
-    "note": "Check child prices on the official page."
+    "note": "Check child prices on the official page.",
+    "he": {
+     "label": "מחירים וכרטיסים",
+     "note": "בדקו מחירי ילדים בדף הרשמי."
+    }
    },
    "indoor": true,
    "hotelMinutes": 51,
@@ -1422,7 +1947,20 @@
    },
    "verify": [
     "child prices"
-   ]
+   ],
+   "he": {
+    "type": "אקווריום · פינגווינים ומדוזות",
+    "hours": "ימי חול 10:00–20:00 · סופי שבוע וחגים 9:00–21:00 (כניסה אחרונה שעה לפני)",
+    "closedNote": "אין ימי סגירה קבועים (רשמי)",
+    "bestTime": "בוקר של יום חול",
+    "stay": "1.5 שעות",
+    "cost": "מבוגר ¥2,500 · 15–17 ¥1,800 · בני 12 ו-10: מחיר ילד – לבדוק בדף המחירים הרשמי",
+    "tip": "בריכת הפינגווינים הפתוחה היא מהגדולות ביפן בתוך מבנה – צופים בהם שוחים בגובה העיניים. זמני ההאכלה וההסברים כתובים בכניסה.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי ילדים"
+    ]
+   }
   },
   {
    "id": "plan-d2-planetarium-tenku",
@@ -1467,7 +2005,21 @@
    "verify": [
     "program prices",
     "English availability"
-   ]
+   ],
+   "he": {
+    "type": "פלנטריום",
+    "hours": "מופעים בערך כל שעה מסוף הבוקר",
+    "closedNote": "",
+    "bestTime": "מנוחה בצהריים",
+    "stay": "45 דקות",
+    "cost": "בערך ¥1,500–1,800 למושב לפי התוכנית – לבדוק",
+    "tip": "40 דקות של מנוחה קרירה וחשוכה לרגליים עייפות. בחלק מהמופעים יש אפקטים של ריח מרגיע; יש מדריכי שמע באנגלית למופעים נבחרים.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי התוכניות",
+     "זמינות באנגלית"
+    ]
+   }
   },
   {
    "id": "plan-d2-pokemon-center-skytree",
@@ -1510,7 +2062,20 @@
    },
    "verify": [
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חנות פוקימון",
+    "hours": "בערך 10:00–21:00",
+    "closedNote": "",
+    "bestTime": "בוקר של יום חול",
+    "stay": "30–45 דקות",
+    "cost": "להסתכל בחינם",
+    "tip": "חפשו את רייקוואזה הענק עם פיקאצ'ו שרוכב על הסקייטרי. המוצרים כאן שונים מהחנות בשיבויה – יש מוצרי 'סקייטרי' מוגבלים.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-kirby-cafe",
@@ -1556,7 +2121,22 @@
     "URL",
     "booking window",
     "prices"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה דמויות",
+    "hours": "מצהריים עד הערב (במשמרות)",
+    "closedNote": "מומלץ מאוד להזמין מקום",
+    "bestTime": "משמרת הצהריים",
+    "stay": "שעה",
+    "cost": "מנה עיקרית בערך ¥1,800–2,500 · חוויה מיוחדת (יקר)",
+    "tip": "אוכל בצורת קירבי וחברים. הזמינו באונליין ברגע שההזמנות נפתחות (נגמר מהר); דלפק הטייק-אווי ליד זול יותר.",
+    "weatherAlt": "",
+    "verify": [
+     "אתר",
+     "חלון ההזמנות",
+     "מחירים"
+    ]
+   }
   },
   {
    "id": "plan-d2-solamachi-food",
@@ -1599,7 +2179,20 @@
    },
    "verify": [
     "floor numbers"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון ומסעדות",
+    "hours": "בערך 10:00–21:00 (מסעדות עד בערך 23:00)",
+    "closedNote": "",
+    "bestTime": "לפני 12:00",
+    "stay": "45 דקות",
+    "cost": "ארוחה בערך ¥900–1,500 לאדם",
+    "tip": "כל אחד בוחר לעצמו במתחם המזון; בקומות המסעדות 30F/31F יש חלונות עם נוף חינמי על אסאקוסה.",
+    "weatherAlt": "",
+    "verify": [
+     "מספרי הקומות"
+    ]
+   }
   },
   {
    "id": "plan-d2-edo-tokyo-museum",
@@ -1644,7 +2237,20 @@
    },
    "verify": [
     "child prices"
-   ]
+   ],
+   "he": {
+    "type": "מוזיאון היסטוריה (נפתח מחדש ב-2026)",
+    "hours": "9:30–17:30 (בשבת עד 19:30), כניסה אחרונה חצי שעה לפני",
+    "closedNote": "סגור בימי שני",
+    "bestTime": "בפתיחה ב-9:30",
+    "stay": "1.5–2 שעות",
+    "cost": "תערוכה קבועה: מבוגר ¥800 · ילדים: לבדוק (במוזיאוני טוקיו ילדים עד חטיבת ביניים נכנסים הרבה פעמים בחינם)",
+    "tip": "נפתח מחדש ב-31 במרץ 2026 אחרי 4 שנים. חוצים את גשר ניהונבאשי בגודל טבעי, מרימים אפריון אמיתי ומנסים לסחוב דליים של כבאים.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי ילדים"
+    ]
+   }
   },
   {
    "id": "plan-d2-sumo-museum",
@@ -1691,7 +2297,21 @@
    "verify": [
     "hours",
     "April exhibit schedule"
-   ]
+   ],
+   "he": {
+    "type": "מוזיאון סומו חינמי",
+    "hours": "ימי חול בערך 10:00–16:30",
+    "closedNote": "סגור בסופי שבוע ובחגים; בזמן טורנירים רק לבעלי כרטיסים",
+    "bestTime": "בוקר של יום חול",
+    "stay": "20–30 דקות",
+    "cost": "חינם",
+    "tip": "קטן אבל חינמי: חגורות סומו ענקיות, דגלים וטביעות ידיים של אלופים – השוו את היד שלכם ליד של יוקוזונה.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות",
+     "לוח התערוכות באפריל"
+    ]
+   }
   },
   {
    "id": "plan-d2-sumida-park",
@@ -1735,7 +2355,20 @@
    },
    "verify": [
     "sakura festival dates 2027"
-   ]
+   ],
+   "he": {
+    "type": "פארק · פריחת הדובדבן",
+    "hours": "פתוח כל היום",
+    "closedNote": "",
+    "bestTime": "בוקר או בין ערביים (ערבים מוארים בפנסים בעונת הסאקורה)",
+    "stay": "45 דקות",
+    "cost": "חינם",
+    "tip": "עצי דובדבן לאורך הנהר והסקייטרי מאחוריהם – תמונת הסאקורה הקלאסית. עמוס בסופי שבוע; ביום שישי בבוקר רגוע יותר.",
+    "weatherAlt": "גשם: אקווריום סומידה (בפנים)",
+    "verify": [
+     "תאריכי פסטיבל הסאקורה 2027"
+    ]
+   }
   },
   {
    "id": "plan-d2-tokyo-mizumachi",
@@ -1779,7 +2412,20 @@
    },
    "verify": [
     "shop hours"
-   ]
+   ],
+   "he": {
+    "type": "חנויות על הנהר והליכה על הגשר",
+    "hours": "חנויות בערך 10:00–20:00 (משתנה)",
+    "closedNote": "",
+    "bestTime": "אחר הצהריים",
+    "stay": "30–45 דקות",
+    "cost": "חינם · בתי קפה ומאפיות בערך ¥400–1,200",
+    "tip": "הולכים על גשר ההולכים Sumida River Walk ממש ליד הרכבות שחוצות את הנהר – הילדים אוהבים את הרכבות שעוברות ברעש בגובה העיניים.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות החנויות"
+    ]
+   }
   },
   {
    "id": "plan-d2-hanayashiki",
@@ -1808,7 +2454,11 @@
    "tickets": {
     "url": "https://en.hanayashiki.net/fee/",
     "label": "Hanayashiki prices",
-    "note": "Online tickets on the official site."
+    "note": "Online tickets on the official site.",
+    "he": {
+     "label": "מחירי הנאיאשיקי",
+     "note": "כרטיסים אונליין באתר הרשמי."
+    }
    },
    "indoor": false,
    "hotelMinutes": 44,
@@ -1823,7 +2473,21 @@
    "verify": [
     "April 2027 age bands",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק השעשועים הוותיק ביפן",
+    "hours": "בערך 10:00–18:00 (משתנה)",
+    "closedNote": "סגירות תחזוקה מדי פעם",
+    "bestTime": "אחר הצהריים",
+    "stay": "1.5 שעות",
+    "cost": "כניסה: מבוגר (13–64) ¥1,600 · בני 12 ו-10: ילד (5–12) ¥800 · מתקנים בתשלום נוסף (או כרטיס מתקנים)",
+    "tip": "רכבת הרים קטנה ורטרו שטסה ליד בתים – היא משנת 1953! שימו לב: בדף המחירים כתוב שקבוצות הגיל משתנות ב-1 באפריל (שנת הלימודים).",
+    "weatherAlt": "גשם: אקווריום סומידה",
+    "verify": [
+     "קבוצות הגיל באפריל 2027",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-taito-asakusa",
@@ -1867,7 +2531,21 @@
    "verify": [
     "existence & exact location (chain lists an Asakusa branch)",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד",
+    "hours": "בערך מ-10:00 עד מאוחר",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00",
+    "bestTime": "אחר הצהריים",
+    "stay": "30–45 דקות",
+    "cost": "כניסה חופשית · בערך ¥100–200 למשחק",
+    "tip": "קטן יותר מהמגה-ארקיידים של שינג'וקו אבל נוח בין האתרים; נסו את משחקי הקצב (תופי טאיקו נו טאטסוג'ין!).",
+    "weatherAlt": "",
+    "verify": [
+     "קיום ומיקום מדויק (הרשת מציינת סניף באסאקוסה)",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-gigo-akihabara-3",
@@ -1910,7 +2588,20 @@
    },
    "verify": [
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד (ברכבת צוקובה)",
+    "hours": "בערך מ-10:00 עד מאוחר",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00",
+    "bestTime": "סוף אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "כניסה חופשית · בערך ¥100–200 למשחק",
+    "tip": "רק 4 דקות מאסאקוסה ברכבת צוקובה אקספרס. נכלל כי לא הצלחנו לאמת ארקייד משפחתי ליד הסקייטרי (ארקיידים באקיהברה מופיעים גם בתוכנית של יום 1 – דלגו אם כבר הייתם).",
+    "weatherAlt": "",
+    "verify": [
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-dome-attractions",
@@ -1939,7 +2630,11 @@
    "tickets": {
     "url": "https://www.tokyo-dome.co.jp/en/passport/",
     "label": "Ride passport (official)",
-    "note": "Prices change by date – see the price calendar."
+    "note": "Prices change by date – see the price calendar.",
+    "he": {
+     "label": "כרטיס מתקנים (רשמי)",
+     "note": "המחירים משתנים לפי תאריך – ראו את לוח המחירים."
+    }
    },
    "indoor": false,
    "hotelMinutes": 31,
@@ -1953,7 +2648,20 @@
    },
    "verify": [
     "2027 ride/pass prices"
-   ]
+   ],
+   "he": {
+    "type": "מתקני שעשועים",
+    "hours": "בערך 10:00–21:00 (משתנה לפי מתקן)",
+    "closedNote": "המתקנים נסגרים במזג אוויר גרוע",
+    "bestTime": "בוקר (בשבת התורים גדלים אחרי 11:00)",
+    "stay": "1.5–2 שעות",
+    "cost": "כניסה חופשית · תשלום לכל מתקן (בערך ¥500–1,200) או כרטיס מתקנים – לבדוק בלוח המחירים",
+    "tip": "רכבת ההרים 'Thunder Dolphin' עוברת דרך בניין ודרך גלגל הענק Big O – יש מגבלות גובה, בדקו לפני שעומדים בתור.",
+    "weatherAlt": "גשם: היכל התהילה ומוזיאון הבייסבול (בפנים)",
+    "verify": [
+     "מחירי מתקנים וכרטיסים ב-2027"
+    ]
+   }
   },
   {
    "id": "plan-d3-big-o",
@@ -1997,7 +2705,20 @@
    },
    "verify": [
     "price"
-   ]
+   ],
+   "he": {
+    "type": "גלגל ענק בלי ציר",
+    "hours": "בערך 10:00–21:00",
+    "closedNote": "עוצר ברוח חזקה",
+    "bestTime": "סוף אחר הצהריים",
+    "stay": "20 דקות",
+    "cost": "בערך ¥900 לאדם – לבדוק",
+    "tip": "גלגל הענק הראשון בעולם בלי מרכז – רכבת הרים עוברת דרך האמצע! בחלק מהתאים יש קריוקי.",
+    "weatherAlt": "",
+    "verify": [
+     "מחיר"
+    ]
+   }
   },
   {
    "id": "plan-d3-baseball-museum",
@@ -2042,7 +2763,20 @@
    },
    "verify": [
     "2027 child prices"
-   ]
+   ],
+   "he": {
+    "type": "מוזיאון ספורט",
+    "hours": "10:00–17:00 (עד 18:00 בימי משחק)",
+    "closedNote": "סגור בימי שני (פתוח בחופשות האביב והקיץ ובימי משחק – לבדוק)",
+    "bestTime": "בוקר",
+    "stay": "45 דקות–שעה",
+    "cost": "מבוגר ¥600 · ילדים: מחיר מוזל (לבדוק)",
+    "tip": "ראו את התצוגות של שוהיי אוטאני ואיצ'ירו ונסו את פינות מהירות הזריקה והחבטה.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי ילדים 2027"
+    ]
+   }
   },
   {
    "id": "plan-d3-koishikawa-korakuen",
@@ -2086,7 +2820,21 @@
    "verify": [
     "official URL",
     "junior-high fee for non-residents"
-   ]
+   ],
+   "he": {
+    "type": "גן מתקופת אדו",
+    "hours": "9:00–17:00 (כניסה אחרונה 16:30)",
+    "closedNote": "",
+    "bestTime": "בוקר",
+    "stay": "45 דקות",
+    "cost": "מבוגר ¥300 · בן 10: חינם (יסודי) · בן 12: חינם רק לתלמידי חטיבה תושבי טוקיו – אחרת כנראה ¥300",
+    "tip": "מצאו את 'גשר הירח המלא' האדום ואת עץ הדובדבן הבוכה ליד השער – בדרך כלל במיטבו בסוף מרץ / תחילת אפריל.",
+    "weatherAlt": "גשם: מוזיאון המדע (בפנים)",
+    "verify": [
+     "אתר רשמי",
+     "מחיר לתלמידי חטיבה שאינם תושבי טוקיו"
+    ]
+   }
   },
   {
    "id": "plan-d3-science-museum",
@@ -2134,7 +2882,22 @@
     "2027 prices",
     "hours",
     "official URL"
-   ]
+   ],
+   "he": {
+    "type": "מוזיאון מדע אינטראקטיבי",
+    "hours": "9:30–16:50 (כניסה אחרונה 16:00)",
+    "closedNote": "סגור בחלק מימי רביעי (פתוח בחופשות)",
+    "bestTime": "בוקר",
+    "stay": "שעתיים",
+    "cost": "מבוגר ¥950 · בן 12 (חטיבה) ¥600 · בן 10 ¥500",
+    "tip": "ארבע קומות של כפתורים, אופניים וניסויים – לכו למופעי המדע החיים לפי השעות שבכניסה.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי 2027",
+     "שעות",
+     "אתר רשמי"
+    ]
+   }
   },
   {
    "id": "plan-d3-bunkyo-civic-center",
@@ -2178,7 +2941,21 @@
    "verify": [
     "reopening confirmed",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "תצפית חינמית",
+    "hours": "בערך 9:00–20:30",
+    "closedNote": "פתיחה מחדש אחרי שיפוץ מתוכננת לתחילת דצמבר 2026",
+    "bestTime": "אחר צהריים בהיר",
+    "stay": "20 דקות",
+    "cost": "חינם",
+    "tip": "תצפית חינמית מהקומה ה-25 מעל הגג של טוקיו דום – ביום בהיר רואים את הר פוג'י ואת הסקייטרי באותו זמן.",
+    "weatherAlt": "",
+    "verify": [
+     "אישור הפתיחה מחדש",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-kanda-myojin",
@@ -2220,7 +2997,18 @@
     "age12": 0,
     "age10": 0
    },
-   "verify": []
+   "verify": [],
+   "he": {
+    "type": "מקדש · שיתופי פעולה עם אנימה",
+    "hours": "המתחם פתוח כל יום; המשרד בערך 9:00–16:00",
+    "closedNote": "",
+    "bestTime": "בוקר",
+    "stay": "30 דקות",
+    "cost": "חינם (קמעות בערך ¥500–1,000)",
+    "tip": "מופיע ב-'Love Live!' – חפשו לוחות משאלות (אמה) מצוירים בסגנון אנימה ואת הקמעות החמודים לגיימרים ולטכנולוגיה.",
+    "weatherAlt": "",
+    "verify": []
+   }
   },
   {
    "id": "plan-d3-maach-ecute",
@@ -2264,7 +3052,20 @@
    },
    "verify": [
     "shop hours"
-   ]
+   ],
+   "he": {
+    "type": "תחנה ישנה שהפכה לאוכל וחנויות",
+    "hours": "חנויות בערך 11:00–21:00 (משתנה)",
+    "closedNote": "",
+    "bestTime": "צהריים",
+    "stay": "45 דקות",
+    "cost": "בתי קפה וארוחות בערך ¥800–1,800",
+    "tip": "בנוי בתוך תחנת מאנסייבאשי הישנה (נסגרה ב-1943). עלו למרפסת הזכוכית בין המסילות – רכבות קו צ'ואו עוברות משני הצדדים!",
+    "weatherAlt": "",
+    "verify": [
+     "שעות החנויות"
+    ]
+   }
   },
   {
    "id": "plan-d3-origami-kaikan",
@@ -2312,7 +3113,22 @@
     "hours",
     "Saturday opening",
     "official URL"
-   ]
+   ],
+   "he": {
+    "type": "גלריה וחנות אוריגמי",
+    "hours": "בערך 9:30–17:30",
+    "closedNote": "בדרך כלל סגור בימי ראשון ובחגים",
+    "bestTime": "שבת בבוקר",
+    "stay": "30–45 דקות",
+    "cost": "הגלריה בחינם · סדנאות בתשלום",
+    "tip": "רואים איך צובעים נייר וואשי ביד ופסלי אוריגמי ענקיים; קנו חבילת נייר מעוטר לקפל ברכבת.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות",
+     "פתיחה בשבת",
+     "אתר רשמי"
+    ]
+   }
   },
   {
    "id": "plan-d3-bondy-jimbocho",
@@ -2356,7 +3172,21 @@
    "verify": [
     "hours",
     "card acceptance"
-   ]
+   ],
+   "he": {
+    "type": "מסעדת קארי מפורסמת",
+    "hours": "מצהריים עד הערב (תור)",
+    "closedNote": "",
+    "bestTime": "11:00 או אחרי 14:00",
+    "stay": "45 דקות",
+    "cost": "קארי בערך ¥1,500–2,000 לאדם",
+    "tip": "ג'ימבוצ'ו היא 'עיר הקארי' של טוקיו. בבונדי מגישים קודם תפוח אדמה מאודה עם חמאה – הילדים אוהבים. בקשו 'אמאקוצ'י' (עדין).",
+    "weatherAlt": "",
+    "verify": [
+     "שעות",
+     "תשלום בכרטיס"
+    ]
+   }
   },
   {
    "id": "plan-d3-radio-kaikan",
@@ -2397,7 +3227,18 @@
     "age12": 0,
     "age10": 0
    },
-   "verify": []
+   "verify": [],
+   "he": {
+    "type": "מגדל אנימה ובובות",
+    "hours": "בערך 10:00–20:00 (החנויות משתנות)",
+    "closedNote": "",
+    "bestTime": "אחר הצהריים",
+    "stay": "שעה",
+    "cost": "להסתכל בחינם",
+    "tip": "עשר קומות של בובות, קלפי אספנות, ערכות דגמים וצעצועי קפסולה. לקומות של Kaiyodo ו-Volks יש תצוגות מדהימות.",
+    "weatherAlt": "",
+    "verify": []
+   }
   },
   {
    "id": "plan-d3-super-potato",
@@ -2441,7 +3282,20 @@
    },
    "verify": [
     "2027 hours"
-   ]
+   ],
+   "he": {
+    "type": "חנות רטרו + ארקייד רטרו",
+    "hours": "ימי חול 11:00–20:00 · סופי שבוע 10:00–20:00",
+    "closedNote": "",
+    "bestTime": "אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "כניסה חופשית · משחקי רטרו בערך ¥100 למשחק",
+    "tip": "שחקו בסופר מריו המקורי ובפונג בקומה 5, ואז חפשו משחקי גיים בוי ישנים למטה. נכלל כי לא הצלחנו לאמת ארקייד משפחתי ליד טוקיו דום.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות 2027"
+    ]
+   }
   },
   {
    "id": "plan-d3-hey-akihabara",
@@ -2485,7 +3339,21 @@
    "verify": [
     "exact location",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד (Taito)",
+    "hours": "בערך מ-10:00 עד מאוחר",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00",
+    "bestTime": "אחר הצהריים",
+    "stay": "30–45 דקות",
+    "cost": "כניסה חופשית · בערך ¥100 למשחק",
+    "tip": "הרבה משחקי יריות וקצב קלאסיים בקומות העליונות. עם ילדים, אם צפוף – הישארו בקומות התחתונות.",
+    "weatherAlt": "",
+    "verify": [
+     "מיקום מדויק",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-senkyaku-banrai",
@@ -2529,7 +3397,20 @@
    },
    "verify": [
     "footbath hours"
-   ]
+   ],
+   "he": {
+    "type": "שוק אוכל בסגנון אדו + אמבט רגליים חינמי",
+    "hours": "מסעדות בערך 10:00–22:00 · גן אמבט הרגליים על הגג מ-9:00 (משתנה)",
+    "closedNote": "פתוח בימי ראשון (שוק טויוסו עצמו סגור בימי ראשון)",
+    "bestTime": "בראנץ'",
+    "stay": "1–1.5 שעות",
+    "cost": "כניסה חופשית · קערות פירות ים בערך ¥1,500–3,000 · חטיפי רחוב בערך ¥300–800",
+    "tip": "אמבט רגליים חינמי על הגג עם נוף למפרץ – קחו מגבת קטנה. ברחוב בסגנון אדו יש פירות ים צלויים וחטיפי דאנגו.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות אמבט הרגליים"
+    ]
+   }
   },
   {
    "id": "plan-d4-sona-area",
@@ -2577,7 +3458,22 @@
     "hours",
     "closed days",
     "official URL"
-   ]
+   ],
+   "he": {
+    "type": "מוזיאון אינטראקטיבי חינמי",
+    "hours": "בערך 9:30–17:00",
+    "closedNote": "סגור בימי שני",
+    "bestTime": "בוקר",
+    "stay": "שעה",
+    "cost": "חינם",
+    "tip": "חידון 'הישרדות ברעידת אדמה' עם טאבלט, בתוך עיר אסון בגודל טבעי – מעולה לבני 10–12 שאוהבים חדרי בריחה.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות",
+     "ימי סגירה",
+     "אתר רשמי"
+    ]
+   }
   },
   {
    "id": "plan-d4-fune-no-kagakukan",
@@ -2624,7 +3520,22 @@
     "2027 status of annex and Soya",
     "hours",
     "URL"
-   ]
+   ],
+   "he": {
+    "type": "מוזיאון אוניות",
+    "hours": "בערך 10:00–17:00",
+    "closedNote": "סגור בימי שני; הבניין הראשי סגור לשיפוץ",
+    "bestTime": "צהריים",
+    "stay": "45 דקות",
+    "cost": "חינם (האגף והאונייה) – לבדוק",
+    "tip": "עולים על שוברת הקרח ההיסטורית לאנטארקטיקה 'סויה' (אם פתוחה) ורואים את התאים שבהם ישנו החוקרים.",
+    "weatherAlt": "",
+    "verify": [
+     "מצב האגף והסויה ב-2027",
+     "שעות",
+     "אתר"
+    ]
+   }
   },
   {
    "id": "plan-d4-divercity-gundam",
@@ -2668,7 +3579,21 @@
    "verify": [
     "Gundam Base status in 2027",
     "Unicorn head display in 2027"
-   ]
+   ],
+   "he": {
+    "type": "גאנדאם / אנימה",
+    "hours": "קניון בערך 10:00–21:00",
+    "closedNote": "פסל הענק הוסר ב-2026; תצוגת ראש יוניקורן חזרה לקומה 2 (21.11.2026)",
+    "bestTime": "אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "להסתכל בחינם · ערכות דגמים מבערך ¥800",
+    "tip": "בדקו לפני שהולכים אם 'The Gundam Base Tokyo' עדיין בקניון; ערכות דגמים ('גאנפלה') הן מזכרת מעולה להרכיב במלון.",
+    "weatherAlt": "",
+    "verify": [
+     "מצב Gundam Base ב-2027",
+     "תצוגת ראש היוניקורן ב-2027"
+    ]
+   }
   },
   {
    "id": "plan-d4-round1-divercity",
@@ -2713,7 +3638,21 @@
    "verify": [
     "still open in 2027",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד · באולינג",
+    "hours": "שעות ארוכות (הארקייד מבערך 10:00)",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00",
+    "bestTime": "אחר הצהריים",
+    "stay": "45–60 דקות",
+    "cost": "כניסה חופשית · משחקים בערך ¥100 · באולינג לפי משחק",
+    "tip": "מכונות מנוף, באולינג ומשחקי מטבעות תחת קורת גג אחת – אחר צהריים שלא מפחד מגשם.",
+    "weatherAlt": "",
+    "verify": [
+     "פתוח ב-2027",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-joypolis",
@@ -2743,7 +3682,11 @@
    "tickets": {
     "url": "https://tokyo-joypolis.com/",
     "label": "Joypolis tickets (official)",
-    "note": "Check the calendar for hours and buy e-tickets in advance."
+    "note": "Check the calendar for hours and buy e-tickets in advance.",
+    "he": {
+     "label": "כרטיסים לג'ויפוליס (רשמי)",
+     "note": "בדקו שעות בלוח וקנו כרטיסים אלקטרוניים מראש."
+    }
    },
    "indoor": true,
    "hotelMinutes": 54,
@@ -2758,7 +3701,21 @@
    "verify": [
     "2027 prices",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק שעשועים מקורה (יקר)",
+    "hours": "בערך 10:00–19:00 (בסופי שבוע עד 20:00) – ראו לוח רשמי",
+    "closedNote": "סגירות לא קבועות (לוח רשמי)",
+    "bestTime": "סוף הבוקר",
+    "stay": "2.5–3 שעות",
+    "cost": "יקר · כרטיס כולל: מבוגר ¥6,000 · בני 12 ו-10 (גיל בית ספר) ¥5,000 – כרטיס אלקטרוני אונליין זול יותר",
+    "tip": "רכבות הרים מקורות, VR ומתקן חצי-צינור. הכרטיס הכולל משתלם אחרי בערך 4 מתקנים; בדקו מגבלות גובה בכל מתקן.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי 2027",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-legoland",
@@ -2787,7 +3744,11 @@
    "tickets": {
     "url": "https://www.legolanddiscoverycenter.com/tokyo/en/tickets-passes/book-tickets/",
     "label": "Book LEGOLAND (official)",
-    "note": "Dated tickets; cheaper online."
+    "note": "Dated tickets; cheaper online.",
+    "he": {
+     "label": "הזמנת לגולנד (רשמי)",
+     "note": "כרטיסים לפי תאריך; זול יותר אונליין."
+    }
    },
    "indoor": true,
    "hotelMinutes": 54,
@@ -2801,7 +3762,20 @@
    },
    "verify": [
     "2027 prices"
-   ]
+   ],
+   "he": {
+    "type": "מגרש משחקים לגו מקורה",
+    "hours": "בערך 10:00–18:00",
+    "closedNote": "מבוגרים חייבים להגיע עם ילד",
+    "bestTime": "בוקר",
+    "stay": "1.5–2 שעות",
+    "cost": "אונליין ¥2,350–3,300 לאדם לפי תאריך ושעה",
+    "tip": "הכי מתאים לבונים עד בערך גיל 10; בן ה-12 אולי יעדיף את ג'ויפוליס. טוקיו המיניאטורית מלגו היא שיא.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי 2027"
+    ]
+   }
   },
   {
    "id": "plan-d4-fuji-tv",
@@ -2849,7 +3823,22 @@
     "prices",
     "hours",
     "official URL"
-   ]
+   ],
+   "he": {
+    "type": "תחנת טלוויזיה · תצפית בכדור",
+    "hours": "בערך 10:00–18:00",
+    "closedNote": "סגור בימי שני",
+    "bestTime": "אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "הכדור: בערך ¥800 למבוגר, פחות לילדים – לבדוק",
+    "tip": "עולים ב'צינור המדרגות הנעות' הארוך עד הכדור הכסוף; בחנות של Fuji TV יש מוצרים מסדרות אנימה שהערוץ משדר.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירים",
+     "שעות",
+     "אתר רשמי"
+    ]
+   }
   },
   {
    "id": "plan-d4-madame-tussauds",
@@ -2895,7 +3884,22 @@
     "2027 prices",
     "official URL",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מוזיאון שעווה (בתשלום)",
+    "hours": "בערך 10:00–18:00",
+    "closedNote": "",
+    "bestTime": "אחר צהריים גשום",
+    "stay": "שעה",
+    "cost": "בתשלום (בערך ¥2,000–3,000 לאדם לפי תאריך) – יש כרטיס משולב עם לגולנד",
+    "tip": "מצטלמים עם ספורטאים, כוכבי פופ ודמויות בסגנון אנימה; הכרטיס המשולב עם לגולנד משתלם רק אם עושים את שניהם.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי 2027",
+     "אתר רשמי",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-toyosu-gururi-park",
@@ -2939,7 +3943,20 @@
    },
    "verify": [
     "official URL"
-   ]
+   ],
+   "he": {
+    "type": "פארק על קו המים",
+    "hours": "פתוח כל היום",
+    "closedNote": "",
+    "bestTime": "לפני או אחרי סנקיאקו באנראי",
+    "stay": "30–45 דקות",
+    "cost": "חינם",
+    "tip": "מדשאות רחבות מול גשר הקשת והמפרץ – מקום לרוץ לפני יום של אטרקציות מקורות.",
+    "weatherAlt": "גשם: סנקיאקו באנראי (בפנים)",
+    "verify": [
+     "אתר רשמי"
+    ]
+   }
   },
   {
    "id": "plan-d4-ramen-kokugikan",
@@ -2983,7 +4000,21 @@
    "verify": [
     "hours",
     "shop line-up"
-   ]
+   ],
+   "he": {
+    "type": "היכל ראמן",
+    "hours": "בערך 11:00–23:00",
+    "closedNote": "",
+    "bestTime": "צהריים",
+    "stay": "45 דקות",
+    "cost": "ראמן בערך ¥1,000–1,400 לקערה",
+    "tip": "שש מסעדות ראמן מרחבי יפן זו לצד זו – עם נוף למפרץ ולגשר הקשת מהמרפסת.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות",
+     "רשימת המסעדות"
+    ]
+   }
   },
   {
    "id": "plan-d4-decks-takoyaki",
@@ -3028,7 +4059,21 @@
    "verify": [
     "still open in 2027",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "אוכל ורחוב חטיפי רטרו",
+    "hours": "בערך 11:00–21:00",
+    "closedNote": "",
+    "bestTime": "חטיף אחר הצהריים",
+    "stay": "30–45 דקות",
+    "cost": "טקויאקי בערך ¥600–800 · ממתקי רטרו מ-¥10",
+    "tip": "טועמים טקויאקי ממסעדות מפורסמות מאוסקה, ואז מוציאים ¥300 על ממתקי דגאשי בסגנון שנות ה-60 ליד.",
+    "weatherAlt": "",
+    "verify": [
+     "פתוח ב-2027",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-sunshine-aquarium",
@@ -3071,7 +4116,20 @@
    },
    "verify": [
     "2027 prices"
-   ]
+   ],
+   "he": {
+    "type": "אקווריום על הגג",
+    "hours": "אביב/קיץ 9:30–21:00 (כניסה אחרונה 20:00)",
+    "closedNote": "פתוח כל יום",
+    "bestTime": "בשעת הפתיחה",
+    "stay": "1.5–2 שעות",
+    "cost": "בערך ¥2,600 למבוגר / בערך ¥1,300 לילד – לבדוק מחירים רשמיים",
+    "tip": "הביטו למעלה אל 'הפינגווינים המעופפים' – בריכה שקופה מעל הראש עם קו הרקיע מאחור.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי 2027"
+    ]
+   }
   },
   {
    "id": "plan-d5-tenbou-park",
@@ -3114,7 +4172,20 @@
    },
    "verify": [
     "spring-holiday (peak) prices"
-   ]
+   ],
+   "he": {
+    "type": "תצפית",
+    "hours": "בערך 10:00–22:00",
+    "closedNote": "",
+    "bestTime": "שקיעה",
+    "stay": "45 דקות",
+    "cost": "ביום חול בערך ¥700 למבוגר / בערך ¥500 לילד (יסודי–חטיבה); בעונת שיא יקר יותר",
+    "tip": "שוכבים על הדשא המלאכותי בגובה 240 מ' וצופים בשקיעה מעל המגדלים של שינג'וקו.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי חופשת האביב (שיא)"
+    ]
+   }
   },
   {
    "id": "plan-d5-planetarium-manten",
@@ -3158,7 +4229,20 @@
    },
    "verify": [
     "program prices"
-   ]
+   ],
+   "he": {
+    "type": "פלנטריום",
+    "hours": "מופעים מבערך 11:00 עד בערך 20:00",
+    "closedNote": "",
+    "bestTime": "צהריים",
+    "stay": "45 דקות",
+    "cost": "בערך ¥1,500–1,800 למושב לפי תוכנית – לבדוק",
+    "tip": "186 כורסאות נשכבות מתחת לכיפה מלאה – הרגעה מושלמת אחרי האקווריום.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי התוכניות"
+    ]
+   }
   },
   {
    "id": "plan-d5-pokemon-center-mega",
@@ -3201,7 +4285,20 @@
    },
    "verify": [
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חנות הדגל של פוקימון",
+    "hours": "בערך 10:00–20:00",
+    "closedNote": "",
+    "bestTime": "בוקר של יום חול",
+    "stay": "45 דקות",
+    "cost": "להסתכל בחינם",
+    "tip": "הפוקימון סנטר הגדול בטוקיו; פסלי צ'אריזארד ומגה צ'אריזארד הענקיים הם נקודת הצילום.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-gashapon-store",
@@ -3244,7 +4341,18 @@
     "age12": 0,
     "age10": 0
    },
-   "verify": []
+   "verify": [],
+   "he": {
+    "type": "כ-3,000 מכונות צעצועי קפסולה",
+    "hours": "10:00–21:00, פתוח כל השנה",
+    "closedNote": "",
+    "bestTime": "כל שעה",
+    "stay": "45 דקות",
+    "cost": "קפסולה בערך ¥200–500",
+    "tip": "חנות צעצועי הקפסולה הגדולה בעולם. תנו לכל ילד ¥1,000 במטבעות של ¥100 – יש מכונות להחלפת כסף בפנים.",
+    "weatherAlt": "",
+    "verify": []
+   }
   },
   {
    "id": "plan-d5-namja-town",
@@ -3289,7 +4397,21 @@
    "verify": [
     "2027 prices",
     "official URL"
-   ]
+   ],
+   "he": {
+    "type": "פארק שעשועים מקורה ואוכל",
+    "hours": "10:00–21:00 (כניסה אחרונה 20:00)",
+    "closedNote": "",
+    "bestTime": "צהריים",
+    "stay": "1.5–2 שעות",
+    "cost": "כניסה בערך ¥1,200 למבוגר (ילדים פחות) · כרטיס עם אטרקציות מבערך ¥4,000 למבוגר – לבדוק",
+    "tip": "רחובות רטרו מתקופת שואה עם בתי רפאים קטנים ומשחקים; אוכלים גיוזה ממסעדות שונות באצטדיון הגיוזה.",
+    "weatherAlt": "",
+    "verify": [
+     "מחירי 2027",
+     "אתר רשמי"
+    ]
+   }
   },
   {
    "id": "plan-d5-animate-ikebukuro",
@@ -3332,7 +4454,20 @@
    },
    "verify": [
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "כלבו אנימה",
+    "hours": "בערך 10:00–21:00",
+    "closedNote": "",
+    "bestTime": "אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "להסתכל בחינם",
+    "tip": "תשע קומות של מנגה, מוצרי אנימה ואירועים – בדקו במסכי הלובי תערוכות דמויות חינמיות.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-bosaikan",
@@ -3377,7 +4512,21 @@
    "verify": [
     "English availability",
     "booking method"
-   ]
+   ],
+   "he": {
+    "type": "סימולטור רעידות אדמה ושריפות חינמי",
+    "hours": "9:00–17:00",
+    "closedNote": "סגור בימי שלישי ה-1 וה-3 (+ היום שאחרי השלישי ה-3) – פתוח ביום שני 5.4",
+    "bestTime": "משבצת בוקר מוזמנת",
+    "stay": "שעה ו-40 דקות (מודרך)",
+    "cost": "חינם",
+    "tip": "מרגישים רעידת אדמה בעוצמה 7 על הסימולטור ומתרגלים עם מטף. הסיורים ביפנית – הזמינו מראש (עד 5 חודשים) והשתמשו במתרגם.",
+    "weatherAlt": "",
+    "verify": [
+     "זמינות באנגלית",
+     "שיטת ההזמנה"
+    ]
+   }
   },
   {
    "id": "plan-d5-gigo-ikebukuro",
@@ -3420,7 +4569,20 @@
    },
    "verify": [
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד",
+    "hours": "בערך מ-10:00 עד מאוחר",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00",
+    "bestTime": "אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "כניסה חופשית · בערך ¥100–200 למשחק",
+    "tip": "ארבע קומות (B1–3F) של מכונות מנוף – הצוות יזיז פרס למקום טוב יותר אם מבקשים 'אונגאי שימאס'.",
+    "weatherAlt": "",
+    "verify": [
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-gigo-ikebukuro-2",
@@ -3464,7 +4626,21 @@
    "verify": [
     "purikura floor still on 6F",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארקייד · פוריקורה ותחפושות",
+    "hours": "בערך מ-10:00 עד מאוחר",
+    "closedNote": "מתחת לגיל 16 יוצאים לפני 18:00",
+    "bestTime": "אחר הצהריים",
+    "stay": "30 דקות",
+    "cost": "פוריקורה בערך ¥500–700",
+    "tip": "כל הקומה השישית היא תאי צילום פוריקורה, עם תחפושות שאפשר לשאול קודם.",
+    "weatherAlt": "",
+    "verify": [
+     "קומת הפוריקורה עדיין ב-6F",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-mutekiya",
@@ -3508,7 +4684,21 @@
    "verify": [
     "hours",
     "payment"
-   ]
+   ],
+   "he": {
+    "type": "ראמן טונקוטסו מפורסם",
+    "hours": "מצהריים עד מאוחר (תור)",
+    "closedNote": "",
+    "bestTime": "לפני 11:00 או באמצע אחר הצהריים",
+    "stay": "45 דקות",
+    "cost": "בערך ¥1,000–1,400 לקערה",
+    "tip": "אחד מתורי הראמן המפורסמים בטוקיו – הצוות לוקח את ההזמנה בזמן ההמתנה. בקשו עוצמה 'פוצו' (רגילה).",
+    "weatherAlt": "",
+    "verify": [
+     "שעות",
+     "תשלום"
+    ]
+   }
   },
   {
    "id": "plan-d5-toshima-forest",
@@ -3553,7 +4743,21 @@
    "verify": [
     "opening hours",
     "Monday opening"
-   ]
+   ],
+   "he": {
+    "type": "תצפית מגן גג חינמי",
+    "hours": "בערך 10:00–17:00",
+    "closedNote": "",
+    "bestTime": "אחר הצהריים",
+    "stay": "20–30 דקות",
+    "cost": "חינם",
+    "tip": "יער חינמי על הגג עם פלג מים ושביל קטן של חרקים וצמחים, על גג משרדי הרובע.",
+    "weatherAlt": "גשם: טנבו-פארק (בפנים)",
+    "verify": [
+     "שעות פתיחה",
+     "פתיחה ביום שני"
+    ]
+   }
   }
  ],
  "food": [
@@ -3579,7 +4783,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים באנגלית ובתמונות, רמות קארי עדינות",
+    "tip": "ב-CoCo Ichibanya בוחרים רמת חריפות 0 ומוסיפים גבינה או עוף מטוגן.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-shinjuku-gyoen-isetan-b1",
@@ -3603,7 +4817,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל בכלבו",
+    "kidFriendly": "מאוד – בנטו יפהפה ואפשרויות עדינות בכל מקום",
+    "tip": "קנו בנטו וממתקים לאכול בשינג'וקו גיואן.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-shinjuku-gyoen-konbini",
@@ -3626,7 +4849,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-yoyogi-park-with-harajuku-ikea",
@@ -3650,7 +4883,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה שוודי",
+    "kidFriendly": "מאוד – קציצות, גלידה אמריקאית, עדין",
+    "tip": "מנות איקאה שיש רק ביפן וגלידה זולה, מול תחנת הראג'וקו.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-yoyogi-park-afuri-harajuku",
@@ -3674,7 +4916,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ראמן הדרים קליל",
+    "kidFriendly": "טוב – קליל, לא חריף",
+    "tip": "מזמינים במכונת הכרטיסים; יוזו שיו הוא הבחירה הקלילה לילדים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-yoyogi-park-konbini",
@@ -3697,7 +4948,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-fire-museum-yotsuya-chains",
@@ -3721,7 +4982,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "חפשו את השלטים של Matsuya / Hidakaya בצומת.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-fire-museum-taiyaki-wakaba",
@@ -3745,7 +5016,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "עוגת דג ממולאת שעועית",
+    "kidFriendly": "מאוד – שעועית אדומה מתוקה",
+    "tip": "אחת משלוש חנויות הטאיאקי המפורסמות בטוקיו – אוכלים חם.",
+    "hours": "שעות היום (נסגר מוקדם)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-fire-museum-konbini",
@@ -3768,7 +5049,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-olympic-museum-shake-shack-gaien",
@@ -3792,7 +5083,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "המבורגרים",
+    "kidFriendly": "מאוד – אוכל מוכר לבררנים",
+    "tip": "השייק שאק הראשון ביפן, ליד שדרת הגינקו.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-olympic-museum-kokuritsu-chains",
@@ -3816,7 +5116,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות",
+    "kidFriendly": "טוב – רשתות ובתי קפה",
+    "tip": "הארוחות היומיומיות הקרובות למוזיאון האולימפיאדה ולאצטדיון הלאומי.",
+    "hours": "רובם פתוחים מהבוקר עד הערב",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-olympic-museum-konbini",
@@ -3839,7 +5149,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-godzilla-head-kabukicho-chains",
@@ -3863,7 +5183,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "עם ילדים הישארו ברחוב הראשי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-godzilla-head-isetan-b1",
@@ -3887,7 +5217,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל בכלבו",
+    "kidFriendly": "מאוד – בנטו יפהפה ואפשרויות עדינות בכל מקום",
+    "tip": "קנו בנטו וממתקים לאכול בשינג'וקו גיואן.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-godzilla-head-tsunahachi",
@@ -3911,7 +5250,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טמפורה מאז 1924",
+    "kidFriendly": "טוב – מנות טמפורה עדינות; אפשר מנות לילדים",
+    "tip": "צפו בשפים מטגנים מול הדלפק; מנות הצהריים הכי משתלמות.",
+    "hours": "צהריים וערב",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-godzilla-head-konbini",
@@ -3934,7 +5283,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-taito-kabukicho-kabukicho-chains",
@@ -3958,7 +5317,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "עם ילדים הישארו ברחוב הראשי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-taito-kabukicho-tsunahachi",
@@ -3982,7 +5351,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טמפורה מאז 1924",
+    "kidFriendly": "טוב – מנות טמפורה עדינות; אפשר מנות לילדים",
+    "tip": "צפו בשפים מטגנים מול הדלפק; מנות הצהריים הכי משתלמות.",
+    "hours": "צהריים וערב",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-taito-kabukicho-isetan-b1",
@@ -4006,7 +5385,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל בכלבו",
+    "kidFriendly": "מאוד – בנטו יפהפה ואפשרויות עדינות בכל מקום",
+    "tip": "קנו בנטו וממתקים לאכול בשינג'וקו גיואן.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-taito-kabukicho-konbini",
@@ -4029,7 +5417,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-gigo-shibuya-hikarie-restaurants",
@@ -4053,7 +5451,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות",
+    "kidFriendly": "טוב – הרבה מסעדות משפחתיות",
+    "tip": "מנות הצהריים הרבה יותר זולות מארוחת ערב.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-gigo-shibuya-shibuya-gyukatsu",
@@ -4077,7 +5484,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קציצת בקר בציפוי",
+    "kidFriendly": "טוב – צולים את הפרוסות לבד על אבן קטנה",
+    "tip": "ארוחה כיפית של 'תצלה בעצמך'; הגיעו בפתיחה.",
+    "hours": "~11:00–22:00 (תור)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-gigo-shibuya-tokyu-food-show",
@@ -4101,7 +5518,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל",
+    "kidFriendly": "מאוד – ממתקים, אוניגירי, פירות",
+    "tip": "מעולה לדאנגו, מלון-פאן וכריכי פירות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-gigo-shibuya-konbini",
@@ -4124,7 +5550,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-shibuya-sky-hikarie-restaurants",
@@ -4148,7 +5584,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות",
+    "kidFriendly": "טוב – הרבה מסעדות משפחתיות",
+    "tip": "מנות הצהריים הרבה יותר זולות מארוחת ערב.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-shibuya-sky-tokyu-food-show",
@@ -4172,7 +5617,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל",
+    "kidFriendly": "מאוד – ממתקים, אוניגירי, פירות",
+    "tip": "מעולה לדאנגו, מלון-פאן וכריכי פירות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-shibuya-sky-shibuya-gyukatsu",
@@ -4196,7 +5650,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קציצת בקר בציפוי",
+    "kidFriendly": "טוב – צולים את הפרוסות לבד על אבן קטנה",
+    "tip": "ארוחה כיפית של 'תצלה בעצמך'; הגיעו בפתיחה.",
+    "hours": "~11:00–22:00 (תור)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-shibuya-sky-konbini",
@@ -4219,7 +5683,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-hikarie-sky-lobby-tokyu-food-show",
@@ -4243,7 +5717,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל",
+    "kidFriendly": "מאוד – ממתקים, אוניגירי, פירות",
+    "tip": "מעולה לדאנגו, מלון-פאן וכריכי פירות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-hikarie-sky-lobby-shibuya-gyukatsu",
@@ -4267,7 +5750,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קציצת בקר בציפוי",
+    "kidFriendly": "טוב – צולים את הפרוסות לבד על אבן קטנה",
+    "tip": "ארוחה כיפית של 'תצלה בעצמך'; הגיעו בפתיחה.",
+    "hours": "~11:00–22:00 (תור)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-hikarie-sky-lobby-konbini",
@@ -4290,7 +5783,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-mandarake-shibuya-hikarie-restaurants",
@@ -4314,7 +5817,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות",
+    "kidFriendly": "טוב – הרבה מסעדות משפחתיות",
+    "tip": "מנות הצהריים הרבה יותר זולות מארוחת ערב.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-mandarake-shibuya-shibuya-gyukatsu",
@@ -4338,7 +5850,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קציצת בקר בציפוי",
+    "kidFriendly": "טוב – צולים את הפרוסות לבד על אבן קטנה",
+    "tip": "ארוחה כיפית של 'תצלה בעצמך'; הגיעו בפתיחה.",
+    "hours": "~11:00–22:00 (תור)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-mandarake-shibuya-tokyu-food-show",
@@ -4362,7 +5884,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל",
+    "kidFriendly": "מאוד – ממתקים, אוניגירי, פירות",
+    "tip": "מעולה לדאנגו, מלון-פאן וכריכי פירות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-mandarake-shibuya-konbini",
@@ -4385,7 +5916,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-isetan-food-hall-kabukicho-chains",
@@ -4409,7 +5950,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "עם ילדים הישארו ברחוב הראשי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-isetan-food-hall-tsunahachi",
@@ -4433,7 +5984,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טמפורה מאז 1924",
+    "kidFriendly": "טוב – מנות טמפורה עדינות; אפשר מנות לילדים",
+    "tip": "צפו בשפים מטגנים מול הדלפק; מנות הצהריים הכי משתלמות.",
+    "hours": "צהריים וערב",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-isetan-food-hall-sanchome-chains",
@@ -4457,7 +6018,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים באנגלית ובתמונות, רמות קארי עדינות",
+    "tip": "ב-CoCo Ichibanya בוחרים רמת חריפות 0 ומוסיפים גבינה או עוף מטוגן.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-isetan-food-hall-konbini",
@@ -4480,7 +6051,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-harajuku-gyoza-lou-afuri-harajuku",
@@ -4504,7 +6085,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ראמן הדרים קליל",
+    "kidFriendly": "טוב – קליל, לא חריף",
+    "tip": "מזמינים במכונת הכרטיסים; יוזו שיו הוא הבחירה הקלילה לילדים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-harajuku-gyoza-lou-with-harajuku-ikea",
@@ -4528,7 +6118,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה שוודי",
+    "kidFriendly": "מאוד – קציצות, גלידה אמריקאית, עדין",
+    "tip": "מנות איקאה שיש רק ביפן וגלידה זולה, מול תחנת הראג'וקו.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d1-food-harajuku-gyoza-lou-konbini",
@@ -4551,7 +6150,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-skytree-solamachi-court",
@@ -4575,7 +6184,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – אודון, ראמן, אומוראיס",
+    "tip": "הרבה בחירה תחת קורת גג אחת.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-skytree-kirby-cafe-food",
@@ -4599,7 +6217,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה דמויות",
+    "kidFriendly": "מאוד – אוכל דמויות, עדין",
+    "tip": "מומלץ להזמין מקום; לממתקי הטייק-אווי לא צריך.",
+    "hours": "משמרות מסוף הבוקר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-skytree-solamachi-shotengai",
@@ -4623,7 +6251,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפי רחוב",
+    "kidFriendly": "מאוד – טאיאקי, דאנגו, גלידה",
+    "tip": "רחוב חנויות קטן עם חטיפים יפניים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-skytree-konbini",
@@ -4646,7 +6283,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-aquarium-solamachi-court",
@@ -4670,7 +6317,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – אודון, ראמן, אומוראיס",
+    "tip": "הרבה בחירה תחת קורת גג אחת.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-aquarium-kirby-cafe-food",
@@ -4694,7 +6350,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה דמויות",
+    "kidFriendly": "מאוד – אוכל דמויות, עדין",
+    "tip": "מומלץ להזמין מקום; לממתקי הטייק-אווי לא צריך.",
+    "hours": "משמרות מסוף הבוקר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-aquarium-solamachi-shotengai",
@@ -4718,7 +6384,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפי רחוב",
+    "kidFriendly": "מאוד – טאיאקי, דאנגו, גלידה",
+    "tip": "רחוב חנויות קטן עם חטיפים יפניים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-aquarium-konbini",
@@ -4741,7 +6416,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-planetarium-tenku-solamachi-court",
@@ -4765,7 +6450,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – אודון, ראמן, אומוראיס",
+    "tip": "הרבה בחירה תחת קורת גג אחת.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-planetarium-tenku-kirby-cafe-food",
@@ -4789,7 +6483,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה דמויות",
+    "kidFriendly": "מאוד – אוכל דמויות, עדין",
+    "tip": "מומלץ להזמין מקום; לממתקי הטייק-אווי לא צריך.",
+    "hours": "משמרות מסוף הבוקר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-planetarium-tenku-solamachi-shotengai",
@@ -4813,7 +6517,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפי רחוב",
+    "kidFriendly": "מאוד – טאיאקי, דאנגו, גלידה",
+    "tip": "רחוב חנויות קטן עם חטיפים יפניים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-planetarium-tenku-konbini",
@@ -4836,7 +6549,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-pokemon-center-skytree-solamachi-court",
@@ -4860,7 +6583,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – אודון, ראמן, אומוראיס",
+    "tip": "הרבה בחירה תחת קורת גג אחת.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-pokemon-center-skytree-kirby-cafe-food",
@@ -4884,7 +6616,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה דמויות",
+    "kidFriendly": "מאוד – אוכל דמויות, עדין",
+    "tip": "מומלץ להזמין מקום; לממתקי הטייק-אווי לא צריך.",
+    "hours": "משמרות מסוף הבוקר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-pokemon-center-skytree-solamachi-shotengai",
@@ -4908,7 +6650,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפי רחוב",
+    "kidFriendly": "מאוד – טאיאקי, דאנגו, גלידה",
+    "tip": "רחוב חנויות קטן עם חטיפים יפניים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-pokemon-center-skytree-konbini",
@@ -4931,7 +6682,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-kirby-cafe-solamachi-court",
@@ -4955,7 +6716,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – אודון, ראמן, אומוראיס",
+    "tip": "הרבה בחירה תחת קורת גג אחת.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-kirby-cafe-solamachi-30f",
@@ -4979,7 +6749,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות עם נוף",
+    "kidFriendly": "טוב",
+    "tip": "מנות צהריים עם נוף חינמי מלמעלה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-kirby-cafe-solamachi-shotengai",
@@ -5003,7 +6782,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפי רחוב",
+    "kidFriendly": "מאוד – טאיאקי, דאנגו, גלידה",
+    "tip": "רחוב חנויות קטן עם חטיפים יפניים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-kirby-cafe-konbini",
@@ -5026,7 +6814,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-solamachi-food-kirby-cafe-food",
@@ -5050,7 +6848,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה דמויות",
+    "kidFriendly": "מאוד – אוכל דמויות, עדין",
+    "tip": "מומלץ להזמין מקום; לממתקי הטייק-אווי לא צריך.",
+    "hours": "משמרות מסוף הבוקר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-solamachi-food-solamachi-shotengai",
@@ -5074,7 +6882,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפי רחוב",
+    "kidFriendly": "מאוד – טאיאקי, דאנגו, גלידה",
+    "tip": "רחוב חנויות קטן עם חטיפים יפניים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-solamachi-food-solamachi-30f",
@@ -5098,7 +6915,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות עם נוף",
+    "kidFriendly": "טוב",
+    "tip": "מנות צהריים עם נוף חינמי מלמעלה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-solamachi-food-konbini",
@@ -5121,7 +6947,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-edo-tokyo-museum-ryogoku-chains",
@@ -5145,7 +6981,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "מהיר וזול.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-edo-tokyo-museum-edo-noren",
@@ -5169,7 +7015,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם אוכל עם זירת סומו",
+    "kidFriendly": "מאוד – הרבה מסעדות כולל צ'אנקו (תבשיל סומו)",
+    "tip": "דוכני אוכל סביב זירת סומו בגודל אמיתי בתוך בניין התחנה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-edo-tokyo-museum-konbini",
@@ -5192,7 +7047,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumo-museum-ryogoku-chains",
@@ -5216,7 +7081,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "מהיר וזול.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumo-museum-edo-noren",
@@ -5240,7 +7115,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם אוכל עם זירת סומו",
+    "kidFriendly": "מאוד – הרבה מסעדות כולל צ'אנקו (תבשיל סומו)",
+    "tip": "דוכני אוכל סביב זירת סומו בגודל אמיתי בתוך בניין התחנה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumo-museum-konbini",
@@ -5263,7 +7147,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-park-asakusa-chains",
@@ -5287,7 +7181,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "מהיר וזול ליד התחנה.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-park-mizumachi-cafe",
@@ -5311,7 +7215,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה",
+    "kidFriendly": "מאוד",
+    "tip": "מאפים ליד הנהר.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-park-asakusa-menchi",
@@ -5335,7 +7248,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קציצת בשר מטוגנת",
+    "kidFriendly": "מאוד – עסיסי ועדין",
+    "tip": "אוכלים בחנות, לא תוך כדי הליכה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-sumida-park-konbini",
@@ -5358,7 +7280,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-tokyo-mizumachi-asakusa-chains",
@@ -5382,7 +7314,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "מהיר וזול ליד התחנה.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-tokyo-mizumachi-solamachi-court",
@@ -5406,7 +7348,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – אודון, ראמן, אומוראיס",
+    "tip": "הרבה בחירה תחת קורת גג אחת.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-tokyo-mizumachi-konbini",
@@ -5429,7 +7380,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-hanayashiki-daikokuya",
@@ -5453,7 +7414,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טנדון",
+    "kidFriendly": "טוב – קערת טמפורה פריכה",
+    "tip": "קערות אורז וטמפורה מפורסמות מאז 1887.",
+    "hours": "~11:00–20:00 (תור)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-hanayashiki-sometaro",
@@ -5477,7 +7448,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "אוקונומיאקי",
+    "kidFriendly": "מאוד – הילדים מכינים את הפנקייק בעצמם",
+    "tip": "ישיבה על טטאמי בבית עץ ישן; הצוות מראה איך להפוך.",
+    "hours": "צהריים וערב",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-hanayashiki-asakusa-menchi",
@@ -5501,7 +7482,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קציצת בשר מטוגנת",
+    "kidFriendly": "מאוד – עסיסי ועדין",
+    "tip": "אוכלים בחנות, לא תוך כדי הליכה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-hanayashiki-konbini",
@@ -5524,7 +7514,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-taito-asakusa-asakusa-chains",
@@ -5548,7 +7548,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "מהיר וזול ליד התחנה.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-taito-asakusa-sometaro",
@@ -5572,7 +7582,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "אוקונומיאקי",
+    "kidFriendly": "מאוד – הילדים מכינים את הפנקייק בעצמם",
+    "tip": "ישיבה על טטאמי בבית עץ ישן; הצוות מראה איך להפוך.",
+    "hours": "צהריים וערב",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-taito-asakusa-asakusa-menchi",
@@ -5596,7 +7616,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קציצת בשר מטוגנת",
+    "kidFriendly": "מאוד – עסיסי ועדין",
+    "tip": "אוכלים בחנות, לא תוך כדי הליכה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-taito-asakusa-konbini",
@@ -5619,7 +7648,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-gigo-akihabara-3-akiba-chains",
@@ -5643,7 +7682,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "יש הרבה לאורך צ'ואו-דורי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-gigo-akihabara-3-akiba-crepe",
@@ -5667,7 +7716,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "הפסקה מתוקה בין הארקיידים.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d2-food-gigo-akihabara-3-konbini",
@@ -5690,7 +7749,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-dome-attractions-laqua-food",
@@ -5714,7 +7783,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות משפחתיות",
+    "kidFriendly": "מאוד – רשתות משפחתיות, תפריט ילדים",
+    "tip": "הרבה מסעדות משפחתיות עם מנות ילדים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-dome-attractions-suidobashi-chains",
@@ -5738,7 +7816,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "גיודון וקארי במרחק כמה דקות.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-dome-attractions-konbini",
@@ -5761,7 +7849,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-big-o-laqua-food",
@@ -5785,7 +7883,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות משפחתיות",
+    "kidFriendly": "מאוד – רשתות משפחתיות, תפריט ילדים",
+    "tip": "הרבה מסעדות משפחתיות עם מנות ילדים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-big-o-dome-city-snacks",
@@ -5809,7 +7916,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפים",
+    "kidFriendly": "מאוד – צ'ורוס, גלידה, פופקורן",
+    "tip": "ליד המתקנים.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-big-o-suidobashi-chains",
@@ -5833,7 +7950,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "גיודון וקארי במרחק כמה דקות.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-big-o-konbini",
@@ -5856,7 +7983,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-baseball-museum-laqua-food",
@@ -5880,7 +8017,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות משפחתיות",
+    "kidFriendly": "מאוד – רשתות משפחתיות, תפריט ילדים",
+    "tip": "הרבה מסעדות משפחתיות עם מנות ילדים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-baseball-museum-dome-city-snacks",
@@ -5904,7 +8050,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפים",
+    "kidFriendly": "מאוד – צ'ורוס, גלידה, פופקורן",
+    "tip": "ליד המתקנים.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-baseball-museum-suidobashi-chains",
@@ -5928,7 +8084,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "גיודון וקארי במרחק כמה דקות.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-baseball-museum-konbini",
@@ -5951,7 +8117,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-koishikawa-korakuen-laqua-food",
@@ -5975,7 +8151,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות משפחתיות",
+    "kidFriendly": "מאוד – רשתות משפחתיות, תפריט ילדים",
+    "tip": "הרבה מסעדות משפחתיות עם מנות ילדים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-koishikawa-korakuen-kagurazaka-sweets",
@@ -5999,7 +8184,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים יפניים",
+    "kidFriendly": "מאוד",
+    "tip": "עלייה קצרה מאיידאבאשי: טאיאקי וממתקים יפניים.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-koishikawa-korakuen-dome-city-snacks",
@@ -6023,7 +8218,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפים",
+    "kidFriendly": "מאוד – צ'ורוס, גלידה, פופקורן",
+    "tip": "ליד המתקנים.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-koishikawa-korakuen-konbini",
@@ -6046,7 +8251,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-science-museum-kudanshita-chains",
@@ -6070,7 +8285,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "הארוחות הזולות הקרובות למוזיאון המדע.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-science-museum-kitanomaru-picnic",
@@ -6094,7 +8319,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פיקניק",
+    "kidFriendly": "מאוד",
+    "tip": "פיקניק סאקורה ליד המוזיאון.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-science-museum-bondy-food",
@@ -6118,7 +8353,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קארי",
+    "kidFriendly": "טוב – בקשו עדין",
+    "tip": "תפוחי אדמה מאודים עם חמאה מגיעים קודם.",
+    "hours": "מצהריים עד הערב (תור)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-science-museum-konbini",
@@ -6141,7 +8386,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bunkyo-civic-center-laqua-food",
@@ -6165,7 +8420,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מסעדות משפחתיות",
+    "kidFriendly": "מאוד – רשתות משפחתיות, תפריט ילדים",
+    "tip": "הרבה מסעדות משפחתיות עם מנות ילדים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bunkyo-civic-center-dome-city-snacks",
@@ -6189,7 +8453,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חטיפים",
+    "kidFriendly": "מאוד – צ'ורוס, גלידה, פופקורן",
+    "tip": "ליד המתקנים.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bunkyo-civic-center-suidobashi-chains",
@@ -6213,7 +8487,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "גיודון וקארי במרחק כמה דקות.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bunkyo-civic-center-konbini",
@@ -6236,7 +8520,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-kanda-myojin-akiba-chains-3",
@@ -6260,7 +8554,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "לאורך צ'ואו-דורי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-kanda-myojin-amanoya",
@@ -6284,7 +8588,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חנות ממתקים היסטורית",
+    "kidFriendly": "טוב – משקה אורז מתוק בלי אלכוהול, מוצ'י",
+    "tip": "מאז 1846: נסו אמאזקה בלי אלכוהול ומוצ'י מתוק ליד שער המקדש.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-kanda-myojin-akiba-snacks-3",
@@ -6308,7 +8621,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "הפסקה מתוקה.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-kanda-myojin-konbini",
@@ -6331,7 +8654,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-maach-ecute-akiba-chains-3",
@@ -6355,7 +8688,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "לאורך צ'ואו-דורי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-maach-ecute-kanda-matsuya",
@@ -6379,7 +8722,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "סובה",
+    "kidFriendly": "טוב – זארו סובה פשוט ועדין",
+    "tip": "מסעדת סובה טוקיואית ותיקה.",
+    "hours": "צהריים וערב (סגור בחלק מימי ראשון)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-maach-ecute-akiba-snacks-3",
@@ -6403,7 +8756,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "הפסקה מתוקה.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-maach-ecute-konbini",
@@ -6426,7 +8789,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-origami-kaikan-amanoya",
@@ -6450,7 +8823,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "חנות ממתקים היסטורית",
+    "kidFriendly": "טוב – משקה אורז מתוק בלי אלכוהול, מוצ'י",
+    "tip": "מאז 1846: נסו אמאזקה בלי אלכוהול ומוצ'י מתוק ליד שער המקדש.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-origami-kaikan-akiba-snacks-3",
@@ -6474,7 +8856,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "הפסקה מתוקה.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-origami-kaikan-konbini",
@@ -6497,7 +8889,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bondy-jimbocho-bondy-food",
@@ -6521,7 +8923,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קארי",
+    "kidFriendly": "טוב – בקשו עדין",
+    "tip": "תפוחי אדמה מאודים עם חמאה מגיעים קודם.",
+    "hours": "מצהריים עד הערב (תור)",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bondy-jimbocho-kitanomaru-picnic",
@@ -6545,7 +8957,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פיקניק",
+    "kidFriendly": "מאוד",
+    "tip": "פיקניק סאקורה ליד המוזיאון.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bondy-jimbocho-jimbocho-chains",
@@ -6569,7 +8991,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "עיר הקארי: הרבה אפשרויות זולות.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-bondy-jimbocho-konbini",
@@ -6592,7 +9024,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-radio-kaikan-akiba-chains-3",
@@ -6616,7 +9058,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "לאורך צ'ואו-דורי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-radio-kaikan-maach-cafes",
@@ -6640,7 +9092,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בתי קפה בתחנה ישנה",
+    "kidFriendly": "טוב",
+    "tip": "מקומות ליד החלון מעל הנהר.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-radio-kaikan-akiba-snacks-3",
@@ -6664,7 +9125,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "הפסקה מתוקה.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-radio-kaikan-konbini",
@@ -6687,7 +9158,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-super-potato-akiba-chains-3",
@@ -6711,7 +9192,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "לאורך צ'ואו-דורי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-super-potato-maach-cafes",
@@ -6735,7 +9226,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בתי קפה בתחנה ישנה",
+    "kidFriendly": "טוב",
+    "tip": "מקומות ליד החלון מעל הנהר.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-super-potato-akiba-snacks-3",
@@ -6759,7 +9259,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "הפסקה מתוקה.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-super-potato-konbini",
@@ -6782,7 +9292,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-hey-akihabara-akiba-chains-3",
@@ -6806,7 +9326,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "לאורך צ'ואו-דורי.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-hey-akihabara-maach-cafes",
@@ -6830,7 +9360,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בתי קפה בתחנה ישנה",
+    "kidFriendly": "טוב",
+    "tip": "מקומות ליד החלון מעל הנהר.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-hey-akihabara-akiba-snacks-3",
@@ -6854,7 +9393,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "הפסקה מתוקה.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d3-food-hey-akihabara-konbini",
@@ -6877,7 +9426,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-senkyaku-banrai-banrai-hall",
@@ -6901,7 +9460,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פירות ים ואוכל רחוב בסגנון אדו",
+    "kidFriendly": "טוב – שיפודים צלויים, טמאגויאקי, אפשרויות עדינות",
+    "tip": "קערות פירות ים טריים מהשוק וחטיפים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-senkyaku-banrai-shijomae-konbini-picnic",
@@ -6925,7 +9493,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פיקניק",
+    "kidFriendly": "מאוד",
+    "tip": "פיקניק מהקונביני עם נוף למפרץ.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-senkyaku-banrai-konbini",
@@ -6948,7 +9526,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-sona-area-ariake-garden",
@@ -6972,7 +9560,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "מתחם מזון גדול בקניון ליד סונה אריאה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-sona-area-ariake-garden-sweets",
@@ -6996,7 +9593,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקים מהירים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-sona-area-ariake-chains",
@@ -7020,7 +9626,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות זולות ליד התחנה.",
+    "hours": "רובם פתוחים מהבוקר עד הערב",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-sona-area-konbini",
@@ -7043,7 +9659,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-fune-no-kagakukan-telecom-chains",
@@ -7067,7 +9693,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות",
+    "kidFriendly": "טוב",
+    "tip": "פחות אפשרויות בימי ראשון – קחו חטיפים.",
+    "hours": "שעות של ימי חול בעיקר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-fune-no-kagakukan-fune-picnic",
@@ -7091,7 +9727,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פיקניק",
+    "kidFriendly": "מאוד",
+    "tip": "הביאו אוכל מהקונביני.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-fune-no-kagakukan-konbini",
@@ -7114,7 +9760,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-divercity-gundam-aqua-city-ramen",
@@ -7138,7 +9794,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "היכל ראמן",
+    "kidFriendly": "טוב",
+    "tip": "שש מסעדות ראמן אזוריות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-divercity-gundam-decks-takoyaki-food",
@@ -7162,7 +9827,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טקויאקי",
+    "kidFriendly": "מאוד",
+    "tip": "מסעדות טקויאקי מפורסמות מאוסקה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-divercity-gundam-decks-dagashi",
@@ -7186,7 +9860,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-divercity-gundam-konbini",
@@ -7209,7 +9892,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-round1-divercity-divercity-court",
@@ -7233,7 +9926,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – הכול, מהמבורגרים ועד ראמן",
+    "tip": "מתחם מזון ענק עם מקומות ישיבה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-round1-divercity-decks-takoyaki-food",
@@ -7257,7 +9959,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טקויאקי",
+    "kidFriendly": "מאוד",
+    "tip": "מסעדות טקויאקי מפורסמות מאוסקה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-round1-divercity-decks-dagashi",
@@ -7281,7 +9992,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-round1-divercity-konbini",
@@ -7304,7 +10024,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-joypolis-aqua-city-ramen",
@@ -7328,7 +10058,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "היכל ראמן",
+    "kidFriendly": "טוב",
+    "tip": "שש מסעדות ראמן אזוריות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-joypolis-decks-takoyaki-food",
@@ -7352,7 +10091,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טקויאקי",
+    "kidFriendly": "מאוד",
+    "tip": "מסעדות טקויאקי מפורסמות מאוסקה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-joypolis-decks-dagashi",
@@ -7376,7 +10124,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-joypolis-konbini",
@@ -7399,7 +10156,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-legoland-aqua-city-ramen",
@@ -7423,7 +10190,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "היכל ראמן",
+    "kidFriendly": "טוב",
+    "tip": "שש מסעדות ראמן אזוריות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-legoland-decks-takoyaki-food",
@@ -7447,7 +10223,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טקויאקי",
+    "kidFriendly": "מאוד",
+    "tip": "מסעדות טקויאקי מפורסמות מאוסקה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-legoland-decks-dagashi",
@@ -7471,7 +10256,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-legoland-konbini",
@@ -7494,7 +10288,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-fuji-tv-aqua-city-ramen",
@@ -7518,7 +10322,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "היכל ראמן",
+    "kidFriendly": "טוב",
+    "tip": "שש מסעדות ראמן אזוריות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-fuji-tv-decks-takoyaki-food",
@@ -7542,7 +10355,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טקויאקי",
+    "kidFriendly": "מאוד",
+    "tip": "מסעדות טקויאקי מפורסמות מאוסקה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-fuji-tv-decks-dagashi",
@@ -7566,7 +10388,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-fuji-tv-konbini",
@@ -7589,7 +10420,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-madame-tussauds-aqua-city-ramen",
@@ -7613,7 +10454,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "היכל ראמן",
+    "kidFriendly": "טוב",
+    "tip": "שש מסעדות ראמן אזוריות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-madame-tussauds-decks-takoyaki-food",
@@ -7637,7 +10487,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טקויאקי",
+    "kidFriendly": "מאוד",
+    "tip": "מסעדות טקויאקי מפורסמות מאוסקה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-madame-tussauds-decks-dagashi",
@@ -7661,7 +10520,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-madame-tussauds-konbini",
@@ -7684,7 +10552,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-toyosu-gururi-park-banrai-hall",
@@ -7708,7 +10586,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פירות ים ואוכל רחוב בסגנון אדו",
+    "kidFriendly": "טוב – שיפודים צלויים, טמאגויאקי, אפשרויות עדינות",
+    "tip": "קערות פירות ים טריים מהשוק וחטיפים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-toyosu-gururi-park-shijomae-konbini-picnic",
@@ -7732,7 +10619,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פיקניק",
+    "kidFriendly": "מאוד",
+    "tip": "פיקניק מהקונביני עם נוף למפרץ.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-toyosu-gururi-park-konbini",
@@ -7755,7 +10652,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-ramen-kokugikan-divercity-court",
@@ -7779,7 +10686,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – הכול, מהמבורגרים ועד ראמן",
+    "tip": "מתחם מזון ענק עם מקומות ישיבה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-ramen-kokugikan-decks-takoyaki-food",
@@ -7803,7 +10719,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "טקויאקי",
+    "kidFriendly": "מאוד",
+    "tip": "מסעדות טקויאקי מפורסמות מאוסקה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-ramen-kokugikan-decks-dagashi",
@@ -7827,7 +10752,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-ramen-kokugikan-konbini",
@@ -7850,7 +10784,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-decks-takoyaki-aqua-city-ramen",
@@ -7874,7 +10818,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "היכל ראמן",
+    "kidFriendly": "טוב",
+    "tip": "שש מסעדות ראמן אזוריות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-decks-takoyaki-decks-dagashi",
@@ -7898,7 +10851,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "רחוב חטיפי רטרו",
+    "kidFriendly": "מאוד",
+    "tip": "ממתקי דגאשי בסגנון שנות ה-60 – כיף עם ¥300 לכל אחד.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-decks-takoyaki-divercity-court",
@@ -7922,7 +10884,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד – הכול, מהמבורגרים ועד ראמן",
+    "tip": "מתחם מזון ענק עם מקומות ישיבה.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d4-food-decks-takoyaki-konbini",
@@ -7945,7 +10916,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-sunshine-aquarium-alpa-food",
@@ -7969,7 +10950,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות משפחתיות קלות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-sunshine-aquarium-namja-gyoza",
@@ -7993,7 +10983,18 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק נושא של גיוזה",
+    "kidFriendly": "מאוד – הרבה סגנונות גיוזה וממתקים",
+    "tip": "צריך כניסה לנאמג'ה; נסו 3 מסעדות שונות.",
+    "hours": "10:00–21:00 (בתשלום כניסה)",
+    "cost": "¥400–1,200 + כניסה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-sunshine-aquarium-sunshine-snacks",
@@ -8017,7 +11018,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-sunshine-aquarium-konbini",
@@ -8040,7 +11050,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-tenbou-park-alpa-food",
@@ -8064,7 +11084,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות משפחתיות קלות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-tenbou-park-namja-gyoza",
@@ -8088,7 +11117,18 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק נושא של גיוזה",
+    "kidFriendly": "מאוד – הרבה סגנונות גיוזה וממתקים",
+    "tip": "צריך כניסה לנאמג'ה; נסו 3 מסעדות שונות.",
+    "hours": "10:00–21:00 (בתשלום כניסה)",
+    "cost": "¥400–1,200 + כניסה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-tenbou-park-sunshine-snacks",
@@ -8112,7 +11152,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-tenbou-park-konbini",
@@ -8135,7 +11184,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-planetarium-manten-alpa-food",
@@ -8159,7 +11218,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות משפחתיות קלות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-planetarium-manten-namja-gyoza",
@@ -8183,7 +11251,18 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק נושא של גיוזה",
+    "kidFriendly": "מאוד – הרבה סגנונות גיוזה וממתקים",
+    "tip": "צריך כניסה לנאמג'ה; נסו 3 מסעדות שונות.",
+    "hours": "10:00–21:00 (בתשלום כניסה)",
+    "cost": "¥400–1,200 + כניסה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-planetarium-manten-sunshine-snacks",
@@ -8207,7 +11286,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-planetarium-manten-konbini",
@@ -8230,7 +11318,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-pokemon-center-mega-alpa-food",
@@ -8254,7 +11352,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות משפחתיות קלות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-pokemon-center-mega-namja-gyoza",
@@ -8278,7 +11385,18 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק נושא של גיוזה",
+    "kidFriendly": "מאוד – הרבה סגנונות גיוזה וממתקים",
+    "tip": "צריך כניסה לנאמג'ה; נסו 3 מסעדות שונות.",
+    "hours": "10:00–21:00 (בתשלום כניסה)",
+    "cost": "¥400–1,200 + כניסה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-pokemon-center-mega-sunshine-snacks",
@@ -8302,7 +11420,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-pokemon-center-mega-konbini",
@@ -8325,7 +11452,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gashapon-store-alpa-food",
@@ -8349,7 +11486,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות משפחתיות קלות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gashapon-store-namja-gyoza",
@@ -8373,7 +11519,18 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק נושא של גיוזה",
+    "kidFriendly": "מאוד – הרבה סגנונות גיוזה וממתקים",
+    "tip": "צריך כניסה לנאמג'ה; נסו 3 מסעדות שונות.",
+    "hours": "10:00–21:00 (בתשלום כניסה)",
+    "cost": "¥400–1,200 + כניסה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gashapon-store-sunshine-snacks",
@@ -8397,7 +11554,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gashapon-store-konbini",
@@ -8420,7 +11586,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-namja-town-alpa-food",
@@ -8444,7 +11620,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות משפחתיות קלות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-namja-town-namja-gyoza",
@@ -8468,7 +11653,18 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פארק נושא של גיוזה",
+    "kidFriendly": "מאוד – הרבה סגנונות גיוזה וממתקים",
+    "tip": "צריך כניסה לנאמג'ה; נסו 3 מסעדות שונות.",
+    "hours": "10:00–21:00 (בתשלום כניסה)",
+    "cost": "¥400–1,200 + כניסה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-namja-town-sunshine-snacks",
@@ -8492,7 +11688,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-namja-town-konbini",
@@ -8515,7 +11720,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-animate-ikebukuro-ikebukuro-chains",
@@ -8539,7 +11754,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "Matsuya, CoCo Ichibanya ו-Hidakaya כולם קרובים.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-animate-ikebukuro-otome-cafe",
@@ -8563,7 +11788,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה בנושא",
+    "kidFriendly": "טוב – בדקו איזו אנימה מוצגת",
+    "tip": "בתי קפה זמניים של אנימה; בדקו כללי הזמנה.",
+    "hours": "משתנה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-animate-ikebukuro-sunshine-snacks",
@@ -8587,7 +11822,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-animate-ikebukuro-konbini",
@@ -8610,7 +11854,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-bosaikan-ikebukuro-west-chains",
@@ -8634,7 +11888,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד",
+    "tip": "הארוחות הקרובות לבוסאיקאן.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-bosaikan-seibu-depachika",
@@ -8658,7 +11922,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל בכלבו",
+    "kidFriendly": "מאוד",
+    "tip": "קומות הדפאצ'יקה הגדולות ביפן – בנטו וממתקים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-bosaikan-nishiguchi-park",
@@ -8682,7 +11955,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "פיקניק",
+    "kidFriendly": "מאוד",
+    "tip": "פיקניק מהקונביני בפארק עם התיאטרון הפתוח.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-bosaikan-konbini",
@@ -8705,7 +11988,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-ikebukuro-chains",
@@ -8729,7 +12022,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "Matsuya, CoCo Ichibanya ו-Hidakaya כולם קרובים.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-otome-cafe",
@@ -8753,7 +12056,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה בנושא",
+    "kidFriendly": "טוב – בדקו איזו אנימה מוצגת",
+    "tip": "בתי קפה זמניים של אנימה; בדקו כללי הזמנה.",
+    "hours": "משתנה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-sunshine-snacks",
@@ -8777,7 +12090,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-konbini",
@@ -8800,7 +12122,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-2-ikebukuro-chains",
@@ -8824,7 +12156,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "Matsuya, CoCo Ichibanya ו-Hidakaya כולם קרובים.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-2-otome-cafe",
@@ -8848,7 +12190,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה בנושא",
+    "kidFriendly": "טוב – בדקו איזו אנימה מוצגת",
+    "tip": "בתי קפה זמניים של אנימה; בדקו כללי הזמנה.",
+    "hours": "משתנה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-2-sunshine-snacks",
@@ -8872,7 +12224,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-gigo-ikebukuro-2-konbini",
@@ -8895,7 +12256,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-mutekiya-ikebukuro-chains",
@@ -8919,7 +12290,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ארוחות זולות ברשתות",
+    "kidFriendly": "מאוד – תפריטים בתמונות",
+    "tip": "Matsuya, CoCo Ichibanya ו-Hidakaya כולם קרובים.",
+    "hours": "רובם פתוחים מהבוקר עד מאוחר",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-mutekiya-seibu-depachika",
@@ -8943,7 +12324,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "קומת אוכל בכלבו",
+    "kidFriendly": "מאוד",
+    "tip": "קומות הדפאצ'יקה הגדולות ביפן – בנטו וממתקים.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-mutekiya-sunshine-snacks",
@@ -8967,7 +12357,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "ממתקים",
+    "kidFriendly": "מאוד",
+    "tip": "קרפים, גלידה, טאיאקי.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-mutekiya-konbini",
@@ -8990,7 +12389,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-toshima-forest-alpa-food",
@@ -9014,7 +12423,16 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "מתחם מזון",
+    "kidFriendly": "מאוד",
+    "tip": "ארוחות משפחתיות קלות.",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-toshima-forest-otome-cafe",
@@ -9038,7 +12456,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה בנושא",
+    "kidFriendly": "טוב – בדקו איזו אנימה מוצגת",
+    "tip": "בתי קפה זמניים של אנימה; בדקו כללי הזמנה.",
+    "hours": "משתנה",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-toshima-forest-toshima-cafe",
@@ -9062,7 +12490,17 @@
    "verify": [
     "coordinates",
     "hours"
-   ]
+   ],
+   "he": {
+    "type": "בית קפה",
+    "kidFriendly": "מאוד",
+    "tip": "שתייה וחטיף מהירים.",
+    "hours": "שעות היום",
+    "verify": [
+     "קואורדינטות",
+     "שעות"
+    ]
+   }
   },
   {
    "id": "plan-d5-food-toshima-forest-konbini",
@@ -9085,7 +12523,17 @@
    "tip": "Onigiri, sandwiches, fried chicken, ice cream – the cheapest quick stop. Open 24 h.",
    "verify": [
     "coordinates = the attraction; search 'konbini' on Google Maps for the nearest one"
-   ]
+   ],
+   "he": {
+    "name": "הקונביני הקרוב (7-Eleven / FamilyMart / Lawson)",
+    "type": "חנות נוחות",
+    "kidFriendly": "מאוד – אוניגירי, כריכים, גלידה",
+    "hours": "24 שעות",
+    "tip": "אוניגירי, כריכים, עוף מטוגן, גלידה – העצירה המהירה הזולה ביותר. פתוח 24 שעות.",
+    "verify": [
+     "הקואורדינטות הן של האטרקציה; חפשו 'konbini' בגוגל מפות לקונביני הקרוב"
+    ]
+   }
   }
  ],
  "edges": [

@@ -1,3 +1,4 @@
+import { locale } from "./i18n.js";
 // Small shared helpers for the browser code.
 
 export const DAY_MS = 24 * 60 * 60 * 1000;
@@ -90,7 +91,7 @@ export function fmtDate(isoDate) {
   if (!isoDate) return "";
   const d = new Date(`${isoDate}T12:00:00+09:00`);
   if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-GB", { timeZone: "Asia/Tokyo", weekday: "short", day: "numeric", month: "short" });
+  return d.toLocaleDateString(locale(), { timeZone: "Asia/Tokyo", weekday: "short", day: "numeric", month: "short" });
 }
 
 export const PRICE = {
