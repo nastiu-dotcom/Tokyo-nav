@@ -29,7 +29,7 @@ test("first login creates nastia (admin), eden and Noam; names are case-insensit
   const c = r.headers["set-cookie"];
   assert.match(c, /^tke_s=.+; Path=\/; HttpOnly; SameSite=Lax; Max-Age=\d+; Secure$/);
   // the password itself is never stored
-  assert.ok(![...db.values()].some((v) => v.includes(TEST_PASSWORD)));
+  assert.ok(![...db.values()].some((v) => typeof v === "string" && v.includes(TEST_PASSWORD)));
   const me = await call(auth, "GET", { cookie: cookieOf(r) });
   assert.equal(me.body.user.id, "nastia");
 });

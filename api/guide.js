@@ -7,6 +7,7 @@
 import { cacheFor, handle, HttpError, memo, ONE_DAY } from "../lib/common.js";
 import { writeGuide } from "../lib/claude.js";
 import { cachedRoute, routePoints } from "./route.js";
+import { aiAllowed, count } from "../lib/usage.js";
 
 export default handle(async (req, res) => {
   if (process.env.AI_GUIDES === "off") throw new HttpError(403, "AI guides are switched off.");
@@ -14,6 +15,9 @@ export default handle(async (req, res) => {
   const name = String(req.query.name || "your destination").slice(0, 120);
 
   const result = await memo(`guide:${a.lat},${a.lng}:${b.lat},${b.lng}:${name}`, ONE_DAY, async () => {
+    // paid step: AI must be on and this month under the admin's cap
+    const allowed = await aiAllowed();
+    if (!allowed.ok) { count("ai:blocked"); throw new HttpError(403, allowed.reason); }
     const route = await cachedRoute(a, b);
     const guide = await writeGuide(name, route);
     return { route, guide, createdAt: new Date().toISOString() };

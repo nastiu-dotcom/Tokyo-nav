@@ -15,6 +15,7 @@ export default handle(async (req, res) => {
     const data = await googleFetch("https://places.googleapis.com/v1/places:searchText", {
       method: "POST",
       fieldMask: "places.id,places.displayName,places.formattedAddress,places.location",
+      sku: "places.textsearch.pro",
       body: { textQuery: q, languageCode: "en", regionCode: "JP", pageSize: 1, locationRestriction: { rectangle: JAPAN } },
     });
     const p = data.places?.[0];

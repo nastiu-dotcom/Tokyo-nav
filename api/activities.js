@@ -51,6 +51,7 @@ export default handle(async (req, res) => {
     const data = await googleFetch("https://places.googleapis.com/v1/places:searchText", {
       method: "POST",
       fieldMask: FIELD_MASK,
+      sku: "places.textsearch.enterprise",
       body: {
         textQuery: `${query} in Tokyo`,
         languageCode: "en",
