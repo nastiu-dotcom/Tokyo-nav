@@ -50,8 +50,19 @@ things to do in Tokyo and get there by train, subway or bus.
   “Saved Places.json” / list .csv – read on the phone, nothing uploaded) and
   **tax-refund shops**. Tap a pin → open in Google Maps or get directions.
   Places without coordinates can be found with `/api/find` (Google free tier).
+- **🧳 The whole trip** (top of the 🗓️ Trip tab): Thailand 19/3 → 1/4 and
+  Japan 1/4 → 10/5/2027 on one bar, a countdown (then “Day N of 53”), what's
+  next, and **🧳 The whole trip** – a timeline of ✈️ flights, 🏨 stays and
+  📌 notes per country. Grown-ups add and edit them (price, currency, booking
+  reference); everyone in the family sees the same timeline. It warns about
+  **nights with no bed booked**, two stays on one night, and **Tokyo plan days
+  dated while you're still in Thailand**. Trip name, budget (₪80,000) and
+  country dates: **✏️ Dates & budget**. Kids see it without prices or
+  booking numbers.
 - **🔒 Family login:** the app, its data and every API need a login (name +
-  password). First users: **nastia** (admin), **eden**, **Noam**. Admins open
+  password). First users: **nastia** (admin), **eden** and **Noam** (kids).
+  **Kid accounts** open straight into the kids' view: the shared plan
+  (read-only, no link needed), the map and the timeline – and suggest places. Admins open
   **👤 → 🛡️ Manage users** to add people, reset passwords, switch someone off
   or remove them. Everyone can change their own password in the 👤 menu.
   Passwords are stored only as scrypt hashes in your Upstash database; the
@@ -109,6 +120,7 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 | `api/guide.js` | Routes API (transit → walk → nearest stations) + Claude guide |
 | `middleware.js`, `login.html`, `admin.html` | Login gate for every page and API; login and user-management pages |
 | `api/auth.js`, `api/admin.js`, `lib/users.js`, `lib/session.js` | Log in/out, change password; admin user management; signed session cookie |
+| `api/timeline.js`, `js/timeline.js`, `js/timeline-core.js` | The whole trip: countries, flights, stays, notes, checks |
 | `api/family.js` | Family sharing: create, read plan + wishlist, kids suggest, parent approves |
 | `lib/` | Shared server code (not public routes); `lib/kv.js` talks to Upstash Redis |
 | `js/i18n.js`, `js/i18n-he.js` | Language switch and Hebrew texts |
@@ -294,8 +306,8 @@ Upstash database) and one more setting – the first password:
    8 characters) → **Save**. It is never written into the code or GitHub.
 3. **Deployments** → newest → **⋯** → **Redeploy**.
 4. Open the app → log in as **nastia** with that password. This first login
-   creates three users: **nastia** (admin), **eden** and **Noam**, all with
-   that password. Names are not case-sensitive.
+   creates three users: **nastia** (admin), **eden** and **Noam** (kids), all
+   with that password. Names are not case-sensitive.
 5. Each person: **👤 → 🔑 Change my password** – best to give everyone their
    own. Admin: **👤 → 🛡️ Manage users** to add users (e.g. grandparents),
    reset a forgotten password, switch someone off or remove them.

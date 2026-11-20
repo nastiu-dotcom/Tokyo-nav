@@ -38,6 +38,9 @@
 
   <main>
     <!-- Trip mode: one chip per day -->
+    <!-- The whole trip (Thailand + Japan): countdown, countries, what's next -->
+    <section id="journey-card" class="card journey-card" hidden></section>
+
     <nav id="days-bar" class="chips days" data-i18n-aria="Days" aria-label="Days"></nav>
 
     <!-- Family sharing: parent's suggestions inbox / kid's corner -->
@@ -103,6 +106,7 @@
   <div id="toast" class="toast" role="status" hidden></div>
 
   <!-- Point picker sheet -->
+  <div id="journey" class="sheet" role="dialog" aria-modal="true" aria-labelledby="journey-title" hidden></div>
   <div id="picker" class="sheet" role="dialog" aria-modal="true" aria-labelledby="picker-title" hidden>
     <div class="sheet-head">
       <h2 id="picker-title">Choose a place</h2>

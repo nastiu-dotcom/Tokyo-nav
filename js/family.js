@@ -4,8 +4,12 @@ import { getJSON, postJSON, store } from "./util.js";
 
 export const family = () => store.get("family") || null;
 export const familyData = () => store.get("familyData") || { plan: null, wishlist: [], v: 0 };
-export const isKid = () => family()?.role === "kid";
-export const isParentShared = () => family()?.role === "parent";
+// A kid *account* is always in kid mode, even before the trip is shared.
+let accountRole = null, accountName = "";
+export const setAccountRole = (role, name = "") => { accountRole = role; accountName = name; };
+export const isKidAccount = () => accountRole === "kid";
+export const isKid = () => isKidAccount() || family()?.role === "kid";
+export const isParentShared = () => !isKid() && family()?.role === "parent";
 
 const keep = (d) => store.set("familyData", { plan: d.plan, wishlist: d.wishlist || [], v: d.v });
 
@@ -39,9 +43,26 @@ export async function joinFamily(id, key, name) {
   return d;
 }
 
+/** Kid account: open the family's current shared trip (no link needed). Null if none yet. */
+export async function connectByLogin(name = accountName) {
+  const f = family();
+  const mine = f?.auto ? `&id=${encodeURIComponent(f.id)}&v=${familyData().v}` : "";
+  const d = await getJSON(`/api/family?auto=1${mine}`);
+  if (d.none) {
+    if (f?.auto) store.set("family", null);
+    return null;
+  }
+  store.set("family", { id: d.id, key: "", role: "kid", name, auto: true });
+  if (d.unchanged) return null;
+  keep(d);
+  return d;
+}
+
 /** Returns true when something changed on the server. */
 export async function refreshFamily() {
   const f = family();
+  // Kid accounts always follow the family's current shared trip.
+  if (isKidAccount() && (!f || f.auto)) return Boolean(await connectByLogin());
   if (!f) return false;
   const cur = familyData();
   const d = await getJSON(`/api/family?id=${f.id}&key=${f.key}&v=${cur.v}`);
@@ -95,7 +116,7 @@ export function joinFromHash() {
 /** Check for changes every 90 s while the app is visible (light on the free tier). */
 export function startFamilyPolling(onChange) {
   const tick = async () => {
-    if (!family() || document.visibilityState !== "visible") return;
+    if ((!family() && !isKidAccount()) || document.visibilityState !== "visible") return;
     try { if (await refreshFamily()) onChange(); } catch { /* offline – try next time */ }
   };
   setInterval(tick, 90_000);

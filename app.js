@@ -22,9 +22,10 @@ import {
 } from "./js/trip2027.js";
 import { applyLang, fwd, getLang, L, setLang, t, tn } from "./js/i18n.js";
 import { dayColor, dayStyle } from "./js/theme.js";
-import { initAccount } from "./js/account.js";
+import { currentUser, initAccount } from "./js/account.js";
+import { initJourney, renderJourney } from "./js/timeline.js";
 import {
-  createFamily, family, familyData, isKid, isParentShared, joinFamily, joinFromHash, kidLink, leaveFamily,
+  connectByLogin, createFamily, family, familyData, isKid, isParentShared, joinFamily, joinFromHash, kidLink, leaveFamily, setAccountRole,
   markPushed, parentLink, pushPlanSoon, refreshFamily, removeSuggestion, reviewSuggestion, startFamilyPolling,
   suggestPlace,
 } from "./js/family.js";
@@ -637,10 +638,16 @@ function suggestionHtml(it, parent) {
 
 function renderFamily() {
   const f = family();
-  const show = f && state.mode === "trip";
+  const show = (f || kidMode()) && state.mode === "trip";
   els.familyCard.hidden = !show;
   updateBadge();
   if (!show) return;
+  if (!f) { // kid account, trip not shared yet
+    els.familyCard.innerHTML = `
+      <h2>${t("Hi {name}! 💖", { name: `<bdi>${esc(currentUser()?.name || "")}</bdi>` })}</h2>
+      <p>${t("The trip plan isn't shared yet – ask a parent to tap “👨‍👩‍👧 Share with the kids”. Meanwhile, look at 🧳 the whole trip and the 🗺️ map.")}</p>`;
+    return;
+  }
   const data = familyData();
   const wish = data.wishlist || [];
   if (f.role === "parent") {
@@ -679,7 +686,7 @@ function renderFamily() {
       ${others.length ? `<details><summary>${t("Family suggestions ({n})", { n: others.length })}</summary><ul class="sugg-list">${others.map((it) => suggestionHtml(it, false)).join("")}</ul></details>` : ""}
       <div class="row tight">
         <button class="btn btn-secondary" type="button" data-fam="refresh">${t("🔄 Check now")}</button>
-        <button class="btn btn-secondary" type="button" data-fam="leave">${t("Leave the family plan")}</button>
+        ${f.auto ? "" : `<button class="btn btn-secondary" type="button" data-fam="leave">${t("Leave the family plan")}</button>`}
       </div>`;
   }
 }
@@ -947,6 +954,7 @@ function render() {
   els.planSection.hidden = prep || tax || mapMode;
   els.tipsCard.hidden = kidMode();
   renderFamily();
+  renderJourney();
   if (!mapMode) stopMapTracking(); // GPS only while the map is open
   if (mapMode) {
     els.daysBar.hidden = true;
@@ -1067,11 +1075,21 @@ els.list.addEventListener("click", (e) => {
   state.browse.openOnly = store.get("openOnly") === true;
   els.openNow.checked = state.browse.openOnly;
 
+  // Who is logged in. Kid accounts open the family's shared trip automatically.
+  const acct = await account;
+  if (acct) {
+    setAccountRole(acct.role, acct.name);
+    if (acct.role === "kid") {
+      try { await connectByLogin(acct.name); } catch { /* offline: keep the last copy */ }
+      state.mode = "trip";
+    }
+  }
+
   // A kid (or second parent) opening a family link: #join=<id>.<key>
   const join = joinFromHash();
   if (join) {
     history.replaceState(null, "", location.pathname);
-    const name = prompt(t("Welcome to the family trip! 💖 What's your name?"), family()?.name || (await account)?.name || "");
+    const name = prompt(t("Welcome to the family trip! 💖 What's your name?"), family()?.name || acct?.name || "");
     if (name !== null) {
       try {
         const d = await joinFamily(join.id, join.key, name.trim().slice(0, 30));
@@ -1121,8 +1139,16 @@ els.list.addEventListener("click", (e) => {
   renderCategories();
   save();
   render();
+  initJourney({
+    card: $("#journey-card"), sheet: $("#journey"),
+    visible: () => state.mode === "trip",
+    canEdit: () => !kidMode() && acct?.role !== "kid",
+    planDays: () => state.trip.days,
+    dayName: (i) => dayName(state.trip.days[i], i),
+    onGoToDay: (i) => { state.day = i; state.mode = "trip"; save(); render(); els.planSection.scrollIntoView({ behavior: "smooth" }); },
+  });
   startFamilyPolling(onFamilyChange);
-  if (family()) refreshFamily().then((changed) => { if (changed) onFamilyChange(); }).catch(() => {});
+  if (family() || kidMode()) refreshFamily().then((changed) => { if (changed) onFamilyChange(); }).catch(() => {});
 
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
 })();

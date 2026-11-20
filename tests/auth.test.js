@@ -25,7 +25,7 @@ test("first login creates nastia (admin), eden and Noam; names are case-insensit
   assert.equal(r.status, 200);
   assert.deepEqual(r.body.user, { ...r.body.user, id: "nastia", role: "admin" });
   assert.equal((await loginAs("noam")).body.user.name, "Noam");
-  assert.equal((await loginAs("eden")).body.user.role, "member");
+  assert.equal((await loginAs("eden")).body.user.role, "kid");
   const c = r.headers["set-cookie"];
   assert.match(c, /^tke_s=.+; Path=\/; HttpOnly; SameSite=Lax; Max-Age=\d+; Secure$/);
   // the password itself is never stored

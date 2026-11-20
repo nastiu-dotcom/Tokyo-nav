@@ -7,7 +7,7 @@ const $ = (s) => document.querySelector(s);
 const root = $("#admin");
 let state = { users: [], me: "" };
 
-const ROLE_LABEL = () => ({ admin: t("🛡️ Admin – can manage users"), member: t("👤 Family member") });
+const ROLE_LABEL = () => ({ admin: t("🛡️ Admin – can manage users"), member: t("👤 Family member"), kid: t("🧒 Kid – sees the plan, suggests places") });
 
 function toast(msg) {
   const el = $("#toast");
