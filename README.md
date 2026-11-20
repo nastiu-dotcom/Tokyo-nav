@@ -50,6 +50,23 @@ things to do in Tokyo and get there by train, subway or bus.
   “Saved Places.json” / list .csv – read on the phone, nothing uploaded) and
   **tax-refund shops**. Tap a pin → open in Google Maps or get directions.
   Places without coordinates can be found with `/api/find` (Google free tier).
+- **💰 Running costs** (admins only: 👤 → 💰 Running costs): everything that can
+  cost money, measured by the app itself on every API call and refreshed every
+  30 seconds –
+  - **Google Maps** per billing SKU against its free monthly calls (Text
+    Search Enterprise 1,000 · Pro 5,000 · Essentials 10,000), the cost beyond
+    them, and Google calls per day (chart + table);
+  - **Claude**: guides, exact input/output tokens and $ (priced by the model
+    that answered), cost per day, cost per guide;
+  - **Upstash**: commands this month vs the free 500,000, storage by kind of
+    data; **Vercel**: function runs per endpoint vs ~1M;
+  - **who used what** (per person), and links to the real bills.
+
+  **Spending controls** on the same page: AI guides on/off, a **monthly AI
+  limit** (default $5 – guides stop when it's reached) and **Google: free
+  allowance only** (default on – a feature stops when its free calls for the
+  month are used, so Google can't charge you). Prices live in `lib/prices.js`
+  (checked Nov 2026); counters in Upstash (`use:*`, kept ~13 months).
 - **🧳 The whole trip** (top of the 🗓️ Trip tab): Thailand 19/3 → 1/4 and
   Japan 1/4 → 10/5/2027 on one bar, a countdown (then “Day N of 53”), what's
   next, and **🧳 The whole trip** – a timeline of ✈️ flights, 🏨 stays and

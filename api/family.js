@@ -18,6 +18,7 @@
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { HttpError } from "../lib/common.js";
 import { requireUser } from "../lib/users.js";
+import { withUsage } from "../lib/usage.js";
 import { kv, kvPipeline } from "../lib/kv.js";
 
 const TTL = 60 * 60 * 24 * 180;
@@ -102,7 +103,9 @@ function cleanItem(item) {
   };
 }
 
-export default async function handler(req, res) {
+export default withUsage(handler);
+
+async function handler(req, res) {
   try {
     const acct = await requireUser(req);
     if (req.method === "GET") {

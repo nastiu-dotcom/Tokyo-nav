@@ -9,7 +9,10 @@ import { fileURLToPath } from "node:url";
 import { installFakeKv } from "./fake-kv.js";
 import middleware from "../middleware.js";
 
-if (process.env.FAKE_KV === "1") installFakeKv(); // local testing of family sharing
+if (process.env.FAKE_KV === "1") {
+  const db = installFakeKv(); // local testing of login, family sharing, usage
+  if (process.env.SEED_USAGE === "1") (await import("./seed-usage.js")).seedUsage(db);
+}
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const port = Number(process.env.PORT) || 3000;

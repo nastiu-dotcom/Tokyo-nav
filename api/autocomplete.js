@@ -11,6 +11,7 @@ export default handle(async (req, res) => {
 
   const data = await googleFetch("https://places.googleapis.com/v1/places:autocomplete", {
     method: "POST",
+    sku: "places.autocomplete",
     fieldMask:
       "suggestions.placePrediction.placeId,suggestions.placePrediction.structuredFormat",
     body: {

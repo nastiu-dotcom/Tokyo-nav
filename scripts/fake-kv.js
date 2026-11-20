@@ -8,12 +8,25 @@ export function installFakeKv() {
   const run = (cmd) => {
     const [op, ...a] = cmd.map(String);
     switch (op.toUpperCase()) {
-      case "MGET": return a.map((k) => db.get(k) ?? null);
-      case "GET": return db.get(a[0]) ?? null;
+      case "MGET": return a.map((k) => (typeof db.get(k) === "string" ? db.get(k) : null));
+      case "GET": { const v = db.get(a[0]); return typeof v === "string" ? v : null; }
       case "SET":
         if (a.slice(2).some((x) => x.toUpperCase() === "NX") && db.has(a[0])) return null;
         db.set(a[0], a[1]); return "OK";
       case "EXPIRE": return db.has(a[0]) ? 1 : 0;
+      case "HINCRBY": {
+        const h = db.get(a[0]) instanceof Map ? db.get(a[0]) : new Map();
+        db.set(a[0], h);
+        h.set(a[1], (Number(h.get(a[1])) || 0) + Number(a[2]));
+        return h.get(a[1]);
+      }
+      case "HGET": { const h = db.get(a[0]); return h instanceof Map && h.has(a[1]) ? String(h.get(a[1])) : null; }
+      case "HGETALL": { const h = db.get(a[0]); return h instanceof Map ? [...h.entries()].flatMap(([k, v]) => [k, String(v)]) : []; }
+      case "DBSIZE": return db.size;
+      case "TYPE": return !db.has(a[0]) ? "none" : db.get(a[0]) instanceof Map ? "hash" : "string";
+      case "STRLEN": { const v = db.get(a[0]); return typeof v === "string" ? Buffer.byteLength(v) : 0; }
+      case "HLEN": { const h = db.get(a[0]); return h instanceof Map ? h.size : 0; }
+      case "SCAN": return ["0", [...db.keys()]];
       case "DEL": return a.reduce((n, k) => n + (db.delete(k) ? 1 : 0), 0);
       default: throw new Error(`fake-kv: unsupported ${op}`);
     }

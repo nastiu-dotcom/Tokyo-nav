@@ -17,7 +17,8 @@ export async function initAccount(btn, menu) {
   btn.setAttribute("aria-expanded", "false");
   menu.innerHTML = `
     <p class="small">${t("Logged in as {name}", { name: `<bdi>${esc(me.name)}</bdi>` })}${me.role === "admin" ? ` · ${t("admin")}` : ""}</p>
-    ${me.role === "admin" ? `<a class="btn btn-secondary" href="/admin.html">${t("🛡️ Manage users")}</a>` : ""}
+    ${me.role === "admin" ? `<a class="btn btn-secondary" href="/admin.html">${t("🛡️ Manage users")}</a>
+      <a class="btn btn-secondary" href="/usage.html">${t("💰 Running costs")}</a>` : ""}
     <button class="btn btn-secondary" type="button" data-acc="password">${t("🔑 Change my password")}</button>
     <button class="btn btn-secondary" type="button" data-acc="logout">${t("🚪 Log out")}</button>`;
 

@@ -31,7 +31,7 @@ test("parent creates a family; kid and parent keys get the right roles", async (
   const bad = await call("GET", { query: { id: c.body.id, key: "x".repeat(16) } });
   assert.equal(bad.status, 403);
   // keys are stored hashed, not in clear text
-  assert.ok(![...db.values()].some((v) => v.includes(c.body.kidKey)));
+  assert.ok(![...db.values()].some((v) => typeof v === "string" && v.includes(c.body.kidKey)));
 });
 
 test("kid suggests, parent approves; cheap polling with v", async () => {

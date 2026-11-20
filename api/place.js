@@ -12,7 +12,7 @@ export default handle(async (req, res) => {
   url.searchParams.set("languageCode", "en");
   if (session) url.searchParams.set("sessionToken", session);
 
-  const p = await googleFetch(url.toString(), { fieldMask: "location,formattedAddress" });
+  const p = await googleFetch(url.toString(), { fieldMask: "location,formattedAddress", sku: "places.details" });
   if (!p.location) throw new HttpError(404, "Place has no location");
 
   // Same place always has the same coordinates; let the CDN keep it a day.
