@@ -50,6 +50,24 @@ things to do in Tokyo and get there by train, subway or bus.
   “Saved Places.json” / list .csv – read on the phone, nothing uploaded) and
   **tax-refund shops**. Tap a pin → open in Google Maps or get directions.
   Places without coordinates can be found with `/api/find` (Google free tier).
+- **🧳 The whole trip** (top of the 🗓️ Trip tab): Thailand 19/3 → 1/4 and
+  Japan 1/4 → 10/5/2027 on one bar, a countdown (then “Day N of 53”), what's
+  next, and **🧳 The whole trip** – a timeline of ✈️ flights, 🏨 stays and
+  📌 notes per country. Grown-ups add and edit them (price, currency, booking
+  reference); everyone in the family sees the same timeline. It warns about
+  **nights with no bed booked**, two stays on one night, and **Tokyo plan days
+  dated while you're still in Thailand**. Trip name, budget (₪80,000) and
+  country dates: **✏️ Dates & budget**. Kids see it without prices or
+  booking numbers.
+- **🔒 Family login:** the app, its data and every API need a login (name +
+  password). First users: **nastia** (admin), **eden** and **Noam** (kids).
+  **Kid accounts** open straight into the kids' view: the shared plan
+  (read-only, no link needed), the map and the timeline – and suggest places. Admins open
+  **👤 → 🛡️ Manage users** to add people, reset passwords, switch someone off
+  or remove them. Everyone can change their own password in the 👤 menu.
+  Passwords are stored only as scrypt hashes in your Upstash database; the
+  login lasts 30 days on each phone; 8 wrong passwords lock that name for
+  15 minutes. Setup: step (d) + step (e).
 - **🇮🇱 Hebrew (default) + English:** the whole app – buttons, the 3-day plan,
   the April trip, arrival guide, checklist, tax refund and map – is in Hebrew,
   right-to-left. The **EN / עב** button at the top switches language.
@@ -100,6 +118,9 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 | `api/place.js` | Place Details (New): coordinates of the chosen suggestion |
 | `api/activities.js` | Places Text Search (New): activities by category |
 | `api/guide.js` | Routes API (transit → walk → nearest stations) + Claude guide |
+| `middleware.js`, `login.html`, `admin.html` | Login gate for every page and API; login and user-management pages |
+| `api/auth.js`, `api/admin.js`, `lib/users.js`, `lib/session.js` | Log in/out, change password; admin user management; signed session cookie |
+| `api/timeline.js`, `js/timeline.js`, `js/timeline-core.js` | The whole trip: countries, flights, stays, notes, checks |
 | `api/family.js` | Family sharing: create, read plan + wishlist, kids suggest, parent approves |
 | `lib/` | Shared server code (not public routes); `lib/kv.js` talks to Upstash Redis |
 | `js/i18n.js`, `js/i18n-he.js` | Language switch and Hebrew texts |
@@ -275,8 +296,30 @@ password – anyone with it can see the plan and suggest places. To stop
 sharing, tap **⚙️ Family settings → Stop sharing on this phone** (the data is
 deleted automatically after 180 days without changes).
 
+## (e) Turn on the family login
+
+The app is locked to logged-in family members. It needs step (d) (the free
+Upstash database) and one more setting – the first password:
+
+1. Vercel → **Tokyo-nav** → **Settings** → **Environment Variables**.
+2. Add Name `INITIAL_PASSWORD`, value: the first family password (at least
+   8 characters) → **Save**. It is never written into the code or GitHub.
+3. **Deployments** → newest → **⋯** → **Redeploy**.
+4. Open the app → log in as **nastia** with that password. This first login
+   creates three users: **nastia** (admin), **eden** and **Noam** (kids), all
+   with that password. Names are not case-sensitive.
+5. Each person: **👤 → 🔑 Change my password** – best to give everyone their
+   own. Admin: **👤 → 🛡️ Manage users** to add users (e.g. grandparents),
+   reset a forgotten password, switch someone off or remove them.
+
+`INITIAL_PASSWORD` is used only once, while there are no users yet; changing
+it later does nothing (use Manage users instead). Lost the only admin
+password? In the Upstash console delete the key `auth:users` and log in again
+with `INITIAL_PASSWORD` (this recreates the three users; trip data is kept).
+
 ### If something doesn't work
 
+- "Login is not set up yet…": do step (d) and (e), then Redeploy.
 - "Server is missing GOOGLE_MAPS_API_KEY / ANTHROPIC_API_KEY": the variable
   name is misspelled, or you didn't redeploy after adding it.
 - "This API key is not authorized…" / "API has not been used in project": the

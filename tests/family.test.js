@@ -1,18 +1,20 @@
 // Family sharing API against an in-memory Redis.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { installFakeKv } from "../scripts/fake-kv.js";
+import { cookieFor, useFakeAuth } from "./helpers.js";
 
-const db = installFakeKv();
+const db = useFakeAuth();
+const parentCookie = await cookieFor("nastia");
+const kidCookie = await cookieFor("eden");
 const { default: handler } = await import("../api/family.js");
 
-function call(method, { query = {}, body } = {}) {
+function call(method, { query = {}, body, cookie = parentCookie } = {}) {
   return new Promise((resolve) => {
     const res = { headers: {} };
     res.setHeader = (k, v) => { res.headers[k] = v; };
     res.status = (c) => { res.statusCode = c; return res; };
     res.json = (b) => resolve({ status: res.statusCode, body: b });
-    handler({ method, query, body }, res);
+    handler({ method, query, body, headers: { cookie } }, res);
   });
 }
 const plan = { days: [{ planKey: "apr-d1", date: "2027-04-01", start: { name: "Hotel", lat: 35.68, lng: 139.695 }, stops: [] }] };
@@ -59,4 +61,26 @@ test("suggestions outside Japan or without a name are refused; kids remove only 
   assert.equal(other.status, 403);
   const own = await call("POST", { body: { action: "remove", id: c.id, key: c.kidKey, itemId: s.wishlist[0].id, by: "Tom" } });
   assert.equal(own.body.wishlist.length, 0);
+});
+
+test("kid accounts open the latest shared trip without a link, and can't act as parent", async () => {
+  const c = (await call("POST", { body: { action: "create", plan } })).body;
+  const auto = await call("GET", { query: { auto: "1" }, cookie: kidCookie });
+  assert.equal(auto.status, 200);
+  assert.equal(auto.body.id, c.id);
+  assert.equal(auto.body.role, "kid");
+  assert.equal(auto.body.plan.days[0].planKey, "apr-d1");
+  // suggestions are signed with the account name, whatever the phone says
+  const s = await call("POST", { cookie: kidCookie, body: { action: "suggest", id: c.id, key: "", item: { name: "Cat cafe", lat: 35.66, lng: 139.70, by: "Mom" } } });
+  assert.equal(s.body.wishlist.at(-1).by, "eden");
+  // even with the parent key, a kid account stays a kid
+  const sneaky = await call("POST", { cookie: kidCookie, body: { action: "plan", id: c.id, key: c.parentKey, plan } });
+  assert.equal(sneaky.status, 403);
+  assert.equal((await call("POST", { cookie: kidCookie, body: { action: "create", plan } })).status, 403);
+  // grown-ups don't use the login shortcut (their phone keeps the parent key)
+  assert.equal((await call("GET", { query: { auto: "1" } })).status, 403);
+  // no key and not the main trip → refused
+  const other = (await call("POST", { body: { action: "create", plan } })).body;
+  assert.equal((await call("GET", { query: { id: c.id, key: "" }, cookie: kidCookie })).status, 403, "older trip is no longer the main one");
+  assert.equal((await call("GET", { query: { auto: "1" }, cookie: kidCookie })).body.id, other.id);
 });

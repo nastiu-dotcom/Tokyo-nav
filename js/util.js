@@ -40,11 +40,25 @@ export function distanceKm(a, b) {
 }
 export const fmtDist = (km) => (km < 1 ? `${Math.round(km * 100) * 10} m` : `${km.toFixed(km < 10 ? 1 : 0)} km`);
 
-export async function getJSON(url) {
-  const res = await fetch(url);
+/** Session ended → login page, then back here (incl. #join=… links). */
+export function toLogin() {
+  const next = location.pathname + location.search;
+  location.href = `/login.html${next !== "/" ? `?next=${encodeURIComponent(next)}` : ""}${location.hash}`;
+}
+
+async function readJSON(res) {
   const data = await res.json().catch(() => ({}));
+  if (res.status === 401) { toLogin(); throw new Error(data.error || "Please log in"); }
   if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
   return data;
+}
+
+export async function getJSON(url) {
+  return readJSON(await fetch(url));
+}
+
+export async function postJSON(url, body) {
+  return readJSON(await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }));
 }
 
 /** Current day (0 = Sunday), minutes since midnight and date (YYYY-MM-DD), in Tokyo. */

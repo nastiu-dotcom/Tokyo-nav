@@ -1,11 +1,13 @@
 // Minimal local server (no Vercel CLI needed): serves the static files and
 // runs the /api/*.js functions with a Vercel-like req/res.
 //   GOOGLE_MAPS_API_KEY=... ANTHROPIC_API_KEY=... node scripts/dev-server.js
+//   FAKE_KV=1 INITIAL_PASSWORD=... → in-memory Redis, so login works locally
 import http from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { installFakeKv } from "./fake-kv.js";
+import middleware from "../middleware.js";
 
 if (process.env.FAKE_KV === "1") installFakeKv(); // local testing of family sharing
 
@@ -19,6 +21,15 @@ const types = {
 
 http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
+  // Same login gate as on Vercel (middleware.js).
+  const headers = new Headers();
+  for (const [k, v] of Object.entries(req.headers)) headers.set(k, Array.isArray(v) ? v.join(", ") : v);
+  const gate = await middleware(new Request(url, { headers }));
+  if (!gate.headers.get("x-middleware-next")) {
+    res.statusCode = gate.status;
+    gate.headers.forEach((v, k) => res.setHeader(k, v));
+    return res.end(Buffer.from(await gate.arrayBuffer()));
+  }
   if (url.pathname.startsWith("/api/")) {
     const name = url.pathname.slice(5).replace(/[^a-z]/g, "");
     try {

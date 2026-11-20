@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FFF8F1">
+  <meta name="robots" content="noindex">
+  <title>כניסה · טוקיו לילדים</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="login-page">
+  <main class="login-wrap">
+    <div class="title-row login-top">
+      <h1><span class="logo" aria-hidden="true">🗼</span> <span data-tx="title">טוקיו לילדים</span></h1>
+      <button id="lang-btn" class="lang-btn" type="button">EN</button>
+    </div>
+    <form id="login" class="card login-card" novalidate>
+      <h2 data-tx="hello">שלום! 👋</h2>
+      <p class="hint" data-tx="intro">האפליקציה של הטיול המשפחתי. היכנסו עם השם והסיסמה שלכם.</p>
+      <label class="label" for="name" data-tx="name">שם</label>
+      <input id="name" name="username" class="text-input" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      <label class="label" for="password" data-tx="password">סיסמה</label>
+      <div class="pw-row">
+        <input id="password" name="password" class="text-input" type="password" autocomplete="current-password" required>
+        <button id="show-pw" class="mini" type="button" aria-pressed="false" data-tx-aria="show">👁️</button>
+      </div>
+      <p id="error" class="warn" role="alert" hidden></p>
+      <button id="go" class="btn btn-primary full" type="submit" data-tx="login">כניסה</button>
+    </form>
+  </main>
+  <script type="module" src="/js/login.js"></script>
+</body>
+</html>
