@@ -4,7 +4,9 @@
 //  * the Takeout .zip itself (read in the browser, nothing is uploaded)
 // Pure parsing functions are exported for tests.
 
-export const inJapan = (lat, lng) => lat >= 24 && lat <= 45.7 && lng >= 122.9 && lng <= 146;
+// The trip's countries: Japan and Thailand (same boxes as the server).
+export const inTrip = (lat, lng) => (lat >= 24 && lat <= 45.7 && lng >= 122.9 && lng <= 146) || (lat >= 5.5 && lat <= 20.6 && lng >= 97.3 && lng <= 105.7);
+export const inJapan = inTrip; // old name
 
 /** Coordinates hidden in a Google Maps URL (@lat,lng · !3dlat!4dlng · q=lat,lng). */
 export function coordsFromUrl(url) {

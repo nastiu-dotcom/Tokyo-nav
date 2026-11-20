@@ -8,7 +8,7 @@ import { getRouteData } from "../lib/route.js";
 export function routePoints(query) {
   const from = parseLatLng(String(query.from || ""));
   const to = parseLatLng(String(query.to || ""));
-  if (!from || !to) throw new HttpError(400, "Both points must be in the Tokyo area");
+  if (!from || !to) throw new HttpError(400, "Both points must be in Japan or Thailand");
   // ~100 m precision: enough for routing, and makes cache hits likely.
   return {
     a: { lat: round(from.lat, 3), lng: round(from.lng, 3) },

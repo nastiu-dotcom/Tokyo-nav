@@ -14,6 +14,8 @@ import {
 import { openPicker } from "./js/picker.js";
 import { readTripFromHash, shareTrip } from "./js/share.js";
 import { initTax, renderTax } from "./js/tax.js";
+import { initWallet, loadWallet, renderWallet } from "./js/wallet.js";
+import { TIPS_TH } from "./js/tips-th.js";
 import { initMapView, renderMapView, stopMapTracking } from "./js/mapview.js";
 import { buildPlanDays, mapsLink, planDay, planStop, TIPS } from "./js/plan.js";
 import {
@@ -24,6 +26,7 @@ import { applyLang, fwd, getLang, L, setLang, t, tn } from "./js/i18n.js";
 import { dayColor, dayStyle } from "./js/theme.js";
 import { currentUser, initAccount } from "./js/account.js";
 import { initJourney, renderJourney } from "./js/timeline.js";
+import { goldenWeek } from "./js/timeline-core.js";
 import {
   connectByLogin, createFamily, family, familyData, isKid, isParentShared, joinFamily, joinFromHash, kidLink, leaveFamily, setAccountRole,
   markPushed, parentLink, pushPlanSoon, refreshFamily, removeSuggestion, reviewSuggestion, startFamilyPolling,
@@ -306,7 +309,11 @@ function foodListHtml(id) {
 }
 
 function renderDayIntro(route, trip) {
-  if (!trip) { els.dayIntro.innerHTML = ""; return; }
+  if (!trip) {
+    els.dayIntro.innerHTML = route.date && goldenWeek(route.date)
+      ? `<p class="holiday-note">🎌 ${t("Golden Week in Japan (29 Apr – 5 May): very crowded, prices go up – book tickets and restaurants ahead.")}</p>` : "";
+    return;
+  }
   const ro = readOnly();
   const hasPlan = state.trip.days.some((d) => d.planKey);
   const info = planDay(route.planKey);
@@ -379,6 +386,9 @@ function renderDayIntro(route, trip) {
       <p>${t("<strong>New:</strong> a ready-made 3-day family plan – temples, dinosaurs, sushi trains, Pokémon, teamLab and the bay – with times, costs, tickets and food stops.")}</p>
       <button class="btn btn-primary full" type="button" data-act="load-plan">${t("📥 Use the ready-made 3-day plan")}</button>
     </div>`;
+  }
+  if (route.date && goldenWeek(route.date)) {
+    html = `<p class="holiday-note">🎌 ${t("Golden Week in Japan (29 Apr – 5 May): very crowded, prices go up – book tickets and restaurants ahead.")}</p>${html}`;
   }
   els.dayIntro.innerHTML = html;
 }
@@ -600,12 +610,12 @@ async function onPlanAction(btn) {
 
 /* ---------- family sharing ---------- */
 async function familyCreate() {
-  if (!confirm(t("Share this trip with the kids? They get a link to see the plan and the map, and can suggest places for you to approve."))) return;
+  if (!confirm(t("Share this trip plan with the kids? Eden and Noam see the plan and the map when they log in, and can suggest places for you to approve."))) return;
   try {
     await createFamily(state.trip);
     renderFamily();
     renderPlan();
-    await shareLink(kidLink(), t("Our Tokyo trip – suggest places!"));
+    toast(t("Shared! Eden and Noam see it as soon as they log in."));
   } catch (err) {
     alert(t("Sorry: {e}", { e: err.message }));
   }
@@ -655,9 +665,8 @@ function renderFamily() {
     const done = wish.filter((w) => w.status !== "pending");
     els.familyCard.innerHTML = `
       <h2>${t("👨‍👩‍👧 Family")}</h2>
-      <p class="small">${t("The kids see this plan on their phones and can suggest places. Changes sync automatically.")}</p>
+      <p class="small">${t("Kids with an account see this plan as soon as they log in, and can suggest places. Changes sync automatically.")}</p>
       <div class="row tight">
-        <button class="btn btn-primary" type="button" data-fam="send">${t("📤 Send the link to the kids")}</button>
         <button class="btn btn-secondary" type="button" data-fam="refresh">${t("🔄 Check now")}</button>
       </div>
       <h3>${pending.length ? t("💖 New suggestions ({n})", { n: pending.length }) : t("💖 No new suggestions")}</h3>
@@ -666,6 +675,7 @@ function renderFamily() {
       <details class="fam-more"><summary>${t("⚙️ Family settings")}</summary>
         <p class="small">${t("Your parent link lets another adult manage the family. Keep it private.")}</p>
         <div class="row tight">
+          <button class="btn btn-secondary" type="button" data-fam="send">${t("📤 Kid link (for someone without an account)")}</button>
           <button class="btn btn-secondary" type="button" data-fam="parent-link">${t("🔑 Copy my parent link")}</button>
           <button class="btn btn-secondary" type="button" data-fam="leave">${t("Stop sharing on this phone")}</button>
         </div>
@@ -862,7 +872,7 @@ function renderTripBrowse() {
 }
 
 function renderBrowse() {
-  els.browseSection.hidden = readOnly() || ["prep", "tax", "map"].includes(state.mode);
+  els.browseSection.hidden = readOnly() || ["prep", "wallet", "map"].includes(state.mode);
   if (els.browseSection.hidden) return;
   renderCategories();
   if (tripDayActive()) return renderTripBrowse();
@@ -946,10 +956,12 @@ function render() {
   });
   document.body.classList.toggle("kid-mode", kidMode());
   const prep = state.mode === "prep";
-  const tax = state.mode === "tax";
+  const wallet = state.mode === "wallet";
+  const tax = wallet; // tax refund receipts live inside the Wallet tab
   const mapMode = state.mode === "map";
   els.prep.hidden = !prep;
   els.tax.hidden = !tax;
+  $("#wallet").hidden = !wallet;
   els.mapview.hidden = !mapMode;
   els.planSection.hidden = prep || tax || mapMode;
   els.tipsCard.hidden = kidMode();
@@ -971,7 +983,11 @@ function render() {
     return;
   }
   if (prep) { els.daysBar.hidden = true; els.browseSection.hidden = true; renderPrep(); return; }
-  if (tax) { els.daysBar.hidden = true; els.browseSection.hidden = true; renderTax(els.taxRoot); return; }
+  if (wallet) {
+    els.daysBar.hidden = true; els.browseSection.hidden = true;
+    renderWallet(); loadWallet(true); renderTax(els.taxRoot);
+    return;
+  }
   if (!state.trip.days.length) state.trip.days.push(newDay());
   state.day = Math.max(0, Math.min(state.day, state.trip.days.length - 1));
   renderDays();
@@ -1067,8 +1083,14 @@ els.list.addEventListener("click", (e) => {
   state.trip = store.get("trip") || { days: [] };
   state.adventure = store.get("adventure") || { start: store.get("start") ? { ...store.get("start"), name: store.get("start").label } : null, stops: [] };
   state.day = store.get("day") || 0;
-  state.mode = ["adventure", "prep", "tax", "map"].includes(store.get("mode")) ? store.get("mode") : "trip";
+  const savedMode = store.get("mode") === "tax" ? "wallet" : store.get("mode");
+  state.mode = ["adventure", "prep", "wallet", "map"].includes(savedMode) ? savedMode : "trip";
   initTax(els.taxRoot);
+  initWallet($("#wallet"), {
+    visible: () => state.mode === "wallet",
+    openTax: () => els.tax.scrollIntoView({ behavior: "smooth", block: "start" }),
+    toast,
+  });
   initMapView(els.mapRoot);
   const cat = store.get("category");
   state.browse.category = CATEGORIES.some(([id]) => id === cat) ? cat : "all";
@@ -1129,8 +1151,15 @@ els.list.addEventListener("click", (e) => {
   state.trip = { ...state.trip, days: state.trip.days.map((d) => ({ ...d, stops: d.stops.map(enrichStop) })) };
   if (isParentShared()) markPushed(state.trip);
 
-  els.tips.innerHTML = TIPS.map((tip) => `<details class="tip"><summary>${tip.icon} ${esc(L(tip, "title"))}</summary>
-    <p>${esc(L(tip, "text"))}</p>${tip.url ? `<a class="btn btn-secondary" href="${esc(tip.url)}" target="_blank" rel="noopener">${t("🌐 More info")}</a>` : ""}</details>`).join("");
+  // Tips per country – the one you're in (or going to next) first.
+  const tipHtml = (tip) => `<details class="tip"><summary>${tip.icon} ${esc(L(tip, "title"))}</summary>
+    <p>${esc(L(tip, "text"))}</p>${tip.url ? `<a class="btn btn-secondary" href="${esc(tip.url)}" target="_blank" rel="noopener">${t("🌐 More info")}</a>` : ""}</details>`;
+  const segs = [...(store.get("timeline")?.segments || [])].sort((a, b) => a.from.localeCompare(b.from));
+  const todayIso = new Date().toLocaleDateString("en-CA");
+  const nowSeg = segs.find((s) => todayIso >= s.from && todayIso < s.to) || segs.find((s) => s.from > todayIso) || segs[0];
+  const groups = [["TH", t("🇹🇭 Thailand"), TIPS_TH], ["JP", t("🇯🇵 Japan"), TIPS]];
+  if (nowSeg?.country === "JP") groups.reverse();
+  els.tips.innerHTML = groups.map(([, title, list]) => `<h3 class="tips-country">${title}</h3>${list.map(tipHtml).join("")}`).join("");
 
   // In trip mode, jump to today's day if there is one.
   const todayIdx = state.trip.days.findIndex((d) => d.date === tokyoNow().date);
@@ -1146,6 +1175,22 @@ els.list.addEventListener("click", (e) => {
     planDays: () => state.trip.days,
     dayName: (i) => dayName(state.trip.days[i], i),
     onGoToDay: (i) => { state.day = i; state.mode = "trip"; save(); render(); els.planSection.scrollIntoView({ behavior: "smooth" }); },
+    // Move every dated plan day by the same number of days, so the plan starts on `to`.
+    onShiftPlan: (to) => {
+      const first = state.trip.days.map((d) => d.date).filter(Boolean).sort()[0];
+      if (!first) return;
+      const diff = Math.round((Date.parse(`${to}T00:00:00Z`) - Date.parse(`${first}T00:00:00Z`)) / 86400000);
+      const shift = (iso) => new Date(Date.parse(`${iso}T00:00:00Z`) + diff * 86400000).toISOString().slice(0, 10);
+      state.trip.days = state.trip.days.map((d) => (d.date ? { ...d, date: shift(d.date) } : d));
+      save(); render();
+      toast(t("Plan moved ✅ – it now starts on {d}.", { d: fmtDate(to) }));
+    },
+    // Start these plan days at the booked hotel.
+    onSetStarts: (indices, start) => {
+      for (const i of indices) if (state.trip.days[i]) state.trip.days[i] = { ...state.trip.days[i], start: { ...start, id: `stay-${start.lat},${start.lng}` } };
+      save(); render();
+      toast(t("{n} days now start at {name} ✅", { n: indices.length, name: start.name }));
+    },
   });
   startFamilyPolling(onFamilyChange);
   if (family() || kidMode()) refreshFamily().then((changed) => { if (changed) onFamilyChange(); }).catch(() => {});

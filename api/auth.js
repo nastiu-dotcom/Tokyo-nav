@@ -1,5 +1,6 @@
 // Login for the whole app.
-// GET  /api/auth                       → {user} for the logged-in user (401 if not)
+// GET  /api/auth                       → {user} for the logged-in user (401 if not);
+//                                         also renews the login, so it never runs out while in use
 // POST /api/auth {action: "login", name, password}      → sets the session cookie
 // POST /api/auth {action: "logout"}                      → clears it
 // POST /api/auth {action: "password", old, password}     → change my password
@@ -7,7 +8,11 @@ import { HttpError, handleJson } from "../lib/common.js";
 import { clearCookie, loadUsers, login, publicUser, requireUser, saveUsers, sessionCookie, setPassword, setupProblem } from "../lib/users.js";
 
 export default handleJson(async (req, res, body) => {
-  if (req.method === "GET") return { user: publicUser(await requireUser(req)) };
+  if (req.method === "GET") {
+    const u = await requireUser(req);
+    res.setHeader("Set-Cookie", await sessionCookie(u, req));
+    return { user: publicUser(u) };
+  }
   const problem = setupProblem();
   if (problem) throw new HttpError(503, problem);
 

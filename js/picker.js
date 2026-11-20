@@ -82,7 +82,7 @@ els.search.addEventListener("input", () => {
 async function runSearch(q) {
   const seq = ++searchSeq;
   try {
-    const { suggestions } = await getJSON(`/api/autocomplete?q=${encodeURIComponent(q)}&session=${sessionToken}`);
+    const { suggestions } = await getJSON(`/api/autocomplete?q=${encodeURIComponent(q)}&session=${sessionToken}${draft?.lat ? `&near=${draft.lat.toFixed(3)},${draft.lng.toFixed(3)}` : ""}`);
     if (seq !== searchSeq) return;
     els.suggestions.innerHTML = suggestions.length
       ? suggestions.map((s) => `<li role="option" tabindex="0" data-id="${esc(s.id)}" data-name="${esc(s.main)}">${esc(s.main)}<small>${esc(s.secondary)}</small></li>`).join("")

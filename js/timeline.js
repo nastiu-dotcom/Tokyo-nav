@@ -4,8 +4,8 @@
 import { fwd, locale, t, tn } from "./i18n.js";
 import { esc, fmtDate, getJSON, postJSON, store } from "./util.js";
 import {
-  COUNTRY, CURRENCY, doubleBooked, fixedCosts, itemSegment, missingNights, nextItem, nights, planClashes,
-  sortItems, status, tripRange,
+  COUNTRY, CURRENCY, doubleBooked, fixedCosts, holidayNotes, itemSegment, missingNights, nextItem, nights, planClashes,
+  planShiftTarget, sortItems, startSuggestions, status, tripRange,
 } from "./timeline-core.js";
 
 let doc = store.get("timeline");
@@ -76,6 +76,19 @@ function checks() {
       day: c.index,
     });
   }
+  const shift = planShiftTarget(doc, ctx.planDays());
+  if (shift) {
+    out.push({
+      html: t("📅 Your Tokyo plan starts on {a}, but you reach Japan on {b}.", { a: fmtDate(shift.from), b: fmtDate(shift.to) }),
+      action: `<button class="small-btn btn btn-primary" type="button" data-jr="shift" data-to="${shift.to}">${t("Move the plan to {d}", { d: fmtDate(shift.to) })}</button>`,
+    });
+  }
+  for (const g of startSuggestions(doc, ctx.planDays())) {
+    out.push({
+      html: t("🏨 {n} plan days don't start at your hotel, {stay}.", { n: g.days.length, stay: `<bdi>${esc(g.stay.name)}</bdi>` }),
+      action: `<button class="small-btn btn btn-primary" type="button" data-jr="starts" data-stay="${esc(g.stay.id)}">${t("Start those days there")}</button>`,
+    });
+  }
   return out;
 }
 
@@ -112,6 +125,10 @@ function renderCard() {
 
 /* ---------- the full-screen timeline ---------- */
 function itemHtml(it) {
+  if (it.kind === "holiday") {
+    return `<li class="tl-item tl-holiday"><p class="pname">🎌 ${t("Golden Week")}</p><p class="small">${range(it.date, it.to)}</p>
+      <p class="tl-notes">${t("Japan's biggest holiday week: trains, sights and hotels are packed and prices go up. Book tickets and restaurants ahead; big sights are calmer early in the morning.")}</p></li>`;
+  }
   const adult = canEdit();
   const lines = [];
   if (it.kind === "flight") {
@@ -149,6 +166,8 @@ function listHtml() {
     const s = itemSegment(doc, it);
     (s ? groups.get(s.id) : other).push(it);
   }
+  for (const h of holidayNotes(doc)) groups.get(h.segment)?.push(h);
+  for (const list of groups.values()) list.sort((a, b) => (a.kind === "stay" ? a.checkIn : a.date).localeCompare(b.kind === "stay" ? b.checkIn : b.date));
   const costs = adult ? fixedCosts(doc) : {};
   const todo = checks();
   return `
@@ -162,7 +181,7 @@ function listHtml() {
       budget: money(doc.trip.budget, doc.trip.currency),
       booked: Object.keys(costs).length ? Object.entries(costs).map(([c, n]) => money(n, c)).join(" + ") : money(0, doc.trip.currency),
     })}</p>` : ""}
-    ${todo.length ? `<div class="tl-checks"><h3>${t("⚠️ To check")}</h3><ul>${todo.map((c) => `<li>${c.html}${c.day != null ? ` <button class="small-btn btn btn-secondary" type="button" data-jr="day" data-day="${c.day}">${t("Open the day")}</button>` : ""}</li>`).join("")}</ul></div>` : ""}
+    ${todo.length ? `<div class="tl-checks"><h3>${t("⚠️ To check")}</h3><ul>${todo.map((c) => `<li>${c.html}${c.day != null ? ` <button class="small-btn btn btn-secondary" type="button" data-jr="day" data-day="${c.day}">${t("Open the day")}</button>` : ""}${c.action ? ` ${c.action}` : ""}</li>`).join("")}</ul></div>` : ""}
     ${segs.map((s) => `<section class="tl-seg" style="${segStyle(s)}">
       <h3 class="tl-seg-head">${segName(s)} <span class="small">${range(s.from, s.to)} · ${tn(nights(s), "1 night", "{n} nights")}</span></h3>
       <ul class="tl-list">${groups.get(s.id).map(itemHtml).join("") || `<li class="hint">${adult ? t("Nothing here yet – add flights and stays above.") : t("Nothing here yet.")}</li>`}</ul>
@@ -196,6 +215,9 @@ function formHtml() {
     return `<form class="tax-form" data-kind="stay">${head(it.id ? t("✏️ Stay") : t("＋ 🏨 Stay"))}
       ${field("name", t("Hotel / apartment name"), it.name, "text", "required")}
       ${field("address", t("Address or area (for the map link)"), it.address)}
+      <input type="hidden" name="lat" value="${esc(it.lat ?? "")}"><input type="hidden" name="lng" value="${esc(it.lng ?? "")}">
+      <button class="btn btn-secondary full" type="button" data-jr="locate">${t("📍 Find on the map")}</button>
+      <p class="small" id="jf-located">${Number.isFinite(it.lat) ? `✓ ${t("On the map – plan days can start here.")}` : t("Optional: lets the Tokyo plan start each day at this hotel (one free Google search).")}</p>
       <div class="two-col"><div>${field("checkIn", t("Check-in"), it.checkIn, "date", "required")}</div><div>${field("checkOut", t("Check-out"), it.checkOut, "date", "required")}</div></div>
       ${field("booking", t("Booking reference"), it.booking)}
       ${priceFields(it)}${notesField(it)}${buttons}</form>`;
@@ -293,7 +315,35 @@ function onClick(e) {
     case "day":
       closeSheet();
       return ctx.onGoToDay(Number(b.dataset.day));
+    case "shift":
+      if (confirm(t("Move every dated day of the Tokyo plan so it starts on {d}?", { d: fmtDate(b.dataset.to) }))) { ctx.onShiftPlan(b.dataset.to); renderJourney(); }
+      return undefined;
+    case "starts": {
+      const g = startSuggestions(doc, ctx.planDays()).find((x) => x.stay.id === b.dataset.stay);
+      if (g) { ctx.onSetStarts(g.days, { name: g.stay.name, lat: g.stay.lat, lng: g.stay.lng, address: g.stay.address || "" }); renderJourney(); }
+      return undefined;
+    }
+    case "locate": return locate(b.closest("form"));
     default: return undefined;
+  }
+}
+
+async function locate(f) {
+  const name = f.querySelector("[name=name]").value.trim(), address = f.querySelector("[name=address]").value.trim();
+  const note = f.querySelector("#jf-located");
+  if (!name) { note.textContent = t("Type the hotel name first."); return; }
+  const checkIn = f.querySelector("[name=checkIn]").value;
+  const seg = checkIn ? doc.segments.find((s) => checkIn >= s.from && checkIn < s.to) : null;
+  note.textContent = t("Finding…");
+  try {
+    const { place } = await getJSON(`/api/find?q=${encodeURIComponent([name, address].filter(Boolean).join(" "))}&country=${seg?.country === "TH" ? "TH" : "JP"}`);
+    if (!place) { note.textContent = t("Not found – add the city or area to the address and try again."); return; }
+    f.querySelector("[name=lat]").value = place.lat;
+    f.querySelector("[name=lng]").value = place.lng;
+    if (!address && place.address) f.querySelector("[name=address]").value = place.address;
+    note.textContent = `✓ ${t("Found: {a}", { a: place.address || place.name })}`;
+  } catch (err) {
+    note.textContent = t("Sorry: {e}", { e: err.message });
   }
 }
 

@@ -21,6 +21,8 @@ export const CATEGORIES = {
   views: "observation deck with city view",
   food: "kid friendly cheap restaurant, ramen, sushi or food court",
 };
+// Country-specific wording where it matters.
+const LOCAL = { TH: { food: "kid friendly restaurant, Thai food, night market or food court", anime: "toy shops and character shops for kids" } };
 
 const FIELD_MASK = [
   "places.id",
@@ -42,20 +44,21 @@ export default handle(async (req, res) => {
   const query = CATEGORIES[category];
   if (!query) throw new HttpError(400, "Unknown category");
   const near = parseLatLng(String(req.query.near || ""));
-  if (!near) throw new HttpError(400, "Start point must be in the Tokyo area");
+  if (!near) throw new HttpError(400, "Start point must be in Japan or Thailand");
+  const text = LOCAL[near.area]?.[category] || query;
 
   const lat = round(near.lat, 2);
   const lng = round(near.lng, 2);
 
-  const places = await memo(`act:${category}:${lat},${lng}`, ONE_DAY, async () => {
+  const places = await memo(`act:${near.area}:${category}:${lat},${lng}`, ONE_DAY, async () => {
     const data = await googleFetch("https://places.googleapis.com/v1/places:searchText", {
       method: "POST",
       fieldMask: FIELD_MASK,
       sku: "places.textsearch.enterprise",
       body: {
-        textQuery: `${query} in Tokyo`,
+        textQuery: text,
         languageCode: "en",
-        regionCode: "JP",
+        regionCode: near.area,
         pageSize: 20,
         locationBias: {
           circle: { center: { latitude: lat, longitude: lng }, radius: 15000 },

@@ -16,7 +16,7 @@
 //   fam:<id>:data  {plan, wishlist}
 //   fam:main       id of the trip most recently shared – kid accounts open it without a link
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
-import { HttpError } from "../lib/common.js";
+import { HttpError, areaOf } from "../lib/common.js";
 import { requireUser } from "../lib/users.js";
 import { withUsage } from "../lib/usage.js";
 import { kv, kvPipeline } from "../lib/kv.js";
@@ -81,7 +81,7 @@ async function write(k, data, v) {
 }
 
 const clip = (s, n) => String(s ?? "").replace(/[\u0000-\u001f]/g, " ").trim().slice(0, n);
-const inJapan = (lat, lng) => Number.isFinite(lat) && Number.isFinite(lng) && lat >= 24 && lat <= 45.7 && lng >= 122.9 && lng <= 146;
+const inTrip = (lat, lng) => Number.isFinite(lat) && Number.isFinite(lng) && Boolean(areaOf(lat, lng));
 
 function cleanPlan(plan) {
   if (!plan || !Array.isArray(plan.days)) throw new HttpError(400, "Missing plan");
@@ -92,7 +92,7 @@ function cleanPlan(plan) {
 
 function cleanItem(item) {
   const lat = Number(item?.lat), lng = Number(item?.lng);
-  if (!inJapan(lat, lng)) throw new HttpError(400, "The place must be in Japan");
+  if (!inTrip(lat, lng)) throw new HttpError(400, "The place must be in Japan or Thailand");
   const name = clip(item.name, 80);
   if (!name) throw new HttpError(400, "The place needs a name");
   return {
