@@ -113,3 +113,16 @@ test("no INITIAL_PASSWORD and no users yet → clear setup message, nobody gets 
   process.env.INITIAL_PASSWORD = saved;
   db.set("auth:users", doc);
 });
+
+test("finds the database under any name Vercel gives it, and explains when it can't", async () => {
+  const { kvEnv, kvProblem } = await import("../lib/kvenv.js");
+  assert.deepEqual(kvEnv({ KV_REST_API_URL: "https://a.upstash.io", KV_REST_API_TOKEN: "t1" }), { url: "https://a.upstash.io", token: "t1" });
+  assert.deepEqual(kvEnv({ UPSTASH_REDIS_REST_URL: "https://b.upstash.io", UPSTASH_REDIS_REST_TOKEN: "t2" }).token, "t2");
+  // custom prefix chosen when connecting the database
+  assert.deepEqual(kvEnv({ STORAGE_REST_API_URL: "https://c.upstash.io", STORAGE_REST_API_TOKEN: "t3", STORAGE_REST_API_READ_ONLY_TOKEN: "ro", STORAGE_URL: "rediss://x" }), { url: "https://c.upstash.io", token: "t3" });
+  assert.equal(kvEnv({ OTHER_URL: "https://example.com", OTHER_TOKEN: "x" }), null, "only Upstash hosts");
+  assert.equal(kvEnv({}), null);
+  assert.match(kvProblem({}), /no database found/);
+  assert.match(kvProblem({ REDIS_URL: "redis://default:pw@host:6379" }), /not Upstash's REST settings/);
+  assert.equal(kvProblem({ KV_REST_API_URL: "https://a.upstash.io", KV_REST_API_TOKEN: "t" }), null);
+});
