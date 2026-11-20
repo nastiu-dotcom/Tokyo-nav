@@ -3,9 +3,12 @@ import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import { summarizeRoute } from "../lib/route.js";
 import { parseLatLng } from "../lib/common.js";
+import { cookieFor, useFakeAuth } from "./helpers.js";
 
 process.env.GOOGLE_MAPS_API_KEY = "test-google-key";
 process.env.ANTHROPIC_API_KEY = "test-anthropic-key";
+useFakeAuth();
+const cookie = await cookieFor();
 
 const ROUTE = {
   duration: "1500s",
@@ -69,6 +72,7 @@ beforeEach(() => {
     }
     return json({ error: { message: "unexpected " + url } }, 500);
   };
+  useFakeAuth(); // Redis calls go to the in-memory fake, everything else to the fake Google above
 });
 
 test("parseLatLng accepts Tokyo, rejects elsewhere and junk", () => {
@@ -93,7 +97,7 @@ test("summarizeRoute merges walks and extracts transit details", () => {
 test("/api/activities uses a field mask, drops closed places, caches 24h", async () => {
   const { default: handler } = await import("../api/activities.js");
   const res = fakeRes();
-  await handler({ method: "GET", query: { category: "animals", near: "35.68,139.77" } }, res);
+  await handler({ method: "GET", headers: { cookie }, query: { category: "animals", near: "35.68,139.77" } }, res);
   assert.equal(res.statusCode, 200);
   assert.deepEqual(res.body.places.map((p) => p.id), ["far", "near"]);
   assert.match(res.headers["cache-control"], /s-maxage=86400/);
@@ -106,17 +110,17 @@ test("/api/activities uses a field mask, drops closed places, caches 24h", async
 test("/api/activities rejects bad input", async () => {
   const { default: handler } = await import("../api/activities.js");
   const res = fakeRes();
-  await handler({ method: "GET", query: { category: "nope", near: "35.68,139.77" } }, res);
+  await handler({ method: "GET", headers: { cookie }, query: { category: "nope", near: "35.68,139.77" } }, res);
   assert.equal(res.statusCode, 400);
   const res2 = fakeRes();
-  await handler({ method: "POST", query: {} }, res2);
+  await handler({ method: "POST", headers: { cookie }, query: {} }, res2);
   assert.equal(res2.statusCode, 405);
 });
 
 test("/api/guide gets a transit route, asks Claude, returns both", async () => {
   const { default: handler } = await import("../api/guide.js");
   const res = fakeRes();
-  await handler({ method: "GET", query: { from: "35.666,139.758", to: "35.7141,139.7774", name: "Ueno Zoo" } }, res);
+  await handler({ method: "GET", headers: { cookie }, query: { from: "35.666,139.758", to: "35.7141,139.7774", name: "Ueno Zoo" } }, res);
   assert.equal(res.statusCode, 200, JSON.stringify(res.body));
   assert.equal(res.body.guide, "## Steps\n1. Walk to Shimbashi.");
   assert.equal(res.body.route.steps[1].to, "Ueno");
@@ -135,7 +139,7 @@ test("/api/guide falls back to nearest stations when Google has no transit (Japa
   globalThis.NO_TRANSIT = true;
   const { default: handler } = await import("../api/guide.js");
   const res = fakeRes();
-  await handler({ method: "GET", query: { from: "35.666,139.770", to: "35.7141,139.7700", name: "Ueno Park" } }, res);
+  await handler({ method: "GET", headers: { cookie }, query: { from: "35.666,139.770", to: "35.7141,139.7700", name: "Ueno Park" } }, res);
   assert.equal(res.statusCode, 200, JSON.stringify(res.body));
   assert.equal(res.body.route.kind, "stations");
   assert.equal(res.body.route.startStations[0].name, "Shimbashi Station");
@@ -147,7 +151,7 @@ test("/api/guide falls back to nearest stations when Google has no transit (Japa
 test("/api/route is free: Google only, never calls Claude", async () => {
   const { default: handler } = await import("../api/route.js");
   const res = fakeRes();
-  await handler({ method: "GET", query: { from: "35.666,139.758", to: "35.7141,139.7774" } }, res);
+  await handler({ method: "GET", headers: { cookie }, query: { from: "35.666,139.758", to: "35.7141,139.7774" } }, res);
   assert.equal(res.statusCode, 200, JSON.stringify(res.body));
   assert.equal(res.body.route.kind, "transit");
   assert.equal(res.body.aiAvailable, true);
@@ -159,11 +163,11 @@ test("AI_GUIDES=off blocks the paid endpoint and hides the button", async () => 
   try {
     const guide = (await import("../api/guide.js")).default;
     const res = fakeRes();
-    await guide({ method: "GET", query: { from: "35.600,139.758", to: "35.7141,139.7774" } }, res);
+    await guide({ method: "GET", headers: { cookie }, query: { from: "35.600,139.758", to: "35.7141,139.7774" } }, res);
     assert.equal(res.statusCode, 403);
     const route = (await import("../api/route.js")).default;
     const res2 = fakeRes();
-    await route({ method: "GET", query: { from: "35.600,139.758", to: "35.7141,139.7774" } }, res2);
+    await route({ method: "GET", headers: { cookie }, query: { from: "35.600,139.758", to: "35.7141,139.7774" } }, res2);
     assert.equal(res2.body.aiAvailable, false);
     assert.equal(calls.some((c) => c.url.includes("anthropic")), false);
   } finally {
@@ -176,15 +180,27 @@ test("/api/find searches inside Japan with a minimal field mask", async () => {
     calls.push({ url, body: JSON.parse(init.body), headers: new Headers(init.headers) });
     return new Response(JSON.stringify({ places: [{ id: "abc", displayName: { text: "Pokémon Center Mega Tokyo" }, formattedAddress: "Ikebukuro", location: { latitude: 35.7288, longitude: 139.7188 } }] }), { status: 200 });
   };
+  useFakeAuth();
   const { default: handler } = await import("../api/find.js");
   const res = fakeRes();
-  await handler({ method: "GET", query: { q: "Pokemon Center Mega Tokyo" } }, res);
+  await handler({ method: "GET", headers: { cookie }, query: { q: "Pokemon Center Mega Tokyo" } }, res);
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.place.lat, 35.7288);
   const c = calls[0];
   assert.ok(c.body.locationRestriction.rectangle);
   assert.equal(c.headers.get("x-goog-fieldmask"), "places.id,places.displayName,places.formattedAddress,places.location");
   const bad = fakeRes();
-  await handler({ method: "GET", query: { q: "x" } }, bad);
+  await handler({ method: "GET", headers: { cookie }, query: { q: "x" } }, bad);
   assert.equal(bad.statusCode, 400);
+});
+
+test("API refuses calls without a login", async () => {
+  const { default: handler } = await import("../api/activities.js");
+  const res = fakeRes();
+  await handler({ method: "GET", headers: {}, query: { category: "animals", near: "35.68,139.77" } }, res);
+  assert.equal(res.statusCode, 401);
+  const forged = fakeRes();
+  await handler({ method: "GET", headers: { cookie: "tke_s=eyJ1IjoibmFzdGlhIn0.bad" }, query: { category: "animals", near: "35.68,139.77" } }, forged);
+  assert.equal(forged.statusCode, 401);
+  assert.ok(!calls.some((c) => c.url.includes("places:searchText")), "Google must not be called");
 });

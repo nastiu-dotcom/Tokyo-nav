@@ -1,9 +1,10 @@
 // Family sharing API against an in-memory Redis.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { installFakeKv } from "../scripts/fake-kv.js";
+import { cookieFor, useFakeAuth } from "./helpers.js";
 
-const db = installFakeKv();
+const db = useFakeAuth();
+const cookie = await cookieFor("eden");
 const { default: handler } = await import("../api/family.js");
 
 function call(method, { query = {}, body } = {}) {
@@ -12,7 +13,7 @@ function call(method, { query = {}, body } = {}) {
     res.setHeader = (k, v) => { res.headers[k] = v; };
     res.status = (c) => { res.statusCode = c; return res; };
     res.json = (b) => resolve({ status: res.statusCode, body: b });
-    handler({ method, query, body }, res);
+    handler({ method, query, body, headers: { cookie } }, res);
   });
 }
 const plan = { days: [{ planKey: "apr-d1", date: "2027-04-01", start: { name: "Hotel", lat: 35.68, lng: 139.695 }, stops: [] }] };

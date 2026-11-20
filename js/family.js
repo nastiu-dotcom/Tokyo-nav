@@ -1,6 +1,6 @@
 // Family sharing (client): the parent shares the plan, kids suggest places,
 // the parent approves them. Talks to /api/family (Upstash Redis behind it).
-import { getJSON, store } from "./util.js";
+import { getJSON, postJSON, store } from "./util.js";
 
 export const family = () => store.get("family") || null;
 export const familyData = () => store.get("familyData") || { plan: null, wishlist: [], v: 0 };
@@ -11,14 +11,7 @@ const keep = (d) => store.set("familyData", { plan: d.plan, wishlist: d.wishlist
 
 async function post(body) {
   const f = family();
-  const res = await fetch("/api/family", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: f?.id, key: f?.key, ...body }),
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
-  return data;
+  return postJSON("/api/family", { id: f?.id, key: f?.key, ...body });
 }
 
 /** Only what other phones need; details are re-added from the trip data there. */

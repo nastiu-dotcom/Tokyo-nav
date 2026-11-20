@@ -18,4 +18,4 @@ for (const m of html.matchAll(/data-i18n(?:-ph|-aria)?="([^"]+)"/g)) keys.add(m[
 // values shown via t(): price levels, booking types
 for (const k of ["Free", "¥ (cheap)", "¥¥ (moderate)", "¥¥¥ (pricey)", "¥¥¥¥ (very pricey)", "Not listed", "optional", "recommended", "required"]) keys.add(k);
 export const ALL_KEYS = [...keys].filter((k) => /[A-Za-z]/.test(k)).sort();
-if (process.argv[1].endsWith("i18n-keys.mjs")) console.log(JSON.stringify(ALL_KEYS, null, 0));
+if (process.argv[1]?.endsWith("i18n-keys.mjs")) console.log(JSON.stringify(ALL_KEYS, null, 0));

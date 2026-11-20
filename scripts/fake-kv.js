@@ -10,7 +10,9 @@ export function installFakeKv() {
     switch (op.toUpperCase()) {
       case "MGET": return a.map((k) => db.get(k) ?? null);
       case "GET": return db.get(a[0]) ?? null;
-      case "SET": db.set(a[0], a[1]); return "OK";
+      case "SET":
+        if (a.slice(2).some((x) => x.toUpperCase() === "NX") && db.has(a[0])) return null;
+        db.set(a[0], a[1]); return "OK";
       case "EXPIRE": return db.has(a[0]) ? 1 : 0;
       case "DEL": return a.reduce((n, k) => n + (db.delete(k) ? 1 : 0), 0);
       default: throw new Error(`fake-kv: unsupported ${op}`);

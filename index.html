@@ -21,7 +21,11 @@
   <header class="topbar">
     <div class="title-row">
       <h1><span class="logo" aria-hidden="true">🗼</span> <span data-i18n="Tokyo Kids Explorer">Tokyo Kids Explorer</span></h1>
-      <button id="lang-btn" class="lang-btn" type="button">EN</button>
+      <div class="top-actions">
+        <button id="user-btn" class="lang-btn user-btn" type="button" aria-controls="user-menu" hidden>👤</button>
+        <button id="lang-btn" class="lang-btn" type="button">EN</button>
+        <div id="user-menu" class="user-menu card" hidden></div>
+      </div>
     </div>
     <div class="modes" role="group" data-i18n-aria="Mode" aria-label="Mode">
       <button type="button" data-mode="trip" aria-pressed="true" data-i18n="🗓️ Trip">🗓️ Trip</button>

@@ -15,6 +15,7 @@
 //   fam:<id>:data  {plan, wishlist}
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { HttpError } from "../lib/common.js";
+import { requireUser } from "../lib/users.js";
 import { kv, kvPipeline } from "../lib/kv.js";
 
 const TTL = 60 * 60 * 24 * 180;
@@ -87,6 +88,7 @@ function cleanItem(item) {
 
 export default async function handler(req, res) {
   try {
+    await requireUser(req);
     if (req.method === "GET") {
       const { id, key } = req.query;
       const since = Number(req.query.v);

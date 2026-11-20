@@ -22,6 +22,7 @@ import {
 } from "./js/trip2027.js";
 import { applyLang, fwd, getLang, L, setLang, t, tn } from "./js/i18n.js";
 import { dayColor, dayStyle } from "./js/theme.js";
+import { initAccount } from "./js/account.js";
 import {
   createFamily, family, familyData, isKid, isParentShared, joinFamily, joinFromHash, kidLink, leaveFamily,
   markPushed, parentLink, pushPlanSoon, refreshFamily, removeSuggestion, reviewSuggestion, startFamilyPolling,
@@ -1053,6 +1054,7 @@ els.list.addEventListener("click", (e) => {
   applyLang();
   els.langBtn.textContent = getLang() === "he" ? "EN" : "עב";
   els.langBtn.setAttribute("aria-label", getLang() === "he" ? "Switch to English" : "החלפה לעברית");
+  const account = initAccount($("#user-btn"), $("#user-menu"));
   store.prune();
   state.trip = store.get("trip") || { days: [] };
   state.adventure = store.get("adventure") || { start: store.get("start") ? { ...store.get("start"), name: store.get("start").label } : null, stops: [] };
@@ -1069,7 +1071,7 @@ els.list.addEventListener("click", (e) => {
   const join = joinFromHash();
   if (join) {
     history.replaceState(null, "", location.pathname);
-    const name = prompt(t("Welcome to the family trip! 💖 What's your name?"), family()?.name || "");
+    const name = prompt(t("Welcome to the family trip! 💖 What's your name?"), family()?.name || (await account)?.name || "");
     if (name !== null) {
       try {
         const d = await joinFamily(join.id, join.key, name.trim().slice(0, 30));
