@@ -6,12 +6,14 @@ const TX = {
     name: "שם", password: "סיסמה", login: "כניסה", wait: "נכנסים…", show: "הצגת הסיסמה",
     empty: "הקלידו שם וסיסמה.", page: "כניסה · טוקיו לילדים", offline: "אין חיבור לאינטרנט – נסו שוב.",
     "Wrong name or password": "שם או סיסמה שגויים",
+    loop: "הכניסה הצליחה, אבל השרת לא מצליח לאמת אותה. ב-Vercel הוסיפו משתנה SESSION_SECRET (טקסט אקראי ארוך כלשהו) ועשו Redeploy.",
     "Too many wrong passwords – wait 15 minutes and try again": "יותר מדי ניסיונות שגויים – חכו 15 דקות ונסו שוב",
   },
   en: {
     title: "Tokyo Kids Explorer", hello: "Hello! 👋", intro: "The family trip app. Log in with your name and password.",
     name: "Name", password: "Password", login: "Log in", wait: "Logging in…", show: "Show password",
     empty: "Type your name and password.", page: "Log in · Tokyo Kids Explorer", offline: "No internet connection – try again.",
+    loop: "You're logged in, but the page gate can't check it. In Vercel add a SESSION_SECRET variable (any long random text) and Redeploy.",
   },
 };
 const read = () => { try { return JSON.parse(localStorage.getItem("lang")); } catch { return null; } };
@@ -57,6 +59,7 @@ $("#login").addEventListener("submit", async (e) => {
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || `Error ${res.status}`);
+    try { sessionStorage.setItem("tke_login", String(Date.now())); } catch { /* ignore */ }
     location.replace(target());
   } catch (err) {
     showError(err instanceof TypeError ? tx("offline") : tx(err.message));
@@ -67,3 +70,17 @@ $("#login").addEventListener("submit", async (e) => {
   }
 });
 $("#name").focus();
+
+// Already logged in? Go straight in. But if we were just sent back here right
+// after logging in, the page gate can't read the server settings – say so.
+(async () => {
+  try {
+    const res = await fetch("/api/auth");
+    await res.text(); // finish reading the reply
+    if (!res.ok) return;
+    let just = 0;
+    try { just = Number(sessionStorage.getItem("tke_login")) || 0; sessionStorage.removeItem("tke_login"); } catch { /* ignore */ }
+    if (Date.now() - just < 30000) return showError(tx("loop"));
+    location.replace(target());
+  } catch { /* offline */ }
+})();
