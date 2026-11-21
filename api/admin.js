@@ -1,17 +1,20 @@
 // User management (admins only).
 // GET  /api/admin                                   → {users: [...]}
+// GET  /api/admin?backup=1                          → one JSON file with everything (see lib/backup.js)
 // POST /api/admin {action: "add", name, password, role}
 //                 {action: "role", id, role}
 //                 {action: "password", id, password}   (reset someone's password)
 //                 {action: "disable", id, disabled}
 //                 {action: "remove", id}
 import { HttpError, handleJson } from "../lib/common.js";
+import { buildBackup } from "../lib/backup.js";
 import { ROLES, loadUsers, newUser, publicUser, requireAdmin, saveUsers, setPassword, userId } from "../lib/users.js";
 
 const list = (doc) => Object.values(doc.users).map(publicUser).sort((a, b) => a.created.localeCompare(b.created));
 const activeAdmins = (doc) => Object.values(doc.users).filter((u) => u.role === "admin" && !u.disabled);
 
 export default handleJson(async (req, res, body) => {
+  if (req.method === "GET" && req.query?.backup) return buildBackup(req, res);
   const me = await requireAdmin(req);
   const doc = await loadUsers();
   if (req.method === "GET") return { users: list(doc), me: me.id };

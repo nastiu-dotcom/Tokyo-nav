@@ -1,11 +1,29 @@
-// GET /api/autocomplete?q=shinjuku&session=<uuid>
+// GET /api/autocomplete?q=shinjuku&session=<uuid>        → suggestions while typing
+// GET /api/autocomplete?id=<placeId>&session=<uuid>       → location of the chosen one
+//   (Place Details, only location + address = cheapest "Essentials" fields)
+// One function for both keeps the app under Vercel Hobby's 12-function limit.
 // Places API (New) Autocomplete, limited to the trip's countries (Japan,
 // Thailand) and biased to where the user is looking (?near=lat,lng).
-// Using the same session token for the follow-up /api/place call makes Google
+// Using the same session token for the follow-up ?id= call makes Google
 // bill the typing as one session instead of one charge per keystroke.
-import { googleFetch, handle, noStore, parseLatLng, sendError } from "../lib/common.js";
+import { cacheFor, googleFetch, handle, HttpError, noStore, ONE_DAY, parseLatLng, sendError } from "../lib/common.js";
+
+async function placeDetails(req, res) {
+  const id = String(req.query.id || "");
+  if (!/^[A-Za-z0-9_-]{10,300}$/.test(id)) throw new HttpError(400, "Bad place id");
+  const session = String(req.query.session || "").slice(0, 64);
+  const url = new URL(`https://places.googleapis.com/v1/places/${id}`);
+  url.searchParams.set("languageCode", "en");
+  if (session) url.searchParams.set("sessionToken", session);
+  const p = await googleFetch(url.toString(), { fieldMask: "location,formattedAddress", sku: "places.details" });
+  if (!p.location) throw new HttpError(404, "Place has no location");
+  // Same place always has the same coordinates; let the CDN keep it a day.
+  cacheFor(res, ONE_DAY);
+  res.status(200).json({ lat: p.location.latitude, lng: p.location.longitude, address: p.formattedAddress || "" });
+}
 
 export default handle(async (req, res) => {
+  if (req.query.id) return placeDetails(req, res);
   const q = String(req.query.q || "").trim().slice(0, 100);
   const session = String(req.query.session || "").slice(0, 64);
   if (q.length < 3) return sendError(res, 400, "Type at least 3 characters");

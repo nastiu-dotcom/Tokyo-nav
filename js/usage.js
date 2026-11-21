@@ -22,7 +22,7 @@ const SKU = () => ({
   "routes.compute": t("🚆 Train & walking routes"),
 });
 const ROUTE = () => ({
-  activities: t("Activity lists"), autocomplete: t("Search box"), place: t("Picked place"), find: t("Find a place"),
+  activities: t("Activity lists"), autocomplete: t("Search box"), find: t("Find a place"),
   route: t("Routes"), guide: t("AI guide"), family: t("Family sharing"), timeline: t("Whole trip"),
   auth: t("Login"), admin: t("Users"), usage: t("This page"),
 });

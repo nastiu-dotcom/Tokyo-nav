@@ -10,6 +10,7 @@ const admin = await cookieFor("nastia");
 const kid = await cookieFor("eden");
 
 function call(path, method, { body, query = {}, cookie = admin, host = "trip.example.com" } = {}) {
+  if (path === "backup") { path = "admin"; query = { ...query, backup: "1" }; }
   return new Promise(async (resolve) => {
     const { default: h } = await import(`../api/${path}.js`);
     const res = { headers: {} };
@@ -95,4 +96,10 @@ test("backup: admins only, everything except passwords", async () => {
   assert.ok(r.body.family, "the shared plan is included");
   const text = JSON.stringify(r.body);
   assert.ok(!/"(hash|salt)"/.test(text), "no password hashes");
+});
+
+test("the app stays within Vercel Hobby's 12 server functions", async () => {
+  const { readdirSync } = await import("node:fs");
+  const fns = readdirSync(new URL("../api/", import.meta.url)).filter((f) => f.endsWith(".js"));
+  assert.ok(fns.length <= 12, `${fns.length} functions in /api – Vercel Hobby allows 12: ${fns.join(", ")}`);
 });
