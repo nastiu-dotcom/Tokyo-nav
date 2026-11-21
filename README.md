@@ -159,15 +159,17 @@ Google and Claude call goes through Vercel serverless functions in `/api`.
 | `manifest.webmanifest`, `sw.js`, `icons/` | PWA: install to home screen, offline shell |
 | `vendor/leaflet/` | Leaflet 1.9.4 map library (BSD-2 licence) |
 | `api/autocomplete.js` | Places Autocomplete (New) for the search box |
-| `api/place.js` | Place Details (New): coordinates of the chosen suggestion |
+| `api/autocomplete.js` (`?id=`) | Place Details (New): coordinates of the chosen suggestion |
 | `api/activities.js` | Places Text Search (New): activities by category |
 | `api/guide.js` | Routes API (transit → walk → nearest stations) + Claude guide |
 | `middleware.js`, `login.html`, `admin.html` | Login gate for every page and API; login and user-management pages |
 | `api/auth.js`, `api/admin.js`, `lib/users.js`, `lib/session.js` | Log in/out, change password; admin user management; signed session cookie |
 | `api/timeline.js`, `js/timeline.js`, `js/timeline-core.js` | The whole trip: countries, flights, stays, notes, checks |
 | `api/wallet.js`, `js/wallet.js`, `js/wallet-core.js`, `lib/fx.js` | 💰 Wallet: spending, budgets, exchange rates |
-| `api/backup.js` | Admin: download everything as one JSON file |
+| `api/admin.js?backup=1`, `lib/backup.js` | Admin: download everything as one JSON file |
 | `.github/workflows/test.yml` | Runs `npm test` on GitHub for every change |
+
+> Vercel's free Hobby plan allows **12 server functions** (files in `/api`). The app uses 11; a test fails if a 13th is added – put new endpoints into an existing file or into `lib/`.
 | `api/family.js` | Family sharing: create, read plan + wishlist, kids suggest, parent approves |
 | `lib/` | Shared server code (not public routes); `lib/kv.js` talks to Upstash Redis |
 | `js/i18n.js`, `js/i18n-he.js` | Language switch and Hebrew texts |

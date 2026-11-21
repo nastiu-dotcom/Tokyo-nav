@@ -52,7 +52,7 @@ function render() {
     <section class="card">
       <h2>${t("💾 Backup")}</h2>
       <p class="small">${t("One file with the timeline, the wallet, the shared plan, users (no passwords) and settings. Save it to Google Drive or Files now and then – especially before and during the trip.")}</p>
-      <a class="btn btn-primary full" href="/api/backup" download>${t("⬇️ Download a backup of everything")}</a>
+      <a class="btn btn-primary full" href="/api/admin?backup=1" download>${t("⬇️ Download a backup of everything")}</a>
       <p class="small">${t("Tax-refund receipts and photos stay on each phone – save them from 🧾 Tax refund → Backup.")}</p>
     </section>`;
 }

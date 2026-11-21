@@ -101,7 +101,7 @@ async function choose(li) {
   hideSuggestions();
   els.search.value = name;
   try {
-    const p = await getJSON(`/api/place?id=${encodeURIComponent(li.dataset.id)}&session=${sessionToken}`);
+    const p = await getJSON(`/api/autocomplete?id=${encodeURIComponent(li.dataset.id)}&session=${sessionToken}`);
     setDraft({ lat: p.lat, lng: p.lng, name, id: li.dataset.id, address: p.address }, true);
   } catch (err) {
     alert(err.message);
